@@ -1,17 +1,35 @@
 package Sockets.Models;
 
+<<<<<<< HEAD
 import java.io.Serializable;
 
 public class User implements Serializable
 {
+=======
+import com.google.gson.annotations.Expose;
+
+import java.io.Serializable;
+
+public class User{
+    @Expose(serialize = true, deserialize = false)
+>>>>>>> Created GameService.cs content with getting a single game and getting a gameCluster (A calass i also created for displaying a large amount of games inside a page)
     public int Id;
+    @Expose(serialize = true, deserialize = false)
     public String Username;
+    @Expose(serialize = true, deserialize = true)
     public String Password;
+    @Expose(serialize = true, deserialize = true)
     public String Photo;
+    @Expose(serialize = true, deserialize = true)
     public String LastName;
+    @Expose(serialize = true, deserialize = true)
     public String FirstName;
+    @Expose(serialize = true, deserialize = true)
     public String SecurityLevel;
+    @Expose(serialize = true, deserialize = true)
     public String Role;
+
+
 
     public User(int id, String username, String password, String photo, String lastName, String firstName, String securityLevel, String role) {
         Id = id;

@@ -10,25 +10,37 @@ namespace Client.Data.Impl
     public class UserService : IUserService
     {
         private readonly HttpClient Client = new HttpClient();
-        private readonly string Uri = "http://localhost:8080";
-        public async Task<User> ValidateLogin(string username, string password)
+        private readonly string Uri = "https://localhost:5001/";
+        public async Task<User> ValidateLoginAsync(string username, string password) //FIXED CLASS NAME ACCORDING TO C# NAMING CONVENTION
         {
             HttpResponseMessage responseMessage =
-                await Client.GetAsync($"http://localhost:8080/user/login?username={username}&password={password}");
+                await Client.GetAsync($"{Uri}/SEP3Group3/validate?username={username}&password={password}");
             String reply = await responseMessage.Content.ReadAsStringAsync();
 
-            if (responseMessage.StatusCode == HttpStatusCode.NotFound)
+            if (responseMessage.StatusCode == HttpStatusCode.OK)
             {
-                throw new Exception("User not found");
+                string userAsJson = await responseMessage.Content.ReadAsStringAsync();
+                User resultUser = JsonSerializer.Deserialize<User>(userAsJson);
+                return resultUser;
             }
 
-            if (responseMessage.StatusCode == HttpStatusCode.BadRequest)
+            throw new Exception("User not found/Password incorrect");
+        }
+
+        public async Task<User> RegisterUserAsync(string Username, string Password, string Photo, string FirstName, string LastName)
+        {
+            HttpResponseMessage responseMessage =
+                await Client.GetAsync($"{Uri}/SEP3Group3/register?username={Username}&password={Password}&photo={Photo}&firstname={FirstName}&lastname={LastName}");
+            String reply = await responseMessage.Content.ReadAsStringAsync();
+
+            if (responseMessage.StatusCode == HttpStatusCode.OK)
             {
-                throw new Exception("Problems with connection with database");
-            } 
-            string userAsJson = await responseMessage.Content.ReadAsStringAsync();
-            User resultUser = JsonSerializer.Deserialize<User>(userAsJson); 
-            return resultUser;
+                string userAsJson = await responseMessage.Content.ReadAsStringAsync();
+                User resultUser = JsonSerializer.Deserialize<User>(userAsJson);
+                return resultUser; //EXPECTED A USUAL USER TO BE RETURNED
+            }
+
+            throw new Exception("User could not be registered");
         }
     }
 }
