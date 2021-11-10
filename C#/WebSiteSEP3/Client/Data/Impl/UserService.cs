@@ -27,10 +27,10 @@ namespace Client.Data.Impl
             throw new Exception("User not found/Password incorrect");
         }
 
-        public async Task<User> RegisterUserAsync(string Username, string Password, string Photo, string FirstName, string LastName)
+        public async Task<User> RegisterUserAsync(string Username, string Password, string FirstName, string LastName)
         {
             HttpResponseMessage responseMessage =
-                await Client.GetAsync($"{Uri}/SEP3Group3/register?username={Username}&password={Password}&photo={Photo}&firstname={FirstName}&lastname={LastName}");
+                await Client.GetAsync($"{Uri}/SEP3Group3/register?username={Username}&password={Password}&firstname={FirstName}&lastname={LastName}");
             String reply = await responseMessage.Content.ReadAsStringAsync();
 
             if (responseMessage.StatusCode == HttpStatusCode.OK)
