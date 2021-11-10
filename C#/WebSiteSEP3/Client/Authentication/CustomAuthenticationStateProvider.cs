@@ -51,7 +51,7 @@ namespace Client.Authentication
             ClaimsIdentity identity = new ClaimsIdentity();
             try
             {
-                User user = await userService.ValidateLogin(username, password);
+                User user = await userService.ValidateLoginAsync(username, password);
                 identity = SetupClaimsForUser(user);
                 string serialisedData = JsonSerializer.Serialize(user);
                 await jsRuntime.InvokeVoidAsync("sessionStorage.setItem", "currentUser", serialisedData);
