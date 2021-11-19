@@ -71,5 +71,8 @@ public class ServerHandling implements Runnable{
         objectOutputStream.writeObject(obj);
         System.out.println("Sent object");
     }
+    public void disconnect() throws IOException {
+        socket.close();
+    }
     }
 

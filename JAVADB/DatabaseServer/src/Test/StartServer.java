@@ -19,11 +19,5 @@ public class StartServer
     ServerHandling serverHandling = new ServerHandling(databaseServer);
     Thread thread = new Thread(serverHandling);
     thread.start();
-    User user = databaseServer.getUserDB("admin", "admin");
-    User user1 = databaseServer.getUserDB("user", "user");
-    UserPackage userPackage = new UserPackage(user, "lol");
-    //UserPackage userPackage1 = new UserPackage(user1);
-    serverHandling.sendDataToServer(userPackage);
-    System.out.println("sent");
   }
 }

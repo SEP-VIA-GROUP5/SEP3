@@ -39,6 +39,52 @@ public class DatabaseServerManager implements DatabaseServer
      return user;
   }
 
+  @Override public User registerUser(String username, String password,
+      String firstName, String lastName) throws SQLException
+  {
+    User user = null;
+    if (checkIfUsernameExists(username))
+    {
+      return user;
+    }
+    try(Connection connection = getConnection())
+    {
+      PreparedStatement statement = connection.prepareStatement( "INSERT INTO Users(username, password, first_name, last_name) VALUES (?, ?, ?, ?);");
+      statement.setString(1, username);
+      statement.setString(2, password);
+      statement.setString(3, firstName);
+      statement.setString(4, lastName);
+      statement.executeUpdate();
+
+      user = getUserDB(username, password);
+    }
+    return user;
+  }
+
+  @Override public boolean checkIfUsernameExists(String username)
+      throws SQLException
+  {
+    boolean exists = true;
+    String isUsername = null;
+    try(Connection connection = getConnection())
+    {
+      PreparedStatement statement = connection.prepareStatement("SELECT username FROM users WHERE username = ?;");
+      statement.setString(1, username);
+
+      ResultSet resultSet = statement.executeQuery();
+
+      while(resultSet.next())
+      {
+        isUsername = resultSet.getString("username");
+      }
+      if(isUsername == null)
+      {
+        exists = false;
+      }
+    }
+    return exists;
+  }
+
   private Connection getConnection() throws SQLException
   {
     String url = "jdbc:postgresql://ella.db.elephantsql.com:5432/zgckhgwi";
