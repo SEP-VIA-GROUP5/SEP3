@@ -36,4 +36,21 @@ public class UserController {
             return ResponseEntity.badRequest().build();
         }
     }
+
+    @GetMapping("/register")
+    public ResponseEntity<User> ValidateRegister(@RequestParam String username, @RequestParam String password, @RequestParam String firstName, @RequestParam String lastName)
+    {
+        try{
+            User user = userService.ValidateRegister(username,password,firstName,lastName);
+            if(user == null) {
+                return ResponseEntity.notFound().build();
+            }
+            return ResponseEntity.ok(user);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            return ResponseEntity.badRequest().build();
+        }
+    }
 }
