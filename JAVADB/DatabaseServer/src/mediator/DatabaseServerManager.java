@@ -10,7 +10,16 @@ public class DatabaseServerManager implements DatabaseServer
 
   private static DatabaseServerManager instance;
   public DatabaseServerManager() throws SQLException {
+<<<<<<< Updated upstream
     connection = getConnection();
+=======
+    try {
+      Class.forName("org.postgresql.Driver");
+    }
+    catch (java.lang.ClassNotFoundException e) {
+      System.out.println(e.getMessage());
+    }
+>>>>>>> Stashed changes
   }
 
   @Override public User getUserDB (String username, String password) throws SQLException

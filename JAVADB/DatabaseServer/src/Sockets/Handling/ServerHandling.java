@@ -3,7 +3,6 @@ package Sockets.Handling;
 import Sockets.Models.User;
 import Sockets.Packages.SendingType;
 import Sockets.Packages.UserPackage;
-import com.google.gson.Gson;
 import mediator.DatabaseServer;
 import mediator.DatabaseServerManager;
 
@@ -18,10 +17,13 @@ public class ServerHandling implements Runnable{
     private Socket socket;
     private ServerSocket serverSocket;
     private DatabaseServer databaseServer;
+<<<<<<< Updated upstream
     private BufferedReader in;
     private PrintWriter out;
     private boolean running;
     private Gson gson;
+=======
+>>>>>>> Stashed changes
 
     public ServerHandling(DatabaseServer databaseServer) throws IOException, SQLException {
         connect(databaseServer);
@@ -32,7 +34,6 @@ public class ServerHandling implements Runnable{
         serverSocket = new ServerSocket(2910);
         System.out.println("Server started...");
         this.socket = serverSocket.accept();
-        gson = new Gson();
         this.databaseServer = databaseServer;
     }
 
