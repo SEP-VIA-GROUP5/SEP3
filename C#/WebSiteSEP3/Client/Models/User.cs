@@ -4,21 +4,28 @@ namespace Client.Models
 {
     public class User
     {
-        [JsonPropertyName("id")]
+        [JsonPropertyName("Id")]
         public int Id { get; set; }
 
-        [JsonPropertyName("username")] public string Username { get; set; }
-        [JsonPropertyName("password")]
+        [JsonPropertyName("Username")]
+        public string Username { get; set; }
+
+        [JsonPropertyName("Password")] 
         public string Password { get; set; }
-        [JsonPropertyName("photo")]
+
+        [JsonPropertyName("Photo")]
         public string Photo { get; set; }
-        [JsonPropertyName("firstName")]
+        
+        [JsonPropertyName("FirstName")]
         public string FirstName { get; set; }
-        [JsonPropertyName("lastName")]
+        
+        [JsonPropertyName("LastName")]
         public string LastName { get; set; }
-        [JsonPropertyName("securityLevel")]
-        public string SecurityLevel { get; set; }
-        [JsonPropertyName("role")]
+        
+        [JsonPropertyName("SecurityLevel")]
+        public int SecurityLevel { get; set; }
+        
+        [JsonPropertyName("Role")]
         public string Role { get; set; }
     }
 }

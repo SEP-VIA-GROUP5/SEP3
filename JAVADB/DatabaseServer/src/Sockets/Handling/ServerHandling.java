@@ -1,20 +1,29 @@
 package Sockets.Handling;
 
 import Sockets.Models.User;
+import Sockets.Packages.SendingType;
 import Sockets.Packages.UserPackage;
-import com.google.gson.Gson;
 import mediator.DatabaseServer;
+import mediator.DatabaseServerManager;
 
+import javax.sound.sampled.AudioFormat;
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.nio.charset.StandardCharsets;
 import java.sql.SQLException;
 
 public class ServerHandling implements Runnable{
     private Socket socket;
+    private ServerSocket serverSocket;
     private DatabaseServer databaseServer;
-    private User user;
+<<<<<<< Updated upstream
+    private BufferedReader in;
+    private PrintWriter out;
+    private boolean running;
     private Gson gson;
+=======
+>>>>>>> Stashed changes
 
     public ServerHandling(DatabaseServer databaseServer) throws IOException, SQLException {
         connect(databaseServer);
@@ -22,75 +31,54 @@ public class ServerHandling implements Runnable{
 
     private void connect(DatabaseServer databaseServer) throws IOException
     {
-        ServerSocket serverSocket = new ServerSocket(54321);
+        serverSocket = new ServerSocket(2910);
         System.out.println("Server started...");
         this.socket = serverSocket.accept();
-        gson = new Gson();
         this.databaseServer = databaseServer;
     }
 
     public void run()
     {
-        while(true)
-        {
-            try {
-                InputStream inputStream = socket.getInputStream();
-                ObjectInputStream objectInputStream = new ObjectInputStream(inputStream);
-                Object obj = objectInputStream.readObject();
-                if(obj instanceof UserPackage)
-                {
+        try {
+            InputStream inputStream = socket.getInputStream();
+            byte[] lenbytes = new byte[1024];
+            int read = inputStream.read(lenbytes,0, lenbytes.length);
+            String message = new String(lenbytes, 0, read);
+            System.out.println("Tier 2: " + message);
 
-                    UserPackage received = (UserPackage)obj;
-                    //Receiving user from client
-                    user = received.getUser();
-                    switch (received.getType())
-                    {
-                        case "validateLogin" :
-                        {
-                            System.out.println("Validating login");
-                            //Getting user from database with credentials given from Client
-                            User userToBeSent = databaseServer.getUserDB(user.getUsername(), user.getPassword());
-                            UserPackage toSentPackage = new UserPackage(userToBeSent, "lol");
-                            //Sending back the user such that it can be validated
-                            sendDataToServer(toSentPackage);
-                            System.out.println("Logging in request sent back");
-                            break;
-                        }
-                        case "validateRegister" :
-                        {
-                            System.out.println("Validating register");
-                            //Registering user in db with the credentials from client
-                            User userToBeSent1 = databaseServer.registerUser(user.getUsername(), user.getPassword(), user.getFirstName(), user.getLastName());
-                            UserPackage toSentPackage1 = new UserPackage(userToBeSent1, "idk");
-                            //sending back the user from the database, if not registered the user will be null
-                            sendDataToServer(toSentPackage1);
-                            System.out.println("Registering request sent back");
-                            break;
-                        }
-                        default:
-                            System.out.println("Type not found");
-                    }
-                }
+            SendingType received = gson.fromJson(message, SendingType.class);
 
-            }
-            catch (Exception e)
+            switch (received.getType())
             {
-                e.printStackTrace();
-            }
-            }
+                case "validateLogin" :
+                    //Receive user from client
+                    UserPackage userPackage = gson.fromJson(message, UserPackage.class);
+                    User user = userPackage.getUser();
+
+                    //Getting user from database with credentials given from Client
+                    User userToBeSent = databaseServer.getUserDB(user.getUsername(), user.getPassword());
+                    UserPackage toSentPackage = new UserPackage("validateLogin", userToBeSent);
+
+                    //Sending back the user such that it can be validated
+                    String replyToClient = gson.toJson(toSentPackage);
+                    sendDataToServer(replyToClient);
 
 
+            }
         }
 
-    public void sendDataToServer(UserPackage obj) throws IOException {
-        OutputStream outputStream = socket.getOutputStream();
-        ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream);
-        objectOutputStream.writeObject(obj);
-        System.out.println("Sent object");
-    }
-    public void disconnect() throws IOException {
-        System.out.println("Closed");
-        socket.close();
-    }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
     }
 
+    public void sendDataToServer(String message) throws IOException {
+        OutputStream outputStream = socket.getOutputStream();
+        byte[] messageAsBytes = message.getBytes();
+        outputStream.write(messageAsBytes, 0, messageAsBytes.length);
+        socket.close();
+    }
+
+
+}
