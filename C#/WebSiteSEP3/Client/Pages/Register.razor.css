@@ -1,4 +1,4 @@
-.wrapper[b-qqczw58t74] {
+﻿.wrapper {
     height: 202%;
     width: 100%;
     left:0;
@@ -11,7 +11,7 @@
     padding: 100px;
 }
 
-.form-box[b-qqczw58t74] {
+.form-box {
     width: 380px;
     height: 480px;
     position: relative;
@@ -21,15 +21,15 @@
     background: white;
     border-radius: 20px;
 }
-.input-group[b-qqczw58t74]{
+.input-group{
     top: 180px;
     position: absolute;
     width: 280px;
     transform: 5s;
-    
+
 }
 
-.input-field[b-qqczw58t74]{
+.input-field{
     width: 100%;
     padding: 10px 0;
     margin: 5px 0;
@@ -41,7 +41,7 @@
     background: transparent;
 }
 
-.submit-btn[b-qqczw58t74] {
+.submit-btn {
     width: 85%;
     padding: 10px 3px;
     cursor: pointer;
