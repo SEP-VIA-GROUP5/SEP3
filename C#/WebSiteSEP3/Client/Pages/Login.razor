@@ -1,6 +1,7 @@
 ﻿@page "/Login"
 @namespace LoginComponent
 @using Client.Authentication
+@using Client.Models
 @inject NavigationManager NavigationManager
 @inject AuthenticationStateProvider AuthenticationStateProvider
 <div class="wrapper"></div>
@@ -9,21 +10,20 @@
         <div class="form-box" id="function">
             <h1 class="font-weight-bold py-3">Login</h1>
             <h4>Sign into your account</h4>
-            <form class="input-group">
-                <input type="text" placeholder="user name" @bind-value="username" class="input-field"/>
-                <input type="password" placeholder="password" @bind-value="password" class="input-field"/>
+            <EditForm Model="_user" class="input-group">
+                <input type="text" placeholder="user name" @bind-value="_user.Username" class="input-field"/>
+                <input type="password" placeholder="password" @bind-value="_user.Password" class="input-field"/>
                 <button type="button" class="submit-btn" @onclick="PerformLogin">Login</button>
                 <div style="color:red"> @errorMessage</div>
-                @* <p>Don't have an account? <a href="/Register">Register here</a></p> *@
-            </form>
+                <div class="oi-info text-info"><p>Don't have an account? <a href="/Register">Register here</a></p></div>
+            </EditForm>
         </div>
     </div>
 </div>
 
 
 @code {
-    private string username;
-    private string password;
+    private User _user = new User();
     private string errorMessage;
 
     public async Task PerformLogin()
@@ -32,9 +32,9 @@
 
         try
         {
-            await ((CustomAuthenticationStateProvider) AuthenticationStateProvider).ValidateLogin(username, password);
-            username = "";
-            password = "";
+            await ((CustomAuthenticationStateProvider) AuthenticationStateProvider).ValidateLogin(_user.Username, _user.Password);
+            _user.Username = "";
+            _user.Password = "";
             NavigationManager.NavigateTo("/");
         }
         catch (Exception e)

@@ -6,9 +6,8 @@
     top: 0;
     bottom: 0;
     position: absolute;
-    background: linear-gradient(to right, #eb3349, #f45c43);
     background-size: 1800% 1800%;
-    background-repeat: no-repeat;
+    background: linear-gradient(to right, #eb3349, #f45c43) no-repeat;
     padding: 100px;
 }
 
@@ -21,13 +20,6 @@
     overflow: hidden;
     background: white;
     border-radius: 20px;
-}
-.hero {
-    height: 100%;
-    width: 100%;
-    background-position: center;
-    background-size: cover;
-    position: absolute;
 }
 .input-group{
     top: 180px;
