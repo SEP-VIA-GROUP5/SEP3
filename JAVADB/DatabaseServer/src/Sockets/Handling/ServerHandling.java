@@ -13,6 +13,7 @@ import java.sql.SQLException;
 public class ServerHandling implements Runnable{
     private Socket socket;
     private DatabaseServer databaseServer;
+    private User user;
     private Gson gson;
 
     public ServerHandling(DatabaseServer databaseServer) throws IOException, SQLException {
@@ -38,19 +39,34 @@ public class ServerHandling implements Runnable{
                 Object obj = objectInputStream.readObject();
                 if(obj instanceof UserPackage)
                 {
+
                     UserPackage received = (UserPackage)obj;
+                    //Receiving user from client
+                    user = received.getUser();
                     switch (received.getType())
                     {
                         case "validateLogin" :
+                        {
                             System.out.println("Validating login");
-                            //Receive user from client
-                            User user = received.getUser();
                             //Getting user from database with credentials given from Client
                             User userToBeSent = databaseServer.getUserDB(user.getUsername(), user.getPassword());
-                            UserPackage toSentPackage = new UserPackage( userToBeSent, "lol");
+                            UserPackage toSentPackage = new UserPackage(userToBeSent, "lol");
                             //Sending back the user such that it can be validated
                             sendDataToServer(toSentPackage);
+                            System.out.println("Logging in request sent back");
                             break;
+                        }
+                        case "validateRegister" :
+                        {
+                            System.out.println("Validating register");
+                            //Registering user in db with the credentials from client
+                            User userToBeSent1 = databaseServer.registerUser(user.getUsername(), user.getPassword(), user.getFirstName(), user.getLastName());
+                            UserPackage toSentPackage1 = new UserPackage(userToBeSent1, "idk");
+                            //sending back the user from the database, if not registered the user will be null
+                            sendDataToServer(toSentPackage1);
+                            System.out.println("Registering request sent back");
+                            break;
+                        }
                         default:
                             System.out.println("Type not found");
                     }
