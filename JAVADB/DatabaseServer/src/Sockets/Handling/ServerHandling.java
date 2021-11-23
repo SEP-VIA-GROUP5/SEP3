@@ -21,7 +21,7 @@ public class ServerHandling implements Runnable{
 
     private void connect(DatabaseServer databaseServer) throws IOException
     {
-        ServerSocket serverSocket = new ServerSocket(2910);
+        ServerSocket serverSocket = new ServerSocket(54321);
         System.out.println("Server started...");
         this.socket = serverSocket.accept();
         gson = new Gson();
@@ -42,6 +42,7 @@ public class ServerHandling implements Runnable{
                     switch (received.getType())
                     {
                         case "validateLogin" :
+                            System.out.println("Validating login");
                             //Receive user from client
                             User user = received.getUser();
                             //Getting user from database with credentials given from Client
@@ -72,6 +73,7 @@ public class ServerHandling implements Runnable{
         System.out.println("Sent object");
     }
     public void disconnect() throws IOException {
+        System.out.println("Closed");
         socket.close();
     }
     }
