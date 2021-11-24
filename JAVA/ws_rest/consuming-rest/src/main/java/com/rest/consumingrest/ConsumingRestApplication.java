@@ -22,11 +22,13 @@ public class ConsumingRestApplication {
 			throws IOException, ClassNotFoundException
 	{
 		//Test RESTful services
+		System.out.println("AAAAAAAAAAAAAAAAAA");
 		SpringApplication.run(ConsumingRestApplication.class, args);
 
 		//Test Socket connection
 		IUserService userService = new UserService();
-		User user = userService.ValidateLogin("admin","admin");
+		System.out.println("AAAAAAAAAAAAAAAA");
+		User user = userService.ValidateRegister("lukas","lukas123", "lukas", "jusk");
 		System.out.println("Username got: " + user.getUsername() + ", " +
 				"password got: " + user.getPassword());
 	}

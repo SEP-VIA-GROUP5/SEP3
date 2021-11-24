@@ -39,7 +39,7 @@
     {
         try
         {
-    // UserService.RegisterUserAsync(_user.Username, _user.Password, _user.FirstName, _user.LastName);
+            UserService.RegisterUserAsync(_user.Username, _user.Password, _user.FirstName, _user.LastName);
             NavigationManager.NavigateTo("/login");
         }
         catch (Exception e)

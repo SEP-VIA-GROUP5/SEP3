@@ -22,7 +22,7 @@ public class ServerHandling implements Runnable{
 
     private void connect(DatabaseServer databaseServer) throws IOException
     {
-        ServerSocket serverSocket = new ServerSocket(54321);
+        ServerSocket serverSocket = new ServerSocket(65456);
         System.out.println("Server started...");
         this.socket = serverSocket.accept();
         gson = new Gson();

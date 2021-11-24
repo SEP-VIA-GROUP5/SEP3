@@ -10,7 +10,7 @@ import java.net.Socket;
 public class ClientHandling {
 
     private static String HOST = "localhost";
-    private static int PORT = 54321;
+    private static int PORT = 65456;
     private Socket socket;
     private InputStream inputStream;
     private ObjectInputStream objectInputStream;
@@ -41,12 +41,12 @@ public class ClientHandling {
     }
 
     public void connect() throws IOException {
-        System.out.println("Connected");
+        System.out.println("Connecting...");
         this.socket = new Socket(HOST, PORT);
-        inputStream = socket.getInputStream();
-        objectInputStream = new ObjectInputStream(inputStream);
         outputStream = socket.getOutputStream();
         objectOutputStream = new ObjectOutputStream(outputStream);
+        inputStream = socket.getInputStream();
+        objectInputStream = new ObjectInputStream(inputStream);
         System.out.println("Connected");
     }
 

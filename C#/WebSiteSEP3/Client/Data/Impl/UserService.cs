@@ -30,5 +30,20 @@ namespace Client.Data.Impl
             User resultUser = JsonSerializer.Deserialize<User>(userAsJson); 
             return resultUser;
         }
+        public async Task<User> RegisterUserAsync(string Username, string Password, string FirstName, string LastName)
+        {
+            HttpResponseMessage responseMessage =
+                await Client.GetAsync($"{Uri}/SEP3Group3/register?username={Username}&password={Password}&firstname={FirstName}&lastname={LastName}");
+            String reply = await responseMessage.Content.ReadAsStringAsync();
+
+            if (responseMessage.StatusCode == HttpStatusCode.OK)
+            {
+                string userAsJson = await responseMessage.Content.ReadAsStringAsync();
+                User resultUser = JsonSerializer.Deserialize<User>(userAsJson);
+                return resultUser; //EXPECTED A USUAL USER TO BE RETURNED
+            }
+
+            throw new Exception("User could not be registered");
+        }
     }
 }
