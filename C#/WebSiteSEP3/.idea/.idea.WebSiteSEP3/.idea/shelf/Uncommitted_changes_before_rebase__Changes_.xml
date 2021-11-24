@@ -1,0 +1,24 @@
+﻿<changelist name="Uncommitted_changes_before_rebase_[Changes]" date="1637753344892" recycled="true" deleted="true">
+  <option name="PATH" value="$PROJECT_DIR$/.idea/.idea.WebSiteSEP3/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]/shelved.patch" />
+  <option name="DESCRIPTION" value="Uncommitted changes before rebase [Changes]" />
+  <binary>
+    <option name="BEFORE_PATH" value="Client/obj/Debug/net5.0/Client.assets.cache" />
+    <option name="AFTER_PATH" value="Client/obj/Debug/net5.0/Client.assets.cache" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.WebSiteSEP3/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]/Client.assets.cache" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="Client/obj/Debug/net5.0/Client.csproj.AssemblyReference.cache" />
+    <option name="AFTER_PATH" value="Client/obj/Debug/net5.0/Client.csproj.AssemblyReference.cache" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.WebSiteSEP3/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]/Client.csproj.AssemblyReference.cache" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="Client/obj/project.nuget.cache" />
+    <option name="AFTER_PATH" value="Client/obj/project.nuget.cache" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.WebSiteSEP3/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]/project.nuget.cache" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="../../JAVADB/DatabaseServer/target/classes/Sockets/Handling/ServerHandling.class" />
+    <option name="AFTER_PATH" value="../../JAVADB/DatabaseServer/target/classes/Sockets/Handling/ServerHandling.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.WebSiteSEP3/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]/ServerHandling.class" />
+  </binary>
+</changelist>
