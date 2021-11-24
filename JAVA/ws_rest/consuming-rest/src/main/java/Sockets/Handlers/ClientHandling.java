@@ -9,26 +9,24 @@ import java.net.Socket;
 
 public class ClientHandling {
 
-    private static String HOST = "localhost";
-    private static int PORT = 65456;
+    private final static String HOST = "localhost";
+    private final static int PORT = 6789;
     private Socket socket;
-    private InputStream inputStream;
-    private ObjectInputStream objectInputStream;
-    private ObjectOutputStream objectOutputStream;
-    private OutputStream outputStream;
+    private ObjectInputStream inStream;
+    private ObjectOutputStream outStream;
 
     public ClientHandling() throws IOException {
         connect();
     }
 
     public void sendToServer(Object obj) throws IOException {
-        objectOutputStream.writeObject(obj);
+        outStream.writeObject(obj);
     }
 
     public Object receiveFromServer() throws IOException, ClassNotFoundException
     {
         System.out.println("Received");
-        final Object obj = objectInputStream.readObject();
+        final Object obj = inStream.readObject();
         if(obj instanceof UserPackage)
         {
             final UserPackage user = (UserPackage) obj;
@@ -43,11 +41,15 @@ public class ClientHandling {
     public void connect() throws IOException {
         System.out.println("Connecting...");
         this.socket = new Socket(HOST, PORT);
-        outputStream = socket.getOutputStream();
-        objectOutputStream = new ObjectOutputStream(outputStream);
-        inputStream = socket.getInputStream();
-        objectInputStream = new ObjectInputStream(inputStream);
+        outStream = new ObjectOutputStream(socket.getOutputStream());
+        inStream = new ObjectInputStream(socket.getInputStream());
+
+        User user1 = new User("Lukas", "Jusk");
+        UserPackage userPackage1 = new UserPackage(user1, "lol");
+        outStream.writeObject(userPackage1);
+
         System.out.println("Connected");
+        disconnect();
     }
 
     public void disconnect() throws IOException {
