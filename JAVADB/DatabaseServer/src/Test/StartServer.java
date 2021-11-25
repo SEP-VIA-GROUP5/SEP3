@@ -23,8 +23,6 @@ public class StartServer
     System.out.println("Starting Server...");
     // Create welcoming socket at port 6789
     ServerSocket welcomeSocket = new ServerSocket(PORT);
-    while (true)
-    {
       System.out.println("Waiting for a client...");
       // Wait, on welcoming socket for contact by clientSocket
       Socket socket = welcomeSocket.accept();
@@ -32,6 +30,6 @@ public class StartServer
       ServerHandling c = new ServerHandling(databaseServer, socket);
       Thread t = new Thread(c);
       t.start();
-    }
+
   }
 }

@@ -15,7 +15,7 @@ public class TestingTCP
     System.out.println("1");
     ObjectOutputStream outStream = new ObjectOutputStream(socket.getOutputStream());
     System.out.println("2");
-    ObjectInputStream inStream = new ObjectInputStream(socket.getInputStream());
+    //ObjectInputStream inStream = new ObjectInputStream(socket.getInputStream());
     System.out.println("3");
     User user = new User("lukas", "jusk");
     System.out.println("4");
