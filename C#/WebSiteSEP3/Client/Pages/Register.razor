@@ -1,56 +1,4 @@
-﻿@* <!--- TODO Register page to be made next sprints ---!> *@
-@* @page "/Register" *@
-@* @using Microsoft.AspNetCore.Components *@
-@* @using Client.Models *@
-@* @using Client.Data *@
-@* @using Client.Data.Impl *@
-@* *@
-@* @inject NavigationManager NavigationManager *@
-@* @inject IUserService UserService *@
-@* *@
-@* *@
-@* <div class="wrapper"> *@
-@* </div> *@
-@* <div class="container"> *@
-@*     <div class="row no-gutters"> *@
-@*         <div class="form-box" id="function"> *@
-@*             <h1 class="font-weight-bold py-3">Register</h1> *@
-@*             <h4>Register new account</h4> *@
-@*             <EditForm Model="_user"class="input-group"> *@
-@*                 <input type="text" placeholder="user name" @bind-value="_user.Username" class="input-field"/> *@
-@*                 <input type="password" placeholder="password" @bind-value="_user.Password" class="input-field"/> *@
-@*                 <input type="text" placeholder="first name" @bind-value="_user.FirstName" class="input-field"/> *@
-@*                 <input type="text" placeholder="last name" @bind-value="_user.LastName" class="input-field"/> *@
-@*                 <button type="button" class="submit-btn" @onclick="AddNewUser">Register</button> *@
-@*                 <div style="color:red"> @_errorMessage</div> *@
-@*                 <div class="oi-info text-info"><p>Already have an account? <a href="/login">Log in here</a></p></div> *@
-@*             </EditForm> *@
-@*         </div> *@
-@*     </div> *@
-@* </div> *@
-@* *@
-@* *@
-@* *@
-@* @code { *@
-@*     private User _user = new User(); *@
-@*     private string _errorMessage = ""; *@
-@* *@
-@*     private void AddNewUser() *@
-@*     { *@
-@*         try *@
-@*         { *@
-@*             UserService.RegisterUserAsync(_user.Username, _user.Password, _user.FirstName, _user.LastName); *@
-@*             NavigationManager.NavigateTo("/login"); *@
-@*         } *@
-@*         catch (Exception e) *@
-@*         { *@
-@*             _errorMessage = e.Message; *@
-@*         } *@
-@*     } *@
-@* *@
-@* } *@
-
-<!--- TODO Register page to be made next sprints ---!>
+﻿<!--- TODO Register page to be made next sprints ---!>
 @page "/Register"
 @using Microsoft.AspNetCore.Components
 @using Client.Models
@@ -91,10 +39,7 @@
     {
         try
         {
-            _user.Photo = "default.png";
-            _user.Role = "Member";
-            _user.SecurityLevel = "0";
-            UserService.RegisterUserAsync(_user);
+            UserService.RegisterUserAsync(_user.Username, _user.Password, _user.FirstName, _user.LastName);
             NavigationManager.NavigateTo("/login");
         }
         catch (Exception e)

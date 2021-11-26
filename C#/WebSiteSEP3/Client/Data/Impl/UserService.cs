@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Net;
 using System.Net.Http;
-using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 using Client.Models;
@@ -29,35 +28,20 @@ namespace Client.Data.Impl
             User resultUser = JsonSerializer.Deserialize<User>(userAsJson); 
             return resultUser;
         }
-        // public async Task<User> RegisterUserAsync(string username, string password, string firstName, string lastName)
-        // {
-        //     HttpResponseMessage responseMessage =
-        //         await Client.PostAsync($"http://localhost:8080/user/register?username={username}&password={password}&firstname={firstName}&lastname={lastName}");
-        //     String reply = await responseMessage.Content.ReadAsStringAsync();
-        //     Console.WriteLine(reply);
-        //     if (responseMessage.StatusCode == HttpStatusCode.OK)
-        //     {
-        //         string userAsJson = await responseMessage.Content.ReadAsStringAsync();
-        //         User resultUser = JsonSerializer.Deserialize<User>(userAsJson);
-        //         return resultUser; //EXPECTED A USUAL USER TO BE RETURNED
-        //     }
-        //
-        //     throw new Exception("User could not be registered");
-        // }
-        
-        public async Task RegisterUserAsync(User user)
+        public async Task<User> RegisterUserAsync(string username, string password, string firstName, string lastName)
         {
-            string userAsJson = JsonSerializer.Serialize(user);
-            HttpContent content = new StringContent(userAsJson,
-                Encoding.UTF8, "application/json");
             HttpResponseMessage responseMessage =
-                await Client.PostAsync("http://localhost:8080/user/register", content);
-            if (!responseMessage.IsSuccessStatusCode)
+                await Client.GetAsync($"http://localhost:8080/user/register?username={username}&password={password}&firstname={firstName}&lastname={lastName}");
+            String reply = await responseMessage.Content.ReadAsStringAsync();
+            Console.WriteLine(reply);
+            if (responseMessage.StatusCode == HttpStatusCode.OK)
             {
-                throw new Exception("User could not be registered.");
+                string userAsJson = await responseMessage.Content.ReadAsStringAsync();
+                User resultUser = JsonSerializer.Deserialize<User>(userAsJson);
+                return resultUser; //EXPECTED A USUAL USER TO BE RETURNED
             }
-            Console.WriteLine("User " + user.Username + " successfully registered.");
+
+            throw new Exception("User could not be registered");
         }
-        
     }
 }

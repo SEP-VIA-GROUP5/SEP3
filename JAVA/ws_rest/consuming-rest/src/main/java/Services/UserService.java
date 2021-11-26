@@ -32,11 +32,11 @@ public class UserService implements IUserService {
         return userPackage.getUser();
     }
 
-    @Override public User ValidateRegister(User user)
+    @Override public User ValidateRegister(String username, String password, String firstName, String lastName)
         throws IOException, ClassNotFoundException
     {
         //sends username and password to database for it to validate new user registration
-        UserPackage userPackage = new UserPackage(user, "validateRegister");
+        UserPackage userPackage = new UserPackage(new User(username, password, firstName, lastName), "validateRegister");
         clientHandling.sendToServer(userPackage);
 
         //received back the validation result
