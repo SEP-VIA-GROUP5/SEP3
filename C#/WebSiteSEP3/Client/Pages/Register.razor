@@ -39,7 +39,10 @@
     {
         try
         {
-            UserService.RegisterUserAsync(_user.Username, _user.Password, _user.FirstName, _user.LastName);
+            _user.Photo = "default.png";
+            _user.Role = "Member";
+            _user.SecurityLevel = "0";
+            UserService.RegisterUserAsync(_user);
             NavigationManager.NavigateTo("/login");
         }
         catch (Exception e)
