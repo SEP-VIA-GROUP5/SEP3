@@ -75,28 +75,28 @@ using Client;
 #line hidden
 #nullable disable
 #nullable restore
-#line 3 "C:\Users\ljusk\Documents\GitHub\SEP3\C#\WebSiteSEP3\Client\Pages\Register.razor"
+#line 55 "C:\Users\ljusk\Documents\GitHub\SEP3\C#\WebSiteSEP3\Client\Pages\Register.razor"
 using Microsoft.AspNetCore.Components;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 4 "C:\Users\ljusk\Documents\GitHub\SEP3\C#\WebSiteSEP3\Client\Pages\Register.razor"
+#line 56 "C:\Users\ljusk\Documents\GitHub\SEP3\C#\WebSiteSEP3\Client\Pages\Register.razor"
 using Client.Models;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 5 "C:\Users\ljusk\Documents\GitHub\SEP3\C#\WebSiteSEP3\Client\Pages\Register.razor"
+#line 57 "C:\Users\ljusk\Documents\GitHub\SEP3\C#\WebSiteSEP3\Client\Pages\Register.razor"
 using Client.Data;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 6 "C:\Users\ljusk\Documents\GitHub\SEP3\C#\WebSiteSEP3\Client\Pages\Register.razor"
+#line 58 "C:\Users\ljusk\Documents\GitHub\SEP3\C#\WebSiteSEP3\Client\Pages\Register.razor"
 using Client.Data.Impl;
 
 #line default
@@ -111,7 +111,7 @@ using Client.Data.Impl;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 34 "C:\Users\ljusk\Documents\GitHub\SEP3\C#\WebSiteSEP3\Client\Pages\Register.razor"
+#line 86 "C:\Users\ljusk\Documents\GitHub\SEP3\C#\WebSiteSEP3\Client\Pages\Register.razor"
        
     private User _user = new User();
     private string _errorMessage = "";
@@ -120,7 +120,10 @@ using Client.Data.Impl;
     {
         try
         {
-            UserService.RegisterUserAsync(_user.Username, _user.Password, _user.FirstName, _user.LastName);
+            _user.Photo = "default.png";
+            _user.Role = "Member";
+            _user.SecurityLevel = "0";
+            UserService.RegisterUserAsync(_user);
             NavigationManager.NavigateTo("/login");
         }
         catch (Exception e)

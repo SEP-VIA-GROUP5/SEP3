@@ -37,22 +37,41 @@ public class UserController {
         }
     }
 
-    @GetMapping("/register")
-    public ResponseEntity<User> ValidateRegister(@RequestParam String username, @RequestParam String password, @RequestParam String firstName, @RequestParam String lastName)
-    {
-        try{
-            System.out.println(username);
-            User user = userService.ValidateRegister(username,password,firstName,lastName);
+//    @PostMapping("/register")
+//    public ResponseEntity<User> ValidateRegister(@RequestParam String username, @RequestParam String password, @RequestParam String firstName, @RequestParam String lastName)
+//    {
+//        try{
+//            System.out.println(username);
+//            User user = userService.ValidateRegister(username,password,firstName,lastName);
+//
+//            if(user == null) {
+//                return ResponseEntity.notFound().build();
+//            }
+//            return ResponseEntity.ok(user);
+//        }
+//        catch (Exception e)
+//        {
+//            System.out.println(e.getMessage());
+//            return ResponseEntity.badRequest().build();
+//        }
+//    }
 
-            if(user == null) {
-                return ResponseEntity.notFound().build();
-            }
-            return ResponseEntity.ok(user);
-        }
-        catch (Exception e)
+    @PostMapping("/register")
+        public ResponseEntity<User> ValidateRegister(@RequestBody User user)
         {
-            System.out.println(e.getMessage());
-            return ResponseEntity.badRequest().build();
+            try{
+
+                User user1 = userService.ValidateRegister(user);
+
+                if(user1 == null) {
+                    return ResponseEntity.notFound().build();
+                }
+                return ResponseEntity.ok(user1);
+            }
+            catch (Exception e)
+            {
+                System.out.println(e.getMessage());
+                return ResponseEntity.badRequest().build();
+            }
         }
-    }
 }
