@@ -42,7 +42,6 @@ public class UserService implements IUserService {
         //received back the validation result
         Object dataReceivedFromServer = clientHandling.receiveFromServer();
         userPackage = (UserPackage) dataReceivedFromServer;
-        System.out.println("Register");
         return userPackage.getUser();
     }
 

@@ -21,7 +21,7 @@
                 <input type="password" placeholder="password" @bind-value="_user.Password" class="input-field"/>
                 <input type="text" placeholder="first name" @bind-value="_user.FirstName" class="input-field"/>
                 <input type="text" placeholder="last name" @bind-value="_user.LastName" class="input-field"/>
-                <button type="button" class="submit-btn" @onclick="AddNewUser">Register</button>
+                <button type="button" class="submit-btn" @onclick="AddNewUser">Login</button>
                 <div style="color:red"> @_errorMessage</div>
                 <div class="oi-info text-info"><p>Already have an account? <a href="/login">Log in here</a></p></div>
             </EditForm>
@@ -39,7 +39,7 @@
     {
         try
         {
-            UserService.RegisterUserAsync(_user.Username, _user.Password, _user.FirstName, _user.LastName);
+    // UserService.RegisterUserAsync(_user.Username, _user.Password, _user.FirstName, _user.LastName);
             NavigationManager.NavigateTo("/login");
         }
         catch (Exception e)
