@@ -9,31 +9,43 @@
       <change beforePath="$PROJECT_DIR$/.idea/.idea.WebSiteSEP3/.idea/shelf/Uncommitted_changes_before_Checkout_at_11_24_2021_12_28_PM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.WebSiteSEP3/.idea/shelf/Uncommitted_changes_before_Checkout_at_11_24_2021_12_28_PM__Changes_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.WebSiteSEP3/.idea/shelf/Uncommitted_changes_before_Checkout_at_11_24_2021_12_28_PM__Changes_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.WebSiteSEP3/.idea/shelf/Uncommitted_changes_before_Checkout_at_11_24_2021_12_28_PM__Changes_1.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.WebSiteSEP3/.idea/shelf/Uncommitted_changes_before_rebase__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.WebSiteSEP3/.idea/shelf/Uncommitted_changes_before_rebase__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.WebSiteSEP3/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.WebSiteSEP3/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/Authentication/CustomAuthenticationStateProvider.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Client/Authentication/CustomAuthenticationStateProvider.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/Data/IUserService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Client/Data/IUserService.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Client/Data/Impl/UserService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Client/Data/Impl/UserService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/Models/User.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Client/Models/User.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Client/Pages/Register.razor" beforeDir="false" afterPath="$PROJECT_DIR$/Client/Pages/Register.razor" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/bin/Debug/net5.0/Client.Views.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Client/bin/Debug/net5.0/Client.Views.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/bin/Debug/net5.0/Client.Views.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/Client/bin/Debug/net5.0/Client.Views.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/bin/Debug/net5.0/Client.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Client/bin/Debug/net5.0/Client.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/bin/Debug/net5.0/Client.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/Client/bin/Debug/net5.0/Client.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/bin/Debug/net5.0/ref/Client.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Client/bin/Debug/net5.0/ref/Client.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/obj/Debug/net5.0/Client.Views.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Client/obj/Debug/net5.0/Client.Views.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/obj/Debug/net5.0/Client.Views.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/Client/obj/Debug/net5.0/Client.Views.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/obj/Client.csproj.nuget.dgspec.json" beforeDir="false" afterPath="$PROJECT_DIR$/Client/obj/Client.csproj.nuget.dgspec.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/obj/Client.csproj.nuget.g.props" beforeDir="false" afterPath="$PROJECT_DIR$/Client/obj/Client.csproj.nuget.g.props" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/obj/Debug/net5.0/Client.GeneratedMSBuildEditorConfig.editorconfig" beforeDir="false" afterPath="$PROJECT_DIR$/Client/obj/Debug/net5.0/Client.GeneratedMSBuildEditorConfig.editorconfig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/obj/Debug/net5.0/Client.assets.cache" beforeDir="false" afterPath="$PROJECT_DIR$/Client/obj/Debug/net5.0/Client.assets.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/obj/Debug/net5.0/Client.csproj.AssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/Client/obj/Debug/net5.0/Client.csproj.AssemblyReference.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/obj/Debug/net5.0/Client.csproj.CoreCompileInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/Client/obj/Debug/net5.0/Client.csproj.CoreCompileInputs.cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Client/obj/Debug/net5.0/Client.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Client/obj/Debug/net5.0/Client.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Client/obj/Debug/net5.0/Client.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/Client/obj/Debug/net5.0/Client.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/obj/Debug/net5.0/Razor/App.razor.g.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Client/obj/Debug/net5.0/Razor/App.razor.g.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/obj/Debug/net5.0/Razor/Pages/Error.cshtml.g.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Client/obj/Debug/net5.0/Razor/Pages/Error.cshtml.g.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/obj/Debug/net5.0/Razor/Pages/Index.razor.g.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Client/obj/Debug/net5.0/Razor/Pages/Index.razor.g.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/obj/Debug/net5.0/Razor/Pages/Login.razor.g.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Client/obj/Debug/net5.0/Razor/Pages/Login.razor.g.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/obj/Debug/net5.0/Razor/Pages/Register.razor.g.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Client/obj/Debug/net5.0/Razor/Pages/Register.razor.g.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/obj/Debug/net5.0/Razor/Pages/_Host.cshtml.g.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Client/obj/Debug/net5.0/Razor/Pages/_Host.cshtml.g.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/obj/Debug/net5.0/Razor/Shared/MainLayout.razor.g.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Client/obj/Debug/net5.0/Razor/Shared/MainLayout.razor.g.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/obj/Debug/net5.0/Razor/Shared/NavMenu.razor.g.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Client/obj/Debug/net5.0/Razor/Shared/NavMenu.razor.g.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/obj/Debug/net5.0/Razor/Shared/SurveyPrompt.razor.g.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Client/obj/Debug/net5.0/Razor/Shared/SurveyPrompt.razor.g.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/obj/Debug/net5.0/Razor/_Imports.razor.g.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Client/obj/Debug/net5.0/Razor/_Imports.razor.g.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/obj/Debug/net5.0/RazorDeclaration/App.razor.g.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Client/obj/Debug/net5.0/RazorDeclaration/App.razor.g.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Client/obj/Debug/net5.0/RazorDeclaration/Client.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Client/obj/Debug/net5.0/RazorDeclaration/Client.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Client/obj/Debug/net5.0/RazorDeclaration/Client.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/Client/obj/Debug/net5.0/RazorDeclaration/Client.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/obj/Debug/net5.0/ref/Client.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Client/obj/Debug/net5.0/ref/Client.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../JAVA/ws_rest/consuming-rest/src/main/java/Sockets/Handlers/TestingTCP.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../JAVA/ws_rest/consuming-rest/src/main/java/Sockets/Handlers/TestingTCP.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../JAVA/ws_rest/consuming-rest/src/main/java/Sockets/Models/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../JAVA/ws_rest/consuming-rest/src/main/java/Sockets/Models/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../JAVADB/DatabaseServer/src/Sockets/Handling/ServerHandling.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../JAVADB/DatabaseServer/src/Sockets/Handling/ServerHandling.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../JAVADB/DatabaseServer/src/Sockets/Models/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../JAVADB/DatabaseServer/src/Sockets/Models/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../JAVADB/DatabaseServer/src/Test/StartServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../JAVADB/DatabaseServer/src/Test/StartServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../JAVADB/DatabaseServer/target/classes/Sockets/Handling/ServerHandling.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../JAVADB/DatabaseServer/target/classes/Sockets/Handling/ServerHandling.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../JAVADB/DatabaseServer/target/classes/Sockets/Models/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../JAVADB/DatabaseServer/target/classes/Sockets/Models/User.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../JAVADB/DatabaseServer/target/classes/Test/StartServer.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../JAVADB/DatabaseServer/target/classes/Test/StartServer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/obj/Debug/net5.0/RazorDeclaration/Pages/Index.razor.g.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Client/obj/Debug/net5.0/RazorDeclaration/Pages/Index.razor.g.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/obj/Debug/net5.0/RazorDeclaration/Pages/Login.razor.g.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Client/obj/Debug/net5.0/RazorDeclaration/Pages/Login.razor.g.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/obj/Debug/net5.0/RazorDeclaration/Pages/Register.razor.g.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Client/obj/Debug/net5.0/RazorDeclaration/Pages/Register.razor.g.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/obj/Debug/net5.0/RazorDeclaration/Shared/MainLayout.razor.g.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Client/obj/Debug/net5.0/RazorDeclaration/Shared/MainLayout.razor.g.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/obj/Debug/net5.0/RazorDeclaration/Shared/NavMenu.razor.g.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Client/obj/Debug/net5.0/RazorDeclaration/Shared/NavMenu.razor.g.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/obj/Debug/net5.0/RazorDeclaration/Shared/SurveyPrompt.razor.g.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Client/obj/Debug/net5.0/RazorDeclaration/Shared/SurveyPrompt.razor.g.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/obj/Debug/net5.0/RazorDeclaration/_Imports.razor.g.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Client/obj/Debug/net5.0/RazorDeclaration/_Imports.razor.g.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/obj/Debug/net5.0/staticwebassets/Client.StaticWebAssets.Manifest.cache" beforeDir="false" afterPath="$PROJECT_DIR$/Client/obj/Debug/net5.0/staticwebassets/Client.StaticWebAssets.Manifest.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/obj/Debug/net5.0/staticwebassets/Client.StaticWebAssets.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Client/obj/Debug/net5.0/staticwebassets/Client.StaticWebAssets.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/obj/project.assets.json" beforeDir="false" afterPath="$PROJECT_DIR$/Client/obj/project.assets.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/obj/project.nuget.cache" beforeDir="false" afterPath="$PROJECT_DIR$/Client/obj/project.nuget.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/obj/project.packagespec.json" beforeDir="false" afterPath="$PROJECT_DIR$/Client/obj/project.packagespec.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/obj/rider.project.restore.info" beforeDir="false" afterPath="$PROJECT_DIR$/Client/obj/rider.project.restore.info" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,22 +55,22 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$/../.." value="lukas" />
+        <entry key="$PROJECT_DIR$/../.." value="main" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
     <option name="RESET_MODE" value="HARD" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/Client/obj/Debug/net5.0/RazorDeclaration/_Imports.razor.g.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Client/obj/Debug/net5.0/RazorDeclaration/Shared/NavMenu.razor.g.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Client/obj/Debug/net5.0/RazorDeclaration/Shared/SurveyPrompt.razor.g.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Client/obj/Debug/net5.0/RazorDeclaration/Shared/MainLayout.razor.g.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Client/obj/Debug/net5.0/Razor/Pages/Error.cshtml.g.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Client/obj/Debug/net5.0/RazorDeclaration/Pages/Index.razor.g.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Client/obj/Debug/net5.0/RazorDeclaration/Pages/Login.razor.g.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Client/obj/Debug/net5.0/RazorDeclaration/Pages/Register.razor.g.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Client/obj/Debug/net5.0/RazorDeclaration/Shared/NavMenu.razor.g.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Client/obj/Debug/net5.0/RazorDeclaration/Shared/MainLayout.razor.g.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Client/obj/Debug/net5.0/RazorDeclaration/Pages/Login.razor.g.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Client/obj/Debug/net5.0/RazorDeclaration/Pages/Index.razor.g.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Client/obj/Debug/net5.0/RazorDeclaration/_Imports.razor.g.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Client/obj/Debug/net5.0/RazorDeclaration/App.razor.g.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Client/obj/Debug/net5.0/Razor/Pages/Error.cshtml.g.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="ProjectId" id="20m321FLqYJKWREWQLhMJseTr2v" />
   <component name="ProjectViewState">
@@ -146,14 +158,7 @@
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Client/Authentication/CustomAuthenticationStateProvider.cs</url>
           <line>47</line>
-          <properties documentPath="C:\Users\ljusk\Documents\GitHub\SEP3\C#\WebSiteSEP3\Client\Authentication\CustomAuthenticationStateProvider.cs" initialLine="47" containingFunctionPresentation="method 'ValidateLogin'">
-            <startOffsets>
-              <option value="1648" />
-            </startOffsets>
-            <endOffsets>
-              <option value="1687" />
-            </endOffsets>
-          </properties>
+          <properties documentPath="C:\Users\ljusk\Documents\GitHub\SEP3\C#\WebSiteSEP3\Client\Authentication\CustomAuthenticationStateProvider.cs" initialLine="47" containingFunctionPresentation="method 'ValidateLogin'" />
           <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>
