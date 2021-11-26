@@ -16,10 +16,13 @@ public class ServerHandling implements Runnable{
     private User user;
     private Gson gson;
     private ObjectInputStream objectInputStream;
+    private ObjectOutputStream objectOutputStream;
 
     public ServerHandling(DatabaseServer databaseServer, Socket socket) throws IOException, SQLException {
 //        this.serverSocket = new ServerSocket(5678);
         this.socket = socket;
+        OutputStream outputStream = socket.getOutputStream();
+        this.objectOutputStream = new ObjectOutputStream(outputStream);
         InputStream inputStream = socket.getInputStream();
         this.objectInputStream = new ObjectInputStream(inputStream);
         this.databaseServer = databaseServer;
@@ -75,6 +78,7 @@ public class ServerHandling implements Runnable{
             catch (Exception e)
             {
                 e.printStackTrace();
+                break;
             }
             }
 
@@ -82,8 +86,8 @@ public class ServerHandling implements Runnable{
         }
 
     public void sendDataToServer(UserPackage obj) throws IOException {
-        OutputStream outputStream = socket.getOutputStream();
-        ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream);
+        //OutputStream outputStream = socket.getOutputStream();
+        //ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream);
         objectOutputStream.writeObject(obj);
         System.out.println("Sent object");
     }

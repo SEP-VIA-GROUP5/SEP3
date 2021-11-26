@@ -41,7 +41,9 @@ public class UserController {
     public ResponseEntity<User> ValidateRegister(@RequestParam String username, @RequestParam String password, @RequestParam String firstName, @RequestParam String lastName)
     {
         try{
+            System.out.println(username);
             User user = userService.ValidateRegister(username,password,firstName,lastName);
+
             if(user == null) {
                 return ResponseEntity.notFound().build();
             }

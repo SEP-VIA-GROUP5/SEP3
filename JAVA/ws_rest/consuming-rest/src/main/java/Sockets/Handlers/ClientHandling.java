@@ -30,6 +30,8 @@ public class ClientHandling {
         if(obj instanceof UserPackage)
         {
             final UserPackage user = (UserPackage) obj;
+            System.out.println(user.getUser().toString());
+            //System.out.println(user.getUser().getPassword());
             return user;
         }
         else{
@@ -44,12 +46,12 @@ public class ClientHandling {
         outStream = new ObjectOutputStream(socket.getOutputStream());
         inStream = new ObjectInputStream(socket.getInputStream());
 
-        User user1 = new User("Lukas", "Jusk");
-        UserPackage userPackage1 = new UserPackage(user1, "lol");
-        outStream.writeObject(userPackage1);
+//        User user1 = new User("Lukas", "Jusk");
+//        UserPackage userPackage1 = new UserPackage(user1, "lol");
+//        outStream.writeObject(userPackage1);
 
         System.out.println("Connected");
-        disconnect();
+//        disconnect();
     }
 
     public void disconnect() throws IOException {
