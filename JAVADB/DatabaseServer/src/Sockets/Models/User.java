@@ -12,6 +12,7 @@ public class User implements Serializable
     public String FirstName;
     public String SecurityLevel;
     public String Role;
+    private static final long serialVersionUID = 6529685098267757690L;
 
     public User(int id, String username, String password, String photo, String lastName, String firstName, String securityLevel, String role) {
         Id = id;
