@@ -30,6 +30,7 @@ namespace Client.Data.Impl
         }
         public async Task<User> RegisterUserAsync(string username, string password, string firstName, string lastName)
         {
+            Console.WriteLine("Registering...");
             HttpResponseMessage responseMessage =
                 await Client.GetAsync($"http://localhost:8080/user/register?username={username}&password={password}&firstname={firstName}&lastname={lastName}");
             String reply = await responseMessage.Content.ReadAsStringAsync();
