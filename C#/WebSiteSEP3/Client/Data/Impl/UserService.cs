@@ -15,8 +15,6 @@ namespace Client.Data.Impl
         {
             HttpResponseMessage responseMessage =
                 await Client.GetAsync($"http://localhost:8080/user/login?username={username}&password={password}");
-            String reply = await responseMessage.Content.ReadAsStringAsync();
-
             if (responseMessage.StatusCode == HttpStatusCode.NotFound)
             {
                 throw new Exception("User not found");
@@ -30,7 +28,6 @@ namespace Client.Data.Impl
             User resultUser = JsonSerializer.Deserialize<User>(userAsJson); 
             return resultUser;
         }
-
         public async Task<User> RegisterUserAsync(string username, string password, string firstName, string lastName)
         {
             Console.WriteLine("Registering...");
@@ -47,6 +44,5 @@ namespace Client.Data.Impl
 
             throw new Exception("User could not be registered");
         }
-
     }
 }

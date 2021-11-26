@@ -15,27 +15,28 @@ public class ServerHandling implements Runnable{
     private DatabaseServer databaseServer;
     private User user;
     private Gson gson;
+    private ObjectInputStream objectInputStream;
+    private ObjectOutputStream objectOutputStream;
 
-    public ServerHandling(DatabaseServer databaseServer) throws IOException, SQLException {
-        connect(databaseServer);
-    }
-
-    private void connect(DatabaseServer databaseServer) throws IOException
-    {
-        ServerSocket serverSocket = new ServerSocket(54321);
-        System.out.println("Server started...");
-        this.socket = serverSocket.accept();
-        gson = new Gson();
+    public ServerHandling(DatabaseServer databaseServer, Socket socket) throws IOException, SQLException {
+//        this.serverSocket = new ServerSocket(5678);
+        this.socket = socket;
+        OutputStream outputStream = socket.getOutputStream();
+        this.objectOutputStream = new ObjectOutputStream(outputStream);
+        InputStream inputStream = socket.getInputStream();
+        this.objectInputStream = new ObjectInputStream(inputStream);
         this.databaseServer = databaseServer;
+        System.out.println("Server started...");
     }
+
 
     public void run()
     {
         while(true)
         {
             try {
-                InputStream inputStream = socket.getInputStream();
-                ObjectInputStream objectInputStream = new ObjectInputStream(inputStream);
+//                System.out.println("Waiting for a client...");
+//                this.socket = serverSocket.accept();
                 Object obj = objectInputStream.readObject();
                 if(obj instanceof UserPackage)
                 {
@@ -43,6 +44,7 @@ public class ServerHandling implements Runnable{
                     UserPackage received = (UserPackage)obj;
                     //Receiving user from client
                     user = received.getUser();
+                    System.out.println(user.getUsername());
                     switch (received.getType())
                     {
                         case "validateLogin" :
@@ -76,6 +78,7 @@ public class ServerHandling implements Runnable{
             catch (Exception e)
             {
                 e.printStackTrace();
+                break;
             }
             }
 
@@ -83,8 +86,8 @@ public class ServerHandling implements Runnable{
         }
 
     public void sendDataToServer(UserPackage obj) throws IOException {
-        OutputStream outputStream = socket.getOutputStream();
-        ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream);
+        //OutputStream outputStream = socket.getOutputStream();
+        //ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream);
         objectOutputStream.writeObject(obj);
         System.out.println("Sent object");
     }
