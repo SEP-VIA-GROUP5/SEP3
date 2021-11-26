@@ -1,0 +1,24 @@
+<changelist name="Uncommitted_changes_before_Checkout_at_11_24_2021_12_28_PM_[Changes]1" date="1637753334409" recycled="true" deleted="true">
+  <option name="PATH" value="$PROJECT_DIR$/.idea/.idea.WebSiteSEP3/.idea/shelf/Uncommitted_changes_before_Checkout_at_11_24_2021_12_28_PM_[Changes]1/shelved.patch" />
+  <option name="DESCRIPTION" value="Uncommitted changes before Checkout at 11/24/2021 12:28 PM [Changes]" />
+  <binary>
+    <option name="BEFORE_PATH" value="Client/obj/Debug/net5.0/Client.assets.cache" />
+    <option name="AFTER_PATH" value="Client/obj/Debug/net5.0/Client.assets.cache" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.WebSiteSEP3/.idea/shelf/Uncommitted_changes_before_Checkout_at_11_24_2021_12_28_PM_[Changes]1/Client.assets.cache" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="Client/obj/Debug/net5.0/Client.csproj.AssemblyReference.cache" />
+    <option name="AFTER_PATH" value="Client/obj/Debug/net5.0/Client.csproj.AssemblyReference.cache" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.WebSiteSEP3/.idea/shelf/Uncommitted_changes_before_Checkout_at_11_24_2021_12_28_PM_[Changes]1/Client.csproj.AssemblyReference.cache" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="Client/obj/project.nuget.cache" />
+    <option name="AFTER_PATH" value="Client/obj/project.nuget.cache" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.WebSiteSEP3/.idea/shelf/Uncommitted_changes_before_Checkout_at_11_24_2021_12_28_PM_[Changes]1/project.nuget.cache" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="../../JAVADB/DatabaseServer/target/classes/Sockets/Handling/ServerHandling.class" />
+    <option name="AFTER_PATH" value="../../JAVADB/DatabaseServer/target/classes/Sockets/Handling/ServerHandling.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.WebSiteSEP3/.idea/shelf/Uncommitted_changes_before_Checkout_at_11_24_2021_12_28_PM_[Changes]1/ServerHandling.class" />
+  </binary>
+</changelist>
