@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\rytis\\Desktop\\Everything with uni\\Programming\\SEP projects\\SEP3\\SEP3\\C#\\WebSiteSEP3\\Client\\Client.csproj": {}
+    "C:\\Users\\titas\\Desktop\\SEP3\\C#\\WebSiteSEP3\\Client\\Client.csproj": {}
   },
   "projects": {
-    "C:\\Users\\rytis\\Desktop\\Everything with uni\\Programming\\SEP projects\\SEP3\\SEP3\\C#\\WebSiteSEP3\\Client\\Client.csproj": {
+    "C:\\Users\\titas\\Desktop\\SEP3\\C#\\WebSiteSEP3\\Client\\Client.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\rytis\\Desktop\\Everything with uni\\Programming\\SEP projects\\SEP3\\SEP3\\C#\\WebSiteSEP3\\Client\\Client.csproj",
+        "projectUniqueName": "C:\\Users\\titas\\Desktop\\SEP3\\C#\\WebSiteSEP3\\Client\\Client.csproj",
         "projectName": "Client",
-        "projectPath": "C:\\Users\\rytis\\Desktop\\Everything with uni\\Programming\\SEP projects\\SEP3\\SEP3\\C#\\WebSiteSEP3\\Client\\Client.csproj",
-        "packagesPath": "C:\\Users\\rytis\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\rytis\\Desktop\\Everything with uni\\Programming\\SEP projects\\SEP3\\SEP3\\C#\\WebSiteSEP3\\Client\\obj\\",
+        "projectPath": "C:\\Users\\titas\\Desktop\\SEP3\\C#\\WebSiteSEP3\\Client\\Client.csproj",
+        "packagesPath": "C:\\Users\\titas\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\titas\\Desktop\\SEP3\\C#\\WebSiteSEP3\\Client\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\rytis\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\titas\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net5.0"
