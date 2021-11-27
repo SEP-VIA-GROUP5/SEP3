@@ -43,17 +43,21 @@ public class DatabaseServerManager implements DatabaseServer
       String firstName, String lastName) throws SQLException
   {
     User user = null;
+    int security_level = 0;
+    String role = "Member";
     if (checkIfUsernameExists(username))
     {
       return user;
     }
     try(Connection connection = getConnection())
     {
-      PreparedStatement statement = connection.prepareStatement( "INSERT INTO Users(username, password, first_name, last_name) VALUES (?, ?, ?, ?);");
+      PreparedStatement statement = connection.prepareStatement( "INSERT INTO Users(username, password, first_name, last_name, security_level, role) VALUES (?, ?, ?, ?, ?, ?);");
       statement.setString(1, username);
       statement.setString(2, password);
       statement.setString(3, firstName);
       statement.setString(4, lastName);
+      statement.setInt(5, security_level);
+      statement.setString(6, role);
       statement.executeUpdate();
 
       user = getUserDB(username, password);

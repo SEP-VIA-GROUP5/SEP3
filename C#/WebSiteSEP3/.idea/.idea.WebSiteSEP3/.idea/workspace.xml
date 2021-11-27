@@ -6,8 +6,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6351634a-927e-48e6-b898-ac69d3b896d5" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.WebSiteSEP3/.idea/shelf/Uncommitted_changes_before_Checkout_at_11_24_2021_12_28_PM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.WebSiteSEP3/.idea/shelf/Uncommitted_changes_before_Checkout_at_11_24_2021_12_28_PM__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.WebSiteSEP3/.idea/shelf/Uncommitted_changes_before_Checkout_at_11_24_2021_12_28_PM__Changes_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.WebSiteSEP3/.idea/shelf/Uncommitted_changes_before_Checkout_at_11_24_2021_12_28_PM__Changes_1.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.WebSiteSEP3/.idea/shelf/Uncommitted_changes_before_rebase__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.WebSiteSEP3/.idea/shelf/Uncommitted_changes_before_rebase__Changes_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.WebSiteSEP3/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.WebSiteSEP3/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/Data/Impl/UserService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Client/Data/Impl/UserService.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Client/bin/Debug/net5.0/Client.StaticWebAssets.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Client/bin/Debug/net5.0/Client.StaticWebAssets.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Client/bin/Debug/net5.0/Client.Views.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Client/bin/Debug/net5.0/Client.Views.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Client/bin/Debug/net5.0/Client.Views.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/Client/bin/Debug/net5.0/Client.Views.pdb" afterDir="false" />
@@ -49,7 +51,8 @@
       <change beforePath="$PROJECT_DIR$/Client/obj/project.nuget.cache" beforeDir="false" afterPath="$PROJECT_DIR$/Client/obj/project.nuget.cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Client/obj/project.packagespec.json" beforeDir="false" afterPath="$PROJECT_DIR$/Client/obj/project.packagespec.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Client/obj/rider.project.restore.info" beforeDir="false" afterPath="$PROJECT_DIR$/Client/obj/rider.project.restore.info" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../JAVA/ws_rest/consuming-rest/src/main/java/Controllers/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../JAVA/ws_rest/consuming-rest/src/main/java/Controllers/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../JAVADB/DatabaseServer/src/mediator/DatabaseServerManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../JAVADB/DatabaseServer/src/mediator/DatabaseServerManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../JAVADB/DatabaseServer/target/classes/mediator/DatabaseServerManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../JAVADB/DatabaseServer/target/classes/mediator/DatabaseServerManager.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,23 +62,33 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$/../.." value="lukas" />
+        <entry key="$PROJECT_DIR$/../.." value="titas" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
     <option name="RESET_MODE" value="HARD" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/Client/obj/Debug/net5.0/RazorDeclaration/_Imports.razor.g.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Client/obj/Debug/net5.0/RazorDeclaration/Shared/NavMenu.razor.g.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Client/obj/Debug/net5.0/RazorDeclaration/Shared/SurveyPrompt.razor.g.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Client/obj/Debug/net5.0/RazorDeclaration/Shared/MainLayout.razor.g.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Client/obj/Debug/net5.0/Razor/Pages/Error.cshtml.g.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Client/obj/Debug/net5.0/RazorDeclaration/Pages/Index.razor.g.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Client/obj/Debug/net5.0/RazorDeclaration/Pages/Login.razor.g.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Client/Properties/launchSettings.json" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Client/Authentication/CustomAuthenticationStateProvider.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Client/obj/Debug/net5.0/RazorDeclaration/Pages/Register.razor.g.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Client/obj/Debug/net5.0/RazorDeclaration/Pages/Login.razor.g.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Client/obj/Debug/net5.0/RazorDeclaration/Pages/Index.razor.g.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Client/obj/Debug/net5.0/RazorDeclaration/Shared/MainLayout.razor.g.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Client/obj/Debug/net5.0/RazorDeclaration/Shared/SurveyPrompt.razor.g.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Client/Data/Impl/UserService.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Client/obj/Debug/net5.0/RazorDeclaration/Shared/NavMenu.razor.g.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Client/Data/IUserService.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Client/Data/IGameService.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Client/Pages/Register.razor" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/b39811c3985245c8994922e3f9d696331bcd78/52/HttpClient.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Client/obj/Debug/net5.0/RazorDeclaration/_Imports.razor.g.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Client/obj/Debug/net5.0/RazorDeclaration/App.razor.g.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/af71748759ed495aa8657bac4bc37279d7578/37/JsonSerializer.Write.String.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Client/Pages/Login.razor" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Client/Models/User.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Client/Models/Game.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Client/Program.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Client/obj/Debug/net5.0/Razor/Pages/Error.cshtml.g.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="ProjectId" id="20m321FLqYJKWREWQLhMJseTr2v" />
   <component name="ProjectViewState">
@@ -163,14 +176,7 @@
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Client/Authentication/CustomAuthenticationStateProvider.cs</url>
           <line>47</line>
-          <properties documentPath="C:\Users\ljusk\Documents\GitHub\SEP3\C#\WebSiteSEP3\Client\Authentication\CustomAuthenticationStateProvider.cs" initialLine="47" containingFunctionPresentation="method 'ValidateLogin'">
-            <startOffsets>
-              <option value="1648" />
-            </startOffsets>
-            <endOffsets>
-              <option value="1687" />
-            </endOffsets>
-          </properties>
+          <properties documentPath="C:\Users\ljusk\Documents\GitHub\SEP3\C#\WebSiteSEP3\Client\Authentication\CustomAuthenticationStateProvider.cs" initialLine="47" containingFunctionPresentation="method 'ValidateLogin'" />
           <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>
