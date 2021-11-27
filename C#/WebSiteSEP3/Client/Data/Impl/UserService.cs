@@ -33,8 +33,6 @@ namespace Client.Data.Impl
             Console.WriteLine("Registering...");
             HttpResponseMessage responseMessage =
                 await Client.GetAsync($"http://localhost:8080/user/register?username={username}&password={password}&firstname={firstName}&lastname={lastName}");
-            String reply = await responseMessage.Content.ReadAsStringAsync();
-            Console.WriteLine(reply);
             if (responseMessage.StatusCode == HttpStatusCode.OK)
             {
                 string userAsJson = await responseMessage.Content.ReadAsStringAsync();

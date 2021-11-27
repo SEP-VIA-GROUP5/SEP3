@@ -38,7 +38,7 @@ public class UserController {
     }
 
     @GetMapping("/register")
-    public ResponseEntity<User> ValidateRegister(@RequestParam String username, @RequestParam String password, @RequestParam String firstName, @RequestParam String lastName)
+    public ResponseEntity<User> ValidateRegister(@RequestParam String username, @RequestParam String password, @RequestParam(value = "firstname") String firstName, @RequestParam(value = "lastname") String lastName)
     {
         try{
             System.out.println(username);
