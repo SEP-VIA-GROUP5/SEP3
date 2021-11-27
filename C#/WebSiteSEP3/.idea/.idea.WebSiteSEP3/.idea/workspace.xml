@@ -6,13 +6,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6351634a-927e-48e6-b898-ac69d3b896d5" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.WebSiteSEP3/.idea/shelf/Uncommitted_changes_before_Checkout_at_11_24_2021_12_28_PM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.WebSiteSEP3/.idea/shelf/Uncommitted_changes_before_Checkout_at_11_24_2021_12_28_PM__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.WebSiteSEP3/.idea/shelf/Uncommitted_changes_before_Checkout_at_11_24_2021_12_28_PM__Changes_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.WebSiteSEP3/.idea/shelf/Uncommitted_changes_before_Checkout_at_11_24_2021_12_28_PM__Changes_1.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.WebSiteSEP3/.idea/shelf/Uncommitted_changes_before_rebase__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.WebSiteSEP3/.idea/shelf/Uncommitted_changes_before_rebase__Changes_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.WebSiteSEP3/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.WebSiteSEP3/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/Client.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Client/Client.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/Pages/Error.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/Client/Pages/Error.cshtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/Shared/NavMenu.razor" beforeDir="false" afterPath="$PROJECT_DIR$/Client/Shared/NavMenu.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/Data/Impl/UserService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Client/Data/Impl/UserService.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Client/bin/Debug/net5.0/Client.StaticWebAssets.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Client/bin/Debug/net5.0/Client.StaticWebAssets.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Client/bin/Debug/net5.0/Client.Views.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Client/bin/Debug/net5.0/Client.Views.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Client/bin/Debug/net5.0/Client.Views.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/Client/bin/Debug/net5.0/Client.Views.pdb" afterDir="false" />
@@ -25,7 +20,6 @@
       <change beforePath="$PROJECT_DIR$/Client/obj/Debug/net5.0/Client.Views.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Client/obj/Debug/net5.0/Client.Views.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Client/obj/Debug/net5.0/Client.Views.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/Client/obj/Debug/net5.0/Client.Views.pdb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Client/obj/Debug/net5.0/Client.assets.cache" beforeDir="false" afterPath="$PROJECT_DIR$/Client/obj/Debug/net5.0/Client.assets.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/obj/Debug/net5.0/Client.csproj.FileListAbsolute.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Client/obj/Debug/net5.0/Client.csproj.FileListAbsolute.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Client/obj/Debug/net5.0/Client.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Client/obj/Debug/net5.0/Client.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Client/obj/Debug/net5.0/Client.genruntimeconfig.cache" beforeDir="false" afterPath="$PROJECT_DIR$/Client/obj/Debug/net5.0/Client.genruntimeconfig.cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Client/obj/Debug/net5.0/Client.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/Client/obj/Debug/net5.0/Client.pdb" afterDir="false" />
@@ -55,8 +49,7 @@
       <change beforePath="$PROJECT_DIR$/Client/obj/project.nuget.cache" beforeDir="false" afterPath="$PROJECT_DIR$/Client/obj/project.nuget.cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Client/obj/project.packagespec.json" beforeDir="false" afterPath="$PROJECT_DIR$/Client/obj/project.packagespec.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Client/obj/rider.project.restore.info" beforeDir="false" afterPath="$PROJECT_DIR$/Client/obj/rider.project.restore.info" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../JAVA/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../JAVA/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../JAVADB/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../JAVADB/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../JAVA/ws_rest/consuming-rest/src/main/java/Controllers/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../JAVA/ws_rest/consuming-rest/src/main/java/Controllers/UserController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,25 +66,16 @@
     <option name="RESET_MODE" value="HARD" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/Client/Properties/launchSettings.json" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Client/Authentication/CustomAuthenticationStateProvider.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Client/obj/Debug/net5.0/RazorDeclaration/Pages/Register.razor.g.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Client/obj/Debug/net5.0/RazorDeclaration/Pages/Login.razor.g.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Client/obj/Debug/net5.0/RazorDeclaration/Pages/Index.razor.g.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Client/obj/Debug/net5.0/RazorDeclaration/Shared/MainLayout.razor.g.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Client/obj/Debug/net5.0/RazorDeclaration/Shared/SurveyPrompt.razor.g.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Client/Data/Impl/UserService.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Client/obj/Debug/net5.0/RazorDeclaration/Shared/NavMenu.razor.g.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Client/Data/IUserService.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Client/Data/IGameService.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Client/Pages/Register.razor" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Client/obj/Debug/net5.0/RazorDeclaration/_Imports.razor.g.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Client/obj/Debug/net5.0/RazorDeclaration/App.razor.g.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Client/Pages/Login.razor" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Client/Models/User.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Client/Models/Game.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Client/Program.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Client/obj/Debug/net5.0/RazorDeclaration/Shared/NavMenu.razor.g.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Client/obj/Debug/net5.0/RazorDeclaration/Shared/SurveyPrompt.razor.g.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Client/obj/Debug/net5.0/RazorDeclaration/Shared/MainLayout.razor.g.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Client/obj/Debug/net5.0/Razor/Pages/Error.cshtml.g.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Client/obj/Debug/net5.0/RazorDeclaration/Pages/Index.razor.g.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Client/obj/Debug/net5.0/RazorDeclaration/Pages/Login.razor.g.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Client/obj/Debug/net5.0/RazorDeclaration/Pages/Register.razor.g.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Client/obj/Debug/net5.0/RazorDeclaration/App.razor.g.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/af71748759ed495aa8657bac4bc37279d7578/37/JsonSerializer.Write.String.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="ProjectId" id="20m321FLqYJKWREWQLhMJseTr2v" />
   <component name="ProjectViewState">
@@ -107,24 +91,6 @@
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RunManager" selected=".NET Launch Settings Profile.Client">
-    <configuration name="WebSiteSEP3" type="DotNetProject" factoryName=".NET Project" temporary="true">
-      <option name="EXE_PATH" value="" />
-      <option name="PROGRAM_PARAMETERS" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="PASS_PARENT_ENVS" value="1" />
-      <option name="USE_EXTERNAL_CONSOLE" value="0" />
-      <option name="USE_MONO" value="0" />
-      <option name="RUNTIME_ARGUMENTS" value="" />
-      <option name="PROJECT_PATH" value="$PROJECT_DIR$/Client/Client.csproj" />
-      <option name="PROJECT_EXE_PATH_TRACKING" value="1" />
-      <option name="PROJECT_ARGUMENTS_TRACKING" value="1" />
-      <option name="PROJECT_WORKING_DIRECTORY_TRACKING" value="1" />
-      <option name="PROJECT_KIND" value="DotNetCore" />
-      <option name="PROJECT_TFM" value="net5.0" />
-      <method v="2">
-        <option name="Build" />
-      </method>
-    </configuration>
     <configuration name="Client" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
       <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/Client/Client.csproj" />
       <option name="LAUNCH_PROFILE_TFM" value="net5.0" />
@@ -155,11 +121,6 @@
         <option name="Build" />
       </method>
     </configuration>
-    <recent_temporary>
-      <list>
-        <item itemvalue=".NET Project.WebSiteSEP3" />
-      </list>
-    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -172,8 +133,6 @@
       <workItem from="1636635737203" duration="3905000" />
       <workItem from="1637753274071" duration="1731000" />
       <workItem from="1637917729402" duration="3178000" />
-      <workItem from="1637932033777" duration="192000" />
-      <workItem from="1637932452625" duration="331000" />
     </task>
     <servers />
   </component>
@@ -204,7 +163,14 @@
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Client/Authentication/CustomAuthenticationStateProvider.cs</url>
           <line>47</line>
-          <properties documentPath="C:\Users\ljusk\Documents\GitHub\SEP3\C#\WebSiteSEP3\Client\Authentication\CustomAuthenticationStateProvider.cs" initialLine="47" containingFunctionPresentation="method 'ValidateLogin'" />
+          <properties documentPath="C:\Users\ljusk\Documents\GitHub\SEP3\C#\WebSiteSEP3\Client\Authentication\CustomAuthenticationStateProvider.cs" initialLine="47" containingFunctionPresentation="method 'ValidateLogin'">
+            <startOffsets>
+              <option value="1648" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1687" />
+            </endOffsets>
+          </properties>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>
