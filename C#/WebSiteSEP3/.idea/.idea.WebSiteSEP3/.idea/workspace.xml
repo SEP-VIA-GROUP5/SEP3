@@ -6,23 +6,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6351634a-927e-48e6-b898-ac69d3b896d5" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../../JAVA/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../JAVA/ws_rest/consuming-rest/src/main/java/Controllers/GameController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../JAVA/ws_rest/consuming-rest/src/main/java/Services/GameService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../JAVA/ws_rest/consuming-rest/src/main/java/Services/IGameService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../JAVA/ws_rest/consuming-rest/src/main/java/Sockets/Models/Game.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../JAVA/ws_rest/consuming-rest/src/main/java/Sockets/Models/GameCluster.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../JAVA/ws_rest/consuming-rest/src/main/java/Sockets/Packages/GamePackage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.WebSiteSEP3/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.WebSiteSEP3/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Client/Data/IGameService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Client/Data/IGameService.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Client/Data/Impl/GameService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Client/Data/Impl/GameService.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Client/Models/Game.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Client/Models/Game.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/Models/GameCluster.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Client/Models/GameCluster.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/bin/Debug/net5.0/Client.Views.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Client/bin/Debug/net5.0/Client.Views.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/bin/Debug/net5.0/Client.Views.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/Client/bin/Debug/net5.0/Client.Views.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/bin/Debug/net5.0/Client.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Client/bin/Debug/net5.0/Client.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/bin/Debug/net5.0/Client.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/Client/bin/Debug/net5.0/Client.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/obj/Debug/net5.0/Client.Views.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Client/obj/Debug/net5.0/Client.Views.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/obj/Debug/net5.0/Client.Views.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/Client/obj/Debug/net5.0/Client.Views.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/obj/Debug/net5.0/Client.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Client/obj/Debug/net5.0/Client.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/obj/Debug/net5.0/Client.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/Client/obj/Debug/net5.0/Client.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/obj/Debug/net5.0/Razor/Pages/Register.razor.g.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Client/obj/Debug/net5.0/Razor/Pages/Register.razor.g.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/obj/Debug/net5.0/RazorDeclaration/Client.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Client/obj/Debug/net5.0/RazorDeclaration/Client.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/obj/Debug/net5.0/RazorDeclaration/Client.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/Client/obj/Debug/net5.0/RazorDeclaration/Client.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/obj/Debug/net5.0/RazorDeclaration/Pages/Register.razor.g.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Client/obj/Debug/net5.0/RazorDeclaration/Pages/Register.razor.g.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -108,7 +102,7 @@
       <workItem from="1637753274071" duration="1731000" />
       <workItem from="1637917729402" duration="3178000" />
       <workItem from="1638054149036" duration="112000" />
-      <workItem from="1638189480343" duration="3677000" />
+      <workItem from="1638189480343" duration="9029000" />
     </task>
     <servers />
   </component>
