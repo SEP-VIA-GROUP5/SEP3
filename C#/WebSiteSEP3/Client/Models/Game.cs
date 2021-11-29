@@ -10,8 +10,6 @@
         public string ESRB { get; set; }
         public string IGN { get; set; }
         public string ShortDescription { get; set; }
-        public string Specifications { get; set; }
-        public string ReleaseDate { get; set; }
         
     }
 }

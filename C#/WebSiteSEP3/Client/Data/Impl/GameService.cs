@@ -31,7 +31,7 @@ namespace Client.Data.Impl
         {
             string gameClusterAsJson = null;
             HttpResponseMessage responseMessage =
-                await Client.GetAsync($"http://localhost:8080/game/getCluster?page={page}");
+                await Client.GetAsync($"http://localhost:8080/page/getCluster?page={page}");
             if (responseMessage.StatusCode == HttpStatusCode.OK)
             {
                 gameClusterAsJson = await responseMessage.Content.ReadAsStringAsync();
@@ -46,7 +46,7 @@ namespace Client.Data.Impl
         {
             string receipt = null;
             HttpResponseMessage responseMessage =
-                await Client.GetAsync($"http://localhost:8080/game/readReceipt?userId={user.Id}&gameId={game.GameId}");
+                await Client.GetAsync($"http://localhost:8080/readReceipt?userId={user.Id}&gameId={game.GameId}");
             if (responseMessage.StatusCode == HttpStatusCode.OK)
             {
                 receipt = await responseMessage.Content.ReadAsStringAsync();
@@ -57,11 +57,11 @@ namespace Client.Data.Impl
             return null;
         }
 
-        public async Task<string> getProductKeyAsync(int gameId)
+        public async Task<string> getProductKeyAsync(Game game)
         {
             string productKey = null;
             HttpResponseMessage responseMessage =
-                await Client.GetAsync($"http://localhost:8080/game/getProductKey?gameId={gameId}");
+                await Client.GetAsync($"http://localhost:8080/readReceipt?userId={game.GameId}");
             if (responseMessage.StatusCode == HttpStatusCode.OK)
             {
                 productKey = await responseMessage.Content.ReadAsStringAsync();
@@ -76,29 +76,13 @@ namespace Client.Data.Impl
         {
             string game = null;
             HttpResponseMessage responseMessage =
-                await Client.GetAsync($"http://localhost:8080/game/addGame?gameName={gameToSend.GameName}&price={gameToSend.Price}&photo={gameToSend.Photo}" +
-                                      $"&esrb={gameToSend.ESRB}&ign={gameToSend.IGN}&description={gameToSend.ShortDescription}&specifications={gameToSend.Specifications}" +
-                                      $"&date={gameToSend.ReleaseDate}");
+                await Client.GetAsync($"http://localhost:8080/addGame?gameName={gameToSend.GameName}&price={gameToSend.Price}&photo={gameToSend.Photo}" +
+                                      $"&esrb={gameToSend.ESRB}&ign={gameToSend.IGN}&description={gameToSend.ShortDescription}");
             if (responseMessage.StatusCode == HttpStatusCode.OK)
             {
                 game = await responseMessage.Content.ReadAsStringAsync();
                 Game gameResult = JsonSerializer.Deserialize<Game>(game);
                 return gameResult;
-            }
-
-            return null;
-        }
-
-        public async Task<string> addGameKeyAsync(int gameId, string productKey)
-        {
-            string productKey1 = null;
-            HttpResponseMessage responseMessage =
-                await Client.GetAsync($"http://localhost:8080/game/getProductKey?gameId={gameId}&productKey={productKey}");
-            if (responseMessage.StatusCode == HttpStatusCode.OK)
-            {
-                productKey1 = await responseMessage.Content.ReadAsStringAsync();
-                string productKeyResult = JsonSerializer.Deserialize<string>(productKey1);
-                return productKeyResult;
             }
 
             return null;
