@@ -4,7 +4,7 @@ namespace Client.Models
 {
     public class GameCluster
     {
-        [JsonPropertyName("GameId")]
+        /*[JsonPropertyName("GameId")]
         public int GameId { get; set; }
         
         [JsonPropertyName("GameName")] 
@@ -15,5 +15,8 @@ namespace Client.Models
         
         [JsonPropertyName("Photo")] 
         public string Photo { get; set; }
+        */
+        
+        public Game[] GamesStack { get; set; }
     }
 }
