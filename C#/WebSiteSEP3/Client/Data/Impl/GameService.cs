@@ -12,11 +12,11 @@ namespace Client.Data.Impl
         private readonly HttpClient Client = new HttpClient();
         private readonly string Uri = "http://localhost:8080";
 
-        public async Task<Game> getGameAsync(int gameId)
+        public async Task<Game> getGameAsync(string gameName)
         {
             string gameAsJson = null;
             HttpResponseMessage responseMessage =
-                await Client.GetAsync($"http://localhost:8080/game/getGame?gameId={gameId}");
+                await Client.GetAsync($"http://localhost:8080/game/getGame?gameName={gameName}");
             if (responseMessage.StatusCode == HttpStatusCode.OK)
             {
                 gameAsJson = await responseMessage.Content.ReadAsStringAsync();

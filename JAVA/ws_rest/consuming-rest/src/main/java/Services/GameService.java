@@ -19,7 +19,7 @@ public class GameService implements IGameService{
     }
 
     @Override
-    public Game getGame(int gameId) throws IOException, ClassNotFoundException{
+    public Game getGame(String gameName) throws IOException, ClassNotFoundException{
         return null;
     }
 

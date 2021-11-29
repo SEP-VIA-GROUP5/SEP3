@@ -6,7 +6,7 @@ import Sockets.Models.GameCluster;
 import java.io.IOException;
 
 public interface IGameService {
-    Game getGame(int gameId) throws IOException, ClassNotFoundException;
+    Game getGame(String gameName) throws IOException, ClassNotFoundException;
     GameCluster getGameCluster(int page) throws IOException, ClassNotFoundException;
     String getReceipt(int userId, int gameId) throws IOException, ClassNotFoundException;
     String getProductKey(int gameId) throws IOException, ClassNotFoundException;

@@ -22,9 +22,9 @@ public class GameController {
     }
 
     @GetMapping("/getGame")
-    public ResponseEntity<Game> getGame(@RequestParam int gameId){
+    public ResponseEntity<Game> getGame(@RequestParam String gameName){
         try {
-            Game game = gameService.getGame(gameId);
+            Game game = gameService.getGame(gameName);
             if(game==null){
                 return ResponseEntity.badRequest().build();
             }
