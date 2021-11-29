@@ -30,18 +30,17 @@ namespace Client.Data.Impl
         }
         public async Task<User> RegisterUserAsync(string username, string password, string firstName, string lastName)
         {
-            string userAsJson = null;
             Console.WriteLine("Registering...");
             HttpResponseMessage responseMessage =
                 await Client.GetAsync($"http://localhost:8080/user/register?username={username}&password={password}&firstname={firstName}&lastname={lastName}");
             if (responseMessage.StatusCode == HttpStatusCode.OK)
             {
-                userAsJson = await responseMessage.Content.ReadAsStringAsync();
+                string userAsJson = await responseMessage.Content.ReadAsStringAsync();
                 User resultUser = JsonSerializer.Deserialize<User>(userAsJson);
                 return resultUser; //EXPECTED A USUAL USER TO BE RETURNED
             }
 
-            return null;
+            throw new Exception("User could not be registered");
         }
     }
 }

@@ -21,14 +21,10 @@
                 <input type="password" placeholder="password" @bind-value="_user.Password" class="input-field"/>
                 <input type="text" placeholder="first name" @bind-value="_user.FirstName" class="input-field"/>
                 <input type="text" placeholder="last name" @bind-value="_user.LastName" class="input-field"/>
-            </EditForm>
-            <button type="button" class="submit-btn" @onclick="AddNewUserAsync">Register</button>
-            @if (!_errorMessage.Equals(""))
-            {
+                <button type="button" class="submit-btn" @onclick="AddNewUser">Register</button>
                 <div style="color:red"> @_errorMessage</div>
-            }
-            
-            <div class="oi-info text-info"><p>Already have an account? <a href="/login">Log in here</a></p></div>
+                <div class="oi-info text-info"><p>Already have an account? <a href="/login">Log in here</a></p></div>
+            </EditForm>
         </div>
     </div>
 </div>
@@ -39,25 +35,16 @@
     private User _user = new User();
     private string _errorMessage = "";
 
-    private async void AddNewUserAsync()
+    private void AddNewUser()
     {
         try
         {
-            User registeredUser = await UserService.RegisterUserAsync(_user.Username, _user.Password, _user.FirstName, _user.LastName);
-            if (registeredUser != null)
-            {
-                NavigationManager.NavigateTo("/login");
-            }
-            else
-            {
-                throw new Exception("Failed to register - username already exist");
-            }
-
+            UserService.RegisterUserAsync(_user.Username, _user.Password, _user.FirstName, _user.LastName);
+            NavigationManager.NavigateTo("/login");
         }
         catch (Exception e)
         {
             _errorMessage = e.Message;
-            Console.WriteLine(e.Message);
         }
     }
 
