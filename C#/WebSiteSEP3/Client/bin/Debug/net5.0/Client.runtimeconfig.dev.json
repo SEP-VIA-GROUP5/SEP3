@@ -1,8 +1,0 @@
-{
-  "runtimeOptions": {
-    "additionalProbingPaths": [
-      "C:\\Users\\rytis\\.dotnet\\store\\|arch|\\|tfm|",
-      "C:\\Users\\rytis\\.nuget\\packages"
-    ]
-  }
-}
