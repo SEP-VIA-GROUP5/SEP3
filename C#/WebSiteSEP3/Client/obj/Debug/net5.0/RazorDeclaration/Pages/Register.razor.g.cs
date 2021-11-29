@@ -127,9 +127,7 @@ using Client.Data.Impl;
             }
             else
             {
-                _errorMessage = "error";
                 throw new Exception("Failed to register - username already exist");
-                
             }
 
         }
