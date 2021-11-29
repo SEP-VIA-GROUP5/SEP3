@@ -1,10 +1,36 @@
 @page "/"
+@* @inject IJSRuntime JS *@
+@inject AuthenticationStateProvider AuthenticationStateProvider
 @using LoginComponent
 <AuthorizeView>
     <Authorized>
         Hi, @context.User.Identity.Name
+        <div id="paypal-button-container"></div>
     </Authorized>
     <NotAuthorized>
         <Login/>
     </NotAuthorized>
 </AuthorizeView>
+
+
+@code
+{
+    [Inject]
+    IJSRuntime _jsRuntime { get; set; }
+    
+    [CascadingParameter]
+    protected Task<AuthenticationState> AuthStat { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await _jsRuntime.InvokeVoidAsync("LoadButtonPaypal");
+        }
+    }
+}
