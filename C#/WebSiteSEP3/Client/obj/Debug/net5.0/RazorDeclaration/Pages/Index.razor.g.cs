@@ -76,7 +76,7 @@ using Client;
 #line hidden
 #nullable disable
 #nullable restore
-#line 3 "C:\Users\ljusk\Documents\GitHub\SEP3\C#\WebSiteSEP3\Client\Pages\Index.razor"
+#line 4 "C:\Users\ljusk\Documents\GitHub\SEP3\C#\WebSiteSEP3\Client\Pages\Index.razor"
 using LoginComponent;
 
 #line default
@@ -91,10 +91,13 @@ using LoginComponent;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 16 "C:\Users\ljusk\Documents\GitHub\SEP3\C#\WebSiteSEP3\Client\Pages\Index.razor"
+#line 18 "C:\Users\ljusk\Documents\GitHub\SEP3\C#\WebSiteSEP3\Client\Pages\Index.razor"
  
     [Inject]
     IJSRuntime _jsRuntime { get; set; }
+    
+    [CascadingParameter]
+    protected Task<AuthenticationState> AuthStat { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
@@ -112,6 +115,7 @@ using LoginComponent;
 #line default
 #line hidden
 #nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private AuthenticationStateProvider AuthenticationStateProvider { get; set; }
     }
 }
 #pragma warning restore 1591

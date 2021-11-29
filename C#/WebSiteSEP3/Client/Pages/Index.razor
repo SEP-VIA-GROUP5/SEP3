@@ -5,10 +5,11 @@
 <AuthorizeView>
     <Authorized>
         Hi, @context.User.Identity.Name
-        <div id="paypal-button-container"></div>
+        
     </Authorized>
     <NotAuthorized>
-        <Login/>
+        <div id="paypal-button-container"></div>
+        @* <Login/> *@
     </NotAuthorized>
 </AuthorizeView>
 
@@ -17,9 +18,6 @@
 {
     [Inject]
     IJSRuntime _jsRuntime { get; set; }
-    
-    [CascadingParameter]
-    protected Task<AuthenticationState> AuthStat { get; set; }
 
     protected override async Task OnInitializedAsync()
     {

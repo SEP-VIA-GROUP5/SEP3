@@ -1,4 +1,4 @@
-﻿window.LoadButtonPaypal = function(){
+﻿window.LoadButtonPaypal = function(value){
     // Render the PayPal button into #paypal-button-container
     paypal.Buttons({
 
