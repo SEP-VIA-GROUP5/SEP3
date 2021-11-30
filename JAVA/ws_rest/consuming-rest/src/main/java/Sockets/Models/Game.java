@@ -42,6 +42,14 @@ public class Game implements Serializable
     this.gameKey = gameKey;
   }
 
+  public Game(String gameName){
+    this.gameName = gameName;
+  }
+
+  public Game(int gameId){
+    this.gameId = gameId;
+  }
+
   public int getGameId()
   {
     return gameId;
@@ -85,6 +93,14 @@ public class Game implements Serializable
   public String getReleaseDate()
   {
     return releaseDate;
+  }
+
+  public String getGameKey() {
+    return gameKey;
+  }
+
+  public void setGameKey(String gameKey) {
+    this.gameKey = gameKey;
   }
 
   @Override public String toString()
