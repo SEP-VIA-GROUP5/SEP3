@@ -1,6 +1,8 @@
 package Sockets.Handling;
 
+import Sockets.Models.Game;
 import Sockets.Models.User;
+import Sockets.Packages.GamePackage;
 import Sockets.Packages.UserPackage;
 import com.google.gson.Gson;
 import mediator.DatabaseServer;
@@ -14,6 +16,7 @@ public class ServerHandling implements Runnable{
     private Socket socket;
     private DatabaseServer databaseServer;
     private User user;
+    private Game game;
     private Gson gson;
     private ObjectInputStream objectInputStream;
     private ObjectOutputStream objectOutputStream;
@@ -73,7 +76,35 @@ public class ServerHandling implements Runnable{
                             System.out.println("Type not found");
                     }
                 }
+                else if(obj instanceof GamePackage)
+                {
+                    GamePackage received = (GamePackage) obj;
+                    //Receiving user from client
+                    game = received.getGame();
+                    System.out.println(game.getGameName());
 
+                    switch (received.getType())
+                    {
+                        case "getGame":
+                        {
+                            System.out.println("Getting game");
+                            Game gameToBeSent = databaseServer.getGameDB(game.getGameName());
+                            GamePackage toSentPackage = new GamePackage(gameToBeSent, "");
+                            sendDataToServer(toSentPackage);
+                            System.out.println("Sending requested game");
+                            break;
+                        }
+                        case "getProductKey":
+                        {
+                            System.out.println("Getting key");
+                            Game gameToBeSent = databaseServer.buyGame(game.getGameId());
+                            GamePackage toSentPackage = new GamePackage(gameToBeSent, "");
+                            sendDataToServer(toSentPackage);
+                            System.out.println("Sending requested game");
+                            break;
+                        }
+                    }
+                }
             }
             catch (Exception e)
             {
@@ -91,6 +122,14 @@ public class ServerHandling implements Runnable{
         objectOutputStream.writeObject(obj);
         System.out.println("Sent object");
     }
+
+    public void sendDataToServer(GamePackage obj) throws IOException {
+        //OutputStream outputStream = socket.getOutputStream();
+        //ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream);
+        objectOutputStream.writeObject(obj);
+        System.out.println("Sent object");
+    }
+
     public void disconnect() throws IOException {
         System.out.println("Closed");
         socket.close();
