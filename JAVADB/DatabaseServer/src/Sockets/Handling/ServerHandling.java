@@ -103,6 +103,8 @@ public class ServerHandling implements Runnable{
                             System.out.println("Sending requested game");
                             break;
                         }
+                        default:
+                            System.out.println("Type not found");
                     }
                 }
             }

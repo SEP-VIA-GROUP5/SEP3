@@ -2,6 +2,7 @@ package Sockets.Handlers;
 
 
 import Sockets.Models.User;
+import Sockets.Packages.GamePackage;
 import Sockets.Packages.UserPackage;
 
 import java.io.*;
@@ -33,6 +34,12 @@ public class ClientHandling {
             System.out.println(user.getUser().toString());
             //System.out.println(user.getUser().getPassword());
             return user;
+        }
+        else if(obj instanceof GamePackage)
+        {
+            final GamePackage game = (GamePackage) obj;
+            //System.out.println(user.getUser().getPassword());
+            return game;
         }
         else{
             //TODO
