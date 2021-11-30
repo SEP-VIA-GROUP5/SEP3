@@ -1,5 +1,6 @@
 package mediator;
 
+import Sockets.Models.Game;
 import Sockets.Models.User;
 
 import java.sql.*;
@@ -87,6 +88,132 @@ public class DatabaseServerManager implements DatabaseServer
       }
     }
     return exists;
+  }
+
+  @Override public Game getGameDB(String gameName) throws SQLException
+  {
+    Game game = null;
+    try(Connection connection = getConnection())
+    {
+      PreparedStatement statement = connection.prepareStatement("SELECT * FROM games WHERE game_name = ?;");
+      statement.setString(1, gameName);
+
+      ResultSet resultSet = statement.executeQuery();
+
+      while(resultSet.next())
+      {
+        game = new Game(resultSet.getInt("game_id"),
+            resultSet.getString("game_name"),
+            resultSet.getDouble("price"),
+            resultSet.getString("description"),
+            resultSet.getString("specifications"),
+            resultSet.getInt("ign_rating"),
+            resultSet.getString("esrb_rating"),
+            resultSet.getString("photo_url"),
+            resultSet.getString("release_date"));
+      }
+    }
+    return game;
+  }
+
+  @Override public Game registerGame(String gameName, double price,
+      String description, String specifications, int IGNRating,
+      String ESRBRating, String photoURL, String releaseDate)
+      throws SQLException
+  {
+    Game game = null;
+
+
+
+    try(Connection connection = getConnection())
+    {
+      PreparedStatement statement = connection.prepareStatement( "INSERT INTO games(game_name, price, description, specifications, ign_rating, esrb_rating, photo_url, release_date) VALUES (?, ?, ?, ?, ?, ?, ?, ?);");
+      statement.setString(1, gameName);
+      statement.setDouble(2, price);
+      statement.setString(3, description);
+      statement.setString(4, specifications);
+      statement.setInt(5, IGNRating);
+      statement.setString(6, ESRBRating);
+      statement.setString(7, photoURL);
+      statement.setString(8, releaseDate);
+
+      statement.executeUpdate();
+
+      game = getGameDB(gameName);
+    }
+    return game;
+  }
+
+  @Override public Game buyGame(int gameID) throws SQLException
+  {
+    Game gameDummy = getGameByID(gameID);
+    Game gameToReturn;
+    String productKey = getKey(gameID);
+
+    try(Connection connection = getConnection())
+    {
+      gameToReturn = new Game(gameDummy.getGameId(),
+          gameDummy.getGameName(),
+          gameDummy.getPrice(),
+          gameDummy.getDescription(),
+          gameDummy.getSpecifications(),
+          gameDummy.getIGNRating(),
+          gameDummy.getESRBRating(),
+          gameDummy.getPhotoURL(),
+          gameDummy.getReleaseDate(),
+          productKey);
+      PreparedStatement statement = connection.prepareStatement("DELETE FROM games_keys WHERE game_key = ?;");
+
+      statement.setString(1, productKey);
+
+      statement.executeUpdate();
+    }
+    return gameToReturn;
+  }
+
+  @Override public String getKey(int gameID) throws SQLException
+  {
+    String productKey = null;
+    try(Connection connection = getConnection())
+    {
+
+      PreparedStatement statement = connection.prepareStatement("SELECT game_key FROM games_keys WHERE game_id = ? LIMIT 1;");
+      statement.setInt(1, gameID);
+
+      ResultSet resultSet = statement.executeQuery();
+
+      while(resultSet.next())
+      {
+        productKey = resultSet.getString("game_key");
+      }
+    }
+    return productKey;
+  }
+
+  @Override public Game getGameByID(int id) throws SQLException
+  {
+    Game game = null;
+    try(Connection connection = getConnection())
+    {
+      PreparedStatement statement = connection.prepareStatement("SELECT * FROM games WHERE game_id = ?;");
+      statement.setInt(1, id);
+
+      ResultSet resultSet = statement.executeQuery();
+
+      while(resultSet.next())
+      {
+        game = new Game(resultSet.getInt("game_id"),
+            resultSet.getString("game_name"),
+            resultSet.getDouble("price"),
+            resultSet.getString("description"),
+            resultSet.getString("specifications"),
+            resultSet.getInt("ign_rating"),
+            resultSet.getString("esrb_rating"),
+            resultSet.getString("photo_url"),
+            resultSet.getString("release_date"));
+      }
+    }
+    return game;
   }
 
   private Connection getConnection() throws SQLException

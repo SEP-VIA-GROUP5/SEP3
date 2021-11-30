@@ -28,6 +28,7 @@ public class Game implements Serializable
     this.photoURL = photoURL;
     this.releaseDate = releaseDate;
   }
+
   public Game(int gameId, String gameName, double price, String description, String specifications, int IGNRating, String ESRBRating, String photoURL, String releaseDate, String gameKey)
   {
     this.gameId = gameId;
@@ -40,6 +41,16 @@ public class Game implements Serializable
     this.photoURL = photoURL;
     this.releaseDate = releaseDate;
     this.gameKey = gameKey;
+  }
+
+  public Game(String gameName)
+  {
+    this.gameName = gameName;
+  }
+
+  public Game(int gameId)
+  {
+    this.gameId = gameId;
   }
 
   public int getGameId()
@@ -85,6 +96,11 @@ public class Game implements Serializable
   public String getReleaseDate()
   {
     return releaseDate;
+  }
+
+  public String getGameKey()
+  {
+    return gameKey;
   }
 
   @Override public String toString()
