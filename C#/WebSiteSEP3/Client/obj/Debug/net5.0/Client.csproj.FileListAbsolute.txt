@@ -307,3 +307,5 @@ C:\Users\rytis\Desktop\Everything with uni\Programming\SEP projects\SEP3\SEP3\C#
 C:\Users\rytis\Desktop\Everything with uni\Programming\SEP projects\SEP3\SEP3\C#\WebSiteSEP3\Client\obj\Debug\net5.0\Client.pdb
 C:\Users\rytis\Desktop\Everything with uni\Programming\SEP projects\SEP3\SEP3\C#\WebSiteSEP3\Client\obj\Debug\net5.0\Client.genruntimeconfig.cache
 C:\Users\rytis\Desktop\Everything with uni\Programming\SEP projects\SEP3\SEP3\C#\WebSiteSEP3\Client\obj\Debug\net5.0\Client.csproj.CopyComplete
+C:\Users\ljusk\Documents\GitHub\SEP3\C#\WebSiteSEP3\Client\obj\Debug\net5.0\RazorDeclaration\Pages\Paypall.razor.g.cs
+C:\Users\ljusk\Documents\GitHub\SEP3\C#\WebSiteSEP3\Client\obj\Debug\net5.0\Razor\Pages\Paypall.razor.g.cs
