@@ -1,0 +1,24 @@
+<changelist name="Uncommitted_changes_before_Checkout_at_11_30_2021_8_23_PM_[Changes]1" date="1638300226730" recycled="true" deleted="true">
+  <option name="PATH" value="$PROJECT_DIR$/.idea/.idea.WebSiteSEP3/.idea/shelf/Uncommitted_changes_before_Checkout_at_11_30_2021_8_23_PM_[Changes]1/shelved.patch" />
+  <option name="DESCRIPTION" value="Uncommitted changes before Checkout at 11/30/2021 8:23 PM [Changes]" />
+  <binary>
+    <option name="BEFORE_PATH" value="Client/obj/Debug/net5.0/Client.dll" />
+    <option name="AFTER_PATH" value="Client/obj/Debug/net5.0/Client.dll" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.WebSiteSEP3/.idea/shelf/Uncommitted_changes_before_Checkout_at_11_30_2021_8_23_PM_[Changes]1/Client.dll" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="Client/bin/Debug/net5.0/Client.Views.pdb" />
+    <option name="AFTER_PATH" value="Client/bin/Debug/net5.0/Client.Views.pdb" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.WebSiteSEP3/.idea/shelf/Uncommitted_changes_before_Checkout_at_11_30_2021_8_23_PM_[Changes]1/Client.Views.pdb" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="Client/obj/Debug/net5.0/RazorDeclaration/Client.pdb" />
+    <option name="AFTER_PATH" value="Client/obj/Debug/net5.0/RazorDeclaration/Client.pdb" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.WebSiteSEP3/.idea/shelf/Uncommitted_changes_before_Checkout_at_11_30_2021_8_23_PM_[Changes]1/Client.pdb" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="Client/bin/Debug/net5.0/Client.Views.dll" />
+    <option name="AFTER_PATH" value="Client/bin/Debug/net5.0/Client.Views.dll" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.WebSiteSEP3/.idea/shelf/Uncommitted_changes_before_Checkout_at_11_30_2021_8_23_PM_[Changes]1/Client.Views.dll" />
+  </binary>
+</changelist>

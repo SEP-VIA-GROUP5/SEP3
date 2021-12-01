@@ -53,7 +53,7 @@ namespace Client.Authentication
             {
                 User user = await userService.ValidateLogin(username, password);
                 identity = SetupClaimsForUser(user);
-                string serialisedData = user.ToString();
+                string serialisedData = JsonSerializer.Serialize(user);
                 Console.WriteLine(serialisedData);
                 Console.WriteLine("User " + user);
                 await jsRuntime.InvokeVoidAsync("sessionStorage.setItem", "currentUser", serialisedData);
