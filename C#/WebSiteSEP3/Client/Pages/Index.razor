@@ -29,6 +29,8 @@
         if (firstRender)
         {
             await _jsRuntime.InvokeVoidAsync("LoadButtonPaypal");
+            
+            StateHasChanged();
         }
     }
 }
