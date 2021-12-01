@@ -1,10 +1,40 @@
 @page "/"
+@* @inject IJSRuntime JS *@
+@inject AuthenticationStateProvider AuthenticationStateProvider
+@inject IGameService _gameService;
 @using LoginComponent
+@using Client.Data
+@using Client.Models
 <AuthorizeView>
     <Authorized>
         Hi, @context.User.Identity.Name
+        <div id="paypal-button-container"></div>
     </Authorized>
     <NotAuthorized>
         <Login/>
     </NotAuthorized>
 </AuthorizeView>
+
+
+@code
+{
+    [Inject]
+    IJSRuntime _jsRuntime { get; set; }
+
+    double value;
+    double a = 9.99;
+
+    protected override async Task OnInitializedAsync()
+    {
+        Game Game1 = await _gameService.getGameAsync("Cyberpunk 2077");
+        value = Game1.Price;
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await _jsRuntime.InvokeVoidAsync("LoadButtonPaypal", a);
+        }
+    }
+}

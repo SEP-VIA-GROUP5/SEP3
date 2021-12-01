@@ -27,6 +27,7 @@ namespace Client
             services.AddServerSideBlazor();
             services.AddSingleton<IUserService, UserService>();
             services.AddScoped<AuthenticationStateProvider, CustomAuthenticationStateProvider>();
+            services.AddSingleton<IGameService, GameService>();
 
         }
 
