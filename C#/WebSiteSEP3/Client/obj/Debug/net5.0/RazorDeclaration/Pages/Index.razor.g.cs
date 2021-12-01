@@ -91,10 +91,13 @@ using LoginComponent;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 17 "C:\Users\ljusk\Documents\GitHub\SEP3\C#\WebSiteSEP3\Client\Pages\Index.razor"
+#line 18 "C:\Users\ljusk\Documents\GitHub\SEP3\C#\WebSiteSEP3\Client\Pages\Index.razor"
  
     [Inject]
     IJSRuntime _jsRuntime { get; set; }
+    
+    [CascadingParameter]
+    protected Task<AuthenticationState> AuthStat { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
@@ -103,12 +106,9 @@ using LoginComponent;
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-
         if (firstRender)
         {
             await _jsRuntime.InvokeVoidAsync("LoadButtonPaypal");
-            
-            
         }
     }
 

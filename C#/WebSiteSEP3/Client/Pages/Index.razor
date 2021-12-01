@@ -5,10 +5,11 @@
 <AuthorizeView>
     <Authorized>
         Hi, @context.User.Identity.Name
-        <div id="paypal-button-container"></div>
+        
     </Authorized>
     <NotAuthorized>
-        <Login/>
+        <div id="paypal-button-container"></div>
+        @* <Login/> *@
     </NotAuthorized>
 </AuthorizeView>
 
@@ -25,12 +26,9 @@
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-
         if (firstRender)
         {
             await _jsRuntime.InvokeVoidAsync("LoadButtonPaypal");
-            
-            
         }
     }
 }
