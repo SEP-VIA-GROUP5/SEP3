@@ -1,0 +1,35 @@
+﻿@page "/Paypal"
+@using Client.Models
+@using Client.Data
+@using Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ConfigurationModel
+@using Microsoft.JSInterop
+@inject IGameService _gameService
+@namespace PaypalComponent
+
+
+<h3>Checkout</h3>
+
+<div id="paypal-button-container"></div>
+
+@code {
+    [Inject]
+    IJSRuntime _jsRuntime { get; set; }
+
+    double value;
+    double a = 9.99;
+
+    protected override async Task OnInitializedAsync()
+    {
+        
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            Game Game1 = await _gameService.getGameAsync("Cyberpunk 2077");
+            value = Math.Round(Game1.Price, 2);
+            await _jsRuntime.InvokeVoidAsync("LoadButtonPaypal", value);
+        }
+    }
+}
