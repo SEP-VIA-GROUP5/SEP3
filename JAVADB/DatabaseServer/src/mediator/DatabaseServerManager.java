@@ -40,6 +40,30 @@ public class DatabaseServerManager implements DatabaseServer
         return user;
     }
 
+
+    //Test for getting receipt for a specific user
+    @Override public User getUserDB (String username) throws SQLException
+    {
+        User user = null;
+        try(Connection connection = getConnection())
+        {
+
+            PreparedStatement statement = connection.prepareStatement("SELECT * FROM users WHERE username = ?;");
+            statement.setString(1, username);
+
+            ResultSet resultSet = statement.executeQuery();
+
+            while(resultSet.next())
+            {
+                user = new User(Integer.parseInt(resultSet.getString("id")), resultSet.getString("username"),
+                        resultSet.getString("password"), resultSet.getString("photo"),
+                        resultSet.getString("first_name"), resultSet.getString("last_name"),
+                        resultSet.getString("security_level"), resultSet.getString("role"));
+            }
+        }
+        return user;
+    }
+
     @Override public User registerUser(String username, String password,
                                        String firstName, String lastName) throws SQLException
     {
@@ -89,6 +113,7 @@ public class DatabaseServerManager implements DatabaseServer
         }
         return exists;
     }
+
 
     @Override public Game getGameDB(String gameName) throws SQLException
     {
@@ -181,6 +206,7 @@ public class DatabaseServerManager implements DatabaseServer
             statement.setInt(1, gameID);
 
             ResultSet resultSet = statement.executeQuery();
+
 
             while(resultSet.next())
             {

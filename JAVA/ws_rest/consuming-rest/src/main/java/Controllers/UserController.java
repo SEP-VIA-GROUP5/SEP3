@@ -20,6 +20,26 @@ public class UserController {
         userService = new UserService();
     }
 
+    //Test for getting a receipt for a specific user
+    @GetMapping()
+    public ResponseEntity<User> GetUser(@RequestParam String username)
+    {
+        try{
+            System.out.println(username);
+            User user = userService.GetUser(username);
+
+            if(user == null) {
+                return ResponseEntity.notFound().build();
+            }
+            return ResponseEntity.ok(user);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            return ResponseEntity.badRequest().build();
+        }
+    }
+
     @GetMapping("/login")
     public ResponseEntity<User> ValidateLogin(@RequestParam String username, @RequestParam String password)
     {

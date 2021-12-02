@@ -14,7 +14,7 @@ public class Game implements Serializable
   private String ESRBRating;
   private  String photoURL;
   private String releaseDate;
-  private String gameKey;
+  private GameKey gameKey;
 
   public Game(int gameId, String gameName, double price, String description, String specifications, int IGNRating, String ESRBRating, String photoURL, String releaseDate)
   {
@@ -28,6 +28,7 @@ public class Game implements Serializable
     this.photoURL = photoURL;
     this.releaseDate = releaseDate;
   }
+
   public Game(int gameId, String gameName, double price, String description, String specifications, int IGNRating, String ESRBRating, String photoURL, String releaseDate, String gameKey)
   {
     this.gameId = gameId;
@@ -39,14 +40,16 @@ public class Game implements Serializable
     this.ESRBRating = ESRBRating;
     this.photoURL = photoURL;
     this.releaseDate = releaseDate;
-    this.gameKey = gameKey;
+    this.gameKey = new GameKey(gameKey);
   }
 
-  public Game(String gameName){
+  public Game(String gameName)
+  {
     this.gameName = gameName;
   }
 
-  public Game(int gameId){
+  public Game(int gameId)
+  {
     this.gameId = gameId;
   }
 
@@ -95,21 +98,18 @@ public class Game implements Serializable
     return releaseDate;
   }
 
-  public String getGameKey() {
+  public GameKey getGameKey()
+  {
     return gameKey;
-  }
-
-  public void setGameKey(String gameKey) {
-    this.gameKey = gameKey;
   }
 
   @Override public String toString()
   {
     return "Game{" + "gameId=" + gameId + ", gameName='" + gameName + '\''
-        + ", price=" + price + ", description='" + description + '\''
-        + ", specifications='" + specifications + '\'' + ", IGNRating="
-        + IGNRating + ", ESRBRating='" + ESRBRating + '\'' + ", photoURL='"
-        + photoURL + '\'' + ", releaseDate='" + releaseDate + '\''
-        + ", gameKey='" + gameKey + '\'' + '}';
+            + ", price=" + price + ", description='" + description + '\''
+            + ", specifications='" + specifications + '\'' + ", IGNRating="
+            + IGNRating + ", ESRBRating='" + ESRBRating + '\'' + ", photoURL='"
+            + photoURL + '\'' + ", releaseDate='" + releaseDate + '\''
+            + ", gameKey='" + gameKey + '\'' + '}';
   }
 }

@@ -50,6 +50,18 @@ public class ServerHandling implements Runnable{
                     System.out.println(user.getUsername());
                     switch (received.getType())
                     {
+                        //Test for getting a receipt for a specific user
+//                        case "gettingUser" :
+//                        {
+//                            System.out.println("Validating login");
+//                            //Getting user from database with credentials given from Client
+//                            User userToBeSent = databaseServer.getUserDB(user.getUsername());
+//                            UserPackage toSentPackage = new UserPackage(userToBeSent, "user");
+//                            //Sending back the user such that it can be validated
+//                            sendDataToServer(toSentPackage);
+//                            System.out.println("Getting user in request back");
+//                            break;
+//                        }
                         case "validateLogin" :
                         {
                             System.out.println("Validating login");

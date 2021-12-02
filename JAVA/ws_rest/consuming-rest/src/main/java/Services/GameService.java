@@ -3,6 +3,7 @@ package Services;
 import Sockets.Handlers.ClientHandling;
 import Sockets.Models.Game;
 import Sockets.Models.GameCluster;
+import Sockets.Models.GameKey;
 import Sockets.Packages.GamePackage;
 import com.google.gson.Gson;
 
@@ -41,12 +42,13 @@ public class GameService implements IGameService{
     }
 
     @Override
-    public String getProductKey(int gameId) throws IOException, ClassNotFoundException{
+    public GameKey getProductKey(int gameId) throws IOException, ClassNotFoundException{
         Game game = new Game(gameId);
         GamePackage gamePackage = new GamePackage(game,"getProductKey");
         clientHandling.sendToServer(gamePackage);
         Object dataReceivedFromServer = clientHandling.receiveFromServer();
         gamePackage = (GamePackage) dataReceivedFromServer;
+        System.out.println(gamePackage.getGame().getGameKey().getGameKey());
         return gamePackage.getGame().getGameKey();
     }
 

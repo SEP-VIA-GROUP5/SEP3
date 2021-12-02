@@ -4,6 +4,7 @@ import Services.GameService;
 import Services.IGameService;
 import Sockets.Models.Game;
 import Sockets.Models.GameCluster;
+import Sockets.Models.GameKey;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -67,12 +68,13 @@ public class GameController {
     }
 
     @GetMapping("/getProductKey")
-    public ResponseEntity<String> getProductKey(@RequestParam int gameId){
+    public ResponseEntity<GameKey> getProductKey(@RequestParam int gameId){
         try {
-            String productKey = gameService.getProductKey(gameId);
+            GameKey productKey = gameService.getProductKey(gameId);
             if(productKey==null){
                 return ResponseEntity.badRequest().build();
             }
+            System.out.println(productKey.getGameKey());
             return ResponseEntity.ok(productKey);
         }
         catch (Exception e){

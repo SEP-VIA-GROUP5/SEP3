@@ -14,7 +14,7 @@ public class Game implements Serializable
   private String ESRBRating;
   private  String photoURL;
   private String releaseDate;
-  private String gameKey;
+  private GameKey gameKey;
 
   public Game(int gameId, String gameName, double price, String description, String specifications, int IGNRating, String ESRBRating, String photoURL, String releaseDate)
   {
@@ -40,7 +40,7 @@ public class Game implements Serializable
     this.ESRBRating = ESRBRating;
     this.photoURL = photoURL;
     this.releaseDate = releaseDate;
-    this.gameKey = gameKey;
+    this.gameKey = new GameKey(gameKey);
   }
 
   public Game(String gameName)
@@ -98,7 +98,7 @@ public class Game implements Serializable
     return releaseDate;
   }
 
-  public String getGameKey()
+  public GameKey getGameKey()
   {
     return gameKey;
   }

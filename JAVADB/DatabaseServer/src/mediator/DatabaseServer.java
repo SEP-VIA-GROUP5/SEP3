@@ -8,6 +8,8 @@ import java.sql.SQLException;
 public interface DatabaseServer
 {
   User getUserDB(String username, String password) throws SQLException;
+  //Test for getting a receipt for a specific user
+  User getUserDB (String username) throws SQLException;
   User registerUser(String username, String password, String firstName, String lastName) throws SQLException;
   boolean checkIfUsernameExists(String username) throws SQLException;
   Game getGameDB(String gameName) throws SQLException;
