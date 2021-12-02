@@ -92,14 +92,14 @@ public class ServerHandling implements Runnable{
                 {
                     GamePackage received = (GamePackage) obj;
                     //Receiving user from client
-                    game = received.getGame();
-                    System.out.println(game.getGameName());
 
                     switch (received.getType())
                     {
                         case "getGame":
                         {
                             System.out.println("Getting game");
+                            game = received.getGame();
+                            System.out.println(game.getGameName());
                             Game gameToBeSent = databaseServer.getGameDB(game.getGameName());
                             GamePackage toSentPackage = new GamePackage(gameToBeSent, "");
                             sendDataToServer(toSentPackage);
@@ -109,6 +109,8 @@ public class ServerHandling implements Runnable{
                         case "getProductKey":
                         {
                             System.out.println("Getting key");
+                            game = received.getGame();
+                            System.out.println(game.getGameName());
                             Game gameToBeSent = databaseServer.buyGame(game.getGameId());
                             GamePackage toSentPackage = new GamePackage(gameToBeSent, "");
                             sendDataToServer(toSentPackage);
