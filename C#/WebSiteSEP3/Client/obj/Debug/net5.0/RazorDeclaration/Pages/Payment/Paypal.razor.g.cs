@@ -4,7 +4,7 @@
 #pragma warning disable 0649
 #pragma warning disable 0169
 
-namespace Client.Shared
+namespace PaypalComponent
 {
     #line hidden
     using System;
@@ -62,20 +62,42 @@ using Microsoft.AspNetCore.Components.Web.Virtualization;
 #line hidden
 #nullable disable
 #nullable restore
-#line 8 "C:\Users\ljusk\Documents\GitHub\SEP3\C#\WebSiteSEP3\Client\_Imports.razor"
-using Microsoft.JSInterop;
-
-#line default
-#line hidden
-#nullable disable
-#nullable restore
 #line 9 "C:\Users\ljusk\Documents\GitHub\SEP3\C#\WebSiteSEP3\Client\_Imports.razor"
 using Client;
 
 #line default
 #line hidden
 #nullable disable
-    public partial class MainLayout : LayoutComponentBase
+#nullable restore
+#line 2 "C:\Users\ljusk\Documents\GitHub\SEP3\C#\WebSiteSEP3\Client\Pages\Payment\Paypal.razor"
+using Client.Models;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 3 "C:\Users\ljusk\Documents\GitHub\SEP3\C#\WebSiteSEP3\Client\Pages\Payment\Paypal.razor"
+using Client.Data;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 4 "C:\Users\ljusk\Documents\GitHub\SEP3\C#\WebSiteSEP3\Client\Pages\Payment\Paypal.razor"
+using Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ConfigurationModel;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 5 "C:\Users\ljusk\Documents\GitHub\SEP3\C#\WebSiteSEP3\Client\Pages\Payment\Paypal.razor"
+using Microsoft.JSInterop;
+
+#line default
+#line hidden
+#nullable disable
+    [Microsoft.AspNetCore.Components.RouteAttribute("/Paypal")]
+    public partial class Paypal : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998
         protected override void BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder __builder)
@@ -83,17 +105,33 @@ using Client;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 19 "C:\Users\ljusk\Documents\GitHub\SEP3\C#\WebSiteSEP3\Client\Shared\MainLayout.razor"
- 
-    protected async override Task OnInitializedAsync()
+#line 14 "C:\Users\ljusk\Documents\GitHub\SEP3\C#\WebSiteSEP3\Client\Pages\Payment\Paypal.razor"
+       
+    [Inject]
+    IJSRuntime _jsRuntime { get; set; }
+
+    double value;
+    double a = 9.99;
+
+    protected override async Task OnInitializedAsync()
     {
-        base.OnInitialized();
+        
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            Game Game1 = await _gameService.getGameAsync("Cyberpunk 2077");
+            value = Math.Round(Game1.Price, 2);
+            await _jsRuntime.InvokeVoidAsync("LoadButtonPaypal", value, Game1.GameName);
+        }
     }
 
 #line default
 #line hidden
 #nullable disable
-        [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager NavigationManager { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IGameService _gameService { get; set; }
     }
 }
 #pragma warning restore 1591

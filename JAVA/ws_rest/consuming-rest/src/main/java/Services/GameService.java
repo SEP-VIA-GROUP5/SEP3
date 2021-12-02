@@ -39,7 +39,7 @@ public class GameService implements IGameService{
         ArrayList<Game> allGames;
         allGames = gamePackage.getGames();
         int gamesPerPage = 5;
-        double pagesDouble = allGames.size()/gamesPerPage;
+        double pagesDouble = (double)allGames.size()/(double)gamesPerPage;
         int pages;
 
         if((pagesDouble % 1) > 0)
@@ -68,7 +68,7 @@ public class GameService implements IGameService{
         ArrayList<Game> gamesToSend = new ArrayList<>();
         for(int i = 0; i < gamesPerPage; i++)
         {
-            if(gamesPerPageArray[page][i] == null)
+            if(gamesPerPageArray[page][i] == (null))
             {
                 break;
             }
