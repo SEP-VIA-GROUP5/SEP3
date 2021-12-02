@@ -16,6 +16,11 @@ public class Game implements Serializable
   private String releaseDate;
   private GameKey gameKey;
 
+  public Game()
+  {
+
+  }
+
   public Game(int gameId, String gameName, double price, String description, String specifications, int IGNRating, String ESRBRating, String photoURL, String releaseDate)
   {
     this.gameId = gameId;
@@ -101,6 +106,56 @@ public class Game implements Serializable
   public GameKey getGameKey()
   {
     return gameKey;
+  }
+
+  public void setDescription(String description)
+  {
+    this.description = description;
+  }
+
+  public void setPrice(double price)
+  {
+    this.price = price;
+  }
+
+  public void setESRBRating(String ESRBRating)
+  {
+    this.ESRBRating = ESRBRating;
+  }
+
+  public void setGameId(int gameId)
+  {
+    this.gameId = gameId;
+  }
+
+  public void setGameName(String gameName)
+  {
+    this.gameName = gameName;
+  }
+
+  public void setGameKey(GameKey gameKey)
+  {
+    this.gameKey = gameKey;
+  }
+
+  public void setIGNRating(int IGNRating)
+  {
+    this.IGNRating = IGNRating;
+  }
+
+  public void setPhotoURL(String photoURL)
+  {
+    this.photoURL = photoURL;
+  }
+
+  public void setReleaseDate(String releaseDate)
+  {
+    this.releaseDate = releaseDate;
+  }
+
+  public void setSpecifications(String specifications)
+  {
+    this.specifications = specifications;
   }
 
   @Override public String toString()
