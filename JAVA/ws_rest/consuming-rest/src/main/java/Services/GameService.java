@@ -8,6 +8,7 @@ import Sockets.Packages.GamePackage;
 import com.google.gson.Gson;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class GameService implements IGameService{
 
@@ -31,8 +32,51 @@ public class GameService implements IGameService{
 
     @Override
     public GameCluster getGameCluster(int page) throws IOException, ClassNotFoundException{
-        return null;
-        //TODO
+        GamePackage gamePackage = new GamePackage("AllGames");
+        clientHandling.sendToServer(gamePackage);
+        Object dataReceivedFromServer = clientHandling.receiveFromServer();
+        gamePackage = (GamePackage) dataReceivedFromServer;
+        ArrayList<Game> allGames;
+        allGames = gamePackage.getGames();
+        int gamesPerPage = 5;
+        double pagesDouble = allGames.size()/gamesPerPage;
+        int pages;
+
+        if((pagesDouble % 1) > 0)
+        {
+            pages = (int) pagesDouble + 1;
+        }
+        else
+        {
+            pages = (int) pagesDouble;
+        }
+
+        Game [][] gamesPerPageArray = new Game[pages][gamesPerPage];
+        for(int i = 0; i < pages; i++)
+        {
+            for(int j = 0; j < gamesPerPage; j++)
+            {
+                gamesPerPageArray[i][j] = allGames.get(0);
+                allGames.remove(0);
+                if(allGames.size() == 0)
+                {
+                    break;
+                }
+            }
+        }
+
+        ArrayList<Game> gamesToSend = new ArrayList<>();
+        for(int i = 0; i < gamesPerPage; i++)
+        {
+            if(gamesPerPageArray[page][i] == null)
+            {
+                break;
+            }
+            gamesToSend.add(gamesPerPageArray[page][i]);
+        }
+        GameCluster gameCluster = new GameCluster();
+        gameCluster.setGameStack(gamesToSend);
+        return gameCluster;
     }
 
     @Override
