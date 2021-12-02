@@ -112,7 +112,7 @@ using Client.Models;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 111 "C:\Users\ljusk\Documents\GitHub\SEP3\C#\WebSiteSEP3\Client\Pages\Index.razor"
+#line 118 "C:\Users\ljusk\Documents\GitHub\SEP3\C#\WebSiteSEP3\Client\Pages\Index.razor"
  
     private GameCluster games;
         private int pageNr = 0;

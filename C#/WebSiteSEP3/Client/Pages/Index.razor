@@ -50,10 +50,17 @@
 @using Client.Models
 <AuthorizeView>
     <Authorized>
-<h1 class="text-info">
-            Hi, @context.User.Identity.Name! <br/>
-            Here are some games that might interest you...
-        </h1>
+        <div class="text-info">
+              <h1>Hi, @context.User.Identity.Name! </h1>
+                @if (games == null)
+                {
+                    <h1>There are no games on this page..</h1>
+                }
+                else
+                {
+                    <h1>Here are some games that might interest you</h1>
+                }
+        </div>
         <!-- TODO Paypal services will be changed as a redirect button -->@* <Paypal/> *@
 
         <div class="container-fluid row">
