@@ -1,4 +1,5 @@
-﻿using System.Text.Json.Serialization;
+﻿using System;
+using System.Text.Json.Serialization;
 
 namespace Client.Models
 {
@@ -23,6 +24,5 @@ namespace Client.Models
         public string Specifications { get; set; }
         [JsonPropertyName("releaseDate")]
         public string ReleaseDate { get; set; }
-        
     }
 }

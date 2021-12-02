@@ -11,6 +11,26 @@ namespace Client.Data.Impl
     {
         private readonly HttpClient Client = new HttpClient();
         private readonly string Uri = "http://localhost:8080";
+        
+        //Test for getting a receipt for a specific user
+        public async Task<User> GetUser(string username)
+        {
+            HttpResponseMessage responseMessage =
+                await Client.GetAsync($"http://localhost:8080/user?username={username}");
+            if (responseMessage.StatusCode == HttpStatusCode.NotFound)
+            {
+                throw new Exception("User not found");
+            }
+
+            if (responseMessage.StatusCode == HttpStatusCode.BadRequest)
+            {
+                throw new Exception("Problems with connection with database");
+            } 
+            string userAsJson = await responseMessage.Content.ReadAsStringAsync();
+            User resultUser = JsonSerializer.Deserialize<User>(userAsJson); 
+            return resultUser;
+        }
+        
         public async Task<User> ValidateLogin(string username, string password)
         {
             HttpResponseMessage responseMessage =

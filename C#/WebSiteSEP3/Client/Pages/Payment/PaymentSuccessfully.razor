@@ -1,0 +1,61 @@
+﻿@page "/PaymentSuccessfully/{GameName}"
+@using Client.Data
+@using Client.Models
+@using System.Security.Cryptography.X509Certificates
+@inject IGameService _gameService
+@inject IUserService _userService
+<h3>PaymentSuccessfully, game: @GameName</h3>
+<div style="color: red">@_key</div>
+<button class="btn-info" @onclick="ReedemKey">ReedemKey</button>
+
+
+@code {
+    [Parameter] 
+    public string GameName { get; set; }
+    private string _key = "";
+    
+    public Game game { get; set; }
+
+    public User _user { get; set; }
+
+    [CascadingParameter] protected Task<AuthenticationState> AuthState { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            // var user = await AuthState;
+            // if (user.User.Identity.IsAuthenticated)
+            // {
+            //     _user = await _userService.GetUser(user.User.Identity.Name);
+            // }
+            // await base.OnInitializedAsync();
+
+            game = await _gameService.getGameAsync(GameName);
+        }
+        catch (Exception e)
+        {
+            _key = e.Message;
+        }
+    }
+
+    public async Task ReedemKey()
+    {
+        try
+        {
+            if (_key.Length > 0)
+            {
+                _key += " \n You already got the key.";
+            }
+            else
+            {
+                GameKey productKey = await _gameService.getProductKeyAsync(game.GameId);
+                _key = productKey.Key;
+            }
+        }
+        catch (Exception e)
+        {
+            _key = e.Message;
+        }
+    }
+}

@@ -18,6 +18,20 @@ public class UserService implements IUserService {
         gson = new Gson();
     }
 
+    //Test for getting a receipt for a specific User
+    @Override
+    public User GetUser(String username)
+            throws IOException, ClassNotFoundException
+    {
+        UserPackage userPackage = new UserPackage(new User(username), "gettingUser");
+        clientHandling.sendToServer(userPackage);
+
+        //Received back the confirmation and post it, such that it can be verified
+        Object dataReceivedFromServer = clientHandling.receiveFromServer();
+        userPackage = (UserPackage) dataReceivedFromServer;
+        return userPackage.getUser();
+    }
+
     @Override
     public User ValidateLogin(String username, String password)
         throws IOException, ClassNotFoundException
