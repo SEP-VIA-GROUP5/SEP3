@@ -29,4 +29,13 @@
       <_ContentIncludedByDefault Remove="Shared\SurveyPrompt.razor" />
     </ItemGroup>
 
+    <ItemGroup>
+      <None Include="wwwroot\Images\avatarlogin.png" />
+      <None Include="wwwroot\Images\background.jpg" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="wwwroot\Images\Games" />
+    </ItemGroup>
+
 </Project>

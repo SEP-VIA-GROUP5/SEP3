@@ -16,7 +16,7 @@ namespace Client.Data.Impl
         public async Task<User> GetUser(string username)
         {
             HttpResponseMessage responseMessage =
-                await Client.GetAsync($"http://localhost:8080/user?username={username}");
+                await Client.GetAsync($"http://localhost:8080/user/getter?username={username}");
             if (responseMessage.StatusCode == HttpStatusCode.NotFound)
             {
                 throw new Exception("User not found");

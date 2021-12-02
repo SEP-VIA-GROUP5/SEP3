@@ -21,7 +21,7 @@ public class UserController {
     }
 
     //Test for getting a receipt for a specific user
-    @GetMapping()
+    @GetMapping("/getter")
     public ResponseEntity<User> GetUser(@RequestParam String username)
     {
         try{
