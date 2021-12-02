@@ -4,6 +4,7 @@ import Sockets.Models.Game;
 import Sockets.Models.User;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public interface DatabaseServer
 {
@@ -18,4 +19,5 @@ public interface DatabaseServer
   Game buyGame(int gameID) throws SQLException;
   String getKey(int gameID) throws SQLException;
   Game getGameByID(int id) throws SQLException;
+  ArrayList<Game> getAllGames() throws SQLException;
 }

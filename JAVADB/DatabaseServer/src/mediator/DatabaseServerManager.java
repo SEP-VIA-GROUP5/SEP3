@@ -4,6 +4,7 @@ import Sockets.Models.Game;
 import Sockets.Models.User;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 public class DatabaseServerManager implements DatabaseServer
 {
@@ -240,6 +241,33 @@ public class DatabaseServerManager implements DatabaseServer
             }
         }
         return game;
+    }
+
+    @Override public ArrayList<Game> getAllGames() throws SQLException
+    {
+        ArrayList<Game> games = new ArrayList<>();
+
+        try(Connection connection = getConnection())
+        {
+            PreparedStatement statement = connection.prepareStatement("SELECT * FROM games");
+            ResultSet resultSet = statement.executeQuery();
+            while(resultSet.next())
+            {
+                Game game = new Game();
+                game.setDescription(resultSet.getString("description"));
+                game.setESRBRating(resultSet.getString("esrb_rating"));
+                game.setGameId(resultSet.getInt("game_id"));
+                game.setGameName(resultSet.getString("game_name"));
+                game.setIGNRating(resultSet.getInt("ign_rating"));
+                game.setPhotoURL(resultSet.getString("photo_url"));
+                game.setPrice(resultSet.getDouble("price"));
+                game.setReleaseDate(resultSet.getString("release_date"));
+                game.setSpecifications(resultSet.getString("specifications"));
+
+                games.add(game);
+            }
+        }
+        return games;
     }
 
     private Connection getConnection() throws SQLException
