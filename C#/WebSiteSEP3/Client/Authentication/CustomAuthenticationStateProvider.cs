@@ -4,15 +4,15 @@ using System.Security.Claims;
 using System.Text.Json;
 using System.Threading.Tasks;
 using Client.Data;
-using Client.Models;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.JSInterop;
+using Client.Models;
 
 namespace Client.Authentication
 {
     public class CustomAuthenticationStateProvider : AuthenticationStateProvider
     {
-         private readonly IJSRuntime jsRuntime;
+        private readonly IJSRuntime jsRuntime;
         private readonly IUserService userService;
         private User cachedUser;
 
@@ -54,14 +54,12 @@ namespace Client.Authentication
                 User user = await userService.ValidateLogin(username, password);
                 identity = SetupClaimsForUser(user);
                 string serialisedData = JsonSerializer.Serialize(user);
-                Console.WriteLine(serialisedData);
-                Console.WriteLine("User " + user);
-                await jsRuntime.InvokeVoidAsync("sessionStorage.setItem", "currentUser", serialisedData);
+                jsRuntime.InvokeVoidAsync("sessionStorage.setItem", "currentUser", serialisedData);
                 cachedUser = user;
             }
             catch (Exception e)
             {
-                Console.WriteLine(e.Message);
+                throw e;
             }
 
             NotifyAuthenticationStateChanged(Task.FromResult(new AuthenticationState(new ClaimsPrincipal(identity))));
@@ -85,4 +83,4 @@ namespace Client.Authentication
             return identity;
         }
     }
-    }
+}

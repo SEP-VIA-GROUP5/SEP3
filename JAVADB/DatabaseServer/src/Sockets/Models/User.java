@@ -30,6 +30,12 @@ public class User implements Serializable
         this(-1,username,password,null,null,null,null,null);
     }
 
+    //Test for getting receipt for a specific user
+    public User(String username)
+    {
+        this(-1,username,null,null,null,null,null,null);
+    }
+
     public int getId() {
         return Id;
     }

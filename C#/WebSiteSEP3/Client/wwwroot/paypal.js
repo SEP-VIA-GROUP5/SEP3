@@ -25,7 +25,7 @@
                 // element.innerHTML = '';
                 // element.innerHTML = '<h3>Thank you for your payment!</h3>';
                 // Or go to another URL:  actions.redirect('thank_you.html');
-                location.href = '/PaymentSuccessfully/' + gameName;
+                location.href = '/PaymentSuccessfully/' + gameName + "/" + transaction.id;
             });
         }
 
