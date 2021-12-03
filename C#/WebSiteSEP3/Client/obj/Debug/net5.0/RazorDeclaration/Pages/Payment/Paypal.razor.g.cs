@@ -96,7 +96,7 @@ using Microsoft.JSInterop;
 #line default
 #line hidden
 #nullable disable
-    [Microsoft.AspNetCore.Components.RouteAttribute("/Paypal")]
+    [Microsoft.AspNetCore.Components.RouteAttribute("/Paypal/{gameName}")]
     public partial class Paypal : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998
@@ -109,6 +109,9 @@ using Microsoft.JSInterop;
        
     [Inject]
     IJSRuntime _jsRuntime { get; set; }
+    
+    [Parameter]
+    public string GameName { get; set; }
 
     double value;
     double a = 9.99;

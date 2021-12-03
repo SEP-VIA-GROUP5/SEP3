@@ -1,4 +1,4 @@
-﻿@page "/Paypal"
+﻿@page "/Paypal/{gameName}"
 @using Client.Models
 @using Client.Data
 @using Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ConfigurationModel
@@ -12,8 +12,12 @@
 <div id="paypal-button-container"></div>
 
 @code {
+    //TODO Design this page and make it for a specific game
     [Inject]
     IJSRuntime _jsRuntime { get; set; }
+    
+    [Parameter]
+    public string GameName { get; set; }
 
     double value;
     double a = 9.99;
