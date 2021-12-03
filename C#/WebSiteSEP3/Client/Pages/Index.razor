@@ -48,43 +48,57 @@
 @using PaypalComponent
 @using Client.Data
 @using Client.Models
+@using System.IO
+@using System.Net
+@using System;
+@using System.Drawing;
+@using System.Net.Mime
 <AuthorizeView>
     <Authorized>
         <div class="text-info">
               <h1>Hi, @context.User.Identity.Name! </h1>
-                @if (games == null)
-                {
-                    <h1>There are no games on this page..</h1>
-                }
-                else
-                {
-                    <h1>Here are some games that might interest you</h1>
-                }
+            @try
+            {
+                IList<Game> list = games.GamesStack.ToList();
+                        
+                        <h1>Here are some games that might interest you</h1>
+                    }
+                    catch (Exception e)
+                    {
+                        <h1>There are no games on this page..</h1>
+                    }
         </div>
-        <!-- TODO Paypal services will be changed as a redirect button -->@* <Paypal/> *@
+        <!-- TODO Paypal services will be changed as a redirect button -->
+        @* <Paypal/> *@
 
         <div class="container-fluid row">
-            @foreach (var game in games.GamesStack)
+            @if (games.GamesStack.Count > 0)
             {
-                <div class="card col-sm-3">
+                @foreach (var game in games.GamesStack)
+                {
+                    <div class="card col-sm-3">
         
-        
-                    <a asp-page="/order" asp-route-id="@game.GameId" title="Order @game.GameName">
-                        <div class="productInfo">
-                            <h3>@game.GameName</h3>
-                            <img class="product-image img-fluid img-thumbnail" src="Images/Products/Thumbnails/@game.Photo"
-                                 alt="Image of @game.GameName"/>
+                
+                        <a asp-page="/order" asp-route-id="@game.GameId" title="Order @game.GameName">
+                            <div class="productInfo">
+                                <h3>@game.GameName</h3>
+                                <img class="product-image img-fluid img-thumbnail" src="@GetImage(game)" alt="Image of @game.GameName"/>
+                            </div>
+                        </a>
+                        <div>
+                            <p class="price float-left ">$@string.Format("{0:f}", Math.Round(game.Price, 2).ToString())</p>
+                            @* TODO <button class="btn btn-sm btn-dark order-button float-right" @onclick="@(() => CheckOutNow(game.GameName))"> *@
+                            @*     Order Now *@
+                            @* </button> *@
+                            <button class="btn btn-sm btn-dark order-button float-right">Order Now (Test)</button>
                         </div>
-                    </a>
-                    <div>
-                        <p class="price float-left ">$@string.Format("{0:f}", Math.Round(game.Price, 2).ToString())</p>
-                        @* TODO <button class="btn btn-sm btn-dark order-button float-right" @onclick="@(() => CheckOutNow(game.GameName))"> *@
-                        @*     Order Now *@
-                        @* </button> *@
-                        <button class="btn btn-sm btn-dark order-button float-right">Order Now (Test)</button>
+                        <br/>
                     </div>
-                    <br/>
-                </div>
+                }
+            }
+            else
+            {
+                //nothing
             }
         </div>
         
@@ -122,6 +136,10 @@
     protected override async Task OnInitializedAsync()
     {
         games = await _gameService.getGameClusterAsync(pageNr);
+        foreach (var game in games.GamesStack)
+        {
+            SaveImageIntoClient(game);
+        }
     }
 
 
@@ -141,5 +159,19 @@
     {
         pageNr++;
         games = await _gameService.getGameClusterAsync(pageNr);
+    }
+    
+    public void SaveImageIntoClient(Game game)
+    {
+        using (WebClient webClient = new WebClient())
+        {
+            byte[] dataArr = webClient.DownloadData("https://image.api.playstation.com/vulcan/ap/rnd/202008/0416/6Bo40lnWU0BhgrOUm7Cb6by3.png");
+            File.WriteAllBytes($@"wwwroot/Images/Games/{game.GameName}.png", dataArr);
+        }
+    }
+
+    public string GetImage(Game game)
+    {
+        return $"Images/Games/{game.GameName}.png";
     }
 }
