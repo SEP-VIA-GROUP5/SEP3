@@ -60,10 +60,24 @@
             <h1>Hi, @context.User.Identity.Name!</h1>
         </div>
 
+        <div class="container row align-top float-right">
+            <div class="col-lg-4">
+                <input type="text" alt="search for game" @bind-value="searchedGameName" style="width: 150px"/>
+                <button class="btn-outline-primary" @onclick="@(() => FilterByGameName(searchedGameName))"><i class="oi oi-eye"/></button>
+            </div>
+        </div>
+        
         @if (errorMessage.Equals(""))
         {
             <div class="text-info">
-                <h1>Here are some games that might interest you</h1>
+                @if (searchedGameName == null)
+                {
+                    <h1>Here are some games that might interest you</h1>
+                }
+                else
+                {
+                    <h1>Results for @searchedGameName</h1>
+                }
             </div>
             <div class="container-fluid row">
                 @foreach (var game in games.GamesStack)
@@ -139,6 +153,8 @@
     private int pageNr = 0;
     private string errorMessage;
 
+    private string? searchedGameName;
+
     protected override async Task OnInitializedAsync()
     {
         errorMessage = "";
@@ -210,5 +226,32 @@
     public string GetImage(Game game)
     {
         return $"Images/Games/{game.GameName}.png";
+    }
+    
+    private async Task FilterByGameName(string searchedGames)
+    {
+        
+        errorMessage = "";
+        try
+        {
+            if (searchedGames != null)
+            {
+                games = await _gameService.getSearchAsync(searchedGames);
+                SaveImageIntoClient(games);
+                if (games.GamesStack.Count == 0)
+                {
+                    errorMessage = $"There are no games for {searchedGames}";
+                }
+            }
+            else
+            {
+                games = await _gameService.getGameClusterAsync(pageNr);
+                SaveImageIntoClient(games);
+            }
+        }
+        catch (Exception e)
+        {
+            errorMessage = $"There are no games for {searchedGames}";
+        }
     }
 }
