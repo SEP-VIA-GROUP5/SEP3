@@ -63,10 +63,13 @@
         <div class="container row align-top float-right">
             <div class="col-lg-4">
                 <input type="text" alt="search for game" @bind-value="searchedGameName" style="width: 150px"/>
-                <button class="btn-outline-primary" @onclick="@(() => FilterByGameName(searchedGameName))"><i class="oi oi-eye"/></button>
+                <button class="btn-outline-primary" @onclick="@(() => FilterByGameName(searchedGameName))">
+                    <i class="oi oi-eye"/>
+                </button>
+                <button class="btn-outline-primary" @onclick="ClearSearch">Clear</button>
             </div>
         </div>
-        
+
         @if (errorMessage.Equals(""))
         {
             <div class="text-info">
@@ -80,25 +83,37 @@
                 }
             </div>
             <div class="container-fluid row">
+
                 @foreach (var game in games.GamesStack)
-                    {
-                        <div class="card col-sm-3">
-                            <a asp-page="/order" asp-route-id="@game.GameId" title="Order @game.GameName">
-                                <div class="productInfo">
-                                    <h3>@game.GameName</h3>
-                                    <img class="product-image img-fluid img-thumbnail" src="@GetImage(game)" alt="Image of @game.GameName"/>
-                                </div>
-                            </a>
-                            <div>
-                                <p class="price float-left ">$@string.Format("{0:f}", Math.Round(game.Price, 2).ToString())</p>
-                                @* TODO <button class="btn btn-sm btn-dark order-button float-right" @onclick="@(() => CheckOutNow(game.GameName))"> *@
-                                @*     Order Now *@
-                                @* </button> *@
-                                <button class="btn btn-sm btn-dark order-button float-right">Order Now (Test)</button>
+                {
+                    <div class="col-lg-4">
+                        <div class="card col-lg-10">
+                            <div class="card-text">
+                                <h3>@game.GameName</h3>
                             </div>
-                            <br/>
+                            <div class="col-lg-6">
+                                <a asp-page="/order" asp-route-id="@game.GameId" title="Order @game.GameName">
+                                    <div class="productInfo">
+
+                                        <div class="card-img-top">
+                                            <img class="product-image img-thumbnail" src="@GetImage(game)" alt="Image of @game.GameName"/>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="card-body">
+                                    <p class="price float-lg-left">$@string.Format("{0:f}", Math.Round(game.Price, 2).ToString())</p>
+                                    @* TODO <button class="btn btn-sm btn-dark order-button float-right" @onclick="@(() => CheckOutNow(game.GameName))"> *@
+                                    @*     Order Now *@
+                                    @* </button> *@
+                                    <button class="btn btn-sm btn-dark order-button float-lg-right">Order Now (Test)</button>
+                                </div>
+                            </div>
                         </div>
-                    }
+                    </div>
+                }
+                <br/>
             </div>
         }
         else
@@ -119,19 +134,19 @@
                         <a class="page-link" @onclick="PreviousPage">Previous</a>
                     </li>
                 }
-                else if(pageNr == 0 || errorMessage.Equals(""))
+                else if (pageNr == 0 || errorMessage.Equals("") || searchedGameName != null)
                 {
                     <li class="page-item disabled">
                         <a class="page-link" @onclick="PreviousPage">Previous</a>
                     </li>
                 }
                 @if (errorMessage.Equals(""))
-                { <li class="page-item">
-                      <a class="page-link" @onclick="NextPage">Next</a>
-                  </li>
-                    
+                {
+                    <li class="page-item">
+                        <a class="page-link" @onclick="NextPage">Next</a>
+                    </li>
                 }
-                else
+                else if (!errorMessage.Equals("") || searchedGameName != null)
                 {
                     <li class="page-item disabled">
                         <a class="page-link" @onclick="NextPage">Next</a>
@@ -152,6 +167,7 @@
     private GameCluster games;
     private int pageNr = 0;
     private string errorMessage;
+
 
     private string? searchedGameName;
 
@@ -189,7 +205,6 @@
         {
             errorMessage = "There are no games on this page..";
         }
-        
     }
 
     private async Task NextPage()
@@ -227,10 +242,9 @@
     {
         return $"Images/Games/{game.GameName}.png";
     }
-    
+
     private async Task FilterByGameName(string searchedGames)
     {
-        
         errorMessage = "";
         try
         {
@@ -252,6 +266,21 @@
         catch (Exception e)
         {
             errorMessage = $"There are no games for {searchedGames}";
+        }
+    }
+
+    private async Task ClearSearch()
+    {
+        errorMessage = "";
+        try
+        {
+            pageNr = 0;
+            games = await _gameService.getGameClusterAsync(pageNr);
+            SaveImageIntoClient(games);
+        }
+        catch (Exception e)
+        {
+            errorMessage = "There are no games on this page..";
         }
     }
 }

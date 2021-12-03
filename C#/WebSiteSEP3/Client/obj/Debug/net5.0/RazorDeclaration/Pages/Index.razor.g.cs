@@ -153,11 +153,12 @@ using Microsoft.AspNetCore.Mvc.Diagnostics;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 151 "D:\FACULTATE SEMESTRUL 3\SEP3\CODE\SEP3\C#\WebSiteSEP3\Client\Pages\Index.razor"
+#line 166 "D:\FACULTATE SEMESTRUL 3\SEP3\CODE\SEP3\C#\WebSiteSEP3\Client\Pages\Index.razor"
  
     private GameCluster games;
     private int pageNr = 0;
     private string errorMessage;
+
 
     private string? searchedGameName;
 
@@ -195,7 +196,6 @@ using Microsoft.AspNetCore.Mvc.Diagnostics;
         {
             errorMessage = "There are no games on this page..";
         }
-        
     }
 
     private async Task NextPage()
@@ -233,10 +233,9 @@ using Microsoft.AspNetCore.Mvc.Diagnostics;
     {
         return $"Images/Games/{game.GameName}.png";
     }
-    
+
     private async Task FilterByGameName(string searchedGames)
     {
-        
         errorMessage = "";
         try
         {
@@ -258,6 +257,21 @@ using Microsoft.AspNetCore.Mvc.Diagnostics;
         catch (Exception e)
         {
             errorMessage = $"There are no games for {searchedGames}";
+        }
+    }
+
+    private async Task ClearSearch()
+    {
+        errorMessage = "";
+        try
+        {
+            pageNr = 0;
+            games = await _gameService.getGameClusterAsync(pageNr);
+            SaveImageIntoClient(games);
+        }
+        catch (Exception e)
+        {
+            errorMessage = "There are no games on this page..";
         }
     }
 

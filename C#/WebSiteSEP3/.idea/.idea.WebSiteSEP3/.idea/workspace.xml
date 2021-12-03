@@ -22,13 +22,6 @@
       <change beforePath="$PROJECT_DIR$/Client/obj/Debug/net5.0/RazorDeclaration/Client.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/Client/obj/Debug/net5.0/RazorDeclaration/Client.pdb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Client/obj/Debug/net5.0/RazorDeclaration/Pages/Index.razor.g.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Client/obj/Debug/net5.0/RazorDeclaration/Pages/Index.razor.g.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Client/obj/Debug/net5.0/ref/Client.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Client/obj/Debug/net5.0/ref/Client.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/wwwroot/Images/Games/7 Days to Die.png" beforeDir="false" afterPath="$PROJECT_DIR$/Client/wwwroot/Images/Games/7 Days to Die.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/wwwroot/Images/Games/Battlefield V.png" beforeDir="false" afterPath="$PROJECT_DIR$/Client/wwwroot/Images/Games/Battlefield V.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/wwwroot/Images/Games/Biomutant.png" beforeDir="false" afterPath="$PROJECT_DIR$/Client/wwwroot/Images/Games/Biomutant.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/wwwroot/Images/Games/Cyberpunk 2077.png" beforeDir="false" afterPath="$PROJECT_DIR$/Client/wwwroot/Images/Games/Cyberpunk 2077.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/wwwroot/Images/Games/Farming Simulator 22.png" beforeDir="false" afterPath="$PROJECT_DIR$/Client/wwwroot/Images/Games/Farming Simulator 22.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/wwwroot/Images/Games/Forza Horizon 5.png" beforeDir="false" afterPath="$PROJECT_DIR$/Client/wwwroot/Images/Games/Forza Horizon 5.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/wwwroot/Images/Games/God of War.png" beforeDir="false" afterPath="$PROJECT_DIR$/Client/wwwroot/Images/Games/God of War.png" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,7 +38,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$/../.." value="titas" />
+        <entry key="$PROJECT_DIR$/../.." value="Implement_Results_On_Client" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
@@ -164,6 +157,14 @@
       <workItem from="1638445287154" duration="968000" />
       <workItem from="1638465404566" duration="2994000" />
     </task>
+    <task id="LOCAL-00001" summary="Search engine implemented on Tier3">
+      <created>1638540874594</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1638540874594</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -188,7 +189,8 @@
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
     <MESSAGE value="a" />
     <MESSAGE value="Paypal fix - Problem solved with unable to get the actual price of the game from database" />
-    <option name="LAST_COMMIT_MESSAGE" value="Paypal fix - Problem solved with unable to get the actual price of the game from database" />
+    <MESSAGE value="Search engine implemented on Tier3" />
+    <option name="LAST_COMMIT_MESSAGE" value="Search engine implemented on Tier3" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
