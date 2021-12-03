@@ -107,4 +107,21 @@ public class GameService implements IGameService{
         return null;
         //TODO
     }
+
+    @Override
+    public GameCluster getSearch(String search)
+        throws IOException, ClassNotFoundException
+    {
+        String space = "<->";
+        search = search.replaceAll(" ", space);
+        Game game = new Game(search);
+        GamePackage gamePackage = new GamePackage(game, "getSearch");
+        clientHandling.sendToServer(gamePackage);
+        Object dataReceivedFromServer = clientHandling.receiveFromServer();
+        gamePackage = (GamePackage) dataReceivedFromServer;
+        GameCluster gameCluster = new GameCluster();
+        gameCluster.setGameStack(gamePackage.getGames());
+        System.out.println(gameCluster.getGameStack().toString() + "| Found");
+        return gameCluster;
+    }
 }
