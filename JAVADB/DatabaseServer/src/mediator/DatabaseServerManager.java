@@ -270,6 +270,38 @@ public class DatabaseServerManager implements DatabaseServer
         return games;
     }
 
+    @Override public ArrayList<Game> searchGamesByName(String gameName)
+        throws SQLException
+    {
+        ArrayList<Game> games = new ArrayList<>();
+        String toSearch = gameName + ":*";
+
+        try(Connection connection = getConnection())
+        {
+            PreparedStatement statement = connection.prepareStatement("SELECT * FROM games WHERE to_tsvector(game_name) @@ to_tsquery(?);");
+
+            statement.setString(1, toSearch);
+
+            ResultSet resultSet = statement.executeQuery();
+            while(resultSet.next())
+            {
+                Game game = new Game();
+                game.setDescription(resultSet.getString("description"));
+                game.setESRBRating(resultSet.getString("esrb_rating"));
+                game.setGameId(resultSet.getInt("game_id"));
+                game.setGameName(resultSet.getString("game_name"));
+                game.setIGNRating(resultSet.getInt("ign_rating"));
+                game.setPhotoURL(resultSet.getString("photo_url"));
+                game.setPrice(resultSet.getDouble("price"));
+                game.setReleaseDate(resultSet.getString("release_date"));
+                game.setSpecifications(resultSet.getString("specifications"));
+
+                games.add(game);
+            }
+        }
+        return games;
+    }
+
     private Connection getConnection() throws SQLException
     {
         String url = "jdbc:postgresql://ella.db.elephantsql.com:5432/zgckhgwi";
