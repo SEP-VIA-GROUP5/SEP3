@@ -1,22 +1,17 @@
-﻿using System.Text.Json.Serialization;
+﻿using System.Collections;
+using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace Client.Models
 {
     public class GameCluster
     {
-        /*[JsonPropertyName("GameId")]
-        public int GameId { get; set; }
-        
-        [JsonPropertyName("GameName")] 
-        public string GameName { get; set; }
-        
-        [JsonPropertyName("Price")] 
-        public double Price { get; set; }
-        
-        [JsonPropertyName("Photo")] 
-        public string Photo { get; set; }
-        */
-        
-        public Game[] GamesStack { get; set; }
+        [JsonPropertyName("gameStack")]
+        public IList<Game> GamesStack { get; set; }
+
+        public GameCluster()
+        {
+            GamesStack = new List<Game>();
+        }
     }
 }
