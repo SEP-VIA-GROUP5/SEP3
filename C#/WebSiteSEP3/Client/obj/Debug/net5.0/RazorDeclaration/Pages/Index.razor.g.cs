@@ -153,11 +153,13 @@ using Microsoft.AspNetCore.Mvc.Diagnostics;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 137 "D:\FACULTATE SEMESTRUL 3\SEP3\CODE\SEP3\C#\WebSiteSEP3\Client\Pages\Index.razor"
+#line 151 "D:\FACULTATE SEMESTRUL 3\SEP3\CODE\SEP3\C#\WebSiteSEP3\Client\Pages\Index.razor"
  
     private GameCluster games;
     private int pageNr = 0;
     private string errorMessage;
+
+    private string? searchedGameName;
 
     protected override async Task OnInitializedAsync()
     {
@@ -230,6 +232,33 @@ using Microsoft.AspNetCore.Mvc.Diagnostics;
     public string GetImage(Game game)
     {
         return $"Images/Games/{game.GameName}.png";
+    }
+    
+    private async Task FilterByGameName(string searchedGames)
+    {
+        
+        errorMessage = "";
+        try
+        {
+            if (searchedGames != null)
+            {
+                games = await _gameService.getSearchAsync(searchedGames);
+                SaveImageIntoClient(games);
+                if (games.GamesStack.Count == 0)
+                {
+                    errorMessage = $"There are no games for {searchedGames}";
+                }
+            }
+            else
+            {
+                games = await _gameService.getGameClusterAsync(pageNr);
+                SaveImageIntoClient(games);
+            }
+        }
+        catch (Exception e)
+        {
+            errorMessage = $"There are no games for {searchedGames}";
+        }
     }
 
 #line default
