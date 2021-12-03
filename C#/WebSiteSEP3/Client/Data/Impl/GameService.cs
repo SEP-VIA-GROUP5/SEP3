@@ -103,20 +103,5 @@ namespace Client.Data.Impl
 
             return null;
         }
-
-        public async Task<GameCluster> getSearchAsync(string search)
-        {
-            String _gameClusterJson;
-            HttpResponseMessage responseMessage =
-                await Client.GetAsync($"http://localhost:8080/game/getSearch?search={search}");
-            if (responseMessage.StatusCode == HttpStatusCode.OK)
-            {
-                _gameClusterJson = await responseMessage.Content.ReadAsStringAsync();
-                GameCluster gameCluster = JsonSerializer.Deserialize<GameCluster>(_gameClusterJson);
-                return gameCluster;
-            }
-
-            return null;
-        }
     }
 }
