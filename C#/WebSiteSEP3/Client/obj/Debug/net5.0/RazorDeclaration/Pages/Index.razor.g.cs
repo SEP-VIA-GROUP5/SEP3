@@ -137,6 +137,13 @@ using System.Net.Mime;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 56 "D:\FACULTATE SEMESTRUL 3\SEP3\CODE\SEP3\C#\WebSiteSEP3\Client\Pages\Index.razor"
+using Microsoft.AspNetCore.Mvc.Diagnostics;
+
+#line default
+#line hidden
+#nullable disable
     [Microsoft.AspNetCore.Components.RouteAttribute("/")]
     public partial class Index : Microsoft.AspNetCore.Components.ComponentBase
     {
@@ -146,17 +153,23 @@ using System.Net.Mime;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 132 "D:\FACULTATE SEMESTRUL 3\SEP3\CODE\SEP3\C#\WebSiteSEP3\Client\Pages\Index.razor"
+#line 137 "D:\FACULTATE SEMESTRUL 3\SEP3\CODE\SEP3\C#\WebSiteSEP3\Client\Pages\Index.razor"
  
     private GameCluster games;
-        private int pageNr = 0;
+    private int pageNr = 0;
+    private string errorMessage;
 
     protected override async Task OnInitializedAsync()
     {
-        games = await _gameService.getGameClusterAsync(pageNr);
-        foreach (var game in games.GamesStack)
+        errorMessage = "";
+        try
         {
-            SaveImageIntoClient(game);
+            games = await _gameService.getGameClusterAsync(pageNr);
+            SaveImageIntoClient(games);
+        }
+        catch (Exception e)
+        {
+            errorMessage = e.Message;
         }
     }
 
@@ -169,22 +182,48 @@ using System.Net.Mime;
 
     private async Task PreviousPage()
     {
-        pageNr--;
-        games = await _gameService.getGameClusterAsync(pageNr);
+        errorMessage = "";
+        try
+        {
+            pageNr--;
+            games = await _gameService.getGameClusterAsync(pageNr);
+            SaveImageIntoClient(games);
+        }
+        catch (Exception e)
+        {
+            errorMessage = "There are no games on this page..";
+        }
+        
     }
 
     private async Task NextPage()
     {
-        pageNr++;
-        games = await _gameService.getGameClusterAsync(pageNr);
-    }
-    
-    public void SaveImageIntoClient(Game game)
-    {
-        using (WebClient webClient = new WebClient())
+        errorMessage = "";
+        try
         {
-            byte[] dataArr = webClient.DownloadData("https://image.api.playstation.com/vulcan/ap/rnd/202008/0416/6Bo40lnWU0BhgrOUm7Cb6by3.png");
-            File.WriteAllBytes($@"wwwroot/Images/Games/{game.GameName}.png", dataArr);
+            pageNr++;
+            games = await _gameService.getGameClusterAsync(pageNr);
+            SaveImageIntoClient(games);
+        }
+        catch (Exception e)
+        {
+            await PreviousPage();
+            pageNr++;
+            errorMessage = "There are no games on this page..";
+        }
+    }
+
+    public void SaveImageIntoClient(GameCluster gameCluster)
+    {
+        {
+            foreach (var game in gameCluster.GamesStack)
+            {
+                using (WebClient webClient = new WebClient())
+                {
+                    byte[] dataArr = webClient.DownloadData("https://image.api.playstation.com/vulcan/ap/rnd/202008/0416/6Bo40lnWU0BhgrOUm7Cb6by3.png");
+                    File.WriteAllBytes($@"wwwroot/Images/Games/{game.GameName}.png", dataArr);
+                }
+            }
         }
     }
 
