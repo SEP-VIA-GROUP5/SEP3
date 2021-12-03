@@ -220,7 +220,7 @@ using Microsoft.AspNetCore.Mvc.Diagnostics;
             {
                 using (WebClient webClient = new WebClient())
                 {
-                    byte[] dataArr = webClient.DownloadData("https://image.api.playstation.com/vulcan/ap/rnd/202008/0416/6Bo40lnWU0BhgrOUm7Cb6by3.png");
+                    byte[] dataArr = webClient.DownloadData(game.Photo);
                     File.WriteAllBytes($@"wwwroot/Images/Games/{game.GameName}.png", dataArr);
                 }
             }
