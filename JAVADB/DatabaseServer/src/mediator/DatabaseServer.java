@@ -20,4 +20,5 @@ public interface DatabaseServer
   String getKey(int gameID) throws SQLException;
   Game getGameByID(int id) throws SQLException;
   ArrayList<Game> getAllGames() throws SQLException;
+  ArrayList<Game> searchGamesByName(String gameName) throws SQLException;
 }

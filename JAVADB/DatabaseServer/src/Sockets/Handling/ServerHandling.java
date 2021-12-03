@@ -125,6 +125,14 @@ public class ServerHandling implements Runnable{
                             System.out.println("Sending all games");
                             break;
                         }
+                        case "getSearch":
+                        {
+                            System.out.println("Searching for games");
+                            Game receivedGame = received.getGame();
+                            GamePackage sendGamePackage = new GamePackage("foundGames", databaseServer.searchGamesByName(receivedGame.getGameName()));
+                            sendDataToServer(sendGamePackage);
+                            System.out.println("Sending games found");
+                        }
                         default:
                             System.out.println("Type not found");
                     }
