@@ -52,6 +52,24 @@ public class GameController {
         }
     }
 
+    @GetMapping("/getSearch")
+    public ResponseEntity<GameCluster> getSearchGame(@RequestParam String search)
+    {
+        try{
+            GameCluster gameCluster = gameService.getSearch(search);
+            if(gameCluster == null)
+            {
+                return ResponseEntity.badRequest().build();
+            }
+            return ResponseEntity.ok(gameCluster);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            return ResponseEntity.badRequest().build();
+        }
+    }
+
     @GetMapping("/readReceipt")
     public ResponseEntity<String> getReceipt(@RequestParam int userId, @RequestParam int gameId){
         try {
