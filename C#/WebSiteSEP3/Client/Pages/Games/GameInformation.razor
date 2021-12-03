@@ -1,0 +1,154 @@
+<!-- TODO Order now button -->
+<!-- TODO Shopping cart button -->
+<!-- TODO Make same small adjustments for page -->
+
+
+@page "/GameInformation/{GameName}"
+@using Client.Models
+@using Client.Data
+@using Microsoft.AspNetCore.Mvc.Formatters
+@inject IGameService GameService
+@inject NavigationManager NavigationManager
+<h3>GameInformation</h3>
+
+@if (game != null)
+{
+    <div class="container">
+        <div class="row d-flex justify-content-center">
+            <div class="col-md-10 mt-5 pt-5" id="color">
+                <div class="row shadow p-3">
+                    <div class="col-lg-4 rounded-left">
+                        <div class="card" style="width: 19rem;">
+                            <img class="card-img-top" src="@GetImage(game)" alt="Image of @game.GameName" title="Order @game.GameName"/>
+                            <div class="card-body">
+                                <h3 class="card-title">@game.GameName</h3>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item">
+                                        <p class="font-weight-bold">
+                                            $@string.Format("{0:f}", Math.Round(game.Price, 2).ToString())
+                                        </p>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 bg-light">
+                        <h3 class="mt-3 text-center">@game.GameName</h3>
+                        <hr class="badge-primary mt-0 w-25">
+                        <div class="row text-center">
+                            <div class="col-sm-6 float-right">
+                                <p class="font-weight-bold float-left" style="color: yellow">IGN Rating: @game.IGN</p>
+                            </div>
+                            <div class="col-sm-6">
+                                <p class="font-weight-bold float-right">
+                                    ESRB Rating: @game.ESRB
+                                </p>
+                            </div>
+                        </div>
+                        <h3 class="mt-3 text-justify">Description</h3>
+                        <hr class="badge-primary mt-0 w-25">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <p>@game.Description</p>
+                            </div>
+                        </div>
+                        <h3 class="mt-3 text-justify">Specifications</h3>
+                        <hr class="badge-primary mt-0 w-25">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <p>@game.Specifications</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 bg-light rounded-right">
+                                        @* @if (orderNowPressed) *@
+                                        @* { *@
+                                        @*     <div class="col-sm-6"> *@
+                                        @*         <div id="paypal-button-container"></div> *@
+                                        @*     </div> *@
+                                        @*     <div class="col-sm-6"> *@
+                                        @*         <button class="btn rounded disabled" @onclick="(() => AddToShoppingCart(game))"><span class="oi oi-cart"></span>Add to Shopping cart</button> *@
+                                        @*     </div>  *@
+                                        @* } *@
+                                        @* else *@
+                                        @* { *@
+                                        @*     <div class="col-sm-6"> *@
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <button class="btn rounded" @onclick="() => OrderNow(game.GameName)">Order now</button>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <button class="btn disabled" style="color: orange"@onclick="(() => AddToShoppingCart(game))">Add to shopping cart</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                </div>
+                
+
+                @* } *@
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    <h1>Game not found or API still works...</h1>
+}
+
+@errorMessage
+
+@code {
+
+    [Parameter]
+    public string GameName { get; set; }
+
+    [Inject]
+    IJSRuntime _jsRuntime { get; set; }
+
+    private Game game;
+    private string errorMessage;
+    private Boolean orderNowPressed = false;
+
+    protected override async Task OnInitializedAsync()
+    {
+        errorMessage = "";
+        try
+        {
+            game = await GameService.getGameAsync(GameName);
+        }
+        catch (Exception e)
+        {
+            errorMessage = e.Message;
+        }
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            if (game != null)
+            {
+                var value = Math.Round(game.Price, 2);
+                await _jsRuntime.InvokeVoidAsync("LoadButtonPaypal", value, game.GameName);
+            }
+        }
+    }
+
+    public string GetImage(Game game)
+    {
+        return $"Images/Games/{game.GameName}.png";
+    }
+
+    public void OrderNow(string gameName)
+    {
+        NavigationManager.NavigateTo($"/Paypal/{gameName}");
+    }
+
+    public void AddToShoppingCart(Game game)
+    {
+    //TODO later has to be implemented
+    }
+
+}

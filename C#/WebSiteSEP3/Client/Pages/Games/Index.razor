@@ -1,0 +1,283 @@
+@* @page "/" *@
+@* @inject IJSRuntime JS *@
+@* @inject AuthenticationStateProvider AuthenticationStateProvider *@
+@* @inject IGameService _gameService; *@
+@* @using LoginComponent *@
+@* @using Client.Data *@
+@* @using Client.Models *@
+@* <AuthorizeView> *@
+@*     <Authorized> *@
+@*         Hi, @context.User.Identity.Name *@
+@*         <div id="paypal-button-container"></div> *@
+@*     </Authorized> *@
+@*     <NotAuthorized> *@
+@*         <Login/> *@
+@*     </NotAuthorized> *@
+@* </AuthorizeView> *@
+@* *@
+@* *@
+@* @code *@
+@* { *@
+@*     // [Inject] *@
+@*     // IJSRuntime _jsRuntime { get; set; } *@
+@* *@
+@*     // double value; *@
+@*     double a = 9.99; *@
+@* *@
+@*     protected override async Task OnInitializedAsync() *@
+@*     { *@
+@*         // Game Game1 = await _gameService.getGameAsync("Cyberpunk 2077"); *@
+@*         // value = Game1.Price; *@
+@*     } *@
+@* *@
+@*     protected override async Task OnAfterRenderAsync(bool firstRender) *@
+@*     { *@
+@*         if (firstRender) *@
+@*         { *@
+@*             await JS.InvokeVoidAsync("LoadButtonPaypal", a); *@
+@*         } *@
+@*     } *@
+@* } *@
+
+
+@page "/"
+@* @inject IJSRuntime JS *@
+@inject AuthenticationStateProvider AuthenticationStateProvider
+@inject IGameService _gameService
+@inject NavigationManager NavigationManager
+@using LoginComponent
+@using PaypalComponent
+@using Client.Data
+@using Client.Models
+@using System.IO
+@using System.Net
+@using System;
+@using System.Drawing;
+@using System.Net.Mime
+@using Microsoft.AspNetCore.Mvc.Diagnostics
+<AuthorizeView>
+    <Authorized>
+        <div class="text-info">
+            <h1>Hi, @context.User.Identity.Name!</h1>
+        </div>
+
+        <div class="container row align-top float-right">
+            <div class="col-lg-4">
+                <input type="text" alt="search for game" @bind-value="searchedGameName" style="width: 150px"/>
+                <button class="btn-outline-primary" @onclick="@(() => FilterByGameName(searchedGameName))">
+                    <i class="oi oi-eye"/>
+                </button>
+                <button class="btn-outline-primary" @onclick="ClearSearch">Clear</button>
+            </div>
+        </div>
+        @if (errorMessage.Equals(""))
+        {
+            <div class="text-info">
+                @if (searchedGameName == null)
+                {
+                    <h1>Here are some games that might interest you</h1>
+                }
+                else
+                {
+                    <h1>Results for @searchedGameName</h1>
+                }
+            </div>
+            <div class="container-fluid row">
+                @if (games != null)
+                               {
+                                   @foreach (var game in games.GamesStack)
+                                   {
+                                       <div class="col-lg-4">
+                                           <div class="card" style="width: 19rem">
+                                               <img class="card-img-top" src="@GetImage(game)" alt="Image of @game.GameName" title="Order @game.GameName"/>
+                                               <div class="card-body">
+                                                   <h3 class="card-title">@game.GameName</h3>
+                                                   <ul class="list-group list-group-flush">
+                                                       <li class="list-group-item">
+                                                           $@string.Format("{0:f}", Math.Round(game.Price, 2).ToString())
+                                                       </li>
+                                                   </ul>
+                                                   <div class="card-body row">
+                                                       <button class="btn btn-sm btn-dark order-button float-lg-right" @onclick="(() => MoreInformations(game.GameName))">INFO</button>
+                                                   </div>
+                                               </div>
+                                           </div>
+                                       </div>
+                                   }
+                               }
+            </div>
+            
+        }
+        else
+        {
+            <div class="text-info">
+                <h1>@errorMessage</h1>
+            </div>
+        }
+        <!-- TODO Paypal services will be changed as a redirect button -->
+        @* <Paypal/> *@
+
+
+        <nav class="pagenavigation" aria-label="page navigation">
+            <ul class="pagination">
+                @if (pageNr != 0)
+                {
+                    <li class="page-item">
+                        <a class="page-link" @onclick="PreviousPage">Previous</a>
+                    </li>
+                }
+                else if (pageNr == 0 || errorMessage.Equals("") || searchedGameName != null)
+                {
+                    <li class="page-item disabled">
+                        <a class="page-link" @onclick="PreviousPage">Previous</a>
+                    </li>
+                }
+                @if (errorMessage.Equals(""))
+                {
+                    <li class="page-item">
+                        <a class="page-link" @onclick="NextPage">Next</a>
+                    </li>
+                }
+                else if (!errorMessage.Equals("") || searchedGameName != null)
+                {
+                    <li class="page-item disabled">
+                        <a class="page-link" @onclick="NextPage">Next</a>
+                    </li>
+                }
+
+            </ul>
+        </nav>
+    </Authorized>
+    <NotAuthorized>
+        <Login/>
+    </NotAuthorized>
+</AuthorizeView>
+
+
+@code
+{
+    private GameCluster games;
+    private int pageNr = 0;
+    private string errorMessage;
+
+
+    private string? searchedGameName;
+
+    protected override async Task OnInitializedAsync()
+    {
+        errorMessage = "";
+        try
+        {
+            games = await _gameService.getGameClusterAsync(pageNr);
+            SaveImageIntoClient(games);
+        }
+        catch (Exception e)
+        {
+            errorMessage = e.Message;
+        }
+    }
+
+
+    // TODO private void CheckOutNow(string gameName)
+    // {
+    //     NavigationManager.NavigateTo($"/Paypal/{gameName}");
+    //
+    // }
+
+    private async Task PreviousPage()
+    {
+        errorMessage = "";
+        try
+        {
+            pageNr--;
+            games = await _gameService.getGameClusterAsync(pageNr);
+            SaveImageIntoClient(games);
+        }
+        catch (Exception e)
+        {
+            errorMessage = "There are no games on this page..";
+        }
+    }
+
+    private async Task NextPage()
+    {
+        errorMessage = "";
+        try
+        {
+            pageNr++;
+            games = await _gameService.getGameClusterAsync(pageNr);
+            SaveImageIntoClient(games);
+        }
+        catch (Exception e)
+        {
+            await PreviousPage();
+            pageNr++;
+            errorMessage = "There are no games on this page..";
+        }
+    }
+
+    public void SaveImageIntoClient(GameCluster gameCluster)
+    {
+        {
+            foreach (var game in gameCluster.GamesStack)
+            {
+                using (WebClient webClient = new WebClient())
+                {
+                    byte[] dataArr = webClient.DownloadData(game.Photo);
+                    File.WriteAllBytes($@"wwwroot/Images/Games/{game.GameName}.png", dataArr);
+                }
+            }
+        }
+    }
+
+    public string GetImage(Game game)
+    {
+        return $"Images/Games/{game.GameName}.png";
+    }
+
+    private async Task FilterByGameName(string searchedGames)
+    {
+        errorMessage = "";
+        try
+        {
+            if (searchedGames != null)
+            {
+                games = await _gameService.getSearchAsync(searchedGames);
+                SaveImageIntoClient(games);
+                if (games.GamesStack.Count == 0)
+                {
+                    errorMessage = $"There are no games for {searchedGames}";
+                }
+            }
+            else
+            {
+                games = await _gameService.getGameClusterAsync(pageNr);
+                SaveImageIntoClient(games);
+            }
+        }
+        catch (Exception e)
+        {
+            errorMessage = $"There are no games for {searchedGames}";
+        }
+    }
+
+    private async Task ClearSearch()
+    {
+        errorMessage = "";
+        try
+        {
+            pageNr = 0;
+            games = await _gameService.getGameClusterAsync(pageNr);
+            SaveImageIntoClient(games);
+        }
+        catch (Exception e)
+        {
+            errorMessage = "There are no games on this page..";
+        }
+    }
+
+    private void MoreInformations(string gameName)
+    {
+        NavigationManager.NavigateTo($"/GameInformation/{gameName}");
+    }
+}
