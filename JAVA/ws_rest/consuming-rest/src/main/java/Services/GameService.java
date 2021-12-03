@@ -4,6 +4,7 @@ import Sockets.Handlers.ClientHandling;
 import Sockets.Models.Game;
 import Sockets.Models.GameCluster;
 import Sockets.Models.GameKey;
+import Sockets.Packages.CartPackage;
 import Sockets.Packages.GamePackage;
 import com.google.gson.Gson;
 
@@ -122,6 +123,39 @@ public class GameService implements IGameService{
         GameCluster gameCluster = new GameCluster();
         gameCluster.setGameStack(gamePackage.getGames());
         System.out.println(gameCluster.getGameStack().toString() + "| Found");
+        return gameCluster;
+    }
+
+    @Override
+    public String addGameToShoppingCart(String userName, int gameId) throws IOException {
+        CartPackage cartPackage = new CartPackage("add",userName,gameId);
+        clientHandling.sendToServer(cartPackage);
+        return "sent";
+    }
+
+    @Override
+    public GameCluster removeGameFromShoppingCart(String userName, int gameId) throws IOException, ClassNotFoundException {
+        CartPackage cartPackage = new CartPackage("remove",userName,gameId);
+        clientHandling.sendToServer(cartPackage);
+        Object dataReceived = clientHandling.receiveFromServer();
+        CartPackage cartPackage1 = (CartPackage) dataReceived;
+        GameCluster gameCluster = new GameCluster();
+        for (int i =0;i< cartPackage1.getGames().size();i++)  {
+            gameCluster.addGameToCluster(cartPackage.getGames().get(i));
+        }
+        return gameCluster;
+    }
+
+    @Override
+    public GameCluster getShoppingCart(String userName) throws IOException, ClassNotFoundException {
+        CartPackage cartPackage = new CartPackage("get",userName);
+        clientHandling.sendToServer(cartPackage);
+        Object dataReceived = clientHandling.receiveFromServer();
+        CartPackage cartPackage1 = (CartPackage) dataReceived;
+        GameCluster gameCluster = new GameCluster();
+        for (int i =0;i< cartPackage1.getGames().size();i++)  {
+            gameCluster.addGameToCluster(cartPackage.getGames().get(i));
+        }
         return gameCluster;
     }
 }

@@ -34,6 +34,7 @@ public class GamePackage implements Serializable
     this.games = games;
   }
 
+
   public ArrayList<Game> getGames()
   {
     return games;
