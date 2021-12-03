@@ -131,4 +131,47 @@ public class GameController {
             return ResponseEntity.badRequest().build();
         }
     }
+
+    @GetMapping("/cart/add")
+    public ResponseEntity<String> addGameToShoppingCart(@RequestParam String userName, @RequestParam int gameId){
+        try {
+            String confirmation =gameService.addGameToShoppingCart(userName,gameId);
+            if(confirmation==null){
+                return ResponseEntity.badRequest().build();
+            }
+            return ResponseEntity.ok(confirmation);
+        }
+        catch (Exception e){
+            System.out.println(e.getMessage());
+            return ResponseEntity.badRequest().build();
+        }
+    }
+
+    @GetMapping("/cart/remove")
+    public ResponseEntity<GameCluster> removeGameToShoppingCart(@RequestParam String userName, @RequestParam int gameId) {
+        try {
+            GameCluster newGameCluster = gameService.removeGameFromShoppingCart(userName, gameId);
+            if (newGameCluster == null) {
+                return ResponseEntity.badRequest().build();
+            }
+            return ResponseEntity.ok(newGameCluster);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return ResponseEntity.badRequest().build();
+        }
+    }
+
+    @GetMapping("/cart/get")
+    public ResponseEntity<GameCluster> getShoppingCart(@RequestParam String userName) {
+        try {
+            GameCluster newGameCluster = gameService.getShoppingCart(userName);
+            if (newGameCluster == null) {
+                return ResponseEntity.badRequest().build();
+            }
+            return ResponseEntity.ok(newGameCluster);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return ResponseEntity.badRequest().build();
+        }
+    }
 }

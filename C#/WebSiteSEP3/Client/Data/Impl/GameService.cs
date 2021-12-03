@@ -118,5 +118,46 @@ namespace Client.Data.Impl
 
             return null;
         }
+
+        public async Task addGameToShoppingCartAsync(User user, int gameId)
+        {
+            HttpResponseMessage responseMessage =
+                await Client.GetAsync($"http://localhost:8080/game/cart/add?userId={user.Username}&gameId={gameId}");
+            if (responseMessage.StatusCode == HttpStatusCode.OK)
+            {
+                Console.WriteLine("game added successfully!");
+            }
+            Console.WriteLine("game was NOT added!");
+        }
+
+        public async Task<GameCluster> removeGameFromShoppingCartAsync(User user, int gameId)
+        {
+            String _gameClusterJson;
+            HttpResponseMessage responseMessage =
+                await Client.GetAsync($"http://localhost:8080/game/cart/remove?userId={user.Username}&gameId={gameId}");
+            if (responseMessage.StatusCode == HttpStatusCode.OK)
+            {
+                _gameClusterJson = await responseMessage.Content.ReadAsStringAsync();
+                GameCluster gameCluster = JsonSerializer.Deserialize<GameCluster>(_gameClusterJson);
+                return gameCluster;
+            }
+
+            return null;
+        }
+
+        public async Task<GameCluster> getShoppingCartAsync(User user)
+        {
+            String _gameClusterJson;
+            HttpResponseMessage responseMessage =
+                await Client.GetAsync($"http://localhost:8080/game/cart/get?userId={user.Username}");
+            if (responseMessage.StatusCode == HttpStatusCode.OK)
+            {
+                _gameClusterJson = await responseMessage.Content.ReadAsStringAsync();
+                GameCluster gameCluster = JsonSerializer.Deserialize<GameCluster>(_gameClusterJson);
+                return gameCluster;
+            }
+
+            return null;
+        }
     }
 }
