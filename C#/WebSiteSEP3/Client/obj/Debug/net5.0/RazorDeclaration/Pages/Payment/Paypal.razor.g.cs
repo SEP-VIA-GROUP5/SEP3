@@ -107,6 +107,7 @@ using Microsoft.JSInterop;
 #nullable restore
 #line 14 "D:\FACULTATE SEMESTRUL 3\SEP3\CODE\SEP3\C#\WebSiteSEP3\Client\Pages\Payment\Paypal.razor"
        
+    //TODO Design this page and make it for a specific game
     [Inject]
     IJSRuntime _jsRuntime { get; set; }
     
