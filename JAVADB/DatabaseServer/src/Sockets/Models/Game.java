@@ -32,6 +32,7 @@ public class Game implements Serializable
     this.ESRBRating = ESRBRating;
     this.photoURL = photoURL;
     this.releaseDate = releaseDate;
+    this.gameKey = null;
   }
 
   public Game(int gameId, String gameName, double price, String description, String specifications, int IGNRating, String ESRBRating, String photoURL, String releaseDate, String gameKey)

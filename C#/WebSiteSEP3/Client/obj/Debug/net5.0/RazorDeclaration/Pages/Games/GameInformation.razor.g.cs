@@ -4,7 +4,7 @@
 #pragma warning disable 0649
 #pragma warning disable 0169
 
-namespace PaypalComponent
+namespace Client.Pages.Games
 {
     #line hidden
     using System;
@@ -62,6 +62,13 @@ using Microsoft.AspNetCore.Components.Web.Virtualization;
 #line hidden
 #nullable disable
 #nullable restore
+#line 8 "D:\FACULTATE SEMESTRUL 3\SEP3\CODE\SEP3\C#\WebSiteSEP3\Client\_Imports.razor"
+using Microsoft.JSInterop;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
 #line 9 "D:\FACULTATE SEMESTRUL 3\SEP3\CODE\SEP3\C#\WebSiteSEP3\Client\_Imports.razor"
 using Client;
 
@@ -69,35 +76,28 @@ using Client;
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "D:\FACULTATE SEMESTRUL 3\SEP3\CODE\SEP3\C#\WebSiteSEP3\Client\Pages\Payment\Paypal.razor"
+#line 7 "D:\FACULTATE SEMESTRUL 3\SEP3\CODE\SEP3\C#\WebSiteSEP3\Client\Pages\Games\GameInformation.razor"
 using Client.Models;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 3 "D:\FACULTATE SEMESTRUL 3\SEP3\CODE\SEP3\C#\WebSiteSEP3\Client\Pages\Payment\Paypal.razor"
+#line 8 "D:\FACULTATE SEMESTRUL 3\SEP3\CODE\SEP3\C#\WebSiteSEP3\Client\Pages\Games\GameInformation.razor"
 using Client.Data;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 4 "D:\FACULTATE SEMESTRUL 3\SEP3\CODE\SEP3\C#\WebSiteSEP3\Client\Pages\Payment\Paypal.razor"
-using Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ConfigurationModel;
+#line 9 "D:\FACULTATE SEMESTRUL 3\SEP3\CODE\SEP3\C#\WebSiteSEP3\Client\Pages\Games\GameInformation.razor"
+using Microsoft.AspNetCore.Mvc.Formatters;
 
 #line default
 #line hidden
 #nullable disable
-#nullable restore
-#line 5 "D:\FACULTATE SEMESTRUL 3\SEP3\CODE\SEP3\C#\WebSiteSEP3\Client\Pages\Payment\Paypal.razor"
-using Microsoft.JSInterop;
-
-#line default
-#line hidden
-#nullable disable
-    [Microsoft.AspNetCore.Components.RouteAttribute("/Paypal/{gameName}")]
-    public partial class Paypal : Microsoft.AspNetCore.Components.ComponentBase
+    [Microsoft.AspNetCore.Components.RouteAttribute("/GameInformation/{GameName}")]
+    public partial class GameInformation : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998
         protected override void BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder __builder)
@@ -105,37 +105,65 @@ using Microsoft.JSInterop;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 14 "D:\FACULTATE SEMESTRUL 3\SEP3\CODE\SEP3\C#\WebSiteSEP3\Client\Pages\Payment\Paypal.razor"
+#line 102 "D:\FACULTATE SEMESTRUL 3\SEP3\CODE\SEP3\C#\WebSiteSEP3\Client\Pages\Games\GameInformation.razor"
        
-    //TODO Design this page and make it for a specific game
-    [Inject]
-    IJSRuntime _jsRuntime { get; set; }
-    
+
     [Parameter]
     public string GameName { get; set; }
 
-    double value;
-    double a = 9.99;
+    [Inject]
+    IJSRuntime _jsRuntime { get; set; }
+
+    private Game game;
+    private string errorMessage;
+    private Boolean orderNowPressed = false;
 
     protected override async Task OnInitializedAsync()
     {
-        
+        errorMessage = "";
+        try
+        {
+            game = await GameService.getGameAsync(GameName);
+        }
+        catch (Exception e)
+        {
+            errorMessage = e.Message;
+        }
     }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         if (firstRender)
         {
-            Game Game1 = await _gameService.getGameAsync("Cyberpunk 2077");
-            value = Math.Round(Game1.Price, 2);
-            await _jsRuntime.InvokeVoidAsync("LoadButtonPaypal", value, Game1.GameName);
+            if (game != null)
+            {
+                var value = Math.Round(game.Price, 2);
+                await _jsRuntime.InvokeVoidAsync("LoadButtonPaypal", value, game.GameName);
+            }
         }
     }
+
+    public string GetImage(Game game)
+    {
+        return $"Images/Games/{game.GameName}.png";
+    }
+
+    public void OrderNow(string gameName)
+    {
+        NavigationManager.NavigateTo($"/Paypal/{gameName}");
+    }
+
+    public void AddToShoppingCart(Game game)
+    {
+    //TODO later has to be implemented
+    }
+
 
 #line default
 #line hidden
 #nullable disable
-        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IGameService _gameService { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager NavigationManager { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IGameService GameService { get; set; }
     }
 }
 #pragma warning restore 1591

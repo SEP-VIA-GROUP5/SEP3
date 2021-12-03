@@ -4,7 +4,7 @@
 #pragma warning disable 0649
 #pragma warning disable 0169
 
-namespace Client.Pages
+namespace Client.Pages.Games
 {
     #line hidden
     using System.Collections.Generic;
@@ -75,70 +75,70 @@ using Client;
 #line hidden
 #nullable disable
 #nullable restore
-#line 47 "D:\FACULTATE SEMESTRUL 3\SEP3\CODE\SEP3\C#\WebSiteSEP3\Client\Pages\Index.razor"
+#line 5 "D:\FACULTATE SEMESTRUL 3\SEP3\CODE\SEP3\C#\WebSiteSEP3\Client\Pages\Games\Index.razor"
 using LoginComponent;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 48 "D:\FACULTATE SEMESTRUL 3\SEP3\CODE\SEP3\C#\WebSiteSEP3\Client\Pages\Index.razor"
+#line 6 "D:\FACULTATE SEMESTRUL 3\SEP3\CODE\SEP3\C#\WebSiteSEP3\Client\Pages\Games\Index.razor"
 using PaypalComponent;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 49 "D:\FACULTATE SEMESTRUL 3\SEP3\CODE\SEP3\C#\WebSiteSEP3\Client\Pages\Index.razor"
+#line 7 "D:\FACULTATE SEMESTRUL 3\SEP3\CODE\SEP3\C#\WebSiteSEP3\Client\Pages\Games\Index.razor"
 using Client.Data;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 50 "D:\FACULTATE SEMESTRUL 3\SEP3\CODE\SEP3\C#\WebSiteSEP3\Client\Pages\Index.razor"
+#line 8 "D:\FACULTATE SEMESTRUL 3\SEP3\CODE\SEP3\C#\WebSiteSEP3\Client\Pages\Games\Index.razor"
 using Client.Models;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 51 "D:\FACULTATE SEMESTRUL 3\SEP3\CODE\SEP3\C#\WebSiteSEP3\Client\Pages\Index.razor"
+#line 9 "D:\FACULTATE SEMESTRUL 3\SEP3\CODE\SEP3\C#\WebSiteSEP3\Client\Pages\Games\Index.razor"
 using System.IO;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 52 "D:\FACULTATE SEMESTRUL 3\SEP3\CODE\SEP3\C#\WebSiteSEP3\Client\Pages\Index.razor"
+#line 10 "D:\FACULTATE SEMESTRUL 3\SEP3\CODE\SEP3\C#\WebSiteSEP3\Client\Pages\Games\Index.razor"
 using System.Net;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 53 "D:\FACULTATE SEMESTRUL 3\SEP3\CODE\SEP3\C#\WebSiteSEP3\Client\Pages\Index.razor"
+#line 11 "D:\FACULTATE SEMESTRUL 3\SEP3\CODE\SEP3\C#\WebSiteSEP3\Client\Pages\Games\Index.razor"
 using System;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 54 "D:\FACULTATE SEMESTRUL 3\SEP3\CODE\SEP3\C#\WebSiteSEP3\Client\Pages\Index.razor"
+#line 12 "D:\FACULTATE SEMESTRUL 3\SEP3\CODE\SEP3\C#\WebSiteSEP3\Client\Pages\Games\Index.razor"
 using System.Drawing;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 55 "D:\FACULTATE SEMESTRUL 3\SEP3\CODE\SEP3\C#\WebSiteSEP3\Client\Pages\Index.razor"
+#line 13 "D:\FACULTATE SEMESTRUL 3\SEP3\CODE\SEP3\C#\WebSiteSEP3\Client\Pages\Games\Index.razor"
 using System.Net.Mime;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 56 "D:\FACULTATE SEMESTRUL 3\SEP3\CODE\SEP3\C#\WebSiteSEP3\Client\Pages\Index.razor"
+#line 14 "D:\FACULTATE SEMESTRUL 3\SEP3\CODE\SEP3\C#\WebSiteSEP3\Client\Pages\Games\Index.razor"
 using Microsoft.AspNetCore.Mvc.Diagnostics;
 
 #line default
@@ -153,7 +153,7 @@ using Microsoft.AspNetCore.Mvc.Diagnostics;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 166 "D:\FACULTATE SEMESTRUL 3\SEP3\CODE\SEP3\C#\WebSiteSEP3\Client\Pages\Index.razor"
+#line 116 "D:\FACULTATE SEMESTRUL 3\SEP3\CODE\SEP3\C#\WebSiteSEP3\Client\Pages\Games\Index.razor"
  
     private GameCluster games;
     private int pageNr = 0;
@@ -273,6 +273,11 @@ using Microsoft.AspNetCore.Mvc.Diagnostics;
         {
             errorMessage = "There are no games on this page..";
         }
+    }
+
+    private void MoreInformations(string gameName)
+    {
+        NavigationManager.NavigateTo($"/GameInformation/{gameName}");
     }
 
 #line default

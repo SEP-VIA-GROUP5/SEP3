@@ -1,46 +1,4 @@
-@* @page "/" *@
-@* @inject IJSRuntime JS *@
-@* @inject AuthenticationStateProvider AuthenticationStateProvider *@
-@* @inject IGameService _gameService; *@
-@* @using LoginComponent *@
-@* @using Client.Data *@
-@* @using Client.Models *@
-@* <AuthorizeView> *@
-@*     <Authorized> *@
-@*         Hi, @context.User.Identity.Name *@
-@*         <div id="paypal-button-container"></div> *@
-@*     </Authorized> *@
-@*     <NotAuthorized> *@
-@*         <Login/> *@
-@*     </NotAuthorized> *@
-@* </AuthorizeView> *@
-@* *@
-@* *@
-@* @code *@
-@* { *@
-@*     // [Inject] *@
-@*     // IJSRuntime _jsRuntime { get; set; } *@
-@* *@
-@*     // double value; *@
-@*     double a = 9.99; *@
-@* *@
-@*     protected override async Task OnInitializedAsync() *@
-@*     { *@
-@*         // Game Game1 = await _gameService.getGameAsync("Cyberpunk 2077"); *@
-@*         // value = Game1.Price; *@
-@*     } *@
-@* *@
-@*     protected override async Task OnAfterRenderAsync(bool firstRender) *@
-@*     { *@
-@*         if (firstRender) *@
-@*         { *@
-@*             await JS.InvokeVoidAsync("LoadButtonPaypal", a); *@
-@*         } *@
-@*     } *@
-@* } *@
-
 @page "/"
-@* @inject IJSRuntime JS *@
 @inject AuthenticationStateProvider AuthenticationStateProvider
 @inject IGameService _gameService
 @inject NavigationManager NavigationManager
@@ -83,38 +41,30 @@
                 }
             </div>
             <div class="container-fluid row">
-
-                @foreach (var game in games.GamesStack)
-                {
-                    <div class="col-lg-4">
-                        <div class="card col-lg-10">
-                            <div class="card-text">
-                                <h3>@game.GameName</h3>
-                            </div>
-                            <div class="col-lg-6">
-                                <a asp-page="/order" asp-route-id="@game.GameId" title="Order @game.GameName">
-                                    <div class="productInfo">
-
-                                        <div class="card-img-top">
-                                            <img class="product-image img-thumbnail" src="@GetImage(game)" alt="Image of @game.GameName"/>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-lg-6">
-                                <div class="card-body">
-                                    <p class="price float-lg-left">$@string.Format("{0:f}", Math.Round(game.Price, 2).ToString())</p>
-                                    @* TODO <button class="btn btn-sm btn-dark order-button float-right" @onclick="@(() => CheckOutNow(game.GameName))"> *@
-                                    @*     Order Now *@
-                                    @* </button> *@
-                                    <button class="btn btn-sm btn-dark order-button float-lg-right">Order Now (Test)</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                }
-                <br/>
+                @if (games != null)
+                               {
+                                   @foreach (var game in games.GamesStack)
+                                   {
+                                       <div class="col-lg-4">
+                                           <div class="card" style="width: 19rem">
+                                               <img class="card-img-top" src="@GetImage(game)" alt="Image of @game.GameName" title="Order @game.GameName"/>
+                                               <div class="card-body">
+                                                   <h3 class="card-title">@game.GameName</h3>
+                                                   <ul class="list-group list-group-flush">
+                                                       <li class="list-group-item">
+                                                           $@string.Format("{0:f}", Math.Round(game.Price, 2).ToString())
+                                                       </li>
+                                                   </ul>
+                                                   <div class="card-body row">
+                                                       <button class="btn btn-sm btn-dark order-button float-lg-right" @onclick="(() => MoreInformations(game.GameName))">INFO</button>
+                                                   </div>
+                                               </div>
+                                           </div>
+                                       </div>
+                                   }
+                               }
             </div>
+            
         }
         else
         {
@@ -282,5 +232,10 @@
         {
             errorMessage = "There are no games on this page..";
         }
+    }
+
+    private void MoreInformations(string gameName)
+    {
+        NavigationManager.NavigateTo($"/GameInformation/{gameName}");
     }
 }
