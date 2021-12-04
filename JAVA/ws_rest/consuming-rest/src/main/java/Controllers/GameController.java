@@ -133,7 +133,7 @@ public class GameController {
     }
 
     @GetMapping("/cart/add")
-    public ResponseEntity<String> addGameToShoppingCart(@RequestParam String userName, @RequestParam int gameId){
+    public ResponseEntity<String> addGameToShoppingCart(@RequestParam(name = "userName") String userName, @RequestParam int gameId){
         try {
             String confirmation =gameService.addGameToShoppingCart(userName,gameId);
             if(confirmation==null){

@@ -96,7 +96,7 @@ using Microsoft.JSInterop;
 #line default
 #line hidden
 #nullable disable
-    [Microsoft.AspNetCore.Components.RouteAttribute("/Paypal/{gameName}")]
+    [Microsoft.AspNetCore.Components.RouteAttribute("/Paypal/{Username}")]
     public partial class Paypal : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998
@@ -105,24 +105,22 @@ using Microsoft.JSInterop;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 15 "D:\FACULTATE SEMESTRUL 3\SEP3\CODE\SEP3\C#\WebSiteSEP3\Client\Pages\Payment\Paypal.razor"
+#line 75 "D:\FACULTATE SEMESTRUL 3\SEP3\CODE\SEP3\C#\WebSiteSEP3\Client\Pages\Payment\Paypal.razor"
        
     //TODO Design this page and make it for a specific game
     [Inject]
     IJSRuntime _jsRuntime { get; set; }
-    
+
     [Parameter]
-    public string GameName { get; set; }
+    public string Username { get; set; }
+
+    private GameCluster _gameCluster { get; set; }
 
     private Game game;
 
-    double value;
-    double a = 9.99;
-
     protected override async Task OnInitializedAsync()
     {
-        game = await _gameService.getGameAsync(GameName);
-        value = value = Math.Round(game.Price, 2);
+        _gameCluster = await _gameService.getShoppingCartAsync(Username);
     }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
@@ -131,10 +129,21 @@ using Microsoft.JSInterop;
         {
             if (game != null)
             {
-                await _jsRuntime.InvokeVoidAsync("LoadButtonPaypal", value, game.GameName);
+                await _jsRuntime.InvokeVoidAsync("LoadButtonPaypal", GetTotalPrice());
             }
         }
     }
+
+    public double GetTotalPrice()
+    {
+        double totalValue = 0;
+        foreach (var game in _gameCluster.GamesStack)
+        {
+            totalValue += game.Price;
+        }
+        return Math.Round(totalValue, 2);
+    }
+
 
 #line default
 #line hidden

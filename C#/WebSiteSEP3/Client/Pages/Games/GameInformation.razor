@@ -118,11 +118,8 @@ else
 
     protected override async void OnParametersSet()
     {
-        if (AuthState != null)
-        {
-            _claimsPrincipal = (await AuthState).User;
+        _claimsPrincipal = (await AuthState).User;
             username = _claimsPrincipal.Identity.Name;
-        }
     }
     
     protected override async Task OnAfterRenderAsync(bool firstRender)
