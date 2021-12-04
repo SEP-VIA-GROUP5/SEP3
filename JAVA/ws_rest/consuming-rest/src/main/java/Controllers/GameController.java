@@ -174,4 +174,17 @@ public class GameController {
             return ResponseEntity.badRequest().build();
         }
     }
+    @GetMapping("/library/get")
+    public ResponseEntity<GameCluster> getLibrary(@RequestParam String userName) {
+        try {
+            GameCluster newGameCluster = gameService.getLibrary(userName);
+            if (newGameCluster == null) {
+                return ResponseEntity.badRequest().build();
+            }
+            return ResponseEntity.ok(newGameCluster);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return ResponseEntity.badRequest().build();
+        }
+    }
 }

@@ -162,5 +162,20 @@ namespace Client.Data.Impl
 
             return null;
         }
+
+        public async Task<GameCluster> getLibraryAsync(string userName)
+        {
+            String _gameClusterJson;
+            HttpResponseMessage responseMessage =
+                await Client.GetAsync($"http://localhost:8080/game/library/get?userName={userName}");
+            if (responseMessage.StatusCode == HttpStatusCode.OK)
+            {
+                _gameClusterJson = await responseMessage.Content.ReadAsStringAsync();
+                GameCluster gameCluster = JsonSerializer.Deserialize<GameCluster>(_gameClusterJson);
+                return gameCluster;
+            }
+
+            return null;
+        }
     }
 }
