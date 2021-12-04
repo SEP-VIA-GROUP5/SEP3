@@ -100,9 +100,11 @@ public class GameService implements IGameService{
     }
 
     @Override
-    public Game addGame(String name, double price, String photo, String ESRB, String IGN, String shortDescription, String specifications, String date) throws IOException, ClassNotFoundException{
-        return null;
-        //TODO
+    public Game addGame(String name, double price, String photo, String ESRB, int IGN, String shortDescription, String specifications, String date) throws IOException, ClassNotFoundException{
+        Game game = new Game(name, price, shortDescription, specifications, IGN, ESRB, photo, date);
+        GamePackage gamePackage = new GamePackage(game, "registerGame");
+        clientHandling.sendToServer(gamePackage);
+        return game;
     }
 
     @Override

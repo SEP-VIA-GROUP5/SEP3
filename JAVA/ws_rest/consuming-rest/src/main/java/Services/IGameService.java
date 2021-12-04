@@ -11,7 +11,7 @@ public interface IGameService {
     GameCluster getGameCluster(int page) throws IOException, ClassNotFoundException;
     String getReceipt(int userId, int gameId) throws IOException, ClassNotFoundException;
     GameKey getProductKey(int gameId, String username) throws IOException, ClassNotFoundException;
-    Game addGame(String name, double price, String photo, String ESRB, String IGN, String shortDescription, String specifications, String date) throws IOException, ClassNotFoundException;
+    Game addGame(String name, double price, String photo, String ESRB, int IGN, String shortDescription, String specifications, String date) throws IOException, ClassNotFoundException;
     String addProductKey(int gameId, String porductKey) throws IOException, ClassNotFoundException;
     GameCluster getSearch(String search) throws IOException, ClassNotFoundException;
     String addGameToShoppingCart(String userName,int gameId) throws IOException;
