@@ -87,9 +87,9 @@ public class GameService implements IGameService{
     }
 
     @Override
-    public GameKey getProductKey(int gameId) throws IOException, ClassNotFoundException{
+    public GameKey getProductKey(int gameId, String username) throws IOException, ClassNotFoundException{
         Game game = new Game(gameId);
-        GamePackage gamePackage = new GamePackage(game,"getProductKey");
+        GamePackage gamePackage = new GamePackage(game,"getProductKey", username);
         clientHandling.sendToServer(gamePackage);
         Object dataReceivedFromServer = clientHandling.receiveFromServer();
         gamePackage = (GamePackage) dataReceivedFromServer;

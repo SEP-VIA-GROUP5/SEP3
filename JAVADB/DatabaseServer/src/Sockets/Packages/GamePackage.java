@@ -12,12 +12,21 @@ public class GamePackage implements Serializable
   private Game game;
   private String type;
   private ArrayList<Game> games;
+  private String username;
 
   public GamePackage(Game game, String type)
   {
     this.game = game;
     this.type = type;
     this.games = null;
+  }
+
+  public GamePackage(Game game, String type, String username)
+  {
+    this.game = game;
+    this.type = type;
+    this.games = null;
+    this.username = username;
   }
 
   public GamePackage(String type)
@@ -34,6 +43,7 @@ public class GamePackage implements Serializable
     this.games = games;
   }
 
+
   public ArrayList<Game> getGames()
   {
     return games;
@@ -47,5 +57,10 @@ public class GamePackage implements Serializable
   public String getType()
   {
     return type;
+  }
+
+  public String getUsername()
+  {
+    return username;
   }
 }
