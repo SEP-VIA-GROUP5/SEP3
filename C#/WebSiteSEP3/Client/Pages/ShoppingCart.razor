@@ -1,0 +1,126 @@
+﻿@page "/ShoppingCart"
+@using Client.Models
+@using Client.Data
+@using System.Security.Claims
+@inject IGameService GameService;
+<h3>ShoppingCart</h3>
+<div class="panel panel-info">
+    <div class="panel-heading">
+        <h3 class="panel-title">Order Summary</h3>
+    </div>
+    <div class="panel-body">
+        <div id="update-message">
+        </div>
+        <table class="table table-striped table-hover ">
+            <thead>
+            <tr>
+                <th>
+                    Item Name
+                </th>
+                <th>
+                    Price (each)
+                </th>
+                <th></th>
+            </tr>
+            </thead>
+            @foreach (var game in _gameCluster.GamesStack)
+            {
+                <tr>
+                    <td>
+                        @game.GameName
+                    </td>
+                    <td>
+                        $@string.Format("{0:f}", Math.Round(game.Price, 2).ToString())
+                    </td>
+                    <td>
+                        <a style="cursor:pointer" @onclick="(() => removeFromCart(game.GameId))">Remove From Cart</a>
+                    </td>
+                </tr>
+            }
+            <tr class="info">
+                <td></td>
+                <td></td>
+                <td></td>
+                <td id="cart-total">
+                    Total : $@string.Format("{0:f}", Math.Round(getTotalPrice(), 2).ToString())
+                </td>
+                <td></td>
+                <a style="cursor:pointer" @onclick="(() => buyAll())">Buy All</a>
+            </tr>
+        </table>
+    </div>
+</div>
+}
+else
+{
+<div class="custom-bg">
+    <p>There are no items in your cart currently. Please shop for something and add items..</p>
+</div>
+}
+
+@code {
+    GameCluster _gameCluster;
+
+    string errorMessage ="";
+
+    private ClaimsPrincipal _claimsPrincipal;
+
+    private User _user = new User();
+
+    public string username { get; set; }
+
+    [CascadingParameter]
+    protected Task<AuthenticationState> AuthState { get; set; }
+
+    protected override async void OnParametersSet()
+    {
+        if (AuthState != null)
+        {
+            _claimsPrincipal = (await AuthState).User;
+            username = _claimsPrincipal.Identity.Name;
+        }
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        errorMessage = "";
+        try
+        {
+            _gameCluster = await GameService.getShoppingCartAsync(username);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(errorMessage = e.Message);
+            Console.WriteLine("Error while getting shopping cart");
+        }
+    }
+
+    public double getTotalPrice()
+    {
+        double total = 0;
+        foreach (var game in _gameCluster.GamesStack)
+        {
+            total += game.Price;
+        }
+        return total;
+    }
+    
+    public async Task removeFromCart(int gameId)
+    {
+        try
+        {
+            await GameService.removeGameFromShoppingCartAsync(username, gameId);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e.Message);
+            Console.WriteLine("Exception when removing from shopping cart");
+        }
+    }
+
+    public async Task buyAll()
+    {
+        //TODO later
+    }
+
+}

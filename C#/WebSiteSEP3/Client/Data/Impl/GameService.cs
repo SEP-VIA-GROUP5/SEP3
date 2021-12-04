@@ -119,10 +119,10 @@ namespace Client.Data.Impl
             return null;
         }
 
-        public async Task addGameToShoppingCartAsync(User user, int gameId)
+        public async Task addGameToShoppingCartAsync(string userName, int gameId)
         {
             HttpResponseMessage responseMessage =
-                await Client.GetAsync($"http://localhost:8080/game/cart/add?userId={user.Username}&gameId={gameId}");
+                await Client.GetAsync($"http://localhost:8080/game/cart/add?userId={userName}&gameId={gameId}");
             if (responseMessage.StatusCode == HttpStatusCode.OK)
             {
                 Console.WriteLine("game added successfully!");
@@ -130,11 +130,11 @@ namespace Client.Data.Impl
             Console.WriteLine("game was NOT added!");
         }
 
-        public async Task<GameCluster> removeGameFromShoppingCartAsync(User user, int gameId)
+        public async Task<GameCluster> removeGameFromShoppingCartAsync(string userName, int gameId)
         {
             String _gameClusterJson;
             HttpResponseMessage responseMessage =
-                await Client.GetAsync($"http://localhost:8080/game/cart/remove?userId={user.Username}&gameId={gameId}");
+                await Client.GetAsync($"http://localhost:8080/game/cart/remove?userId={userName}&gameId={gameId}");
             if (responseMessage.StatusCode == HttpStatusCode.OK)
             {
                 _gameClusterJson = await responseMessage.Content.ReadAsStringAsync();
@@ -145,11 +145,11 @@ namespace Client.Data.Impl
             return null;
         }
 
-        public async Task<GameCluster> getShoppingCartAsync(User user)
+        public async Task<GameCluster> getShoppingCartAsync(string userName)
         {
             String _gameClusterJson;
             HttpResponseMessage responseMessage =
-                await Client.GetAsync($"http://localhost:8080/game/cart/get?userId={user.Username}");
+                await Client.GetAsync($"http://localhost:8080/game/cart/get?userId={userName}");
             if (responseMessage.StatusCode == HttpStatusCode.OK)
             {
                 _gameClusterJson = await responseMessage.Content.ReadAsStringAsync();
