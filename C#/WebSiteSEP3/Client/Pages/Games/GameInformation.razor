@@ -7,6 +7,7 @@
 @using Client.Models
 @using Client.Data
 @using Microsoft.AspNetCore.Mvc.Formatters
+@using System.Security.Claims
 @inject IGameService GameService
 @inject NavigationManager NavigationManager
 <h3>GameInformation</h3>
@@ -86,6 +87,12 @@ else
 
 @code {
 
+    private ClaimsPrincipal _claimsPrincipal;
+    [CascadingParameter]
+    protected Task<AuthenticationState> AuthState { get; set; }
+
+    private string username;
+    
     [Parameter]
     public string GameName { get; set; }
 
@@ -109,6 +116,15 @@ else
         }
     }
 
+    protected override async void OnParametersSet()
+    {
+        if (AuthState != null)
+        {
+            _claimsPrincipal = (await AuthState).User;
+            username = _claimsPrincipal.Identity.Name;
+        }
+    }
+    
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         if (firstRender)
@@ -131,9 +147,9 @@ else
         NavigationManager.NavigateTo($"/Paypal/{gameName}");
     }
 
-    public void AddToShoppingCart(Game game)
+    public async Task AddToShoppingCart(Game game)
     {
-    //TODO later has to be implemented
+        await GameService.addGameToShoppingCartAsync(username, game.GameId);
     }
 
 }

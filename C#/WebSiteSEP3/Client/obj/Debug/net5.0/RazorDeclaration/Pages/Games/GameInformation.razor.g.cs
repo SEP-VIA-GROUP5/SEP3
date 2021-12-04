@@ -96,6 +96,13 @@ using Microsoft.AspNetCore.Mvc.Formatters;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 10 "D:\FACULTATE SEMESTRUL 3\SEP3\CODE\SEP3\C#\WebSiteSEP3\Client\Pages\Games\GameInformation.razor"
+using System.Security.Claims;
+
+#line default
+#line hidden
+#nullable disable
     [Microsoft.AspNetCore.Components.RouteAttribute("/GameInformation/{GameName}")]
     public partial class GameInformation : Microsoft.AspNetCore.Components.ComponentBase
     {
@@ -105,9 +112,15 @@ using Microsoft.AspNetCore.Mvc.Formatters;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 87 "D:\FACULTATE SEMESTRUL 3\SEP3\CODE\SEP3\C#\WebSiteSEP3\Client\Pages\Games\GameInformation.razor"
+#line 88 "D:\FACULTATE SEMESTRUL 3\SEP3\CODE\SEP3\C#\WebSiteSEP3\Client\Pages\Games\GameInformation.razor"
        
 
+    private ClaimsPrincipal _claimsPrincipal;
+    [CascadingParameter]
+    protected Task<AuthenticationState> AuthState { get; set; }
+
+    private string username;
+    
     [Parameter]
     public string GameName { get; set; }
 
@@ -131,6 +144,15 @@ using Microsoft.AspNetCore.Mvc.Formatters;
         }
     }
 
+    protected override async void OnParametersSet()
+    {
+        if (AuthState != null)
+        {
+            _claimsPrincipal = (await AuthState).User;
+            username = _claimsPrincipal.Identity.Name;
+        }
+    }
+    
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         if (firstRender)
@@ -153,9 +175,9 @@ using Microsoft.AspNetCore.Mvc.Formatters;
         NavigationManager.NavigateTo($"/Paypal/{gameName}");
     }
 
-    public void AddToShoppingCart(Game game)
+    public async Task AddToShoppingCart(Game game)
     {
-    //TODO later has to be implemented
+        await GameService.addGameToShoppingCartAsync(username, game.GameId);
     }
 
 

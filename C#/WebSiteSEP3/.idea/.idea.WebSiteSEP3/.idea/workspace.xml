@@ -6,26 +6,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6351634a-927e-48e6-b898-ac69d3b896d5" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.WebSiteSEP3/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.WebSiteSEP3/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/Pages/Games/GameInformation.razor" beforeDir="false" afterPath="$PROJECT_DIR$/Client/Pages/Games/GameInformation.razor" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/Pages/Payment/PaymentSuccessfully.razor" beforeDir="false" afterPath="$PROJECT_DIR$/Client/Pages/Payment/PaymentSuccessfully.razor" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Client/Pages/Payment/Paypal.razor" beforeDir="false" afterPath="$PROJECT_DIR$/Client/Pages/Payment/Paypal.razor" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/bin/Debug/net5.0/Client.Views.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Client/bin/Debug/net5.0/Client.Views.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/bin/Debug/net5.0/Client.Views.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/Client/bin/Debug/net5.0/Client.Views.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/bin/Debug/net5.0/Client.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Client/bin/Debug/net5.0/Client.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/bin/Debug/net5.0/Client.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/Client/bin/Debug/net5.0/Client.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/bin/Debug/net5.0/ref/Client.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Client/bin/Debug/net5.0/ref/Client.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/obj/Debug/net5.0/Client.Views.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Client/obj/Debug/net5.0/Client.Views.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/obj/Debug/net5.0/Client.Views.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/Client/obj/Debug/net5.0/Client.Views.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/obj/Debug/net5.0/Client.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Client/obj/Debug/net5.0/Client.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/obj/Debug/net5.0/Client.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/Client/obj/Debug/net5.0/Client.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/obj/Debug/net5.0/Razor/Pages/Games/GameInformation.razor.g.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Client/obj/Debug/net5.0/Razor/Pages/Games/GameInformation.razor.g.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/obj/Debug/net5.0/Razor/Pages/Payment/Paypal.razor.g.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Client/obj/Debug/net5.0/Razor/Pages/Payment/Paypal.razor.g.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/obj/Debug/net5.0/RazorDeclaration/Client.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Client/obj/Debug/net5.0/RazorDeclaration/Client.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/obj/Debug/net5.0/RazorDeclaration/Client.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/Client/obj/Debug/net5.0/RazorDeclaration/Client.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/obj/Debug/net5.0/RazorDeclaration/Pages/Games/GameInformation.razor.g.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Client/obj/Debug/net5.0/RazorDeclaration/Pages/Games/GameInformation.razor.g.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/obj/Debug/net5.0/RazorDeclaration/Pages/Payment/Paypal.razor.g.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Client/obj/Debug/net5.0/RazorDeclaration/Pages/Payment/Paypal.razor.g.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/obj/Debug/net5.0/ref/Client.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Client/obj/Debug/net5.0/ref/Client.dll" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,7 +23,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$/../.." value="main" />
+        <entry key="$PROJECT_DIR$/../.." value="SEP3-18" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
