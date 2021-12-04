@@ -3,8 +3,30 @@
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="0a3bd084-a96c-4c6f-9125-63aa6974f852" name="Default Changelist" comment="" />
+    <list default="true" id="4e8c19f1-c864-4609-8a20-4fb119b3199e" name="Default Changelist" comment="a">
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase__Default_Changelist_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase__Default_Changelist_1.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/consuming-rest/src/main/java/Sockets/Packages/CartPackage.java" beforeDir="false" afterPath="$PROJECT_DIR$/consuming-rest/src/main/java/Sockets/Packages/CartPackage.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -13,23 +35,97 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
   </component>
-  <component name="ProjectId" id="21m93euyMViwM98S119vRHW0WCE" />
+  <component name="ProjectId" id="21os9DWQRlPAwdS1HCTjz5IhjV6" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/consuming-rest" />
+    <property name="settings.editor.selected.configurable" value="Errors" />
+  </component>
+  <component name="RunManager" selected="Application.Testing">
+    <configuration name="ConsumingRestApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.rest.consumingrest.ConsumingRestApplication" />
+      <module name="REST-Server" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.rest.consumingrest.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Testing" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.rest.consumingrest.Testing" />
+      <module name="REST-Server" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.rest.consumingrest.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Testing" />
+        <item itemvalue="Application.ConsumingRestApplication" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="0a3bd084-a96c-4c6f-9125-63aa6974f852" name="Default Changelist" comment="" />
-      <created>1638535197423</created>
+      <changelist id="4e8c19f1-c864-4609-8a20-4fb119b3199e" name="Default Changelist" comment="a" />
+      <created>1638618620541</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1638535197423</updated>
+      <updated>1638618620541</updated>
     </task>
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="a" />
+    <option name="LAST_COMMIT_MESSAGE" value="a" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="740" y="295" key="FileChooserDialogImpl" timestamp="1638618652580">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="740" y="295" key="FileChooserDialogImpl/-1920.0.1536.864/0.0.1920.1080@0.0.1920.1080" timestamp="1638618652580" />
+    <state x="491" y="186" width="1226" height="708" key="SettingsEditor" timestamp="1638618606376">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="491" y="186" width="1226" height="708" key="SettingsEditor/-1920.0.1536.864/0.0.1920.1080@0.0.1920.1080" timestamp="1638618606376" />
+    <state x="552" y="273" key="Vcs.Push.Dialog.v2" timestamp="1638618152834">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="552" y="273" key="Vcs.Push.Dialog.v2/-1920.0.1536.864/0.0.1920.1080@0.0.1920.1080" timestamp="1638618152834" />
+    <state x="742" y="455" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1638618107288">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="742" y="455" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/-1920.0.1536.864/0.0.1920.1080@0.0.1920.1080" timestamp="1638618107288" />
+    <state x="674" y="255" key="git4idea.branch.GitSmartOperationDialog" timestamp="1638618210610">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="674" y="255" key="git4idea.branch.GitSmartOperationDialog/-1920.0.1536.864/0.0.1920.1080@0.0.1920.1080" timestamp="1638618210610" />
   </component>
 </project>

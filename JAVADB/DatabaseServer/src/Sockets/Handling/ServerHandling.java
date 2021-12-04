@@ -2,6 +2,7 @@ package Sockets.Handling;
 
 import Sockets.Models.Game;
 import Sockets.Models.User;
+import Sockets.Packages.CartPackage;
 import Sockets.Packages.GamePackage;
 import Sockets.Packages.UserPackage;
 import com.google.gson.Gson;
@@ -11,6 +12,7 @@ import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class ServerHandling implements Runnable{
     private Socket socket;
@@ -137,6 +139,32 @@ public class ServerHandling implements Runnable{
                             System.out.println("Type not found");
                     }
                 }
+                else if((obj instanceof CartPackage))
+                {
+                    CartPackage received = (CartPackage) obj;
+                    switch (received.getType())
+                    {
+                        case "add":
+                        {
+                            databaseServer.addToShoppingCart(received.getUserName(),
+                                received.getGameId());
+                        }
+                        case "remove":
+                        {
+                            ArrayList<Game> games = databaseServer.removeFromShoppingCart(received.getUserName(), received.getGameId());
+                            CartPackage toSend = new CartPackage(games);
+                            sendDataToServer(toSend);
+                        }
+                        case "get":
+                        {
+                            ArrayList<Game> games = databaseServer.getShoppingCart(received.getUserName());
+                            CartPackage toSend = new CartPackage(games);
+                            sendDataToServer(toSend);
+                        }
+                        default:
+                            System.out.println("Type not found");
+                    }
+                }
             }
             catch (Exception e)
             {
@@ -156,6 +184,13 @@ public class ServerHandling implements Runnable{
     }
 
     public void sendDataToServer(GamePackage obj) throws IOException {
+        //OutputStream outputStream = socket.getOutputStream();
+        //ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream);
+        objectOutputStream.writeObject(obj);
+        System.out.println("Sent object");
+    }
+
+    public void sendDataToServer(CartPackage obj) throws IOException {
         //OutputStream outputStream = socket.getOutputStream();
         //ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream);
         objectOutputStream.writeObject(obj);

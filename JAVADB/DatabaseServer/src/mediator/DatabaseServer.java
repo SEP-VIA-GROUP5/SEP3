@@ -21,4 +21,7 @@ public interface DatabaseServer
   Game getGameByID(int id) throws SQLException;
   ArrayList<Game> getAllGames() throws SQLException;
   ArrayList<Game> searchGamesByName(String gameName) throws SQLException;
+  void addToShoppingCart(String username, int gameID) throws SQLException;
+  ArrayList<Game> removeFromShoppingCart(String username, int gameID) throws SQLException;
+  ArrayList<Game> getShoppingCart(String username) throws SQLException;
 }
