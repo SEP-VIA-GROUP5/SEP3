@@ -57,11 +57,11 @@ namespace Client.Data.Impl
             return null;
         }
 
-        public async Task<GameKey> getProductKeyAsync(int gameId)
+        public async Task<GameKey> getProductKeyAsync(int gameId, string userName)
         {
             string productKeyJson = null;
             HttpResponseMessage responseMessage =
-                await Client.GetAsync($"http://localhost:8080/game/getProductKey?gameId={gameId}");
+                await Client.GetAsync($"http://localhost:8080/game/getProductKey?gameId={gameId}&userName={userName}");
             if (responseMessage.StatusCode == HttpStatusCode.OK)
             {
                 productKeyJson = await responseMessage.Content.ReadAsStringAsync();

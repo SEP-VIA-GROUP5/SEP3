@@ -86,9 +86,9 @@ public class GameController {
     }
 
     @GetMapping("/getProductKey")
-    public ResponseEntity<GameKey> getProductKey(@RequestParam int gameId){
+    public ResponseEntity<GameKey> getProductKey(@RequestParam int gameId, @RequestParam String userName){
         try {
-            GameKey productKey = gameService.getProductKey(gameId);
+            GameKey productKey = gameService.getProductKey(gameId, userName);
             if(productKey==null){
                 return ResponseEntity.badRequest().build();
             }
