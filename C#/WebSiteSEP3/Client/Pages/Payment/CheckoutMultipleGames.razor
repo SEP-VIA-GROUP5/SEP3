@@ -1,0 +1,121 @@
+﻿@page "/orderlater/{Username}"
+@using Client.Models
+@using Client.Data
+@using Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ConfigurationModel
+@using Microsoft.JSInterop
+@using System.IO
+@using System.Net
+@inject IGameService _gameService
+@namespace PaypalComponent
+
+@if (_gameCluster != null)
+{
+    <div class="container-fluid">
+        <div class="row d-flex justify-content-center">
+            <div class="col-md-10 mt-5 pt-5" id="color">
+                <div class="row shadow p-3">
+                    <div class="col-lg-4 rounded-left">
+                        <div class="card" style="width: 19rem;">
+                            <img class="card-img-top" src="Images/Other/shoppingCart.png" alt="Image of shopping cart" title="Your shopping cart"/>
+                            <div class="card-body">
+                                <h3 class="card-title">Shopping cart</h3>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item">
+                                        <h3 class="font-weight-bold">
+                                            Total amount $@string.Format("{0:f}", GetTotalPrice().ToString())
+                                        </h3>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-8 bg-light">
+                        <h3 class="mt-3 text-center">Checkout - list of your games</h3>
+                        <hr class="badge-primary mt-0 w-25">
+                        <div class="row text-center">
+                            <div class="col-sm-6 float-right">
+                                <ul class="list-group list-group-flush">
+                                    @foreach (var game in _gameCluster.GamesStack)
+                                    {
+                                        <li class="list-group-item"><h4>@game.GameName</h4></li>
+                                    }
+                                </ul>
+                            </div>
+                            <div class="col-sm-6">
+                                @foreach (var game in _gameCluster.GamesStack)
+                                {
+                                    <li class="list-group-item"><h4>@Math.Round(game.Price,2)</h4></li>
+                                }
+                            </div>
+                        </div>
+                        <h3 class="mt-3 text-center">Pay now </h3>
+                        <hr class="badge-primary mt-0 w-25">
+                        <div class="text-center">
+                            <PayPal Username="@Username"></PayPal>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    <h1>@errorMessage</h1>
+}
+
+@code {
+    private string errorMessage;
+    [Inject]
+    IJSRuntime _jsRuntime { get; set; }
+
+    [Parameter]
+    public string Username { get; set; }
+
+    private GameCluster _gameCluster { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        errorMessage = "";
+        try
+        {
+            _gameCluster = await _gameService.getShoppingCartAsync(Username);
+            SaveImageIntoClient();
+        }
+        catch (Exception e)
+        {
+            errorMessage = "Games not loaded or API still works...";
+        }
+    }
+
+    public double GetTotalPrice()
+    {
+        errorMessage = "";
+        try
+        {
+            double totalValue = 0;
+            foreach (var game in _gameCluster.GamesStack)
+            {
+                totalValue += game.Price;
+            }
+            return Math.Round(totalValue, 2);
+        }
+        catch (Exception e)
+        {
+            errorMessage = "Games not loaded or API still works...";
+        }
+        return 0;
+    }
+
+    public void SaveImageIntoClient()
+    {
+        {
+            using (WebClient webClient = new WebClient())
+            {
+                byte[] dataArr = webClient.DownloadData("https://purepng.com/public/uploads/medium/purepng.com-shopping-cartshoppingcarttrolleycarriagebuggysupermarkets-14215265326514tb15.png");
+                File.WriteAllBytes($@"wwwroot/Images/Other/shoppingCart.png", dataArr);
+            }
+        }
+    }
+
+}

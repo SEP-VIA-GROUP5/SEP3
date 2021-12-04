@@ -31,6 +31,7 @@
 
     <ItemGroup>
       <Folder Include="wwwroot\Images\Games" />
+      <Folder Include="wwwroot\Images\Other" />
     </ItemGroup>
 
 </Project>
