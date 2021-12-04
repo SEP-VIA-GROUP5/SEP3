@@ -86,7 +86,14 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        _gameCluster = await _gameService.getShoppingCartAsync(Username);
+        try
+        {
+            _gameCluster = await _gameService.getShoppingCartAsync(Username);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e.Message);
+        }
     }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)

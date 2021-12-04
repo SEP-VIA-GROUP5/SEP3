@@ -122,19 +122,22 @@ namespace Client.Data.Impl
         public async Task addGameToShoppingCartAsync(string userName, int gameId)
         {
             HttpResponseMessage responseMessage =
-                await Client.GetAsync($"http://localhost:8080/game/cart/add?userId={userName}&gameId={gameId}");
+                await Client.GetAsync($"http://localhost:8080/game/cart/add?userName={userName}&gameId={gameId}");
             if (responseMessage.StatusCode == HttpStatusCode.OK)
             {
                 Console.WriteLine("game added successfully!");
             }
-            Console.WriteLine("game was NOT added!");
+            else
+            {
+                Console.WriteLine("game was NOT added!");
+            }
         }
 
         public async Task<GameCluster> removeGameFromShoppingCartAsync(string userName, int gameId)
         {
             String _gameClusterJson;
             HttpResponseMessage responseMessage =
-                await Client.GetAsync($"http://localhost:8080/game/cart/remove?userId={userName}&gameId={gameId}");
+                await Client.GetAsync($"http://localhost:8080/game/cart/remove?userName={userName}&gameId={gameId}");
             if (responseMessage.StatusCode == HttpStatusCode.OK)
             {
                 _gameClusterJson = await responseMessage.Content.ReadAsStringAsync();
@@ -149,7 +152,7 @@ namespace Client.Data.Impl
         {
             String _gameClusterJson;
             HttpResponseMessage responseMessage =
-                await Client.GetAsync($"http://localhost:8080/game/cart/get?userId={userName}");
+                await Client.GetAsync($"http://localhost:8080/game/cart/get?userName={userName}");
             if (responseMessage.StatusCode == HttpStatusCode.OK)
             {
                 _gameClusterJson = await responseMessage.Content.ReadAsStringAsync();

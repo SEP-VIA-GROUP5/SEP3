@@ -302,40 +302,74 @@ public class DatabaseServerManager implements DatabaseServer
         return games;
     }
 
-    @Override public void addToShoppingCart(String username, int gameID)
-        throws SQLException
-    {
-        try(Connection connection = getConnection())
-        {
-            PreparedStatement statement = connection.prepareStatement("INSERT INTO shopping_cart(user_id, game_id) VALUES (?, ?)");
-            statement.setInt(1, getUserDB(username).getId());
-            statement.setInt(2, gameID);
-            statement.executeUpdate();
-        }
-    }
+//    @Override public void addToShoppingCart(String username, int gameID)
+//        throws SQLException
+//    {
+//        try(Connection connection = getConnection())
+//        {
+//            PreparedStatement statement = connection.prepareStatement("INSERT INTO shopping_cart(user_id, game_id) VALUES (?, ?)");
+//            statement.setInt(1, getUserDB(username).getId());
+//            statement.setInt(2, gameID);
+//            statement.executeUpdate();
+//        }
+//    }
+
+//    @Override public ArrayList<Game> removeFromShoppingCart(String username,
+//        int gameID) throws SQLException
+//    {
+//        try(Connection connection = getConnection())
+//        {
+//            PreparedStatement statement = connection.prepareStatement("DELETE FROM shopping_cart WHERE user_id = ? AND game_id = ?;");
+//            statement.setInt(1, getUserDB(username).getId());
+//            statement.setInt(2, gameID);
+//            statement.executeUpdate();
+//        }
+//        ArrayList<Game> games = getShoppingCart(username);
+//        return games;
+//    }
+//
+//    @Override public ArrayList<Game> getShoppingCart(String username)
+//        throws SQLException
+//    {
+//        ArrayList<Game> games = new ArrayList<Game>();
+//        try(Connection connection = getConnection())
+//        {
+//            PreparedStatement statement = connection.prepareStatement("SELECT game_id FROM shopping_cart WHERE user_id = ?");
+//            statement.setInt(1, getUserDB(username).getId());
+//            ResultSet resultSet = statement.executeQuery();
+//            while(resultSet.next())
+//            {
+//                Game game = getGameByID(resultSet.getInt("game_id"));
+//                games.add(game);
+//            }
+//        }
+//        return games;
+//    }
 
     @Override public ArrayList<Game> removeFromShoppingCart(String username,
         int gameID) throws SQLException
     {
+        int id = getUserDB(username).getId();
         try(Connection connection = getConnection())
         {
+
             PreparedStatement statement = connection.prepareStatement("DELETE FROM shopping_cart WHERE user_id = ? AND game_id = ?;");
-            statement.setInt(1, getUserDB(username).getId());
+            statement.setInt(1, id);
             statement.setInt(2, gameID);
             statement.executeUpdate();
         }
         ArrayList<Game> games = getShoppingCart(username);
         return games;
     }
-
     @Override public ArrayList<Game> getShoppingCart(String username)
         throws SQLException
     {
         ArrayList<Game> games = new ArrayList<Game>();
+        int id = getUserDB(username).getId();
         try(Connection connection = getConnection())
         {
             PreparedStatement statement = connection.prepareStatement("SELECT game_id FROM shopping_cart WHERE user_id = ?");
-            statement.setInt(1, getUserDB(username).getId());
+            statement.setInt(1, id);
             ResultSet resultSet = statement.executeQuery();
             while(resultSet.next())
             {
@@ -345,7 +379,19 @@ public class DatabaseServerManager implements DatabaseServer
         }
         return games;
     }
+    @Override public void addToShoppingCart(String username, int gameID)
+        throws SQLException
+    {
+        int id = getUserDB(username).getId();
+        try(Connection connection = getConnection())
+        {
 
+            PreparedStatement statement = connection.prepareStatement("INSERT INTO shopping_cart(user_id, game_id) VALUES (?, ?)");
+            statement.setInt(1, id);
+            statement.setInt(2, gameID);
+            statement.executeUpdate();
+        }
+    }
     private Connection getConnection() throws SQLException
     {
         String url = "jdbc:postgresql://ella.db.elephantsql.com:5432/zgckhgwi";

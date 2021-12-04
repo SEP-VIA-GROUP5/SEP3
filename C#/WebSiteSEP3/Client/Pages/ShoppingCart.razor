@@ -91,6 +91,7 @@
         errorMessage = "";
         try
         {
+            OnParametersSet();
             _gameCluster = await GameService.getShoppingCartAsync(username);
         }
         catch (Exception e)
@@ -115,6 +116,7 @@
         try
         {
             await GameService.removeGameFromShoppingCartAsync(username, gameId);
+            _gameCluster = await GameService.getShoppingCartAsync(username);
         }
         catch (Exception e)
         {

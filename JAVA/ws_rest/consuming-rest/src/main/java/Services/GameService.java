@@ -140,8 +140,9 @@ public class GameService implements IGameService{
         Object dataReceived = clientHandling.receiveFromServer();
         CartPackage cartPackage1 = (CartPackage) dataReceived;
         GameCluster gameCluster = new GameCluster();
-        for (int i =0;i< cartPackage1.getGames().size();i++)  {
-            gameCluster.addGameToCluster(cartPackage.getGames().get(i));
+        for(Game game: cartPackage1.getGames())
+        {
+            gameCluster.addGameToCluster(game);
         }
         return gameCluster;
     }
