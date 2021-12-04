@@ -26,11 +26,5 @@ namespace Client.Models
         public string ESRB { get; set; }
         [JsonPropertyName("ignrating")]
         public int IGN { get; set; }
-        
-        public GameKey GameKey { get; set; }
-        
-       
-        
-        
     }
 }

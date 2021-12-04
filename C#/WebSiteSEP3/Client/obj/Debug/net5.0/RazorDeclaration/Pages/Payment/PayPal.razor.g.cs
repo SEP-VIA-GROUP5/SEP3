@@ -4,7 +4,7 @@
 #pragma warning disable 0649
 #pragma warning disable 0169
 
-namespace Client.Pages.Games
+namespace PaypalComponent
 {
     #line hidden
     using System;
@@ -76,42 +76,27 @@ using Client;
 #line hidden
 #nullable disable
 #nullable restore
-#line 7 "D:\FACULTATE SEMESTRUL 3\SEP3\CODE\SEP3\C#\WebSiteSEP3\Client\Pages\Games\GameInformation.razor"
+#line 1 "D:\FACULTATE SEMESTRUL 3\SEP3\CODE\SEP3\C#\WebSiteSEP3\Client\Pages\Payment\PayPal.razor"
 using Client.Models;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 8 "D:\FACULTATE SEMESTRUL 3\SEP3\CODE\SEP3\C#\WebSiteSEP3\Client\Pages\Games\GameInformation.razor"
+#line 2 "D:\FACULTATE SEMESTRUL 3\SEP3\CODE\SEP3\C#\WebSiteSEP3\Client\Pages\Payment\PayPal.razor"
 using Client.Data;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 9 "D:\FACULTATE SEMESTRUL 3\SEP3\CODE\SEP3\C#\WebSiteSEP3\Client\Pages\Games\GameInformation.razor"
-using Microsoft.AspNetCore.Mvc.Formatters;
+#line 3 "D:\FACULTATE SEMESTRUL 3\SEP3\CODE\SEP3\C#\WebSiteSEP3\Client\Pages\Payment\PayPal.razor"
+using Microsoft.Extensions.Logging.Abstractions;
 
 #line default
 #line hidden
 #nullable disable
-#nullable restore
-#line 10 "D:\FACULTATE SEMESTRUL 3\SEP3\CODE\SEP3\C#\WebSiteSEP3\Client\Pages\Games\GameInformation.razor"
-using System.Security.Claims;
-
-#line default
-#line hidden
-#nullable disable
-#nullable restore
-#line 11 "D:\FACULTATE SEMESTRUL 3\SEP3\CODE\SEP3\C#\WebSiteSEP3\Client\Pages\Games\GameInformation.razor"
-using System.Diagnostics.Eventing.Reader;
-
-#line default
-#line hidden
-#nullable disable
-    [Microsoft.AspNetCore.Components.RouteAttribute("/GameInformation/{GameName}")]
-    public partial class GameInformation : Microsoft.AspNetCore.Components.ComponentBase
+    public partial class PayPal : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998
         protected override void BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder __builder)
@@ -119,77 +104,88 @@ using System.Diagnostics.Eventing.Reader;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 97 "D:\FACULTATE SEMESTRUL 3\SEP3\CODE\SEP3\C#\WebSiteSEP3\Client\Pages\Games\GameInformation.razor"
+#line 10 "D:\FACULTATE SEMESTRUL 3\SEP3\CODE\SEP3\C#\WebSiteSEP3\Client\Pages\Payment\PayPal.razor"
        
-
-    private ClaimsPrincipal _claimsPrincipal;
-
-    [CascadingParameter]
-    protected Task<AuthenticationState> AuthState { get; set; }
-
-    private string username;
-
-    [Parameter]
-    public string GameName { get; set; }
-
+    private string errorMessage;
+    //TODO Design this page and make it for a specific game
     [Inject]
     IJSRuntime _jsRuntime { get; set; }
 
-    private Game game;
-    private string errorMessage;
-    private Boolean disableButton = false;
+    [Parameter]
+    public string? GameName { get; set; }
+
+    [Parameter]
+    public string Username { get; set; }
+
+    public Game game { get; set; }
+    public GameCluster GameCluster { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
         errorMessage = "";
         try
         {
-            game = await GameService.getGameAsync(GameName);
+            if (GameName != null)
+            {
+                game = await GameService.getGameAsync(GameName);
+                await OnAfterRenderAsync(true);
+            }
+            else
+            {
+                GameCluster = await GameService.getShoppingCartAsync(Username);
+                await OnAfterRenderAsync(true);
+            }
         }
         catch (Exception e)
         {
-            errorMessage = e.Message;
+            errorMessage = "Games not loaded or API still works...";
         }
-    }
-
-    protected override async void OnParametersSet()
-    {
-        _claimsPrincipal = (await AuthState).User;
-        username = _claimsPrincipal.Identity.Name;
     }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        if (firstRender)
+        errorMessage = "";
+        try
         {
-            if (game != null)
+            if (firstRender)
             {
-                var value = Math.Round(game.Price, 2);
-                await _jsRuntime.InvokeVoidAsync("LoadButtonPaypal", value, game.GameName);
+                if (game != null)
+                {
+                    await _jsRuntime.InvokeVoidAsync("LoadButtonPaypal", Math.Round(@game.Price, 2), Username);
+                }
+                else
+                {
+                    if (GameCluster != null)
+                    {
+                        await _jsRuntime.InvokeVoidAsync("LoadButtonPaypal", Math.Round(GetTotalPrice(GameCluster), 2), Username);
+                    }
+                }
             }
         }
-    }
-
-    public string GetImage(Game game)
-    {
-        return $"Images/Games/{game.GameName}.png";
-    }
-
-    public void OrderNow()
-    {
-        NavigationManager.NavigateTo($"/checkoutnow/{game.GameName}");
+        catch (Exception e)
+        {
+            errorMessage = "Games not loaded or API still works...";
         }
+    }
 
-    public async Task AddToShoppingCart(Game game)
+    public double GetTotalPrice(GameCluster gameCluster)
     {
-        await GameService.addGameToShoppingCartAsync(username, game.GameId);
+        errorMessage = "";
+        double value = 0;
+        if (GameCluster != null)
+        {
+            foreach (var game in gameCluster.GamesStack)
+            {
+                value += game.Price;
+            }
+        }
+        return value;
     }
 
 
 #line default
 #line hidden
 #nullable disable
-        [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager NavigationManager { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private IGameService GameService { get; set; }
     }
 }

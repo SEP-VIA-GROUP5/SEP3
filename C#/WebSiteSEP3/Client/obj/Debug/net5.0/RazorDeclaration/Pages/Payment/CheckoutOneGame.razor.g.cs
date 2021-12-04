@@ -4,7 +4,7 @@
 #pragma warning disable 0649
 #pragma warning disable 0169
 
-namespace Client.Pages.Payment
+namespace PaypalComponent
 {
     #line hidden
     using System;
@@ -62,13 +62,6 @@ using Microsoft.AspNetCore.Components.Web.Virtualization;
 #line hidden
 #nullable disable
 #nullable restore
-#line 8 "D:\FACULTATE SEMESTRUL 3\SEP3\CODE\SEP3\C#\WebSiteSEP3\Client\_Imports.razor"
-using Microsoft.JSInterop;
-
-#line default
-#line hidden
-#nullable disable
-#nullable restore
 #line 9 "D:\FACULTATE SEMESTRUL 3\SEP3\CODE\SEP3\C#\WebSiteSEP3\Client\_Imports.razor"
 using Client;
 
@@ -76,49 +69,56 @@ using Client;
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "D:\FACULTATE SEMESTRUL 3\SEP3\CODE\SEP3\C#\WebSiteSEP3\Client\Pages\Payment\PaymentSuccessfully.razor"
-using Client.Data;
-
-#line default
-#line hidden
-#nullable disable
-#nullable restore
-#line 3 "D:\FACULTATE SEMESTRUL 3\SEP3\CODE\SEP3\C#\WebSiteSEP3\Client\Pages\Payment\PaymentSuccessfully.razor"
+#line 2 "D:\FACULTATE SEMESTRUL 3\SEP3\CODE\SEP3\C#\WebSiteSEP3\Client\Pages\Payment\CheckoutOneGame.razor"
 using Client.Models;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 4 "D:\FACULTATE SEMESTRUL 3\SEP3\CODE\SEP3\C#\WebSiteSEP3\Client\Pages\Payment\PaymentSuccessfully.razor"
-using System.Security.Cryptography.X509Certificates;
+#line 3 "D:\FACULTATE SEMESTRUL 3\SEP3\CODE\SEP3\C#\WebSiteSEP3\Client\Pages\Payment\CheckoutOneGame.razor"
+using Client.Data;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 5 "D:\FACULTATE SEMESTRUL 3\SEP3\CODE\SEP3\C#\WebSiteSEP3\Client\Pages\Payment\PaymentSuccessfully.razor"
+#line 4 "D:\FACULTATE SEMESTRUL 3\SEP3\CODE\SEP3\C#\WebSiteSEP3\Client\Pages\Payment\CheckoutOneGame.razor"
+using Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ConfigurationModel;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 5 "D:\FACULTATE SEMESTRUL 3\SEP3\CODE\SEP3\C#\WebSiteSEP3\Client\Pages\Payment\CheckoutOneGame.razor"
+using Microsoft.JSInterop;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 6 "D:\FACULTATE SEMESTRUL 3\SEP3\CODE\SEP3\C#\WebSiteSEP3\Client\Pages\Payment\CheckoutOneGame.razor"
+using System.IO;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 7 "D:\FACULTATE SEMESTRUL 3\SEP3\CODE\SEP3\C#\WebSiteSEP3\Client\Pages\Payment\CheckoutOneGame.razor"
+using System.Net;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 8 "D:\FACULTATE SEMESTRUL 3\SEP3\CODE\SEP3\C#\WebSiteSEP3\Client\Pages\Payment\CheckoutOneGame.razor"
 using System.Security.Claims;
 
 #line default
 #line hidden
 #nullable disable
-#nullable restore
-#line 6 "D:\FACULTATE SEMESTRUL 3\SEP3\CODE\SEP3\C#\WebSiteSEP3\Client\Pages\Payment\PaymentSuccessfully.razor"
-using Microsoft.VisualBasic;
-
-#line default
-#line hidden
-#nullable disable
-#nullable restore
-#line 7 "D:\FACULTATE SEMESTRUL 3\SEP3\CODE\SEP3\C#\WebSiteSEP3\Client\Pages\Payment\PaymentSuccessfully.razor"
-using System.Collections;
-
-#line default
-#line hidden
-#nullable disable
-    [Microsoft.AspNetCore.Components.RouteAttribute("/PaymentSuccessfully/{GameName}/{TransactionId}")]
-    public partial class PaymentSuccessfully : Microsoft.AspNetCore.Components.ComponentBase
+    [Microsoft.AspNetCore.Components.RouteAttribute("/checkoutnow/{GameName}")]
+    public partial class CheckoutOneGame : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998
         protected override void BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder __builder)
@@ -126,80 +126,69 @@ using System.Collections;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 66 "D:\FACULTATE SEMESTRUL 3\SEP3\CODE\SEP3\C#\WebSiteSEP3\Client\Pages\Payment\PaymentSuccessfully.razor"
+#line 52 "D:\FACULTATE SEMESTRUL 3\SEP3\CODE\SEP3\C#\WebSiteSEP3\Client\Pages\Payment\CheckoutOneGame.razor"
        
+    private string errorMessage;
+    //TODO Design this page and make it for a specific game
+    [Inject]
+    IJSRuntime _jsRuntime { get; set; }
 
     [Parameter]
     public string GameName { get; set; }
 
-    [Parameter]
-    public string TransactionId { get; set; }
-
-    private string _key = "";
-    private Boolean buttonPressed;
-    private ClaimsPrincipal _claimsPrincipal;
-
-    //Variables for game and user to get receipt
-    public Game game { get; set; }
-    private User _user = new User();
-
-    public string username { get; set; }
-
     [CascadingParameter]
-    protected Task<AuthenticationState> AuthState { get; set; }
+    public Task<AuthenticationState> AuthState { get; set; }
 
-    protected override async void OnParametersSet()
-    {
-        if (AuthState != null)
-        {
-            _claimsPrincipal = (await AuthState).User;
-            username = _claimsPrincipal.Identity.Name;
-        }
-    }
+    private ClaimsPrincipal _claimsPrincipal;
+    private string _username = "";
+
+    private Game _game;
+    private string _photoOfGame;
 
     protected override async Task OnInitializedAsync()
     {
+        errorMessage = "";
         try
         {
-            game = await _gameService.getGameAsync(GameName);
-        }
-        catch (Exception e)
-        {
-            Console.WriteLine(e.Message);
-        }
-    }
-
-    public async Task GetReceipt()
-    {
-        try
-        {
-            _user = await _userService.GetUser(username);
-            buttonPressed = true;
-        }
-        catch (Exception e)
-        {
-            Console.WriteLine(e.Message);
-        }
-    }
-
-    public async Task GetKey()
-    {
-        _key = "";
-        try
-        {
-            if (_key.Length > 0)
+            if (AuthState != null)
             {
-                _key += "\n You already got the key.";
+                _claimsPrincipal = (await AuthState).User;
+                _username = _claimsPrincipal.Identity.Name;
             }
-            else
+            _game = await _gameService.getGameAsync(GameName);
+            _photoOfGame = _game.GameName + ".png";
+            SaveImageIntoClient();
+        }
+        catch (Exception e)
+        {
+            errorMessage = "Games not loaded or API still works...";
+        }
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        errorMessage = "";
+        try
+        {
+            if (firstRender)
             {
-                GameKey gameKey = await _gameService.getProductKeyAsync(game.GameId,username);
-                _key = gameKey.Key;
+                await _jsRuntime.InvokeVoidAsync("LoadButtonPaypal", Math.Round(@_game.Price, 2), _username);
             }
         }
         catch (Exception e)
         {
-            _key = e.Message;
+            errorMessage = "Games not loaded or API still works...";
+        }
+    }
+
+    public void SaveImageIntoClient()
+    {
+        {
+            using (WebClient webClient = new WebClient())
+            {
+                byte[] dataArr = webClient.DownloadData(_game.Photo);
+                File.WriteAllBytes($@"wwwroot/Images/Games/{_game.GameName}.png", dataArr);
+            }
         }
     }
 
@@ -207,7 +196,6 @@ using System.Collections;
 #line default
 #line hidden
 #nullable disable
-        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IUserService _userService { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private IGameService _gameService { get; set; }
     }
 }

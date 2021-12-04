@@ -1,0 +1,87 @@
+﻿@using Client.Models
+@using Client.Data
+@using Microsoft.Extensions.Logging.Abstractions
+@namespace PaypalComponent
+@inject IGameService GameService
+
+<div id="paypal-button-container">
+</div>
+
+@code {
+    private string errorMessage;
+    //TODO Design this page and make it for a specific game
+    [Inject]
+    IJSRuntime _jsRuntime { get; set; }
+
+    [Parameter]
+    public string? GameName { get; set; }
+
+    [Parameter]
+    public string Username { get; set; }
+
+    public Game game { get; set; }
+    public GameCluster GameCluster { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        errorMessage = "";
+        try
+        {
+            if (GameName != null)
+            {
+                game = await GameService.getGameAsync(GameName);
+                await OnAfterRenderAsync(true);
+            }
+            else
+            {
+                GameCluster = await GameService.getShoppingCartAsync(Username);
+                await OnAfterRenderAsync(true);
+            }
+        }
+        catch (Exception e)
+        {
+            errorMessage = "Games not loaded or API still works...";
+        }
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        errorMessage = "";
+        try
+        {
+            if (firstRender)
+            {
+                if (game != null)
+                {
+                    await _jsRuntime.InvokeVoidAsync("LoadButtonPaypal", Math.Round(@game.Price, 2), Username);
+                }
+                else
+                {
+                    if (GameCluster != null)
+                    {
+                        await _jsRuntime.InvokeVoidAsync("LoadButtonPaypal", Math.Round(GetTotalPrice(GameCluster), 2), Username);
+                    }
+                }
+            }
+        }
+        catch (Exception e)
+        {
+            errorMessage = "Games not loaded or API still works...";
+        }
+    }
+
+    public double GetTotalPrice(GameCluster gameCluster)
+    {
+        errorMessage = "";
+        double value = 0;
+        if (GameCluster != null)
+        {
+            foreach (var game in gameCluster.GamesStack)
+            {
+                value += game.Price;
+            }
+        }
+        return value;
+    }
+
+}
