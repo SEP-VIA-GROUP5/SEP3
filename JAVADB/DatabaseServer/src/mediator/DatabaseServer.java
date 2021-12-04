@@ -5,6 +5,7 @@ import Sockets.Models.User;
 
 import javax.print.DocFlavor;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.ArrayList;
 
 public interface DatabaseServer
@@ -16,7 +17,7 @@ public interface DatabaseServer
   boolean checkIfUsernameExists(String username) throws SQLException;
   Game getGameDB(String gameName) throws SQLException;
   Game registerGame(String gameName, double price, String description, String specifications, int IGNRating, String ESRBRating, String photoURL, String releaseDate)
-      throws SQLException;
+      throws SQLException, ParseException;
   Game buyGame(int gameID, String username) throws SQLException;
   String getKey(int gameID) throws SQLException;
   Game getGameByID(int id) throws SQLException;

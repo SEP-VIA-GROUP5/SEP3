@@ -5,6 +5,8 @@ import Sockets.Models.GameKey;
 import Sockets.Models.User;
 
 import java.sql.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 public class DatabaseServerManager implements DatabaseServer
@@ -146,12 +148,9 @@ public class DatabaseServerManager implements DatabaseServer
     @Override public Game registerGame(String gameName, double price,
                                        String description, String specifications, int IGNRating,
                                        String ESRBRating, String photoURL, String releaseDate)
-            throws SQLException
+        throws SQLException, ParseException
     {
         Game game = null;
-
-
-
         try(Connection connection = getConnection())
         {
             PreparedStatement statement = connection.prepareStatement( "INSERT INTO games(game_name, price, description, specifications, ign_rating, esrb_rating, photo_url, release_date) VALUES (?, ?, ?, ?, ?, ?, ?, ?);");
@@ -162,7 +161,7 @@ public class DatabaseServerManager implements DatabaseServer
             statement.setInt(5, IGNRating);
             statement.setString(6, ESRBRating);
             statement.setString(7, photoURL);
-            statement.setString(8, releaseDate);
+            statement.setDate(8, java.sql.Date.valueOf(releaseDate));
 
             statement.executeUpdate();
 

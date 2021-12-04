@@ -42,6 +42,19 @@ public class Game implements Serializable
     this.releaseDate = releaseDate;
     this.gameKey = new GameKey(gameKey);
   }
+  public Game(String gameName, double price, String description, String specifications, int IGNRating, String ESRBRating, String photoURL, String releaseDate)
+  {
+    this.gameId = 0;
+    this.gameName = gameName;
+    this.price = price;
+    this.description = description;
+    this.specifications = specifications;
+    this.IGNRating = IGNRating;
+    this.ESRBRating = ESRBRating;
+    this.photoURL = photoURL;
+    this.releaseDate = releaseDate;
+    this.gameKey = null;
+  }
 
   public Game(String gameName)
   {
