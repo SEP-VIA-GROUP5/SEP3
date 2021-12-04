@@ -1,0 +1,95 @@
+﻿@page "/GameLibrary"
+@using Client.Models
+@using Client.Data
+@using System.Security.Claims
+@inject IGameService GameService;
+<div class="panel panel-info">
+    <div class="panel-heading">
+        <h3 class="panel-title">Purchased Games Library</h3>
+    </div>
+    <div class="panel-body">
+        <div id="update-message">
+        </div>
+        <table class="table table-striped table-hover ">
+            <thead>
+            <tr>
+                <th>
+                    Game Name
+                </th>
+                <th>
+                    Game Key
+                </th>
+                <th></th>
+            </tr>
+            </thead>
+            @if (_gameCluster != null)
+            {
+                @foreach (var game in _gameCluster.GamesStack)
+                {
+                    <tr>
+                        <td>
+                            @game.GameName
+                        </td>
+                        <td>
+                            @game.GameKey.Key;
+                        </td>
+                    </tr>
+                }
+            }
+            @if (_gameCluster == null)
+            {
+                <div class="custom-bg">
+                    <p>You have not purchased a game yet. Go buy one!</p>
+                </div> 
+            }
+            else
+            {
+            <div class="custom-bg">
+                <p>Loading...</p>
+            </div>
+            }
+        </table>
+    </div>
+</div>
+
+
+
+@code {
+    GameCluster _gameCluster;
+
+    string errorMessage ="";
+
+    private ClaimsPrincipal _claimsPrincipal;
+
+    private User _user = new User();
+
+    public string username { get; set; }
+
+    [CascadingParameter]
+    protected Task<AuthenticationState> AuthState { get; set; }
+
+    protected override async void OnParametersSet()
+    {
+        if (AuthState != null)
+        {
+            _claimsPrincipal = (await AuthState).User;
+            username = _claimsPrincipal.Identity.Name;
+        }
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        errorMessage = "";
+        try
+        {
+            OnParametersSet();
+            _gameCluster = await GameService.getLibraryAsync(username);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(errorMessage = e.Message);
+            Console.WriteLine("Error while getting game library");
+        }
+    }
+
+}

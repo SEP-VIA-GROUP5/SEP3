@@ -16,13 +16,18 @@
             </NavLink>
         </li>
         <li class="nav-item px-3">
-            <NavLink class="nav-link" href="login" @onclick="PerformLogout">
-                <span class="oi oi-account-logout" aria-hidden="true"></span>Log out
+            <NavLink class="nav-link" href="ShoppingCart" @onclick="PerformShoppingCart">
+                <span class="oi oi-cart" aria-hidden="true"></span>Shopping Cart
             </NavLink>
         </li>
         <li class="nav-item px-3">
-            <NavLink class="nav-link" href="ShoppingCart" @onclick="PerformShoppingCart">
-                <span class="oi oi-cart" aria-hidden="true"></span>Shopping Cart
+            <NavLink class="nav-link" href="ShoppingCart" @onclick="PerformGameLibrary">
+                <span class="oi oi-list-rich" aria-hidden="true"></span>Game Library
+            </NavLink>
+        </li>
+        <li class="nav-item px-3">
+            <NavLink class="nav-link" href="login" @onclick="PerformLogout">
+                <span class="oi oi-account-logout" aria-hidden="true"></span>Log out
             </NavLink>
         </li>
     </ul>
@@ -49,10 +54,15 @@
         {
         }
     }
-    
+
     public void PerformShoppingCart()
     {
         NavigationManager.NavigateTo("/ShoppingCart");
+    }
+
+    public void PerformGameLibrary()
+    {
+        NavigationManager.NavigateTo("/GameLibrary");
     }
 
 }

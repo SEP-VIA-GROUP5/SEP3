@@ -14,8 +14,8 @@ public class TestingTCP
   public static void main(String[] args) throws Exception
   {
     GameService gameService = new GameService();
-    GameCluster gameCluster = gameService.getSearch("Forza Horizon");
-    System.out.println(gameCluster.toString());
+    GameCluster gameCluster = gameService.getLibrary("admin");
+    System.out.println(gameCluster.getGameStack().get(0).getGameKey().getGameKey());
   }
 
 }

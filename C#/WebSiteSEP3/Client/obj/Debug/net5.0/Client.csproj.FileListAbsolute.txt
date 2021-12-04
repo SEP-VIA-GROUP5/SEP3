@@ -329,3 +329,9 @@ D:\FACULTATE SEMESTRUL 3\SEP3\CODE\SEP3\C#\WebSiteSEP3\Client\obj\Debug\net5.0\R
 D:\FACULTATE SEMESTRUL 3\SEP3\CODE\SEP3\C#\WebSiteSEP3\Client\obj\Debug\net5.0\Razor\Pages\Payment\CheckoutOneGame.razor.g.cs
 D:\FACULTATE SEMESTRUL 3\SEP3\CODE\SEP3\C#\WebSiteSEP3\Client\obj\Debug\net5.0\RazorDeclaration\Pages\Payment\PayPal.razor.g.cs
 D:\FACULTATE SEMESTRUL 3\SEP3\CODE\SEP3\C#\WebSiteSEP3\Client\obj\Debug\net5.0\Razor\Pages\Payment\PayPal.razor.g.cs
+C:\Users\ljusk\Documents\GitHub\SEP3\C#\WebSiteSEP3\Client\obj\Debug\net5.0\RazorDeclaration\Pages\GameLibary.razor.g.cs
+C:\Users\ljusk\Documents\GitHub\SEP3\C#\WebSiteSEP3\Client\obj\Debug\net5.0\RazorDeclaration\Pages\Payment\CheckoutMultipleGames.razor.g.cs
+C:\Users\ljusk\Documents\GitHub\SEP3\C#\WebSiteSEP3\Client\obj\Debug\net5.0\RazorDeclaration\Pages\Payment\CheckoutOneGame.razor.g.cs
+C:\Users\ljusk\Documents\GitHub\SEP3\C#\WebSiteSEP3\Client\obj\Debug\net5.0\Razor\Pages\GameLibary.razor.g.cs
+C:\Users\ljusk\Documents\GitHub\SEP3\C#\WebSiteSEP3\Client\obj\Debug\net5.0\Razor\Pages\Payment\CheckoutMultipleGames.razor.g.cs
+C:\Users\ljusk\Documents\GitHub\SEP3\C#\WebSiteSEP3\Client\obj\Debug\net5.0\Razor\Pages\Payment\CheckoutOneGame.razor.g.cs

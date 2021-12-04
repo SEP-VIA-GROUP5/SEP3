@@ -178,6 +178,7 @@ public class GameController {
     public ResponseEntity<GameCluster> getLibrary(@RequestParam String userName) {
         try {
             GameCluster newGameCluster = gameService.getLibrary(userName);
+            System.out.println(newGameCluster.getGameStack().get(0).getGameKey().getGameKey());
             if (newGameCluster == null) {
                 return ResponseEntity.badRequest().build();
             }

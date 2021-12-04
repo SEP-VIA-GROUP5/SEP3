@@ -5,7 +5,7 @@ import java.io.Serializable;
 public class GameKey implements Serializable {
     private String GameKey;
     private String username;
-    private static final long serialVersionUID = 6529685098267757691L;
+    private static final long serialVersionUID = 7329218667231354436L;
 
     public GameKey(String GameKey, String username)
     {

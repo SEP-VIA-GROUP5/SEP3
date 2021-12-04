@@ -4,7 +4,7 @@
 #pragma warning disable 0649
 #pragma warning disable 0169
 
-namespace Client.Shared
+namespace Client.Pages
 {
     #line hidden
     using System;
@@ -75,7 +75,29 @@ using Client;
 #line default
 #line hidden
 #nullable disable
-    public partial class MainLayout : LayoutComponentBase
+#nullable restore
+#line 2 "C:\Users\ljusk\Documents\GitHub\SEP3\C#\WebSiteSEP3\Client\Pages\GameLibary.razor"
+using Client.Models;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 3 "C:\Users\ljusk\Documents\GitHub\SEP3\C#\WebSiteSEP3\Client\Pages\GameLibary.razor"
+using Client.Data;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 4 "C:\Users\ljusk\Documents\GitHub\SEP3\C#\WebSiteSEP3\Client\Pages\GameLibary.razor"
+using System.Security.Claims;
+
+#line default
+#line hidden
+#nullable disable
+    [Microsoft.AspNetCore.Components.RouteAttribute("/GameLibrary")]
+    public partial class GameLibary : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998
         protected override void BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder __builder)
@@ -83,17 +105,50 @@ using Client;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 19 "C:\Users\ljusk\Documents\GitHub\SEP3\C#\WebSiteSEP3\Client\Shared\MainLayout.razor"
- 
-    protected async override Task OnInitializedAsync()
+#line 57 "C:\Users\ljusk\Documents\GitHub\SEP3\C#\WebSiteSEP3\Client\Pages\GameLibary.razor"
+       
+    GameCluster _gameCluster;
+
+    string errorMessage ="";
+
+    private ClaimsPrincipal _claimsPrincipal;
+
+    private User _user = new User();
+
+    public string username { get; set; }
+
+    [CascadingParameter]
+    protected Task<AuthenticationState> AuthState { get; set; }
+
+    protected override async void OnParametersSet()
     {
-        base.OnInitialized();
+        if (AuthState != null)
+        {
+            _claimsPrincipal = (await AuthState).User;
+            username = _claimsPrincipal.Identity.Name;
+        }
     }
+
+    protected override async Task OnInitializedAsync()
+    {
+        errorMessage = "";
+        try
+        {
+            OnParametersSet();
+            _gameCluster = await GameService.getLibraryAsync(username);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(errorMessage = e.Message);
+            Console.WriteLine("Error while getting game library");
+        }
+    }
+
 
 #line default
 #line hidden
 #nullable disable
-        [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager NavigationManager { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IGameService GameService { get; set; }
     }
 }
 #pragma warning restore 1591
