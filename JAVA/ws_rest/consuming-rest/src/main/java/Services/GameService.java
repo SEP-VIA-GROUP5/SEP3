@@ -4,8 +4,10 @@ import Sockets.Handlers.ClientHandling;
 import Sockets.Models.Game;
 import Sockets.Models.GameCluster;
 import Sockets.Models.GameKey;
+import Sockets.Models.User;
 import Sockets.Packages.CartPackage;
 import Sockets.Packages.GamePackage;
+import Sockets.Packages.UserPackage;
 import com.google.gson.Gson;
 
 import java.io.IOException;
@@ -159,6 +161,22 @@ public class GameService implements IGameService{
             gameCluster.addGameToCluster(game);
         }
         System.out.println(gameCluster.getGameStack());
+        return gameCluster;
+    }
+
+    @Override public GameCluster getLibrary(String userName)
+        throws IOException, ClassNotFoundException
+    {
+        User user = new User(userName);
+        UserPackage userPackage = new UserPackage(user, "getLibrary");
+        clientHandling.sendToServer(userPackage);
+        Object dataReceived = clientHandling.receiveFromServer();
+        GamePackage gamePackage = (GamePackage) dataReceived;
+        GameCluster gameCluster = new GameCluster();
+        for(Game game: gamePackage.getGames())
+        {
+            gameCluster.addGameToCluster(game);
+        }
         return gameCluster;
     }
 }

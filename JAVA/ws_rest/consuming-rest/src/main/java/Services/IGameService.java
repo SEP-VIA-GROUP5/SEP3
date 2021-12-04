@@ -17,4 +17,5 @@ public interface IGameService {
     String addGameToShoppingCart(String userName,int gameId) throws IOException;
     GameCluster removeGameFromShoppingCart(String userName, int gameId) throws IOException, ClassNotFoundException;
     GameCluster getShoppingCart(String userName) throws IOException, ClassNotFoundException;
+    GameCluster getLibrary(String userName) throws IOException, ClassNotFoundException;
 }
