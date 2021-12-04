@@ -105,7 +105,7 @@ using Microsoft.AspNetCore.Mvc.Formatters;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 102 "D:\FACULTATE SEMESTRUL 3\SEP3\CODE\SEP3\C#\WebSiteSEP3\Client\Pages\Games\GameInformation.razor"
+#line 87 "D:\FACULTATE SEMESTRUL 3\SEP3\CODE\SEP3\C#\WebSiteSEP3\Client\Pages\Games\GameInformation.razor"
        
 
     [Parameter]

@@ -105,7 +105,7 @@ using Microsoft.JSInterop;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 14 "D:\FACULTATE SEMESTRUL 3\SEP3\CODE\SEP3\C#\WebSiteSEP3\Client\Pages\Payment\Paypal.razor"
+#line 15 "D:\FACULTATE SEMESTRUL 3\SEP3\CODE\SEP3\C#\WebSiteSEP3\Client\Pages\Payment\Paypal.razor"
        
     //TODO Design this page and make it for a specific game
     [Inject]
@@ -114,21 +114,25 @@ using Microsoft.JSInterop;
     [Parameter]
     public string GameName { get; set; }
 
+    private Game game;
+
     double value;
     double a = 9.99;
 
     protected override async Task OnInitializedAsync()
     {
-        
+        game = await _gameService.getGameAsync(GameName);
+        value = value = Math.Round(game.Price, 2);
     }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         if (firstRender)
         {
-            Game Game1 = await _gameService.getGameAsync("Cyberpunk 2077");
-            value = Math.Round(Game1.Price, 2);
-            await _jsRuntime.InvokeVoidAsync("LoadButtonPaypal", value, Game1.GameName);
+            if (game != null)
+            {
+                await _jsRuntime.InvokeVoidAsync("LoadButtonPaypal", value, game.GameName);
+            }
         }
     }
 
