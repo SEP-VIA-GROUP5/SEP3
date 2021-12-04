@@ -52,13 +52,12 @@
                         <hr class="badge-primary mt-0 w-25">
                         <div class="row text-center">
                             <div class="col-sm-6">
-                                <h4>Pay now $@GetTotalPrice()</h4>
+                                <h4>Pay now</h4>
                             </div>
                             <div class="col-sm-6">
                                 <div id="paypal-button-container"></div>
                             </div>
                         </div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -66,7 +65,7 @@
 }
 else
 {
-    <h3>API still works or shopping is empty..</h3>
+    <h1>Games not loaded or API still works...</h1>
 }
 <h3>Checkout</h3>
 
@@ -86,7 +85,7 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        _gameCluster = await _gameService.getShoppingCartAsync(Username);
+        _gameCluster = _gameService.getShoppingCartAsync(Username);
     }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)

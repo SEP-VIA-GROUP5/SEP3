@@ -96,13 +96,6 @@ using Microsoft.AspNetCore.Mvc.Formatters;
 #line default
 #line hidden
 #nullable disable
-#nullable restore
-#line 10 "D:\FACULTATE SEMESTRUL 3\SEP3\CODE\SEP3\C#\WebSiteSEP3\Client\Pages\Games\GameInformation.razor"
-using System.Security.Claims;
-
-#line default
-#line hidden
-#nullable disable
     [Microsoft.AspNetCore.Components.RouteAttribute("/GameInformation/{GameName}")]
     public partial class GameInformation : Microsoft.AspNetCore.Components.ComponentBase
     {
@@ -112,15 +105,9 @@ using System.Security.Claims;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 88 "D:\FACULTATE SEMESTRUL 3\SEP3\CODE\SEP3\C#\WebSiteSEP3\Client\Pages\Games\GameInformation.razor"
+#line 87 "D:\FACULTATE SEMESTRUL 3\SEP3\CODE\SEP3\C#\WebSiteSEP3\Client\Pages\Games\GameInformation.razor"
        
 
-    private ClaimsPrincipal _claimsPrincipal;
-    [CascadingParameter]
-    protected Task<AuthenticationState> AuthState { get; set; }
-
-    private string username;
-    
     [Parameter]
     public string GameName { get; set; }
 
@@ -144,15 +131,6 @@ using System.Security.Claims;
         }
     }
 
-    protected override async void OnParametersSet()
-    {
-        if (AuthState != null)
-        {
-            _claimsPrincipal = (await AuthState).User;
-            username = _claimsPrincipal.Identity.Name;
-        }
-    }
-    
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         if (firstRender)
@@ -175,9 +153,9 @@ using System.Security.Claims;
         NavigationManager.NavigateTo($"/Paypal/{gameName}");
     }
 
-    public async Task AddToShoppingCart(Game game)
+    public void AddToShoppingCart(Game game)
     {
-        await GameService.addGameToShoppingCartAsync(username, game.GameId);
+    //TODO later has to be implemented
     }
 
 
