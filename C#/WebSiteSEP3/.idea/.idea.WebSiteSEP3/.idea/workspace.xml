@@ -7,29 +7,28 @@
   <component name="ChangeListManager">
     <list default="true" id="6351634a-927e-48e6-b898-ac69d3b896d5" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.WebSiteSEP3/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.WebSiteSEP3/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/Pages/Games/Index.razor" beforeDir="false" afterPath="$PROJECT_DIR$/Client/Pages/Games/Index.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/Data/Impl/GameService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Client/Data/Impl/GameService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/Pages/Games/GameInformation.razor" beforeDir="false" afterPath="$PROJECT_DIR$/Client/Pages/Games/GameInformation.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/Pages/Payment/Paypal.razor" beforeDir="false" afterPath="$PROJECT_DIR$/Client/Pages/Payment/Paypal.razor" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Client/bin/Debug/net5.0/Client.Views.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Client/bin/Debug/net5.0/Client.Views.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Client/bin/Debug/net5.0/Client.Views.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/Client/bin/Debug/net5.0/Client.Views.pdb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Client/bin/Debug/net5.0/Client.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Client/bin/Debug/net5.0/Client.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Client/bin/Debug/net5.0/Client.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/Client/bin/Debug/net5.0/Client.pdb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Client/bin/Debug/net5.0/ref/Client.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Client/bin/Debug/net5.0/ref/Client.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/obj/Debug/net5.0/Client.RazorComponent.input.cache" beforeDir="false" afterPath="$PROJECT_DIR$/Client/obj/Debug/net5.0/Client.RazorComponent.input.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/obj/Debug/net5.0/Client.RazorCoreGenerate.cache" beforeDir="false" afterPath="$PROJECT_DIR$/Client/obj/Debug/net5.0/Client.RazorCoreGenerate.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/obj/Debug/net5.0/Client.TagHelpers.output.cache" beforeDir="false" afterPath="$PROJECT_DIR$/Client/obj/Debug/net5.0/Client.TagHelpers.output.cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Client/obj/Debug/net5.0/Client.Views.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Client/obj/Debug/net5.0/Client.Views.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Client/obj/Debug/net5.0/Client.Views.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/Client/obj/Debug/net5.0/Client.Views.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/obj/Debug/net5.0/Client.csproj.FileListAbsolute.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Client/obj/Debug/net5.0/Client.csproj.FileListAbsolute.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Client/obj/Debug/net5.0/Client.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Client/obj/Debug/net5.0/Client.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Client/obj/Debug/net5.0/Client.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/Client/obj/Debug/net5.0/Client.pdb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Client/obj/Debug/net5.0/Razor/Pages/Games/GameInformation.razor.g.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Client/obj/Debug/net5.0/Razor/Pages/Games/GameInformation.razor.g.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/obj/Debug/net5.0/Razor/Pages/Games/Index.razor.g.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Client/obj/Debug/net5.0/Razor/Pages/Games/Index.razor.g.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Client/obj/Debug/net5.0/Razor/Pages/Payment/Paypal.razor.g.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Client/obj/Debug/net5.0/Razor/Pages/Payment/Paypal.razor.g.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Client/obj/Debug/net5.0/RazorDeclaration/Client.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Client/obj/Debug/net5.0/RazorDeclaration/Client.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Client/obj/Debug/net5.0/RazorDeclaration/Client.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/Client/obj/Debug/net5.0/RazorDeclaration/Client.pdb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Client/obj/Debug/net5.0/RazorDeclaration/Pages/Games/GameInformation.razor.g.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Client/obj/Debug/net5.0/RazorDeclaration/Pages/Games/GameInformation.razor.g.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/obj/Debug/net5.0/RazorDeclaration/Pages/Games/Index.razor.g.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Client/obj/Debug/net5.0/RazorDeclaration/Pages/Games/Index.razor.g.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Client/obj/Debug/net5.0/RazorDeclaration/Pages/Payment/Paypal.razor.g.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Client/obj/Debug/net5.0/RazorDeclaration/Pages/Payment/Paypal.razor.g.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Client/obj/Debug/net5.0/ref/Client.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Client/obj/Debug/net5.0/ref/Client.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/obj/rider.project.restore.info" beforeDir="false" afterPath="$PROJECT_DIR$/Client/obj/rider.project.restore.info" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../JAVA/ws_rest/consuming-rest/src/main/java/Controllers/GameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../JAVA/ws_rest/consuming-rest/src/main/java/Controllers/GameController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../JAVADB/DatabaseServer/target/classes/Sockets/Handling/ServerHandling.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../JAVADB/DatabaseServer/target/classes/Sockets/Handling/ServerHandling.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -163,6 +162,7 @@
       <workItem from="1638443716851" duration="999000" />
       <workItem from="1638445287154" duration="968000" />
       <workItem from="1638465404566" duration="2994000" />
+      <workItem from="1638616239493" duration="2911000" />
     </task>
     <task id="LOCAL-00001" summary="Search engine implemented on Tier3">
       <created>1638540874594</created>
@@ -206,9 +206,27 @@
     <MESSAGE value="Search engine implemented on Tier3" />
     <MESSAGE value="Design and functionality for INFO button done. Now you can see game's specifications" />
     <MESSAGE value="Getting changes from last merge pull request" />
-    <option name="LAST_COMMIT_MESSAGE" value="Getting changes from last merge pull request" />
+    <MESSAGE value="Add shopping cart button and paypal checkout page" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add shopping cart button and paypal checkout page" />
   </component>
   <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Client/Data/Impl/GameService.cs</url>
+          <line>122</line>
+          <properties documentPath="D:\FACULTATE SEMESTRUL 3\SEP3\CODE\SEP3\C#\WebSiteSEP3\Client\Data\Impl\GameService.cs" initialLine="122" containingFunctionPresentation="method 'addGameToShoppingCartAsync'">
+            <startOffsets>
+              <option value="5022" />
+            </startOffsets>
+            <endOffsets>
+              <option value="5023" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
     <pin-to-top-manager>
       <pinned-members>
         <PinnedItemInfo parentTag="Type#Client.Pages.Payment.PaymentSuccessfully" memberName="productKey" />

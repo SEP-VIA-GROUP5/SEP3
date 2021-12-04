@@ -323,3 +323,5 @@ C:\Users\ljusk\Documents\GitHub\SEP3\C#\WebSiteSEP3\Client\obj\Debug\net5.0\Razo
 C:\Users\ljusk\Documents\GitHub\SEP3\C#\WebSiteSEP3\Client\obj\Debug\net5.0\Razor\Pages\ShoppingCart.razor.g.cs
 C:\Users\ljusk\Documents\GitHub\SEP3\C#\WebSiteSEP3\Client\obj\Debug\net5.0\Razor\Pages\Games\GameInformation.razor.g.cs
 C:\Users\ljusk\Documents\GitHub\SEP3\C#\WebSiteSEP3\Client\obj\Debug\net5.0\scopedcss\Pages\Games\GameInformation.razor.rz.scp.css
+D:\FACULTATE SEMESTRUL 3\SEP3\CODE\SEP3\C#\WebSiteSEP3\Client\obj\Debug\net5.0\RazorDeclaration\Pages\ShoppingCart.razor.g.cs
+D:\FACULTATE SEMESTRUL 3\SEP3\CODE\SEP3\C#\WebSiteSEP3\Client\obj\Debug\net5.0\Razor\Pages\ShoppingCart.razor.g.cs

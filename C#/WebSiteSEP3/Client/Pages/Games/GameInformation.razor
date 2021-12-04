@@ -7,6 +7,7 @@
 @using Client.Models
 @using Client.Data
 @using Microsoft.AspNetCore.Mvc.Formatters
+@using System.Security.Claims
 @inject IGameService GameService
 @inject NavigationManager NavigationManager
 <h3>GameInformation</h3>
@@ -61,33 +62,18 @@
                         </div>
                     </div>
                     <div class="col-lg-4 bg-light rounded-right">
-                                        @* @if (orderNowPressed) *@
-                                        @* { *@
-                                        @*     <div class="col-sm-6"> *@
-                                        @*         <div id="paypal-button-container"></div> *@
-                                        @*     </div> *@
-                                        @*     <div class="col-sm-6"> *@
-                                        @*         <button class="btn rounded disabled" @onclick="(() => AddToShoppingCart(game))"><span class="oi oi-cart"></span>Add to Shopping cart</button> *@
-                                        @*     </div>  *@
-                                        @* } *@
-                                        @* else *@
-                                        @* { *@
-                                        @*     <div class="col-sm-6"> *@
-                                        <div class="row">
-                                            <div class="col-sm-12">
-                                                <button class="btn rounded" @onclick="() => OrderNow(game.GameName)">Order now</button>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-sm-12">
-                                                <button class="btn disabled" style="color: orange"@onclick="(() => AddToShoppingCart(game))">Add to shopping cart</button>
-                                            </div>
-                                        </div>
-                                    </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <button class="btn btn-warning btn-rounded" @onclick="() => OrderNow(game.GameName)">Order now</button>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <button class="btn btn btn-danger disabled" @onclick="(() => AddToShoppingCart(game))">Add to shopping cart</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                
-
-                @* } *@
             </div>
         </div>
     </div>
@@ -101,6 +87,12 @@ else
 
 @code {
 
+    private ClaimsPrincipal _claimsPrincipal;
+    [CascadingParameter]
+    protected Task<AuthenticationState> AuthState { get; set; }
+
+    private string username;
+    
     [Parameter]
     public string GameName { get; set; }
 
@@ -124,6 +116,12 @@ else
         }
     }
 
+    protected override async void OnParametersSet()
+    {
+        _claimsPrincipal = (await AuthState).User;
+            username = _claimsPrincipal.Identity.Name;
+    }
+    
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         if (firstRender)
@@ -146,9 +144,9 @@ else
         NavigationManager.NavigateTo($"/Paypal/{gameName}");
     }
 
-    public void AddToShoppingCart(Game game)
+    public async Task AddToShoppingCart(Game game)
     {
-    //TODO later has to be implemented
+        await GameService.addGameToShoppingCartAsync(username, game.GameId);
     }
 
 }
