@@ -193,7 +193,7 @@ using System.Collections;
             }
             else
             {
-                GameKey gameKey = await _gameService.getProductKeyAsync(game.GameId);
+                GameKey gameKey = await _gameService.getProductKeyAsync(game.GameId,username);
                 _key = gameKey.Key;
             }
         }
