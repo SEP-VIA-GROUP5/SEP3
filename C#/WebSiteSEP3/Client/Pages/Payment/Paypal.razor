@@ -1,4 +1,4 @@
-﻿@page "/Paypal/{gameName}"
+﻿@page "/Paypal/{Username}"
 @using Client.Models
 @using Client.Data
 @using Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ConfigurationModel
@@ -6,34 +6,107 @@
 @inject IGameService _gameService
 @namespace PaypalComponent
 
-
+@if (_gameCluster != null)
+{
+    <div class="container">
+        <div class="row d-flex justify-content-center">
+            <div class="col-md-10 mt-5 pt-5" id="color">
+                <div class="row shadow p-3">
+                    <div class="col-lg-4 rounded-left">
+                        <div class="card" style="width: 19rem;">
+                            <img class="card-img-top" src="Images/shoppingcart.png" alt="Image of shopping cart" title="Your shopping cart"/>
+                            <div class="card-body">
+                                <h3 class="card-title">Shopping cart</h3>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item">
+                                        <p class="font-weight-bold">
+                                            $@string.Format("{0:f}", Math.Round(game.Price, 2).ToString())
+                                        </p>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 bg-light">
+                        <h3 class="mt-3 text-center">Checkout - list of your games</h3>
+                        <hr class="badge-primary mt-0 w-25">
+                        <div class="row text-center">
+                            <div class="col-sm-6 float-right">
+                                <ul class="list-group list-group-flush">
+                                    @foreach (var game in _gameCluster.GamesStack)
+                                    {
+                                        <li class="list-group-item">@game.GameName</li>
+                                    }
+                                </ul>
+                            </div>
+                            <div class="col-sm-6">
+                                @foreach (var game in _gameCluster.GamesStack)
+                                {
+                                    <li class="list-group-item">@game.Price</li>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 bg-light rounded-right">
+                        <h3 class="mt-3 text-center">Total amount</h3>
+                        <hr class="badge-primary mt-0 w-25">
+                        <div class="row text-center">
+                            <div class="col-sm-6">
+                                <h4>Pay now</h4>
+                            </div>
+                            <div class="col-sm-6">
+                                <div id="paypal-button-container"></div>
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    <h1>Games not loaded or API still works...</h1>
+}
 <h3>Checkout</h3>
 
-<div id="paypal-button-container"></div>
+
 
 @code {
     //TODO Design this page and make it for a specific game
     [Inject]
     IJSRuntime _jsRuntime { get; set; }
-    
-    [Parameter]
-    public string GameName { get; set; }
 
-    double value;
-    double a = 9.99;
+    [Parameter]
+    public string Username { get; set; }
+
+    private GameCluster _gameCluster { get; set; }
+
+    private Game game;
 
     protected override async Task OnInitializedAsync()
     {
-        
+        _gameCluster = _gameService.getShoppingCartAsync(Username);
     }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         if (firstRender)
         {
-            Game Game1 = await _gameService.getGameAsync("Cyberpunk 2077");
-            value = Math.Round(Game1.Price, 2);
-            await _jsRuntime.InvokeVoidAsync("LoadButtonPaypal", value, Game1.GameName);
+            if (game != null)
+            {
+                await _jsRuntime.InvokeVoidAsync("LoadButtonPaypal", GetTotalPrice());
+            }
         }
     }
+
+    public double GetTotalPrice()
+    {
+        double totalValue = 0;
+        foreach (var game in _gameCluster.GamesStack)
+        {
+            totalValue += game.Price;
+        }
+        return Math.Round(totalValue, 2);
+    }
+
 }
