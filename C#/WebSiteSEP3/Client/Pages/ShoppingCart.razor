@@ -5,9 +5,9 @@
 @inject IGameService GameService;
 <h3>ShoppingCart</h3>
 <div class="panel panel-info">
-    <div class="panel-heading">
-        <h3 class="panel-title">Order Summary</h3>
-    </div>
+    @* <div class="panel-heading"> *@
+    @*     <h3 class="panel-title">Order Summary</h3> *@
+    @* </div> *@
     <div class="panel-body">
         <div id="update-message">
         </div>
@@ -15,7 +15,7 @@
             <thead>
             <tr>
                 <th>
-                    Item Name
+                    Game Name
                 </th>
                 <th>
                     Price (each)
@@ -23,40 +23,45 @@
                 <th></th>
             </tr>
             </thead>
-            @foreach (var game in _gameCluster.GamesStack)
+            @if (!(_gameCluster == null))
             {
-                <tr>
-                    <td>
-                        @game.GameName
+                @foreach (var game in _gameCluster.GamesStack)
+                {
+                    <tr>
+                        <td>
+                            @game.GameName
+                        </td>
+                        <td>
+                            $@string.Format("{0:f}", Math.Round(game.Price, 2).ToString())
+                        </td>
+                        <td>
+                            <a style="cursor:pointer" @onclick="(() => removeFromCart(game.GameId))">Remove From Cart</a>
+                        </td>
+                    </tr>
+                }
+
+                <tr class="info">
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td id="cart-total">
+                        Total : $@string.Format("{0:f}", Math.Round(getTotalPrice(), 2).ToString())
                     </td>
-                    <td>
-                        $@string.Format("{0:f}", Math.Round(game.Price, 2).ToString())
-                    </td>
-                    <td>
-                        <a style="cursor:pointer" @onclick="(() => removeFromCart(game.GameId))">Remove From Cart</a>
-                    </td>
+                    <td></td>
+                    <a style="cursor:pointer" @onclick="(() => buyAll())">Buy All</a>
                 </tr>
             }
-            <tr class="info">
-                <td></td>
-                <td></td>
-                <td></td>
-                <td id="cart-total">
-                    Total : $@string.Format("{0:f}", Math.Round(getTotalPrice(), 2).ToString())
-                </td>
-                <td></td>
-                <a style="cursor:pointer" @onclick="(() => buyAll())">Buy All</a>
-            </tr>
+            else
+            {
+            <div class="custom-bg">
+                <p>There are no items in your cart currently. Please shop for something and add items..</p>
+            </div>
+            }
         </table>
     </div>
 </div>
-}
-else
-{
-<div class="custom-bg">
-    <p>There are no items in your cart currently. Please shop for something and add items..</p>
-</div>
-}
+
+
 
 @code {
     GameCluster _gameCluster;
