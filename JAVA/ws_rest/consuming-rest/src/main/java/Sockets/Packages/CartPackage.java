@@ -23,16 +23,22 @@ public class CartPackage implements Serializable
         this.gameId = gameId;
         this.userName = userName;
         this.type = type;
+        this.games = new ArrayList<>();
     }
 
     public CartPackage(String type, String userName){
         this.userName = userName;
         this.type = type;
+        this.gameId = 0;
+        this.games = new ArrayList<>();
     }
 
     public CartPackage(ArrayList<Game> games)
     {
         this.games = games;
+        this.gameId = 0;
+        this.userName = null;
+        this.type = null;
     }
 
     public String getUserName() {

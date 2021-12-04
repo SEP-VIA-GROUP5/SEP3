@@ -146,20 +146,29 @@ public class ServerHandling implements Runnable{
                     {
                         case "add":
                         {
+                            System.out.println("Adding to shopping cart");
+                            System.out.println(received.getUserName());
+                            System.out.println(received.getGameId());
                             databaseServer.addToShoppingCart(received.getUserName(),
                                 received.getGameId());
+                            System.out.println("Added to shopping cart");
+                            break;
                         }
                         case "remove":
                         {
                             ArrayList<Game> games = databaseServer.removeFromShoppingCart(received.getUserName(), received.getGameId());
                             CartPackage toSend = new CartPackage(games);
                             sendDataToServer(toSend);
+                            break;
                         }
                         case "get":
                         {
+                            System.out.println("Getting shopping cart");
                             ArrayList<Game> games = databaseServer.getShoppingCart(received.getUserName());
+                            //System.out.println(games);
                             CartPackage toSend = new CartPackage(games);
                             sendDataToServer(toSend);
+                            break;
                         }
                         default:
                             System.out.println("Type not found");
