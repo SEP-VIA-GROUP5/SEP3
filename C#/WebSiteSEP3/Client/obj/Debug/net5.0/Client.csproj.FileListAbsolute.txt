@@ -304,9 +304,7 @@ C:\Users\rytis\Desktop\Everything with uni\Programming\SEP projects\SEP3\SEP3\C#
 C:\Users\rytis\Desktop\Everything with uni\Programming\SEP projects\SEP3\SEP3\C#\WebSiteSEP3\Client\obj\Debug\net5.0\Client.genruntimeconfig.cache
 C:\Users\rytis\Desktop\Everything with uni\Programming\SEP projects\SEP3\SEP3\C#\WebSiteSEP3\Client\obj\Debug\net5.0\Client.csproj.CopyComplete
 D:\FACULTATE SEMESTRUL 3\SEP3\CODE\SEP3\C#\WebSiteSEP3\Client\obj\Debug\net5.0\RazorDeclaration\Pages\Payment\PaymentSuccessfully.razor.g.cs
-D:\FACULTATE SEMESTRUL 3\SEP3\CODE\SEP3\C#\WebSiteSEP3\Client\obj\Debug\net5.0\RazorDeclaration\Pages\Payment\Paypal.razor.g.cs
 D:\FACULTATE SEMESTRUL 3\SEP3\CODE\SEP3\C#\WebSiteSEP3\Client\obj\Debug\net5.0\Razor\Pages\Payment\PaymentSuccessfully.razor.g.cs
-D:\FACULTATE SEMESTRUL 3\SEP3\CODE\SEP3\C#\WebSiteSEP3\Client\obj\Debug\net5.0\Razor\Pages\Payment\Paypal.razor.g.cs
 C:\Users\ljusk\Documents\GitHub\SEP3\C#\WebSiteSEP3\Client\obj\Debug\net5.0\RazorDeclaration\Pages\Payment\PaymentSuccessfully.razor.g.cs
 C:\Users\ljusk\Documents\GitHub\SEP3\C#\WebSiteSEP3\Client\obj\Debug\net5.0\RazorDeclaration\Pages\Payment\Paypal.razor.g.cs
 C:\Users\ljusk\Documents\GitHub\SEP3\C#\WebSiteSEP3\Client\obj\Debug\net5.0\Razor\Pages\Payment\PaymentSuccessfully.razor.g.cs
@@ -325,3 +323,9 @@ C:\Users\ljusk\Documents\GitHub\SEP3\C#\WebSiteSEP3\Client\obj\Debug\net5.0\Razo
 C:\Users\ljusk\Documents\GitHub\SEP3\C#\WebSiteSEP3\Client\obj\Debug\net5.0\scopedcss\Pages\Games\GameInformation.razor.rz.scp.css
 D:\FACULTATE SEMESTRUL 3\SEP3\CODE\SEP3\C#\WebSiteSEP3\Client\obj\Debug\net5.0\RazorDeclaration\Pages\ShoppingCart.razor.g.cs
 D:\FACULTATE SEMESTRUL 3\SEP3\CODE\SEP3\C#\WebSiteSEP3\Client\obj\Debug\net5.0\Razor\Pages\ShoppingCart.razor.g.cs
+D:\FACULTATE SEMESTRUL 3\SEP3\CODE\SEP3\C#\WebSiteSEP3\Client\obj\Debug\net5.0\RazorDeclaration\Pages\Payment\CheckoutMultipleGames.razor.g.cs
+D:\FACULTATE SEMESTRUL 3\SEP3\CODE\SEP3\C#\WebSiteSEP3\Client\obj\Debug\net5.0\RazorDeclaration\Pages\Payment\CheckoutOneGame.razor.g.cs
+D:\FACULTATE SEMESTRUL 3\SEP3\CODE\SEP3\C#\WebSiteSEP3\Client\obj\Debug\net5.0\Razor\Pages\Payment\CheckoutMultipleGames.razor.g.cs
+D:\FACULTATE SEMESTRUL 3\SEP3\CODE\SEP3\C#\WebSiteSEP3\Client\obj\Debug\net5.0\Razor\Pages\Payment\CheckoutOneGame.razor.g.cs
+D:\FACULTATE SEMESTRUL 3\SEP3\CODE\SEP3\C#\WebSiteSEP3\Client\obj\Debug\net5.0\RazorDeclaration\Pages\Payment\PayPal.razor.g.cs
+D:\FACULTATE SEMESTRUL 3\SEP3\CODE\SEP3\C#\WebSiteSEP3\Client\obj\Debug\net5.0\Razor\Pages\Payment\PayPal.razor.g.cs

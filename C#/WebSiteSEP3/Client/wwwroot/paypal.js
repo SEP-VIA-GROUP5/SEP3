@@ -1,6 +1,10 @@
-﻿window.LoadButtonPaypal = function(value,gameName){
+﻿window.LoadButtonPaypal = function(value,username){
     // Render the PayPal button into #paypal-button-container
     paypal.Buttons({
+        style: {
+            layout: 'vertical',
+            color: 'gold',
+        },
 
         // Set up the transaction
         createOrder: function (data, actions) {
@@ -25,7 +29,7 @@
                 // element.innerHTML = '';
                 // element.innerHTML = '<h3>Thank you for your payment!</h3>';
                 // Or go to another URL:  actions.redirect('thank_you.html');
-                location.href = '/PaymentSuccessfully/' + gameName + "/" + transaction.id;
+                location.href = '/PaymentSuccessfully/' + username + '/' + transaction.id;
             });
         }
 

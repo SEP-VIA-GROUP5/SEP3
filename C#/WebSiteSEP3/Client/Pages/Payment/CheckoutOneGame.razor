@@ -1,0 +1,117 @@
+﻿@page "/checkoutnow/{GameName}"
+@using Client.Models
+@using Client.Data
+@using Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ConfigurationModel
+@using Microsoft.JSInterop
+@using System.IO
+@using System.Net
+@using System.Security.Claims
+@inject IGameService _gameService
+@namespace PaypalComponent
+
+@if (_game != null)
+{
+    <div id="smart-button-container">
+        <div class="container-fluid">
+            <div class="row d-flex justify-content-center">
+                <div class="col-md-10 mt-5 pt-5" id="color">
+                    <div class="row shadow p-3">
+                        <div class="col-lg-4 rounded-left">
+                            <div class="card" style="width: 19rem;">
+                                <img class="card-img-top" src="Images/Games/@_photoOfGame" alt="Image of shopping cart" title="Buy @GameName"/>
+                                <div class="card-body">
+                                    <h3 class="card-title">Checkout @GameName</h3>
+                                    <ul class="list-group list-group-flush">
+                                        <li class="list-group-item">
+                                            <h3 class="font-weight-bold">
+                                                Price $@string.Format("{0:f}", Math.Round(_game.Price, 2).ToString())
+                                            </h3>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-8 bg-light">
+                            <h3 class="mt-3 text-center">Checkout</h3>
+                            <hr class="badge-primary mt-0 w-25">
+                            <div style="text-align: center">
+                                <PayPal Username="@_username" GameName="@GameName"></PayPal>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    <h1>@errorMessage</h1>
+}
+
+@code {
+    private string errorMessage;
+    //TODO Design this page and make it for a specific game
+    [Inject]
+    IJSRuntime _jsRuntime { get; set; }
+
+    [Parameter]
+    public string GameName { get; set; }
+
+    [CascadingParameter]
+    public Task<AuthenticationState> AuthState { get; set; }
+
+    private ClaimsPrincipal _claimsPrincipal;
+    private string _username = "";
+
+    private Game _game;
+    private string _photoOfGame;
+
+    protected override async Task OnInitializedAsync()
+    {
+        errorMessage = "";
+        try
+        {
+            if (AuthState != null)
+            {
+                _claimsPrincipal = (await AuthState).User;
+                _username = _claimsPrincipal.Identity.Name;
+            }
+            _game = await _gameService.getGameAsync(GameName);
+            _photoOfGame = _game.GameName + ".png";
+            SaveImageIntoClient();
+        }
+        catch (Exception e)
+        {
+            errorMessage = "Games not loaded or API still works...";
+        }
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        errorMessage = "";
+        try
+        {
+            if (firstRender)
+            {
+                await _jsRuntime.InvokeVoidAsync("LoadButtonPaypal", Math.Round(@_game.Price, 2), _username);
+            }
+        }
+        catch (Exception e)
+        {
+            errorMessage = "Games not loaded or API still works...";
+        }
+    }
+
+    public void SaveImageIntoClient()
+    {
+        {
+            using (WebClient webClient = new WebClient())
+            {
+                byte[] dataArr = webClient.DownloadData(_game.Photo);
+                File.WriteAllBytes($@"wwwroot/Images/Games/{_game.GameName}.png", dataArr);
+            }
+        }
+    }
+
+}

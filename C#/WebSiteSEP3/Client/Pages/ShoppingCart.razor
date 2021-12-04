@@ -3,6 +3,7 @@
 @using Client.Data
 @using System.Security.Claims
 @inject IGameService GameService;
+@inject NavigationManager NavigationManager
 <h3>ShoppingCart</h3>
 <div class="panel panel-info">
     <div class="panel-heading">
@@ -23,7 +24,7 @@
                 <th></th>
             </tr>
             </thead>
-            @if (!(_gameCluster == null))
+            @if (!(_gameCluster == null) || (_gameCluster != null && _gameCluster.GamesStack.Count < 1))
             {
                 @foreach (var game in _gameCluster.GamesStack)
                 {
@@ -35,7 +36,7 @@
                             $@string.Format("{0:f}", Math.Round(game.Price, 2).ToString())
                         </td>
                         <td>
-                            <a style="cursor:pointer" @onclick="(() => removeFromCart(game.GameId))">Remove From Cart</a>
+                            <button class="btn btn-danger oi oi-trash" @onclick="(() => removeFromCart(game.GameId))"></button>
                         </td>
                     </tr>
                 }
@@ -45,13 +46,15 @@
                     <td></td>
                     <td></td>
                     <td id="cart-total">
-                        Total : $@string.Format("{0:f}", Math.Round(getTotalPrice(), 2).ToString())
+                        <h3> Total : $@string.Format("{0:f}", Math.Round(getTotalPrice(), 2).ToString())</h3>
                     </td>
-                    <td></td>
-                    <a style="cursor:pointer" @onclick="(() => buyAll())">Buy All</a>
+                    <td>
+                        <button class="btn btn-info" @onclick="buyAll"><span class="oi oi-basket"></span> Buy all</button>
+                    </td>
+                    
                 </tr>
             }
-            else
+            else if(_gameCluster == null)
             {
             <div class="custom-bg">
                 <p>There are no items in your cart currently. Please shop for something and add items..</p>
@@ -69,9 +72,7 @@
     string errorMessage ="";
 
     private ClaimsPrincipal _claimsPrincipal;
-
-    private User _user = new User();
-
+    
     public string username { get; set; }
 
     [CascadingParameter]
@@ -117,6 +118,10 @@
         {
             await GameService.removeGameFromShoppingCartAsync(username, gameId);
             _gameCluster = await GameService.getShoppingCartAsync(username);
+            if (_gameCluster.GamesStack.Count == 0)
+            {
+                _gameCluster = null;
+            }
         }
         catch (Exception e)
         {
@@ -127,7 +132,7 @@
 
     public async Task buyAll()
     {
-        //TODO later
+        NavigationManager.NavigateTo	($"/orderlater/{username}");
     }
 
 }
