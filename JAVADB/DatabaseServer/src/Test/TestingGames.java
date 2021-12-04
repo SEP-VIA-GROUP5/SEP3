@@ -10,6 +10,6 @@ public class TestingGames
   public static void main(String[] args) throws SQLException
   {
     DatabaseServer databaseServer = new DatabaseServerManager();
-    System.out.println(databaseServer.searchGamesByName("f").toString());
+    System.out.println(databaseServer.removeFromShoppingCart("admin", 1));
   }
 }
