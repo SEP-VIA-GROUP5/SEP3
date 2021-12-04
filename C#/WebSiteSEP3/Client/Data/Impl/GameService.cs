@@ -89,7 +89,7 @@ namespace Client.Data.Impl
             return null;
         }
 
-        public async Task<string> addGameKeyAsync(int gameId, string productKey)
+        public async Task<GameKey> addGameKeyAsync(int gameId, string productKey)
         {
             string productKey1 = null;
             HttpResponseMessage responseMessage =
@@ -97,7 +97,7 @@ namespace Client.Data.Impl
             if (responseMessage.StatusCode == HttpStatusCode.OK)
             {
                 productKey1 = await responseMessage.Content.ReadAsStringAsync();
-                string productKeyResult = JsonSerializer.Deserialize<string>(productKey1);
+                GameKey productKeyResult = JsonSerializer.Deserialize<GameKey>(productKey1);
                 return productKeyResult;
             }
 
