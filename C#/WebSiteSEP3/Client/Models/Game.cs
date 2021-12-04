@@ -27,6 +27,8 @@ namespace Client.Models
         [JsonPropertyName("ignrating")]
         public int IGN { get; set; }
         
+        public GameKey GameKey { get; set; }
+        
        
         
         
