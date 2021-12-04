@@ -93,6 +93,7 @@ public class ServerHandling implements Runnable{
                             GamePackage gamePackage = new GamePackage("library", games);
                             sendDataToServer(gamePackage);
                             System.out.println("Sending library");
+                            break;
                         }
                         default:
                             System.out.println("Type not found");
