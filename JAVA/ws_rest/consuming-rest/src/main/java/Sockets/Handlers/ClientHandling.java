@@ -2,6 +2,7 @@ package Sockets.Handlers;
 
 
 import Sockets.Models.User;
+import Sockets.Packages.CartPackage;
 import Sockets.Packages.GamePackage;
 import Sockets.Packages.UserPackage;
 
@@ -40,6 +41,11 @@ public class ClientHandling {
             final GamePackage game = (GamePackage) obj;
             //System.out.println(user.getUser().getPassword());
             return game;
+        }
+        else if(obj instanceof CartPackage)
+        {
+            final CartPackage cart = (CartPackage) obj;
+            return cart;
         }
         else{
             //TODO
