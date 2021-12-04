@@ -1,6 +1,7 @@
 package mediator;
 
 import Sockets.Models.Game;
+import Sockets.Models.GameKey;
 import Sockets.Models.User;
 
 import java.sql.*;
@@ -170,12 +171,12 @@ public class DatabaseServerManager implements DatabaseServer
         return game;
     }
 
-    @Override public Game buyGame(int gameID) throws SQLException
+    @Override public Game buyGame(int gameID, String username) throws SQLException
     {
         Game gameDummy = getGameByID(gameID);
         Game gameToReturn;
         String productKey = getKey(gameID);
-
+        addToLibrary(username, gameID, productKey);
         try(Connection connection = getConnection())
         {
             gameToReturn = new Game(gameDummy.getGameId(),
@@ -379,6 +380,48 @@ public class DatabaseServerManager implements DatabaseServer
         }
         return games;
     }
+
+    @Override public void addToLibrary(String username, int gameID, String gameKey)
+        throws SQLException
+    {
+        int userID = getUserDB(username).getId();
+        try(Connection connection = getConnection())
+        {
+            PreparedStatement statement = connection.prepareStatement("INSERT INTO library(game_id, user_id, purchased_game_key) VALUES (?, ?, ?)");
+            statement.setInt(1, gameID);
+            statement.setInt(2, userID);
+            statement.setString(3, gameKey);
+            statement.executeUpdate();
+        }
+    }
+
+    @Override public ArrayList<Game> getLibrary(String username)
+        throws SQLException
+    {
+        int id = getUserDB(username).getId();
+        ArrayList<Game> games = new ArrayList<>();
+        Game game;
+        String productKey;
+        try(Connection connection = getConnection())
+        {
+            PreparedStatement statement = connection.prepareStatement("SELECT game_id, purchased_game_key FROM library WHERE user_id = ?;");
+            statement.setInt(1, id);
+
+            ResultSet resultSet = statement.executeQuery();
+
+            while(resultSet.next())
+            {
+                int game_id = resultSet.getInt("game_id");
+                productKey = resultSet.getString("purchased_game_key");
+                game = getGameByID(game_id);
+                GameKey gameKey = new GameKey(productKey);
+                game.setGameKey(gameKey);
+                games.add(game);
+            }
+        }
+        return games;
+    }
+
     @Override public void addToShoppingCart(String username, int gameID)
         throws SQLException
     {

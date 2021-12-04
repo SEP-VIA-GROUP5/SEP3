@@ -113,7 +113,7 @@ public class ServerHandling implements Runnable{
                             System.out.println("Getting key");
                             game = received.getGame();
                             System.out.println(game.getGameName());
-                            Game gameToBeSent = databaseServer.buyGame(game.getGameId());
+                            Game gameToBeSent = databaseServer.buyGame(game.getGameId(), received.getUsername());
                             GamePackage toSentPackage = new GamePackage(gameToBeSent, "");
                             sendDataToServer(toSentPackage);
                             System.out.println("Sending requested game");

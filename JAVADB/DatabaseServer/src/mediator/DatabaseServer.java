@@ -3,6 +3,7 @@ package mediator;
 import Sockets.Models.Game;
 import Sockets.Models.User;
 
+import javax.print.DocFlavor;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -16,7 +17,7 @@ public interface DatabaseServer
   Game getGameDB(String gameName) throws SQLException;
   Game registerGame(String gameName, double price, String description, String specifications, int IGNRating, String ESRBRating, String photoURL, String releaseDate)
       throws SQLException;
-  Game buyGame(int gameID) throws SQLException;
+  Game buyGame(int gameID, String username) throws SQLException;
   String getKey(int gameID) throws SQLException;
   Game getGameByID(int id) throws SQLException;
   ArrayList<Game> getAllGames() throws SQLException;
@@ -24,4 +25,6 @@ public interface DatabaseServer
   void addToShoppingCart(String username, int gameID) throws SQLException;
   ArrayList<Game> removeFromShoppingCart(String username, int gameID) throws SQLException;
   ArrayList<Game> getShoppingCart(String username) throws SQLException;
+  void addToLibrary(String username, int gameID, String gameKey) throws SQLException;
+  ArrayList<Game> getLibrary(String username) throws SQLException;
 }
