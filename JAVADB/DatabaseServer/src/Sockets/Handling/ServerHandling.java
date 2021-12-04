@@ -86,6 +86,14 @@ public class ServerHandling implements Runnable{
                             System.out.println("Registering request sent back");
                             break;
                         }
+                        case "getLibrary":
+                        {
+                            System.out.println("Getting a library");
+                            ArrayList<Game> games = databaseServer.getLibrary(received.getUser().getUsername());
+                            GamePackage gamePackage = new GamePackage("library", games);
+                            sendDataToServer(gamePackage);
+                            System.out.println("Sending library");
+                        }
                         default:
                             System.out.println("Type not found");
                     }
