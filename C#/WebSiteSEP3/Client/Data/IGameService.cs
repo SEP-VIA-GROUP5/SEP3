@@ -16,5 +16,6 @@ namespace Client.Data
         Task<GameCluster> removeGameFromShoppingCartAsync(string userName, int gameId);
         Task<GameCluster> getShoppingCartAsync(string userName);
         Task<GameCluster> getLibraryAsync(string userName);
+        Task<Game> editGameAsync(Game game);
     }
 }

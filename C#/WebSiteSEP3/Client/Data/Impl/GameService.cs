@@ -177,5 +177,22 @@ namespace Client.Data.Impl
 
             return null;
         }
+        
+        public async Task<Game> editGameAsync(Game gameToSend)
+        {
+            string game = null;
+            HttpResponseMessage responseMessage =
+                await Client.GetAsync($"http://localhost:8080/game/editGame?gameName={gameToSend.GameName}&price={gameToSend.Price}&photo={gameToSend.Photo}" +
+                                      $"&esrb={gameToSend.ESRB}&ign={gameToSend.IGN}&description={gameToSend.Description}&specifications={gameToSend.Specifications}" +
+                                      $"&date={gameToSend.ReleaseDate}");
+            if (responseMessage.StatusCode == HttpStatusCode.OK)
+            {
+                game = await responseMessage.Content.ReadAsStringAsync();
+                Game gameResult = JsonSerializer.Deserialize<Game>(game);
+                return gameResult;
+            }
+
+            return null;
+        }
     }
 }

@@ -14,4 +14,7 @@ public interface IUserService {
 
     User ValidateRegister(String username, String password, String firstName, String lastName)
         throws IOException, ClassNotFoundException;
+
+    User EditUser (String username, String password, String firstName, String lastName)
+            throws IOException, ClassNotFoundException;
 }

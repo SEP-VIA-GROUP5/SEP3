@@ -60,4 +60,9 @@ public class UserService implements IUserService {
         return userPackage.getUser();
     }
 
+    @Override
+    public User EditUser(String username, String password, String firstName, String lastName) throws IOException, ClassNotFoundException {
+        return null;
+    }
+
 }

@@ -181,4 +181,9 @@ public class GameService implements IGameService{
         }
         return gameCluster;
     }
+
+    @Override
+    public Game editGame(String name, double price, String photo, String ESRB, int IGN, String shortDescription, String specifications, String date) throws IOException, ClassNotFoundException {
+        return null;
+    }
 }
