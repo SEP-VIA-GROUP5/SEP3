@@ -5,9 +5,12 @@ import Sockets.Models.GameKey;
 import Sockets.Models.User;
 
 import java.sql.*;
+import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+
+import static java.lang.String.valueOf;
 
 public class DatabaseServerManager implements DatabaseServer
 {
