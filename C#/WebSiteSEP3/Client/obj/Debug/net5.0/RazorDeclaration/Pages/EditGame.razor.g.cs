@@ -105,10 +105,11 @@ using Client.Models;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 54 "C:\Users\rytis\Desktop\Everything with uni\Programming\SEP projects\SEP3\SEP3\C#\WebSiteSEP3\Client\Pages\EditGame.razor"
+#line 57 "C:\Users\rytis\Desktop\Everything with uni\Programming\SEP projects\SEP3\SEP3\C#\WebSiteSEP3\Client\Pages\EditGame.razor"
        
     private Game gameToEdit = new Game();
-    private string gameNameToEdit;
+    [Parameter]
+    public string gameNameToEdit { get; set; }
     private string errorMessage = "";
     private DateTime dateTime;
     
