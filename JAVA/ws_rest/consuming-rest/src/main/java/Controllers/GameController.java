@@ -189,7 +189,7 @@ public class GameController {
         }
     }
     @GetMapping("/editGame")
-    public ResponseEntity<Game> editGame(@RequestParam String gameName, @RequestParam double price, @RequestParam String photo, @RequestParam String esrb,
+    public ResponseEntity<Game> editGame(@RequestParam int gameID,  @RequestParam String gameName, @RequestParam double price, @RequestParam String photo, @RequestParam String esrb,
                                         @RequestParam int ign, @RequestParam String description, @RequestParam String specifications, @RequestParam String date) {
         try {
             Game game = gameService.addGame(gameName, price, photo, esrb, ign, description, specifications, date);

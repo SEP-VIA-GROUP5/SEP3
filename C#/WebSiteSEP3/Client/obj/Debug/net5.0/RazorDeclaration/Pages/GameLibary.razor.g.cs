@@ -105,7 +105,7 @@ using System.Security.Claims;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 57 "C:\Users\titas\Desktop\SEP3\C#\WebSiteSEP3\Client\Pages\GameLibary.razor"
+#line 51 "C:\Users\titas\Desktop\SEP3\C#\WebSiteSEP3\Client\Pages\GameLibary.razor"
        
     GameCluster _gameCluster;
 
