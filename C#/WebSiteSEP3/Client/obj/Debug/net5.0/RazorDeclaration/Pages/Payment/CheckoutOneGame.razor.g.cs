@@ -133,7 +133,7 @@ using PaypalComponent;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 57 "D:\FACULTATE SEMESTRUL 3\SEP3\CODE\SEP3\C#\WebSiteSEP3\Client\Pages\Payment\CheckoutOneGame.razor"
+#line 56 "D:\FACULTATE SEMESTRUL 3\SEP3\CODE\SEP3\C#\WebSiteSEP3\Client\Pages\Payment\CheckoutOneGame.razor"
        
     private string errorMessage;
     [Inject]

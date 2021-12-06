@@ -90,10 +90,10 @@ using Client.Authentication;
         }
         #pragma warning restore 1998
 #nullable restore
-
-#line 43 "C:\Users\ljusk\Documents\GitHub\SEP3\C#\WebSiteSEP3\Client\Shared\NavMenu.razor"
-
+#line 49 "D:\FACULTATE SEMESTRUL 3\SEP3\CODE\SEP3\C#\WebSiteSEP3\Client\Shared\NavMenu.razor"
        
+    private string username;
+    
     private bool collapseNavMenu = true;
 
     private string NavMenuCssClass => collapseNavMenu ? "collapse" : null;
@@ -103,31 +103,45 @@ using Client.Authentication;
         collapseNavMenu = !collapseNavMenu;
     }
 
+    protected override async void OnParametersSet()
+    {
+        var claimsPrincipal = (await AuthenticationStateProvider.GetAuthenticationStateAsync()).User;
+        if (claimsPrincipal.Identity.IsAuthenticated)
+        {
+            username = claimsPrincipal.Identity.Name;
+        }
+    }
+    
     public async Task PerformLogout()
     {
         try
         {
-            ((CustomAuthenticationStateProvider) AuthenticationStateProvider).Logout();
-            NavigationManager.NavigateTo("/");
+            await ((CustomAuthenticationStateProvider) AuthenticationStateProvider).Logout();
+            _navigationManager.NavigateTo("/");
         }
         catch (Exception e)
         {
         }
     }
 
+    public void PerformProfile()
+    {
+        _navigationManager.NavigateTo($"/Profile/{username}");
+    }
+    
     public void PerformShoppingCart()
     {
-        NavigationManager.NavigateTo("/ShoppingCart");
+        _navigationManager.NavigateTo($"/ShoppingCart/{username}");
     }
 
     public void PerformGameLibrary()
     {
-        NavigationManager.NavigateTo("/GameLibrary");
+        _navigationManager.NavigateTo($"/GameLibrary/{username}");
     }
 
     public void PerformAddGame()
     {
-        NavigationManager.NavigateTo("/AddGame");
+        _navigationManager.NavigateTo("/AddGame");
     }
 
 
@@ -135,7 +149,7 @@ using Client.Authentication;
 #line hidden
 #nullable disable
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private AuthenticationStateProvider AuthenticationStateProvider { get; set; }
-        [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager NavigationManager { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager _navigationManager { get; set; }
     }
 }
 #pragma warning restore 1591

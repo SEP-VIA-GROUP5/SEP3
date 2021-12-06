@@ -339,3 +339,7 @@ D:\FACULTATE SEMESTRUL 3\SEP3\CODE\SEP3\C#\WebSiteSEP3\Client\obj\Debug\net5.0\R
 D:\FACULTATE SEMESTRUL 3\SEP3\CODE\SEP3\C#\WebSiteSEP3\Client\obj\Debug\net5.0\Razor\Pages\GameLibary.razor.g.cs
 D:\FACULTATE SEMESTRUL 3\SEP3\CODE\SEP3\C#\WebSiteSEP3\Client\obj\Debug\net5.0\Razor\Pages\Payment\ReceiptMultipleGames.razor.g.cs
 D:\FACULTATE SEMESTRUL 3\SEP3\CODE\SEP3\C#\WebSiteSEP3\Client\obj\Debug\net5.0\Razor\Pages\Payment\ReceiptOneGame.razor.g.cs
+D:\FACULTATE SEMESTRUL 3\SEP3\CODE\SEP3\C#\WebSiteSEP3\Client\obj\Debug\net5.0\RazorDeclaration\Pages\AddGame.razor.g.cs
+D:\FACULTATE SEMESTRUL 3\SEP3\CODE\SEP3\C#\WebSiteSEP3\Client\obj\Debug\net5.0\RazorDeclaration\Pages\Profile.razor.g.cs
+D:\FACULTATE SEMESTRUL 3\SEP3\CODE\SEP3\C#\WebSiteSEP3\Client\obj\Debug\net5.0\Razor\Pages\AddGame.razor.g.cs
+D:\FACULTATE SEMESTRUL 3\SEP3\CODE\SEP3\C#\WebSiteSEP3\Client\obj\Debug\net5.0\Razor\Pages\Profile.razor.g.cs

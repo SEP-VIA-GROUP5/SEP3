@@ -96,7 +96,7 @@ using System.Security.Claims;
 #line default
 #line hidden
 #nullable disable
-    [Microsoft.AspNetCore.Components.RouteAttribute("/ShoppingCart")]
+    [Microsoft.AspNetCore.Components.RouteAttribute("/ShoppingCart/{Username}")]
     public partial class ShoppingCart : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998
@@ -105,30 +105,22 @@ using System.Security.Claims;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 70 "D:\FACULTATE SEMESTRUL 3\SEP3\CODE\SEP3\C#\WebSiteSEP3\Client\Pages\ShoppingCart.razor"
+#line 69 "D:\FACULTATE SEMESTRUL 3\SEP3\CODE\SEP3\C#\WebSiteSEP3\Client\Pages\ShoppingCart.razor"
        
     GameCluster _gameCluster;
 
     string errorMessage ="";
 
-    public string username { get; set; }
-
-    protected override async void OnParametersSet()
-    {
-        var claimsPrincipal = (await _authenticationStateProvider.GetAuthenticationStateAsync()).User;
-        if (claimsPrincipal.Identity.IsAuthenticated)
-        {
-            username = claimsPrincipal.Identity.Name;
-        }
-    }
-
+    [Parameter]
+    public string Username { get; set; }
+    
     protected override async Task OnInitializedAsync()
     {
         errorMessage = "";
         try
         {
-            OnParametersSet();
-            _gameCluster = await GameService.getShoppingCartAsync(username);
+            
+            _gameCluster = await GameService.getShoppingCartAsync(Username);
         }
         catch (Exception e)
         {
@@ -151,8 +143,8 @@ using System.Security.Claims;
     {
         try
         {
-            await GameService.removeGameFromShoppingCartAsync(username, gameId);
-            _gameCluster = await GameService.getShoppingCartAsync(username);
+            await GameService.removeGameFromShoppingCartAsync(Username, gameId);
+            _gameCluster = await GameService.getShoppingCartAsync(Username);
             if (_gameCluster.GamesStack.Count == 0)
             {
                 _gameCluster = null;
@@ -167,14 +159,13 @@ using System.Security.Claims;
 
     public async Task buyAll()
     {
-        NavigationManager.NavigateTo	($"/orderlater/{username}");
+        NavigationManager.NavigateTo	($"/orderlater/{Username}");
     }
 
 
 #line default
 #line hidden
 #nullable disable
-        [global::Microsoft.AspNetCore.Components.InjectAttribute] private AuthenticationStateProvider _authenticationStateProvider { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager NavigationManager { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private IGameService GameService { get; set; }
     }

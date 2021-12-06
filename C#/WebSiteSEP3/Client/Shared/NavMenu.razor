@@ -1,5 +1,5 @@
 ﻿@using Client.Authentication
-@inject NavigationManager NavigationManager
+@inject NavigationManager _navigationManager
 @inject AuthenticationStateProvider AuthenticationStateProvider
 <div class="top-row pl-4 navbar navbar-dark">
     <a class="navbar-brand" href="">Client</a>
@@ -16,12 +16,17 @@
             </NavLink>
         </li>
         <li class="nav-item px-3">
-            <NavLink class="nav-link" href="ShoppingCart" @onclick="PerformShoppingCart">
+            <NavLink class="nav-link" @onclick="PerformProfile">
+                <span class="oi oi-person" aria-hidden="true"></span>Profile
+            </NavLink>
+        </li>
+        <li class="nav-item px-3">
+            <NavLink class="nav-link" @onclick="PerformShoppingCart">
                 <span class="oi oi-cart" aria-hidden="true"></span>Shopping Cart
             </NavLink>
         </li>
         <li class="nav-item px-3">
-            <NavLink class="nav-link" href="GameLibrary" @onclick="PerformGameLibrary">
+            <NavLink class="nav-link" @onclick="PerformGameLibrary">
                 <span class="oi oi-list-rich" aria-hidden="true"></span>Game Library
             </NavLink>
         </li>
@@ -37,10 +42,13 @@
                 <span class="oi oi-account-logout" aria-hidden="true"></span>Log out
             </NavLink>
         </li>
+
     </ul>
 </div>
 
 @code {
+    private string username;
+    
     private bool collapseNavMenu = true;
 
     private string NavMenuCssClass => collapseNavMenu ? "collapse" : null;
@@ -50,31 +58,45 @@
         collapseNavMenu = !collapseNavMenu;
     }
 
+    protected override async void OnParametersSet()
+    {
+        var claimsPrincipal = (await AuthenticationStateProvider.GetAuthenticationStateAsync()).User;
+        if (claimsPrincipal.Identity.IsAuthenticated)
+        {
+            username = claimsPrincipal.Identity.Name;
+        }
+    }
+    
     public async Task PerformLogout()
     {
         try
         {
-            ((CustomAuthenticationStateProvider) AuthenticationStateProvider).Logout();
-            NavigationManager.NavigateTo("/");
+            await ((CustomAuthenticationStateProvider) AuthenticationStateProvider).Logout();
+            _navigationManager.NavigateTo("/");
         }
         catch (Exception e)
         {
         }
     }
 
+    public void PerformProfile()
+    {
+        _navigationManager.NavigateTo($"/Profile/{username}");
+    }
+    
     public void PerformShoppingCart()
     {
-        NavigationManager.NavigateTo("/ShoppingCart");
+        _navigationManager.NavigateTo($"/ShoppingCart/{username}");
     }
 
     public void PerformGameLibrary()
     {
-        NavigationManager.NavigateTo("/GameLibrary");
+        _navigationManager.NavigateTo($"/GameLibrary/{username}");
     }
 
     public void PerformAddGame()
     {
-        NavigationManager.NavigateTo("/AddGame");
+        _navigationManager.NavigateTo("/AddGame");
     }
 
 }

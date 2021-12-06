@@ -1,10 +1,9 @@
-﻿@page "/ShoppingCart"
+﻿@page "/ShoppingCart/{Username}"
 @using Client.Models
 @using Client.Data
 @using System.Security.Claims
 @inject IGameService GameService;
 @inject NavigationManager NavigationManager
-@inject AuthenticationStateProvider _authenticationStateProvider
 <h3>ShoppingCart</h3>
 <div class="panel panel-info">
     <div class="panel-heading">
@@ -72,24 +71,16 @@
 
     string errorMessage ="";
 
-    public string username { get; set; }
-
-    protected override async void OnParametersSet()
-    {
-        var claimsPrincipal = (await _authenticationStateProvider.GetAuthenticationStateAsync()).User;
-        if (claimsPrincipal.Identity.IsAuthenticated)
-        {
-            username = claimsPrincipal.Identity.Name;
-        }
-    }
-
+    [Parameter]
+    public string Username { get; set; }
+    
     protected override async Task OnInitializedAsync()
     {
         errorMessage = "";
         try
         {
-            OnParametersSet();
-            _gameCluster = await GameService.getShoppingCartAsync(username);
+            
+            _gameCluster = await GameService.getShoppingCartAsync(Username);
         }
         catch (Exception e)
         {
@@ -112,8 +103,8 @@
     {
         try
         {
-            await GameService.removeGameFromShoppingCartAsync(username, gameId);
-            _gameCluster = await GameService.getShoppingCartAsync(username);
+            await GameService.removeGameFromShoppingCartAsync(Username, gameId);
+            _gameCluster = await GameService.getShoppingCartAsync(Username);
             if (_gameCluster.GamesStack.Count == 0)
             {
                 _gameCluster = null;
@@ -128,7 +119,7 @@
 
     public async Task buyAll()
     {
-        NavigationManager.NavigateTo	($"/orderlater/{username}");
+        NavigationManager.NavigateTo	($"/orderlater/{Username}");
     }
 
 }
