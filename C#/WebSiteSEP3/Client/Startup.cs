@@ -26,8 +26,8 @@ namespace Client
             services.AddRazorPages();
             services.AddServerSideBlazor();
             services.AddSingleton<IUserService, UserService>();
-            services.AddScoped<AuthenticationStateProvider, CustomAuthenticationStateProvider>();
             services.AddSingleton<IGameService, GameService>();
+            services.AddScoped<AuthenticationStateProvider, CustomAuthenticationStateProvider>();
             
             services.AddAuthorization(options =>
             {
@@ -35,6 +35,10 @@ namespace Client
                     a.RequireAuthenticatedUser().RequireClaim("Role", "admin"));
             });
 
+           
+
+
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

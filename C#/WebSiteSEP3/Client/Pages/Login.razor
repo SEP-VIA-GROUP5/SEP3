@@ -4,25 +4,25 @@
 @using Client.Models
 @inject NavigationManager NavigationManager
 @inject AuthenticationStateProvider AuthenticationStateProvider
-<div class="wrapper"></div>
-<div class="container">
-    <div class="row no-gutters">
-        <div class="form-box" id="function">
-            <h1 class="font-weight-bold py-3">Login</h1>
-            <h4>Sign into your account</h4>
-            <EditForm Model="_user" class="input-group">
-                <input type="text" placeholder="user name" @bind-value="_user.Username" class="input-field"/>
-                <input type="password" placeholder="password" @bind-value="_user.Password" class="input-field"/>
-                <button type="button" class="submit-btn" @onclick="PerformLogin">Login</button>
-                <div style="color:red"> @errorMessage</div>
-                <div class="oi-info text-info"><p>Don't have an account? <a href="/Register">Register here</a></p></div>
-            </EditForm>
+
+        <div class="wrapper"></div>
+        <div class="container">
+            <div class="row no-gutters">
+                <div class="form-box" id="function">
+                    <h1 class="font-weight-bold py-3">Login</h1>
+                    <h4>Sign into your account</h4>
+                    <EditForm Model="_user" class="input-group">
+                        <input type="text" placeholder="user name" @bind-value="_user.Username" class="input-field"/>
+                        <input type="password" placeholder="password" @bind-value="_user.Password" class="input-field"/>
+                        <button type="button" class="submit-btn" @onclick="PerformLogin">Login</button>
+                        <div style="color:red"> @errorMessage</div>
+                        <div class="oi-info text-info"><p>Don't have an account? <a href="/Register">Register here</a></p></div>
+                    </EditForm>
+                </div>
+            </div>
         </div>
-    </div>
-</div>
 
-
-@code {
+    @code {
     private User _user = new User();
     private string errorMessage;
 
