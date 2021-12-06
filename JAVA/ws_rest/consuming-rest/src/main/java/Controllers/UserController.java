@@ -76,11 +76,11 @@ public class UserController {
         }
     }
     @GetMapping("/edit")
-    public ResponseEntity<User> EditUser(@RequestParam String username, @RequestParam String password, @RequestParam(value = "firstname") String firstName, @RequestParam(value = "lastname") String lastName)
+    public ResponseEntity<User> EditUser(@RequestParam int ID,@RequestParam String username, @RequestParam String photo, @RequestParam(value = "firstname") String firstName, @RequestParam(value = "lastname") String lastName)
     {
         try{
             System.out.println(username);
-            User user = userService.ValidateRegister(username,password,firstName,lastName);
+            User user = userService.editUser(ID, username, photo, firstName, lastName);
 
             if(user == null) {
                 return ResponseEntity.notFound().build();

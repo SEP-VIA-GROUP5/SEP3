@@ -463,7 +463,7 @@ public class DatabaseServerManager implements DatabaseServer
         ArrayList<Game> games = new ArrayList<>();
         try(Connection connection = getConnection())
         {
-            PreparedStatement statement = connection.prepareStatement("SELECT * FROM games ORDER BY release_date DESC");
+            PreparedStatement statement = connection.prepareStatement("SELECT * FROM games ORDER BY release_date DESC ");
             ResultSet resultSet = statement.executeQuery();
             while(resultSet.next())
             {
@@ -482,6 +482,31 @@ public class DatabaseServerManager implements DatabaseServer
             }
         }
         return games;
+    }
+
+    @Override public void editUserInfo(int ID, String username, String photo, String firstName, String lastName) throws SQLException
+    {
+        try(Connection connection = getConnection())
+        {
+            PreparedStatement statement = connection.prepareStatement("UPDATE Users SET username = ?, photo = ?, first_name = ?, last_name = ? WHERE id = ?");
+            statement.setString(1, username);
+            statement.setString(2, photo);
+            statement.setString(3, firstName);
+            statement.setString(4, lastName);
+            statement.setInt(5, ID);
+            statement.executeUpdate();
+        }
+    }
+
+    @Override public void changePassword(int ID, String password) throws SQLException
+    {
+        try(Connection connection = getConnection())
+        {
+            PreparedStatement statement = connection.prepareStatement("UPDATE Users SET password = ? WHERE id = ?");
+            statement.setString(1, password);
+            statement.setInt(2, ID);
+            statement.executeUpdate();
+        }
     }
 
     private Connection getConnection() throws SQLException
