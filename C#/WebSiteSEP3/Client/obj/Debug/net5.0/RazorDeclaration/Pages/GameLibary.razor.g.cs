@@ -96,7 +96,7 @@ using System.Security.Claims;
 #line default
 #line hidden
 #nullable disable
-    [Microsoft.AspNetCore.Components.RouteAttribute("/GameLibrary")]
+    [Microsoft.AspNetCore.Components.RouteAttribute("/GameLibrary/{Username}")]
     public partial class GameLibary : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998
@@ -110,32 +110,19 @@ using System.Security.Claims;
     GameCluster _gameCluster;
 
     string errorMessage ="";
-
-    private ClaimsPrincipal _claimsPrincipal;
-
-    private User _user = new User();
-
-    public string username { get; set; }
+    
+    [Parameter]
+    public string Username { get; set; }
 
     [CascadingParameter]
     protected Task<AuthenticationState> AuthState { get; set; }
-
-    protected override async void OnParametersSet()
-    {
-        if (AuthState != null)
-        {
-            _claimsPrincipal = (await AuthState).User;
-            username = _claimsPrincipal.Identity.Name;
-        }
-    }
 
     protected override async Task OnInitializedAsync()
     {
         errorMessage = "";
         try
         {
-            OnParametersSet();
-            _gameCluster = await GameService.getLibraryAsync(username);
+            _gameCluster = await GameService.getLibraryAsync(Username);
         }
         catch (Exception e)
         {

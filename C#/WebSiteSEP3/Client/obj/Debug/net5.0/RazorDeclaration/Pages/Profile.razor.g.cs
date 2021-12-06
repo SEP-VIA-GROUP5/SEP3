@@ -4,7 +4,7 @@
 #pragma warning disable 0649
 #pragma warning disable 0169
 
-namespace Client.Shared
+namespace Client.Pages
 {
     #line hidden
     using System;
@@ -76,13 +76,35 @@ using Client;
 #line hidden
 #nullable disable
 #nullable restore
-#line 1 "D:\FACULTATE SEMESTRUL 3\SEP3\CODE\SEP3\C#\WebSiteSEP3\Client\Shared\NavMenu.razor"
-using Client.Authentication;
+#line 2 "D:\FACULTATE SEMESTRUL 3\SEP3\CODE\SEP3\C#\WebSiteSEP3\Client\Pages\Profile.razor"
+using Models;
 
 #line default
 #line hidden
 #nullable disable
-    public partial class NavMenu : Microsoft.AspNetCore.Components.ComponentBase
+#nullable restore
+#line 3 "D:\FACULTATE SEMESTRUL 3\SEP3\CODE\SEP3\C#\WebSiteSEP3\Client\Pages\Profile.razor"
+using Client.Data;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 4 "D:\FACULTATE SEMESTRUL 3\SEP3\CODE\SEP3\C#\WebSiteSEP3\Client\Pages\Profile.razor"
+using System.IO;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 5 "D:\FACULTATE SEMESTRUL 3\SEP3\CODE\SEP3\C#\WebSiteSEP3\Client\Pages\Profile.razor"
+using System.Net;
+
+#line default
+#line hidden
+#nullable disable
+    [Microsoft.AspNetCore.Components.RouteAttribute("/Profile/{Username}")]
+    public partial class Profile : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998
         protected override void BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder __builder)
@@ -90,66 +112,50 @@ using Client.Authentication;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 49 "D:\FACULTATE SEMESTRUL 3\SEP3\CODE\SEP3\C#\WebSiteSEP3\Client\Shared\NavMenu.razor"
+#line 61 "D:\FACULTATE SEMESTRUL 3\SEP3\CODE\SEP3\C#\WebSiteSEP3\Client\Pages\Profile.razor"
        
-    private string username;
-    
-    private bool collapseNavMenu = true;
 
-    private string NavMenuCssClass => collapseNavMenu ? "collapse" : null;
+    [Parameter]
+    public string Username { get; set; }
 
-    private void ToggleNavMenu()
-    {
-        collapseNavMenu = !collapseNavMenu;
-    }
+    private string errorMessage;
+    private User user;
+    private GameCluster gamesOwned;
 
-    protected override async void OnParametersSet()
+    protected override async Task OnParametersSetAsync()
     {
-        var claimsPrincipal = (await AuthenticationStateProvider.GetAuthenticationStateAsync()).User;
-        if (claimsPrincipal.Identity.IsAuthenticated)
-        {
-            username = claimsPrincipal.Identity.Name;
-        }
-    }
-    
-    public async Task PerformLogout()
-    {
+        errorMessage = "";
         try
         {
-            await ((CustomAuthenticationStateProvider) AuthenticationStateProvider).Logout();
-            _navigationManager.NavigateTo("/");
+            user = await _userService.GetUser(Username);
+           SaveImageIntoClient();
+                gamesOwned = await _gameService.getLibraryAsync(Username);
         }
         catch (Exception e)
         {
+            errorMessage = "Informations are loading...";
+            Console.WriteLine($"Profile Exception > {e.Message}");
         }
     }
 
-    public void PerformProfile()
+    public void SaveImageIntoClient()
     {
-        _navigationManager.NavigateTo($"/Profile/{username}");
+        {
+            using (WebClient webClient = new WebClient())
+            {
+                byte[] dataArr = webClient.DownloadData("https://pluspng.com/img-png/user-png-icon-thin-line-user-icon-2232.png");
+                File.WriteAllBytes($@"wwwroot/Images/Users/userphoto.png", dataArr);
+            }
+        }
     }
-    
-    public void PerformShoppingCart()
-    {
-        _navigationManager.NavigateTo($"/ShoppingCart/{username}");
-    }
-
-    public void PerformGameLibrary()
-    {
-        _navigationManager.NavigateTo($"/GameLibrary/{username}");
-    }
-
-    public void PerformAddGame()
-    {
-        _navigationManager.NavigateTo("/AddGame");
-    }
-
 
 #line default
 #line hidden
 #nullable disable
-        [global::Microsoft.AspNetCore.Components.InjectAttribute] private AuthenticationStateProvider AuthenticationStateProvider { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private AuthenticationStateProvider _authenticationStateProvider { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager _navigationManager { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IGameService _gameService { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IUserService _userService { get; set; }
     }
 }
 #pragma warning restore 1591
