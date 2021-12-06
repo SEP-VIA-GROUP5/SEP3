@@ -1,0 +1,158 @@
+﻿@* This page is dedicated for getting receipt after payment is successfully done  *@
+@page "/ReceiptOneGame/{Username}/{GameName}/{TransactionId}"
+@using Client.Data
+@using Client.Models
+@using System.Security.Cryptography.X509Certificates
+@using System.Security.Claims
+@using Microsoft.VisualBasic
+@using System.Collections
+@using System.IO
+@using System.Net
+@using Client.Authentication
+@using Microsoft.AspNetCore.Authentication
+@using Microsoft.Extensions.Logging.Abstractions
+@inject IGameService _gameService
+@inject IUserService _userService
+@inject AuthenticationStateProvider _authenticationStateProvider
+<AuthorizeView>
+    <Authorized>
+        <h3 class="text-center text-info">Payment Successfully, game: @GameName</h3>
+        @if (User != null && Game != null)
+        {
+            <div id="smart-button-container">
+                <div class="container-fluid">
+                    <div class="row d-flex justify-content-center">
+                        <div class="col-md-10 mt-5 pt-5" id="color">
+                            <div class="row shadow p-3">
+                                <div class="col-lg-4 rounded-left">
+                                    <div class="card" style="width: 19rem;">
+                                        <img class="card-img-top" src="Images/Games/@GetImage()" alt="Image of shopping cart" title="Buy @GameName"/>
+                                        <div class="card-body">
+                                            <h3 class="card-title">Receipt info @GameName</h3>
+                                            <ul class="list-group list-group-flush">
+                                                <li class="list-group-item">
+                                                    <h3 class="font-weight-bold">
+                                                        Transaction ID: @TransactionId
+                                                    </h3>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-8 bg-light">
+                                    <h3 class="mt-3 text-center">Your information</h3>
+                                    <hr class="badge-primary mt-0 w-25">
+                                    <div class="row text-center">
+                                        <div class="col-sm-6">
+                                            <h4 class="font-weight-bold">First name: @User.FirstName</h4>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <h4 class="font-weight-bold">Last name: @User.LastName</h4>
+                                        </div>
+                                    </div>
+                                    <h3 class="mt-3 text-center">Game bought</h3>
+                                    <hr class="badge-primary mt-0 w-25">
+                                    <div class="row text-center">
+                                        <div class="col-sm-6">
+                                            <h4 class="font-weight-bold">Game name: @Game.GameName</h4>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <h4 class="font-weight-bold">Price: @Math.Round(Game.Price, 2)</h4>
+                                        </div>
+                                    </div>
+                                    <div class="text-center">
+                                        <h3 class="mt-3 text-center">Get access</h3>
+                                        <hr class="badge-primary mt-0 w-25">
+                                        <div>@_key</div>
+                                        <button class="btn btn-outline-success rounded" @onclick="GetKey">Generate key</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="text-info text-center">
+                <h3>@_errorMessage</h3>
+            </div>
+        }
+
+    </Authorized>
+</AuthorizeView>
+
+@code {
+
+    [Parameter]
+    public string Username { get; set; }
+
+    [Parameter]
+    public string GameName { get; set; }
+
+    [Parameter]
+    public string TransactionId { get; set; }
+
+    private string _key;
+    //Variables for game and user to get receipt
+    public Game Game { get; set; }
+    public User User { get; set; }
+
+    private string _errorMessage;
+
+    protected override async Task OnInitializedAsync()
+    {
+        _errorMessage = "";
+        try
+        {
+            Game = await _gameService.getGameAsync(GameName);
+            SaveImageIntoClient();
+
+            User = await _userService.GetUser(Username);
+        }
+        catch (Exception e)
+        {
+            _errorMessage = "Loading information...";
+            Console.WriteLine(e.Message);
+        }
+    }
+
+    public async Task GetKey()
+    {
+        try
+        {
+            if (_key != null)
+            {
+                _key += "\n You already got the key.";
+            }
+            else
+            {
+                GameKey gameKey = await _gameService.getProductKeyAsync(Game.GameId, Username);
+                _key = gameKey.Key;
+            }
+        }
+        catch (Exception e)
+        {
+            _key = e.Message;
+        }
+    }
+
+    //for getting the image
+    public void SaveImageIntoClient()
+    {
+        {
+            using (WebClient webClient = new WebClient())
+            {
+                byte[] dataArr = webClient.DownloadData(Game.Photo);
+                File.WriteAllBytes($@"wwwroot/Images/Games/{Game.GameName}.png", dataArr);
+            }
+        }
+    }
+
+    public string GetImage()
+    {
+        return $"Images/Games/{Game.GameName}.png";
+    }
+
+}

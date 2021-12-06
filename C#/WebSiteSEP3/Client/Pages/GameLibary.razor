@@ -3,48 +3,53 @@
 @using Client.Data
 @using System.Security.Claims
 @inject IGameService GameService;
-<div class="panel panel-info">
-    <div class="panel-heading">
-        <h3 class="panel-title">Purchased Games Library</h3>
-    </div>
-    <div class="panel-body">
-        <div id="update-message">
-        </div>
-        <table class="table table-striped table-hover ">
-            <thead>
-            <tr>
-                <th>
-                    Game Name
-                </th>
-                <th>
-                    Game Key
-                </th>
-                <th></th>
-            </tr>
-            </thead>
-            @if (_gameCluster != null)
-            {
-                @foreach (var game in _gameCluster.GamesStack)
-                {
+
+<AuthorizeView>
+    <Authorized>
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <h3 class="panel-title">Purchased Games Library</h3>
+            </div>
+            <div class="panel-body">
+                <div id="update-message">
+                </div>
+                <table class="table table-striped table-hover ">
+                    <thead>
                     <tr>
-                        <td>
-                            @game.GameName
-                        </td>
-                        <td>
-                            @game.GameKey.Key
-                        </td>
+                        <th>
+                            Game Name
+                        </th>
+                        <th>
+                            Game Key
+                        </th>
+                        <th></th>
                     </tr>
-                }
-            }
-            @if (_gameCluster == null)
-            {
-                <div class="custom-bg">
-                    <p>You have not purchased a game yet. Go buy one!</p>
-                </div> 
-            }
-        </table>
-    </div>
-</div>
+                    </thead>
+                    @if (_gameCluster != null)
+                    {
+                        @foreach (var game in _gameCluster.GamesStack)
+                        {
+                            <tr>
+                                <td>
+                                    @game.GameName
+                                </td>
+                                <td>
+                                    @game.GameKey.Key
+                                </td>
+                            </tr>
+                        }
+                    }
+                    @if (_gameCluster == null)
+                    {
+                        <div class="custom-bg">
+                            <p>You have not purchased a game yet. Go buy one!</p>
+                        </div> 
+                    }
+                </table>
+            </div>
+        </div>
+    </Authorized>
+</AuthorizeView>
 
 
 
