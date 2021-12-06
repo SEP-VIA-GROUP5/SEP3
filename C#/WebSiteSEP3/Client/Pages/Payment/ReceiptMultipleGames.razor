@@ -1,0 +1,170 @@
+﻿@* @page "/receiptMultipleGames/{TransactionId:int}" *@
+@* This page is dedicated for getting receipt after payment is successfully done  *@
+@page "/ReceiptMultipleGames/{Username}/{TransactionId}"
+@using Client.Data
+@using Client.Models
+@using System.Security.Cryptography.X509Certificates
+@using System.Security.Claims
+@using Microsoft.VisualBasic
+@using System.Collections
+@using System.IO
+@using System.Net
+@using Client.Authentication
+@using Microsoft.AspNetCore.Authentication
+@using Microsoft.Extensions.Logging.Abstractions
+@inject IGameService _gameService
+@inject IUserService _userService
+@inject AuthenticationStateProvider _authenticationStateProvider
+
+<AuthorizeView>
+    <Authorized>
+        
+        @if (User != null && GameCluster != null)
+        {
+            <h3 class="text-center text-info">Payment Successfully, number of games bought: @GameCluster.GamesStack.Count</h3>
+            <div id="smart-button-container">
+                <div class="container-fluid">
+                    <div class="row d-flex justify-content-center">
+                        <div class="col-md-10 mt-5 pt-5" id="color">
+                            <div class="row shadow p-3">
+                                <div class="col-lg-4 rounded-left">
+                                    <div class="card" style="width: 19rem;">
+                                        <img class="card-img-top" src="Images/Games/@GetImage()" alt="Receipt Multiple Games photo" title="Congratulations! Thank you for your purchase"/>
+                                        <div class="card-body">
+                                            <h3 class="card-title">Receipt info - @GameCluster.GamesStack.Count games bought</h3>
+                                            <ul class="list-group list-group-flush">
+                                                <li class="list-group-item">
+                                                    <h3 class="font-weight-bold" style="font-weight: lighter">
+                                                        Transaction ID: @TransactionId
+                                                    </h3>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-8 bg-light">
+                                    <h3 class="mt-3 text-center">Your information</h3>
+                                    <hr class="badge-primary mt-0 w-25">
+                                    <div class="row text-center">
+                                        <div class="col-sm-6">
+                                            <h4 class="font-weight-bold">First name: @User.FirstName</h4>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <h4 class="font-weight-bold">Last name: @User.LastName</h4>
+                                        </div>
+                                    </div>
+                                    <h3 class="mt-3 text-center">Games bought</h3>
+                                    <hr class="badge-primary mt-0 w-25">
+                                    @foreach (var game in GameCluster.GamesStack)
+                                    {
+                                        <div class="row text-center bg-light">
+                                            <div class="col-sm-6">
+                                                <h4 class="font-weight-bold">Game name: @game.GameName</h4>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <h4 class="font-weight-">Price: @Math.Round(game.Price, 2)</h4>
+                                            </div>
+                                        </div>
+                                    }
+                                    <div class="text-center">
+                                        <h3 class="mt-3 text-center">Get access</h3>
+                                        <hr class="badge-primary mt-0 w-25">
+                                        @if (keys.Count < 1)
+                                        {
+                                            <button class="btn btn-outline-success rounded" @onclick="GetKey">Generate keys</button>
+                                        }
+                                        else
+                                        {
+                                            foreach (var key in keys)
+                                            {
+                                                <h3>@key</h3>
+                                            }
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="text-info text-center">
+                <h3>@_errorMessage</h3>
+            </div>
+        }
+
+    </Authorized>
+</AuthorizeView>
+
+@code {
+
+    [Parameter]
+    public string Username { get; set; }
+
+    [Parameter]
+    public string GameName { get; set; }
+
+    [Parameter]
+    public string TransactionId { get; set; }
+
+    private IList<string> keys = new List<string>();
+    private string _key;
+    //Variables for game and user to get receipt
+    public GameCluster GameCluster { get; set; }
+    public User User { get; set; }
+
+    private string _errorMessage;
+
+    protected override async Task OnInitializedAsync()
+    {
+        _errorMessage = "";
+        try
+        {
+            GameCluster = await _gameService.getShoppingCartAsync(Username);
+            User = await _userService.GetUser(Username);
+        }
+        catch (Exception e)
+        {
+            _errorMessage = "Loading information...";
+            Console.WriteLine(e.Message);
+        }
+    }
+
+    public async Task GetKey()
+    {
+        try
+        {
+            foreach (var game in GameCluster.GamesStack)
+                {
+                    GameKey gameKey = await _gameService.getProductKeyAsync(game.GameId, Username);
+                    _key = game.GameName + ": " + gameKey.Key;
+                    keys.Add(_key);
+                }
+        }
+        catch (Exception e)
+        {
+            _key = e.Message;
+        }
+    }
+
+    //for getting the image
+    public void SaveImageIntoClient()
+    {
+        {
+            using (WebClient webClient = new WebClient())
+            {
+                byte[] dataArr = webClient.DownloadData("https://i.pinimg.com/736x/84/62/da/8462da46eeabbb94b0488b81a053e5bc.jpg");
+                File.WriteAllBytes($@"wwwroot/Images/Other/ReceiptMultipleGames.png", dataArr);
+            }
+        }
+    }
+
+    public string GetImage()
+    {
+        SaveImageIntoClient();
+        return "Images/Other/ReceiptMultipleGames.png";
+    }
+
+}

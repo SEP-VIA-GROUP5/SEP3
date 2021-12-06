@@ -4,6 +4,7 @@
 @using System.Security.Claims
 @inject IGameService GameService;
 @inject NavigationManager NavigationManager
+@inject AuthenticationStateProvider _authenticationStateProvider
 <h3>ShoppingCart</h3>
 <div class="panel panel-info">
     <div class="panel-heading">
@@ -71,19 +72,14 @@
 
     string errorMessage ="";
 
-    private ClaimsPrincipal _claimsPrincipal;
-    
     public string username { get; set; }
-
-    [CascadingParameter]
-    protected Task<AuthenticationState> AuthState { get; set; }
 
     protected override async void OnParametersSet()
     {
-        if (AuthState != null)
+        var claimsPrincipal = (await _authenticationStateProvider.GetAuthenticationStateAsync()).User;
+        if (claimsPrincipal.Identity.IsAuthenticated)
         {
-            _claimsPrincipal = (await AuthState).User;
-            username = _claimsPrincipal.Identity.Name;
+            username = claimsPrincipal.Identity.Name;
         }
     }
 

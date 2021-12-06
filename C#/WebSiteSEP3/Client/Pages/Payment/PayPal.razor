@@ -1,6 +1,7 @@
 ﻿@using Client.Models
 @using Client.Data
 @using Microsoft.Extensions.Logging.Abstractions
+@using System.Security.Claims
 @namespace PaypalComponent
 @inject IGameService GameService
 
@@ -15,12 +16,12 @@
 
     [Parameter]
     public string? GameName { get; set; }
-
     [Parameter]
     public string Username { get; set; }
 
     public Game game { get; set; }
     public GameCluster GameCluster { get; set; }
+    
 
     protected override async Task OnInitializedAsync()
     {
@@ -35,7 +36,7 @@
             else
             {
                 GameCluster = await GameService.getShoppingCartAsync(Username);
-                await OnAfterRenderAsync(true);
+                    await OnAfterRenderAsync(true);
             }
         }
         catch (Exception e)
@@ -53,13 +54,13 @@
             {
                 if (game != null)
                 {
-                    await _jsRuntime.InvokeVoidAsync("LoadButtonPaypal", Math.Round(@game.Price, 2), Username);
+                    if(GameName != null) await _jsRuntime.InvokeVoidAsync("LoadButtonPaypal", Math.Round(@game.Price, 2), Username, GameName);
                 }
                 else
                 {
                     if (GameCluster != null)
                     {
-                        await _jsRuntime.InvokeVoidAsync("LoadButtonPaypal", Math.Round(GetTotalPrice(GameCluster), 2), Username);
+                        if (GameName == null) await _jsRuntime.InvokeVoidAsync("LoadButtonPaypal", Math.Round(GetTotalPrice(GameCluster), 2),Username, GameName);
                     }
                 }
             }

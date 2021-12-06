@@ -9,29 +9,29 @@
 @inject IUserService UserService
 
 
-<div class="wrapper">
-</div>
-<div class="container">
-    <div class="row no-gutters">
-        <div class="form-box" id="function">
-            <h1 class="font-weight-bold py-3">Register</h1>
-            <h4>Register new account</h4>
-            <EditForm Model="_user"class="input-group">
-                <input type="text" placeholder="user name" @bind-value="_user.Username" class="input-field"/>
-                <input type="password" placeholder="password" @bind-value="_user.Password" class="input-field"/>
-                <input type="text" placeholder="first name" @bind-value="_user.FirstName" class="input-field"/>
-                <input type="text" placeholder="last name" @bind-value="_user.LastName" class="input-field"/>
-            </EditForm>
-            <button type="button" class="submit-btn" @onclick="AddNewUserAsync">Register</button>
-            @if (!_errorMessage.Equals(""))
-            {
-                <div style="color:red"> @_errorMessage</div>
-            }
-            
-            <div class="oi-info text-info"><p>Already have an account? <a href="/login">Log in here</a></p></div>
+    <div class="wrapper">
+    </div>
+    <div class="container">
+        <div class="row no-gutters">
+            <div class="form-box" id="function">
+                <h1 class="font-weight-bold py-3">Register</h1>
+                <h4>Register new account</h4>
+                <EditForm Model="_user"class="input-group">
+                    <input type="text" placeholder="user name" @bind-value="_user.Username" class="input-field"/>
+                    <input type="password" placeholder="password" @bind-value="_user.Password" class="input-field"/>
+                    <input type="text" placeholder="first name" @bind-value="_user.FirstName" class="input-field"/>
+                    <input type="text" placeholder="last name" @bind-value="_user.LastName" class="input-field"/>
+                </EditForm>
+                <button type="button" class="submit-btn" @onclick="AddNewUserAsync">Register</button>
+                @if (!_errorMessage.Equals(""))
+                {
+                    <div style="color:red"> @_errorMessage</div>
+                }
+                
+                <div class="oi-info text-info"><p>Already have an account? <a href="/login">Log in here</a></p></div>
+            </div>
         </div>
     </div>
-</div>
 
 
 
