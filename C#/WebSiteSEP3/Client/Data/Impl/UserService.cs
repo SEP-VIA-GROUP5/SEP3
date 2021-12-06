@@ -64,12 +64,12 @@ namespace Client.Data.Impl
             return null;
         }
 
-        public async Task<User> EditUser(string username, string password, string firstName, string lastName)
+        public async Task<User> EditUser(int ID, string username, string photo, string firstName, string lastName)
         {
             string userAsJson = null;
             Console.WriteLine("Registering...");
             HttpResponseMessage responseMessage =
-                await Client.GetAsync($"http://localhost:8080/user/edit?username={username}&password={password}&firstname={firstName}&lastname={lastName}");
+                await Client.GetAsync($"http://localhost:8080/user/edit?ID={ID}&username={username}&photo={photo}&firstname={firstName}&lastname={lastName}");
             if (responseMessage.StatusCode == HttpStatusCode.OK)
             {
                 userAsJson = await responseMessage.Content.ReadAsStringAsync();

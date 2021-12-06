@@ -95,6 +95,16 @@ public class ServerHandling implements Runnable{
                             System.out.println("Sending library");
                             break;
                         }
+                        case "editUser":
+                        {
+                            System.out.println("Editing user");
+                            databaseServer.editUserInfo(received.getUser().getId(),
+                                received.getUser().getUsername(),
+                                received.getUser().getPhoto(),
+                                received.getUser().getFirstName(),
+                                received.getUser().getLastName());
+                            break;
+                        }
                         default:
                             System.out.println("Type not found");
                     }

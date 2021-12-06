@@ -25,6 +25,15 @@ public class User implements Serializable
         Role = role;
     }
 
+    public User(int id, String username, String photo, String lastName, String firstName)
+    {
+        Id = id;
+        Username = username;
+        Photo = photo;
+        LastName = lastName;
+        FirstName = firstName;
+    }
+
     public User (String username, String password, String firstName, String lastName)
     {
         Username = username;
