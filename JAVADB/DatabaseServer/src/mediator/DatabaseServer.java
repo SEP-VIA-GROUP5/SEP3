@@ -28,4 +28,5 @@ public interface DatabaseServer
   ArrayList<Game> getShoppingCart(String username) throws SQLException;
   void addToLibrary(String username, int gameID, String gameKey) throws SQLException;
   ArrayList<Game> getLibrary(String username) throws SQLException;
+  void editGame (int ID, String gameName, double price, String description, String specifications, int IGNRating, String ESRBRating, String photoURL, String releaseDate) throws SQLException;
 }
