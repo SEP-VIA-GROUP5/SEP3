@@ -424,6 +424,27 @@ public class DatabaseServerManager implements DatabaseServer
         return games;
     }
 
+    @Override public void editGame(int ID, String gameName, double price,
+        String description, String specifications, int IGNRating,
+        String ESRBRating, String photoURL, String releaseDate)
+        throws SQLException
+    {
+        try(Connection connection = getConnection())
+        {
+            PreparedStatement statement = connection.prepareStatement("UPDATE games SET game_name = ?,price = ?, description = ?, specifications = ?, ign_rating = ?, esrb_rating = ?, photo_url = ?, release_date = ? WHERE game_id = ?;");
+            statement.setString(1, gameName);
+            statement.setDouble(2, price);
+            statement.setString(3, description);
+            statement.setString(4, specifications);
+            statement.setInt(5, IGNRating);
+            statement.setString(6, ESRBRating);
+            statement.setString(7, photoURL);
+            statement.setDate(8, java.sql.Date.valueOf(releaseDate));
+            statement.setInt(9, ID);
+            statement.executeUpdate();
+        }
+    }
+
     @Override public void addToShoppingCart(String username, int gameID)
         throws SQLException
     {
