@@ -28,6 +28,16 @@
             </div>
         </div>
 
+        <div class="container row align-top float-right">
+            <div class="col-lg-4">
+                Newly Released Games
+                <button class="btn-outline-primary" @onclick="@(() => FilterByDate())">
+                    <i class="oi d-block"/>
+                </button>
+                <button class="btn-outline-primary" @onclick="ClearSearch">Clear</button>
+            </div>
+        </div>
+
         @if (errorMessage.Equals(""))
         {
             <div class="text-info">
@@ -42,29 +52,28 @@
             </div>
             <div class="container-fluid row">
                 @if (games != null)
-                               {
-                                   @foreach (var game in games.GamesStack)
-                                   {
-                                       <div class="col-lg-4">
-                                           <div class="card" style="width: 19rem">
-                                               <img class="card-img-top" src="@GetImage(game)" alt="Image of @game.GameName" title="Order @game.GameName"/>
-                                               <div class="card-body">
-                                                   <h3 class="card-title">@game.GameName</h3>
-                                                   <ul class="list-group list-group-flush">
-                                                       <li class="list-group-item">
-                                                           $@string.Format("{0:f}", Math.Round(game.Price, 2).ToString())
-                                                       </li>
-                                                   </ul>
-                                                   <div class="card-body row">
-                                                       <button class="btn btn-sm btn-dark order-button float-lg-right" @onclick="(() => MoreInformations(game.GameName))">INFO</button>
-                                                   </div>
-                                               </div>
-                                           </div>
-                                       </div>
-                                   }
-                               }
+                {
+                    @foreach (var game in games.GamesStack)
+                    {
+                        <div class="col-lg-4">
+                            <div class="card" style="width: 19rem">
+                                <img class="card-img-top" src="@GetImage(game)" alt="Image of @game.GameName" title="Order @game.GameName"/>
+                                <div class="card-body">
+                                    <h3 class="card-title">@game.GameName</h3>
+                                    <ul class="list-group list-group-flush">
+                                        <li class="list-group-item">
+                                            $@string.Format("{0:f}", Math.Round(game.Price, 2).ToString())
+                                        </li>
+                                    </ul>
+                                    <div class="card-body row">
+                                        <button class="btn btn-sm btn-dark order-button float-lg-right" @onclick="(() => MoreInformations(game.GameName))">INFO</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
             </div>
-            
         }
         else
         {
@@ -237,5 +246,10 @@
     private void MoreInformations(string gameName)
     {
         NavigationManager.NavigateTo($"/GameInformation/{gameName}");
+    }
+
+    private async Task FilterByDate()
+    {
+        
     }
 }
