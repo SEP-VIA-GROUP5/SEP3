@@ -174,6 +174,15 @@ public class ServerHandling implements Runnable{
                                     receivedGame.getReleaseDate());
                                 break;
                         }
+                        case "sortedByDate":
+                        {
+                            System.out.println("Getting games");
+                            GamePackage sendGamePackage = new GamePackage("sortedByDate", databaseServer.sortByDate());
+                            sendDataToServer(sendGamePackage);
+                            System.out.println("Sending all games");
+                            break;
+                        }
+
                         default:
                             System.out.println("Type not found");
                     }

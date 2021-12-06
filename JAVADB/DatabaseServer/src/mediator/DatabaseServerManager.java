@@ -424,27 +424,6 @@ public class DatabaseServerManager implements DatabaseServer
         return games;
     }
 
-    @Override public void editGame(int ID, String gameName, double price,
-        String description, String specifications, int IGNRating,
-        String ESRBRating, String photoURL, String releaseDate)
-        throws SQLException
-    {
-        try(Connection connection = getConnection())
-        {
-            PreparedStatement statement = connection.prepareStatement("UPDATE games SET game_name = ?,price = ?, description = ?, specifications = ?, ign_rating = ?, esrb_rating = ?, photo_url = ?, release_date = ? WHERE game_id = ?;");
-            statement.setString(1, gameName);
-            statement.setDouble(2, price);
-            statement.setString(3, description);
-            statement.setString(4, specifications);
-            statement.setInt(5, IGNRating);
-            statement.setString(6, ESRBRating);
-            statement.setString(7, photoURL);
-            statement.setDate(8, java.sql.Date.valueOf(releaseDate));
-            statement.setInt(9, ID);
-            statement.executeUpdate();
-        }
-    }
-
     @Override public void addToShoppingCart(String username, int gameID)
         throws SQLException
     {
@@ -478,6 +457,33 @@ public class DatabaseServerManager implements DatabaseServer
             statement.executeUpdate();
         }
     }
+
+    @Override public ArrayList<Game> sortByDate() throws SQLException
+    {
+        ArrayList<Game> games = new ArrayList<>();
+        try(Connection connection = getConnection())
+        {
+            PreparedStatement statement = connection.prepareStatement("SELECT * FROM games ORDER BY release_date DESC");
+            ResultSet resultSet = statement.executeQuery();
+            while(resultSet.next())
+            {
+                Game game = new Game();
+                game.setDescription(resultSet.getString("description"));
+                game.setESRBRating(resultSet.getString("esrb_rating"));
+                game.setGameId(resultSet.getInt("game_id"));
+                game.setGameName(resultSet.getString("game_name"));
+                game.setIGNRating(resultSet.getInt("ign_rating"));
+                game.setPhotoURL(resultSet.getString("photo_url"));
+                game.setPrice(resultSet.getDouble("price"));
+                game.setReleaseDate(resultSet.getString("release_date"));
+                game.setSpecifications(resultSet.getString("specifications"));
+
+                games.add(game);
+            }
+        }
+        return games;
+    }
+
     private Connection getConnection() throws SQLException
     {
         String url = "jdbc:postgresql://ella.db.elephantsql.com:5432/zgckhgwi";
