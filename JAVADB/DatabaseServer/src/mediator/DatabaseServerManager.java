@@ -5,9 +5,12 @@ import Sockets.Models.GameKey;
 import Sockets.Models.User;
 
 import java.sql.*;
+import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+
+import static java.lang.String.valueOf;
 
 public class DatabaseServerManager implements DatabaseServer
 {
@@ -454,6 +457,33 @@ public class DatabaseServerManager implements DatabaseServer
             statement.executeUpdate();
         }
     }
+
+    @Override public ArrayList<Game> sortByDate() throws SQLException
+    {
+        ArrayList<Game> games = new ArrayList<>();
+        try(Connection connection = getConnection())
+        {
+            PreparedStatement statement = connection.prepareStatement("SELECT * FROM games ORDER BY release_date DESC");
+            ResultSet resultSet = statement.executeQuery();
+            while(resultSet.next())
+            {
+                Game game = new Game();
+                game.setDescription(resultSet.getString("description"));
+                game.setESRBRating(resultSet.getString("esrb_rating"));
+                game.setGameId(resultSet.getInt("game_id"));
+                game.setGameName(resultSet.getString("game_name"));
+                game.setIGNRating(resultSet.getInt("ign_rating"));
+                game.setPhotoURL(resultSet.getString("photo_url"));
+                game.setPrice(resultSet.getDouble("price"));
+                game.setReleaseDate(resultSet.getString("release_date"));
+                game.setSpecifications(resultSet.getString("specifications"));
+
+                games.add(game);
+            }
+        }
+        return games;
+    }
+
     private Connection getConnection() throws SQLException
     {
         String url = "jdbc:postgresql://ella.db.elephantsql.com:5432/zgckhgwi";

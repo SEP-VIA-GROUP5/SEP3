@@ -10,6 +10,6 @@ public class TestingGames
   public static void main(String[] args) throws SQLException
   {
     DatabaseServer databaseServer = new DatabaseServerManager();
-    System.out.println(databaseServer.getLibrary("admin").get(0).getGameKey().getGameKey());
+    System.out.println(databaseServer.sortByDate().get(7).getReleaseDate());
   }
 }

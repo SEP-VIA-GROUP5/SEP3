@@ -3,15 +3,60 @@
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="0a3bd084-a96c-4c6f-9125-63aa6974f852" name="Default Changelist" comment="" />
+    <list default="true" id="0a3bd084-a96c-4c6f-9125-63aa6974f852" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../../C#/WebSiteSEP3/.idea/.idea.WebSiteSEP3/.idea/shelf/Uncommitted_changes_before_Update_at_12_4_2021_12_18_PM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../C#/WebSiteSEP3/.idea/.idea.WebSiteSEP3/.idea/shelf/Uncommitted_changes_before_Update_at_12_4_2021_12_18_PM__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../C#/WebSiteSEP3/.idea/.idea.WebSiteSEP3/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../C#/WebSiteSEP3/.idea/.idea.WebSiteSEP3/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../C#/WebSiteSEP3/Client/obj/Debug/net5.0/RazorDeclaration/Pages/GameLibary.razor.g.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../C#/WebSiteSEP3/Client/obj/Debug/net5.0/RazorDeclaration/Pages/GameLibary.razor.g.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../C#/WebSiteSEP3/Client/obj/rider.project.restore.info" beforeDir="false" afterPath="$PROJECT_DIR$/../../C#/WebSiteSEP3/Client/obj/rider.project.restore.info" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/consuming-rest/src/main/java/Controllers/GameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/consuming-rest/src/main/java/Controllers/GameController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/consuming-rest/src/main/java/Services/GameService.java" beforeDir="false" afterPath="$PROJECT_DIR$/consuming-rest/src/main/java/Services/GameService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/consuming-rest/src/main/java/Services/IGameService.java" beforeDir="false" afterPath="$PROJECT_DIR$/consuming-rest/src/main/java/Services/IGameService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../JAVADB/DatabaseServer/src/Sockets/Handling/ServerHandling.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../JAVADB/DatabaseServer/src/Sockets/Handling/ServerHandling.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../JAVADB/DatabaseServer/src/mediator/DatabaseServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../JAVADB/DatabaseServer/src/mediator/DatabaseServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../JAVADB/DatabaseServer/src/mediator/DatabaseServerManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../JAVADB/DatabaseServer/src/mediator/DatabaseServerManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../JAVADB/DatabaseServer/target/classes/mediator/DatabaseServerManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../JAVADB/DatabaseServer/target/classes/mediator/DatabaseServerManager.class" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHome" value="C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2020.2\plugins\maven\lib\maven3" />
+      </MavenGeneralSettings>
+    </option>
   </component>
   <component name="ProjectId" id="21m93euyMViwM98S119vRHW0WCE" />
   <component name="ProjectViewState">
@@ -20,6 +65,26 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+  </component>
+  <component name="RunManager">
+    <configuration name="Testing" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.rest.consumingrest.Testing" />
+      <module name="REST-Server" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.rest.consumingrest.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Testing" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -31,5 +96,38 @@
       <updated>1638535197423</updated>
     </task>
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="WindowStateProjectService">
+    <state width="1879" height="295" key="GridCell.Tab.0.bottom" timestamp="1638794019078">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1879" height="295" key="GridCell.Tab.0.bottom/-1920.0.1536.864/0.0.1920.1080@0.0.1920.1080" timestamp="1638794019078" />
+    <state width="1879" height="295" key="GridCell.Tab.0.center" timestamp="1638794019077">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1879" height="295" key="GridCell.Tab.0.center/-1920.0.1536.864/0.0.1920.1080@0.0.1920.1080" timestamp="1638794019077" />
+    <state width="1879" height="295" key="GridCell.Tab.0.left" timestamp="1638794019077">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1879" height="295" key="GridCell.Tab.0.left/-1920.0.1536.864/0.0.1920.1080@0.0.1920.1080" timestamp="1638794019077" />
+    <state width="1879" height="295" key="GridCell.Tab.0.right" timestamp="1638794019078">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1879" height="295" key="GridCell.Tab.0.right/-1920.0.1536.864/0.0.1920.1080@0.0.1920.1080" timestamp="1638794019078" />
+    <state x="742" y="455" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1638790930525">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="742" y="455" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/-1920.0.1536.864/0.0.1920.1080@0.0.1920.1080" timestamp="1638790930525" />
   </component>
 </project>
