@@ -1,0 +1,65 @@
+﻿@page "/AddGame"
+@using Client.Data
+@using Client.Models
+@using System
+@inject IGameService _gameService;
+<h3>Add Game</h3>
+@attribute [Authorize(Policy = "Administrator")]
+@inject NavigationManager _navigationManager;
+<AuthorizeView Context="Auth" Policy="Administrator">
+    
+    <EditForm Model="@gameToSend" OnValidSubmit="@AddGameAsync">
+        <DataAnnotationsValidator/>
+        <ValidationSummary/>
+        <div class="form-group">
+            Game Name:<br/>
+            <InputTextArea rows="4" @bind-Value="gameToSend.GameName"/>
+        </div>
+        <div class="form-group">
+            Game Price:<br/>
+            <InputNumber @bind-Value="gameToSend.Price"/>
+        </div>
+        <div class="form-group">
+            Game Photo URL:<br/>
+            <InputTextArea rows="5" @bind-Value="gameToSend.Photo"/>
+        </div>
+        <div class="form-group">
+            ESBR Rating:<br/>
+            <InputTextArea rows="3" @bind-Value="gameToSend.ESRB"/>
+        </div>
+        <div class="form-group">
+            IGN Rating:<br/>
+            <InputNumber @bind-Value="gameToSend.IGN"/>
+        </div>
+        <div class="form-group">
+            Description:<br/>
+            <InputTextArea cols="50" rows="3" @bind-Value="gameToSend.Description"/>
+        </div>
+        <div class="form-group">
+            Specifications:<br/>
+            <InputTextArea cols="50" rows="3" @bind-Value="gameToSend.Specifications"/>
+        </div>
+        <div class="form-group">
+            Release Date:<br/>
+            <InputDate rows="1" @bind-Value:format="yyyy-MM-dd" @bind-Value="dateTime" />
+        </div>
+        <p class="actions">
+            <button class="btn btn-outline-dark" type="submit">Add Game</button>
+        </p>
+
+
+    </EditForm>
+</AuthorizeView>
+
+@code {
+    private Game gameToSend = new Game();
+    private DateTime dateTime = new DateTime();
+
+    private async Task AddGameAsync()
+    {
+        gameToSend.ReleaseDate = dateTime.Year + "-" + dateTime.Month + "-" + dateTime.Day;
+        await _gameService.addGameAsync(gameToSend);
+        _navigationManager.NavigateTo("/");
+    }
+
+}

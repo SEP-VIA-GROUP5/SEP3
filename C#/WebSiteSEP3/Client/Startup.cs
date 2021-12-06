@@ -28,6 +28,15 @@ namespace Client
             services.AddSingleton<IUserService, UserService>();
             services.AddSingleton<IGameService, GameService>();
             services.AddScoped<AuthenticationStateProvider, CustomAuthenticationStateProvider>();
+            
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("Administrator", a =>
+                    a.RequireAuthenticatedUser().RequireClaim("Role", "admin"));
+            });
+
+           
+
 
             
         }

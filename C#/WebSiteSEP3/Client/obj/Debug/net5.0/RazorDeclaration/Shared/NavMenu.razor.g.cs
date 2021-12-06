@@ -90,7 +90,9 @@ using Client.Authentication;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 36 "D:\FACULTATE SEMESTRUL 3\SEP3\CODE\SEP3\C#\WebSiteSEP3\Client\Shared\NavMenu.razor"
+
+#line 43 "C:\Users\ljusk\Documents\GitHub\SEP3\C#\WebSiteSEP3\Client\Shared\NavMenu.razor"
+
        
     private bool collapseNavMenu = true;
 
@@ -121,6 +123,11 @@ using Client.Authentication;
     public void PerformGameLibrary()
     {
         NavigationManager.NavigateTo("/GameLibrary");
+    }
+
+    public void PerformAddGame()
+    {
+        NavigationManager.NavigateTo("/AddGame");
     }
 
 
