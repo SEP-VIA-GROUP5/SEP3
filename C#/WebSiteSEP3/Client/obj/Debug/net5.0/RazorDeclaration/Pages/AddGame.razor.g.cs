@@ -4,7 +4,7 @@
 #pragma warning disable 0649
 #pragma warning disable 0169
 
-namespace Client.Shared
+namespace Client.Pages
 {
     #line hidden
     using System;
@@ -76,13 +76,28 @@ using Client;
 #line hidden
 #nullable disable
 #nullable restore
-#line 1 "C:\Users\ljusk\Documents\GitHub\SEP3\C#\WebSiteSEP3\Client\Shared\NavMenu.razor"
-using Client.Authentication;
+#line 2 "C:\Users\ljusk\Documents\GitHub\SEP3\C#\WebSiteSEP3\Client\Pages\AddGame.razor"
+using Client.Data;
 
 #line default
 #line hidden
 #nullable disable
-    public partial class NavMenu : Microsoft.AspNetCore.Components.ComponentBase
+#nullable restore
+#line 3 "C:\Users\ljusk\Documents\GitHub\SEP3\C#\WebSiteSEP3\Client\Pages\AddGame.razor"
+using Client.Models;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 6 "C:\Users\ljusk\Documents\GitHub\SEP3\C#\WebSiteSEP3\Client\Pages\AddGame.razor"
+           [Authorize(Policy = "Administrator")]
+
+#line default
+#line hidden
+#nullable disable
+    [Microsoft.AspNetCore.Components.RouteAttribute("/AddGame")]
+    public partial class AddGame : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998
         protected override void BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder __builder)
@@ -90,50 +105,24 @@ using Client.Authentication;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 43 "C:\Users\ljusk\Documents\GitHub\SEP3\C#\WebSiteSEP3\Client\Shared\NavMenu.razor"
+#line 54 "C:\Users\ljusk\Documents\GitHub\SEP3\C#\WebSiteSEP3\Client\Pages\AddGame.razor"
        
-    private bool collapseNavMenu = true;
+    private Game gameToSend = new Game();
+    private DateTime dateTime = new DateTime();
 
-    private string NavMenuCssClass => collapseNavMenu ? "collapse" : null;
-
-    private void ToggleNavMenu()
+    private async Task AddGameAsync()
     {
-        collapseNavMenu = !collapseNavMenu;
-    }
-
-    public async Task PerformLogout()
-    {
-        try
-        {
-            ((CustomAuthenticationStateProvider) AuthenticationStateProvider).Logout();
-            NavigationManager.NavigateTo("/");
-        }
-        catch (Exception e)
-        {
-        }
-    }
-
-    public void PerformShoppingCart()
-    {
-        NavigationManager.NavigateTo("/ShoppingCart");
-    }
-
-    public void PerformGameLibrary()
-    {
-        NavigationManager.NavigateTo("/GameLibrary");
-    }
-
-    public void PerformAddGame()
-    {
-        NavigationManager.NavigateTo("/AddGame");
+        gameToSend.ReleaseDate = dateTime.Year + "-" + dateTime.Month + "-" + dateTime.Day;
+        await _gameService.addGameAsync(gameToSend);
+        _navigationManager.NavigateTo("/");
     }
 
 
 #line default
 #line hidden
 #nullable disable
-        [global::Microsoft.AspNetCore.Components.InjectAttribute] private AuthenticationStateProvider AuthenticationStateProvider { get; set; }
-        [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager NavigationManager { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager _navigationManager { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IGameService _gameService { get; set; }
     }
 }
 #pragma warning restore 1591
