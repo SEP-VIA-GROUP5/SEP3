@@ -8,43 +8,43 @@
 @inject NavigationManager _navigationManager;
 <AuthorizeView Context="Auth" Policy="Administrator">
     
-    <EditForm OnValidSubmit="@AddGameAsync">
+    <EditForm OnValidSubmit="@editGameAsync">
         <DataAnnotationsValidator/>
         <ValidationSummary/>
         <div class="form-group">
             Game Name:<br/>
-            <InputTextArea rows="4" @bind-Value="gameToSend.GameName"/>
+            <InputTextArea rows="4" @bind-Value="gameToEdit.GameName"/>
         </div>
         <div class="form-group">
             Game Price:<br/>
-            <InputNumber @bind-Value="gameToSend.Price"/>
+            <InputNumber @bind-Value="gameToEdit.Price"/>
         </div>
         <div class="form-group">
             Game Photo URL:<br/>
-            <InputTextArea rows="5" @bind-Value="gameToSend.Photo"/>
+            <InputTextArea rows="5" @bind-Value="gameToEdit.Photo"/>
         </div>
         <div class="form-group">
             ESBR Rating:<br/>
-            <InputTextArea rows="3" @bind-Value="gameToSend.ESRB"/>
+            <InputTextArea rows="3" @bind-Value="gameToEdit.ESRB"/>
         </div>
         <div class="form-group">
             IGN Rating:<br/>
-            <InputNumber @bind-Value="gameToSend.IGN"/>
+            <InputNumber @bind-Value="gameToEdit.IGN"/>
         </div>
         <div class="form-group">
             Description:<br/>
-            <InputTextArea cols="50" rows="3" @bind-Value="gameToSend.Description"/>
+            <InputTextArea cols="50" rows="3" @bind-Value="gameToEdit.Description"/>
         </div>
         <div class="form-group">
             Specifications:<br/>
-            <InputTextArea cols="50" rows="3" @bind-Value="gameToSend.Specifications"/>
+            <InputTextArea cols="50" rows="3" @bind-Value="gameToEdit.Specifications"/>
         </div>
         <div class="form-group">
             Release Date:<br/>
             <InputDate rows="1" @bind-Value:format="yyyy-MM-dd" @bind-Value="dateTime" />
         </div>
         <p class="actions">
-            <button class="btn btn-outline-dark" type="submit">Add Game</button>
+            <button class="btn btn-outline-dark" type="submit" @onclick="editGameAsync">Edit Game</button>
         </p>
 
 
@@ -71,4 +71,18 @@
         }
     }
 
+    private async Task editGameAsync()
+    {
+        try
+        {
+            gameToEdit.ReleaseDate = dateTime.Year + "-" + dateTime.Month + "-" + dateTime.Day;
+            _gameService.editGameAsync(gameToEdit);
+            _navigationManager.NavigateTo("/");
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            errorMessage = e.Message;
+        }
+    }
 }

@@ -119,7 +119,7 @@ using System.Diagnostics.Eventing.Reader;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 97 "C:\Users\rytis\Desktop\Everything with uni\Programming\SEP projects\SEP3\SEP3\C#\WebSiteSEP3\Client\Pages\Games\GameInformation.razor"
+#line 100 "C:\Users\rytis\Desktop\Everything with uni\Programming\SEP projects\SEP3\SEP3\C#\WebSiteSEP3\Client\Pages\Games\GameInformation.razor"
        
 
     private ClaimsPrincipal _claimsPrincipal;
@@ -185,6 +185,10 @@ using System.Diagnostics.Eventing.Reader;
         await GameService.addGameToShoppingCartAsync(username, game.GameId);
     }
 
+    public void EditGame()
+    {
+        NavigationManager.NavigateTo($"/EditGame/{game.GameName}");
+    }
 
 #line default
 #line hidden

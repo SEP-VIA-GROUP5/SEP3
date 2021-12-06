@@ -7,6 +7,7 @@
 namespace Client.Pages
 {
     #line hidden
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
@@ -89,14 +90,7 @@ using Client.Models;
 #line hidden
 #nullable disable
 #nullable restore
-#line 4 "C:\Users\rytis\Desktop\Everything with uni\Programming\SEP projects\SEP3\SEP3\C#\WebSiteSEP3\Client\Pages\AddGame.razor"
-using System;
-
-#line default
-#line hidden
-#nullable disable
-#nullable restore
-#line 7 "C:\Users\rytis\Desktop\Everything with uni\Programming\SEP projects\SEP3\SEP3\C#\WebSiteSEP3\Client\Pages\AddGame.razor"
+#line 6 "C:\Users\rytis\Desktop\Everything with uni\Programming\SEP projects\SEP3\SEP3\C#\WebSiteSEP3\Client\Pages\AddGame.razor"
            [Authorize(Policy = "Administrator")]
 
 #line default
@@ -111,7 +105,7 @@ using System;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 54 "C:\Users\rytis\Desktop\Everything with uni\Programming\SEP projects\SEP3\SEP3\C#\WebSiteSEP3\Client\Pages\AddGame.razor"
+#line 53 "C:\Users\rytis\Desktop\Everything with uni\Programming\SEP projects\SEP3\SEP3\C#\WebSiteSEP3\Client\Pages\AddGame.razor"
        
     private Game gameToSend = new Game();
     private DateTime dateTime = new DateTime();
