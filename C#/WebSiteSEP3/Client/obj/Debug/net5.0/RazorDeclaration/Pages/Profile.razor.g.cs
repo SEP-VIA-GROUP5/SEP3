@@ -13,92 +13,99 @@ namespace Client.Pages
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Components;
 #nullable restore
-#line 1 "C:\Users\rytis\Desktop\Everything with uni\Programming\SEP projects\SEP3\SEP3\C#\WebSiteSEP3\Client\_Imports.razor"
+#line 1 "D:\FACULTATE SEMESTRUL 3\SEP3\CODE\SEP3\C#\WebSiteSEP3\Client\_Imports.razor"
 using System.Net.Http;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "C:\Users\rytis\Desktop\Everything with uni\Programming\SEP projects\SEP3\SEP3\C#\WebSiteSEP3\Client\_Imports.razor"
+#line 2 "D:\FACULTATE SEMESTRUL 3\SEP3\CODE\SEP3\C#\WebSiteSEP3\Client\_Imports.razor"
 using Microsoft.AspNetCore.Authorization;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 3 "C:\Users\rytis\Desktop\Everything with uni\Programming\SEP projects\SEP3\SEP3\C#\WebSiteSEP3\Client\_Imports.razor"
+#line 3 "D:\FACULTATE SEMESTRUL 3\SEP3\CODE\SEP3\C#\WebSiteSEP3\Client\_Imports.razor"
 using Microsoft.AspNetCore.Components.Authorization;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 4 "C:\Users\rytis\Desktop\Everything with uni\Programming\SEP projects\SEP3\SEP3\C#\WebSiteSEP3\Client\_Imports.razor"
+#line 4 "D:\FACULTATE SEMESTRUL 3\SEP3\CODE\SEP3\C#\WebSiteSEP3\Client\_Imports.razor"
 using Microsoft.AspNetCore.Components.Forms;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 5 "C:\Users\rytis\Desktop\Everything with uni\Programming\SEP projects\SEP3\SEP3\C#\WebSiteSEP3\Client\_Imports.razor"
+#line 5 "D:\FACULTATE SEMESTRUL 3\SEP3\CODE\SEP3\C#\WebSiteSEP3\Client\_Imports.razor"
 using Microsoft.AspNetCore.Components.Routing;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 6 "C:\Users\rytis\Desktop\Everything with uni\Programming\SEP projects\SEP3\SEP3\C#\WebSiteSEP3\Client\_Imports.razor"
+#line 6 "D:\FACULTATE SEMESTRUL 3\SEP3\CODE\SEP3\C#\WebSiteSEP3\Client\_Imports.razor"
 using Microsoft.AspNetCore.Components.Web;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 7 "C:\Users\rytis\Desktop\Everything with uni\Programming\SEP projects\SEP3\SEP3\C#\WebSiteSEP3\Client\_Imports.razor"
+#line 7 "D:\FACULTATE SEMESTRUL 3\SEP3\CODE\SEP3\C#\WebSiteSEP3\Client\_Imports.razor"
 using Microsoft.AspNetCore.Components.Web.Virtualization;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 8 "C:\Users\rytis\Desktop\Everything with uni\Programming\SEP projects\SEP3\SEP3\C#\WebSiteSEP3\Client\_Imports.razor"
+#line 8 "D:\FACULTATE SEMESTRUL 3\SEP3\CODE\SEP3\C#\WebSiteSEP3\Client\_Imports.razor"
 using Microsoft.JSInterop;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 9 "C:\Users\rytis\Desktop\Everything with uni\Programming\SEP projects\SEP3\SEP3\C#\WebSiteSEP3\Client\_Imports.razor"
+#line 9 "D:\FACULTATE SEMESTRUL 3\SEP3\CODE\SEP3\C#\WebSiteSEP3\Client\_Imports.razor"
 using Client;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "C:\Users\rytis\Desktop\Everything with uni\Programming\SEP projects\SEP3\SEP3\C#\WebSiteSEP3\Client\Pages\Profile.razor"
+#line 2 "D:\FACULTATE SEMESTRUL 3\SEP3\CODE\SEP3\C#\WebSiteSEP3\Client\Pages\Profile.razor"
 using Models;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 3 "C:\Users\rytis\Desktop\Everything with uni\Programming\SEP projects\SEP3\SEP3\C#\WebSiteSEP3\Client\Pages\Profile.razor"
+#line 3 "D:\FACULTATE SEMESTRUL 3\SEP3\CODE\SEP3\C#\WebSiteSEP3\Client\Pages\Profile.razor"
 using Client.Data;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 4 "C:\Users\rytis\Desktop\Everything with uni\Programming\SEP projects\SEP3\SEP3\C#\WebSiteSEP3\Client\Pages\Profile.razor"
+#line 4 "D:\FACULTATE SEMESTRUL 3\SEP3\CODE\SEP3\C#\WebSiteSEP3\Client\Pages\Profile.razor"
 using System.IO;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 5 "C:\Users\rytis\Desktop\Everything with uni\Programming\SEP projects\SEP3\SEP3\C#\WebSiteSEP3\Client\Pages\Profile.razor"
+#line 5 "D:\FACULTATE SEMESTRUL 3\SEP3\CODE\SEP3\C#\WebSiteSEP3\Client\Pages\Profile.razor"
 using System.Net;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 6 "D:\FACULTATE SEMESTRUL 3\SEP3\CODE\SEP3\C#\WebSiteSEP3\Client\Pages\Profile.razor"
+using Client.Authentication;
 
 #line default
 #line hidden
@@ -112,31 +119,93 @@ using System.Net;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 61 "C:\Users\rytis\Desktop\Everything with uni\Programming\SEP projects\SEP3\SEP3\C#\WebSiteSEP3\Client\Pages\Profile.razor"
+#line 194 "D:\FACULTATE SEMESTRUL 3\SEP3\CODE\SEP3\C#\WebSiteSEP3\Client\Pages\Profile.razor"
        
 
     [Parameter]
     public string Username { get; set; }
 
-    private string errorMessage;
+    private string infoOneMessage;
+    private string infoSecondMessage;
     private User user;
     private GameCluster gamesOwned;
 
+    private Boolean changePasswordButton;
+    private Boolean changeInformationsButton;
+
     protected override async Task OnParametersSetAsync()
     {
-        errorMessage = "";
+        infoOneMessage = "";
         try
         {
             user = await _userService.GetUser(Username);
-           SaveImageIntoClient();
-                gamesOwned = await _gameService.getLibraryAsync(Username);
+            SaveImageIntoClient();
+            gamesOwned = await _gameService.getLibraryAsync(Username);
+            changePasswordButton = false;
+            changeInformationsButton = false;
         }
         catch (Exception e)
         {
-            errorMessage = "Informations are loading...";
+            infoOneMessage = "Informations are loading...";
             Console.WriteLine($"Profile Exception > {e.Message}");
         }
     }
+
+    private async Task ChangePassword()
+    {
+        infoOneMessage = "";
+        try
+        {
+            User verifyUser = await _userService.ChangePassword(user.Username, user.Password);
+            if (verifyUser != null)
+            {
+                infoOneMessage = "Password changed!";
+            }
+            changePasswordButton = false;
+            changeInformationsButton = false;
+            StateHasChanged();
+        }
+        catch (Exception e)
+        {
+            infoSecondMessage = "Password: something went wrong..";
+            Console.WriteLine($"Profile Exception > {e.Message}");
+        }
+    }
+    
+    private async Task ChangeOtherInformation()
+    {
+        infoSecondMessage = "";
+        try
+        {
+            User verifyUser = await _userService.EditUser(user.Id, user.Username, user.Photo, user.FirstName, user.LastName);
+            if (verifyUser != null)
+            {
+                infoSecondMessage = "Informations changed!";
+            }
+            changeInformationsButton = false;
+            changePasswordButton = false;
+            StateHasChanged();
+        }
+        catch (Exception e)
+        {
+            infoSecondMessage = "Informations: something went wrong..";
+            Console.WriteLine($"Profile Exception > {e.Message}");
+        }
+    }
+
+    private void ButtonInformationButton()
+    {
+        changeInformationsButton = true;
+        StateHasChanged();
+    }
+
+    private void ButtonPassword()
+    {
+        changePasswordButton = true;
+        StateHasChanged();
+    }
+
+    
 
     public void SaveImageIntoClient()
     {
@@ -148,6 +217,7 @@ using System.Net;
             }
         }
     }
+
 
 #line default
 #line hidden
