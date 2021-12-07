@@ -57,7 +57,7 @@ public class UserController {
         }
     }
 
-    @GetMapping("/register")
+    @GetMapping("/changePassword")
     public ResponseEntity<User> ValidateRegister(@RequestParam String username, @RequestParam String password, @RequestParam(value = "firstname") String firstName, @RequestParam(value = "lastname") String lastName)
     {
         try{
@@ -81,6 +81,23 @@ public class UserController {
         try{
             System.out.println(username);
             User user = userService.editUser(ID, username, photo, firstName, lastName);
+
+            if(user == null) {
+                return ResponseEntity.notFound().build();
+            }
+            return ResponseEntity.ok(user);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            return ResponseEntity.badRequest().build();
+        }
+    }
+    @GetMapping("/changePassword")
+    public ResponseEntity<User> changePassword(@RequestParam String username, @RequestParam String password)
+    {
+        try{
+            User user = userService.changePassword(username, password);
 
             if(user == null) {
                 return ResponseEntity.notFound().build();

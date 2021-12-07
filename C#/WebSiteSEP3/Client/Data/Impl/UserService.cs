@@ -67,7 +67,7 @@ namespace Client.Data.Impl
         public async Task<User> EditUser(int ID, string username, string photo, string firstName, string lastName)
         {
             string userAsJson = null;
-            Console.WriteLine("Registering...");
+            Console.WriteLine("Editing...");
             HttpResponseMessage responseMessage =
                 await Client.GetAsync($"http://localhost:8080/user/edit?ID={ID}&username={username}&photo={photo}&firstname={firstName}&lastname={lastName}");
             if (responseMessage.StatusCode == HttpStatusCode.OK)
@@ -77,6 +77,20 @@ namespace Client.Data.Impl
                 return resultUser; //EXPECTED A USUAL USER TO BE RETURNED
             }
 
+            return null;
+        }
+        public async Task<User> ChangePassword(string username, string password)
+        {
+            string userAsJson = null;
+            Console.WriteLine("Changing password...");
+            HttpResponseMessage responseMessage =
+                await Client.GetAsync($"http://localhost:8080/user/changePassword?username={username}&password={password}");
+            if (responseMessage.StatusCode == HttpStatusCode.OK)
+            {
+                userAsJson = await responseMessage.Content.ReadAsStringAsync();
+                User resultUser = JsonSerializer.Deserialize<User>(userAsJson);
+                return resultUser; //EXPECTED A USUAL USER TO BE RETURNED
+            }
             return null;
         }
     }
