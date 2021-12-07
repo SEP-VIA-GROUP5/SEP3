@@ -1,0 +1,95 @@
+﻿@page "/WishList/{Username}"
+@using Client.Models
+@using Client.Data
+@using System.Security.Claims
+@inject IGameService GameService;
+@inject NavigationManager NavigationManager
+<h3>Wishlist</h3>
+<div class="panel panel-info">
+    <div class="panel-body">
+        <div id="update-message">
+        </div>
+        <table class="table table-striped table-hover ">
+            <thead>
+            <tr>
+                <th>
+                    Game Name
+                </th>
+                <th>
+                    Price (each)
+                </th>
+                <th></th>
+            </tr>
+            </thead>
+            @if (!(_gameCluster == null) || (_gameCluster != null && _gameCluster.GamesStack.Count < 1))
+            {
+                @foreach (var game in _gameCluster.GamesStack)
+                {
+                    <tr>
+                        <td>
+                            @game.GameName
+                        </td>
+                        <td>
+                            $@string.Format("{0:f}", Math.Round(game.Price, 2).ToString())
+                        </td>
+                        <td>
+                            <button class="btn btn-danger oi oi-trash" @onclick="(() => removeFromWishlist(game.GameId))"></button>
+                        </td>
+                    </tr>
+                }
+            }
+            else if(_gameCluster == null)
+            {
+            <div class="custom-bg">
+                <p>There are no items in your Wishlist currently.</p>
+            </div>
+            }
+        </table>
+    </div>
+</div>
+
+
+
+@code {
+    GameCluster _gameCluster;
+
+    string errorMessage ="";
+
+    [Parameter]
+    public string Username { get; set; }
+    
+    protected override async Task OnInitializedAsync()
+    {
+        errorMessage = "";
+        try
+        {
+            
+            _gameCluster = await GameService.getWishlistAsync(Username);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(errorMessage = e.Message);
+            Console.WriteLine("Error while getting wishlist");
+        }
+    }
+    
+    
+    public async Task removeFromWishlist(int gameId)
+    {
+        try
+        {
+            await GameService.removeGameFromWishlistAsync(Username, gameId);
+            _gameCluster = await GameService.getWishlistAsync(Username);
+            if (_gameCluster.GamesStack.Count == 0)
+            {
+                _gameCluster = null;
+            }
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e.Message);
+            Console.WriteLine("Exception when removing from Wishlist");
+        }
+    }
+
+}

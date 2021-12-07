@@ -82,13 +82,16 @@
                             <div class="col-sm-6 float-right">
                                 <button class="btn btn-danger disabled" @onclick="(() => AddToShoppingCart(game))">Add to shopping cart</button>
                             </div>
+                            <div class="col-sm-6 float-right">
+                                <button class="btn btn-danger disabled" @onclick="(() => AddToWishlist(game))">Add to Wishlist</button>
+                            </div>
                         </div>
                         <AuthorizeView>
                             <div class="col-sm-6 float-right">
                                 <button class="btn btn-danger" @onclick="EditGame"></button>
                             </div>
                         </AuthorizeView>
-                        
+
                     </div>
                 </div>
             </div>
@@ -158,15 +161,22 @@ else
     public void OrderNow()
     {
         NavigationManager.NavigateTo($"/checkoutnow/{game.GameName}");
-        }
+    }
 
     public async Task AddToShoppingCart(Game game)
     {
         await GameService.addGameToShoppingCartAsync(username, game.GameId);
+        NavigationManager.NavigateTo($"/ShoppingCart/{username}");
+    }
+
+    public async Task AddToWishlist(Game game)
+    {
+        await GameService.addGameToWishlistAsync(username, game.GameId);
     }
 
     public void EditGame()
     {
         NavigationManager.NavigateTo($"/EditGame/{game.GameName}");
     }
+
 }
