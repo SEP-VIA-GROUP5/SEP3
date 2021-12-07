@@ -201,4 +201,40 @@ public class GameService implements IGameService{
         gameCluster.setGameStack(gamePackage.getGames());
         return gameCluster;
     }
+
+    @Override
+    public String addGameToWishlist(String userName, int gameId) throws IOException {
+        CartPackage cartPackage = new CartPackage("addWishlist",userName,gameId);
+        clientHandling.sendToServer(cartPackage);
+        return "sent";
+    }
+
+    @Override
+    public GameCluster removeGameFromWishlist(String userName, int gameId) throws IOException, ClassNotFoundException {
+        CartPackage cartPackage = new CartPackage("removeWishlist",userName,gameId);
+        clientHandling.sendToServer(cartPackage);
+        Object dataReceived = clientHandling.receiveFromServer();
+        CartPackage cartPackage1 = (CartPackage) dataReceived;
+        GameCluster gameCluster = new GameCluster();
+        for(Game game: cartPackage1.getGames())
+        {
+            gameCluster.addGameToCluster(game);
+        }
+        return gameCluster;
+    }
+
+    @Override
+    public GameCluster getWishlist(String userName) throws IOException, ClassNotFoundException {
+        CartPackage cartPackage = new CartPackage("getWishlist",userName);
+        clientHandling.sendToServer(cartPackage);
+        Object dataReceived = clientHandling.receiveFromServer();
+        CartPackage cartPackage1 = (CartPackage) dataReceived;
+        GameCluster gameCluster = new GameCluster();
+        for(Game game: cartPackage1.getGames())
+        {
+            gameCluster.addGameToCluster(game);
+        }
+        System.out.println(gameCluster.getGameStack());
+        return gameCluster;
+    }
 }

@@ -21,4 +21,7 @@ public interface IGameService {
     GameCluster getLibrary(String userName) throws IOException, ClassNotFoundException;
     Game editGame(int gameID, String name, double price, String photo, String ESRB, int IGN, String shortDescription, String specifications, String date) throws IOException, ClassNotFoundException;
     GameCluster sortByDate()throws IOException, ClassNotFoundException;
+    String addGameToWishlist(String userName,int gameId) throws IOException;
+    GameCluster removeGameFromWishlist(String userName, int gameId) throws IOException, ClassNotFoundException;
+    GameCluster getWishlist(String userName) throws IOException, ClassNotFoundException;
 }
