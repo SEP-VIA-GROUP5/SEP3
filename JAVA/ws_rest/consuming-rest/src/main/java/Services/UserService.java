@@ -70,4 +70,13 @@ public class UserService implements IUserService {
         return user;
     }
 
+    @Override public User changePassword(String username, String newPassword)
+        throws IOException, ClassNotFoundException
+    {
+        User user = new User(username, newPassword);
+        UserPackage userPackage = new UserPackage(user, "changePassword");
+        clientHandling.sendToServer(userPackage);
+        return user;
+    }
+
 }
