@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using Client.Models;
 
 namespace Client.Data
@@ -11,5 +12,6 @@ namespace Client.Data
         
         Task<User> RegisterUserAsync(string Username, string Password, string FirstName, string LastName);
         Task<User> EditUser(int ID, string Username, string Photo, string FirstName, string LastName);
+        Task<User> ChangePassword(string Username, string Password);
     }
 }
