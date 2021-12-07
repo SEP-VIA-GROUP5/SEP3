@@ -500,13 +500,13 @@ public class DatabaseServerManager implements DatabaseServer
         }
     }
 
-    @Override public void changePassword(int ID, String password) throws SQLException
+    @Override public void changePassword(String username, String password) throws SQLException
     {
         try(Connection connection = getConnection())
         {
-            PreparedStatement statement = connection.prepareStatement("UPDATE Users SET password = ? WHERE id = ?");
+            PreparedStatement statement = connection.prepareStatement("UPDATE Users SET password = ? WHERE username = ?");
             statement.setString(1, password);
-            statement.setInt(2, ID);
+            statement.setString(2, username);
             statement.executeUpdate();
         }
     }
