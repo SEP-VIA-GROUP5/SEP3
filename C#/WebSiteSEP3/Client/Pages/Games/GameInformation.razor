@@ -163,6 +163,7 @@ else
     public async Task AddToShoppingCart(Game game)
     {
         await GameService.addGameToShoppingCartAsync(username, game.GameId);
+        NavigationManager.NavigateTo($"/ShoppingCart/{username}");
     }
 
     public void EditGame()

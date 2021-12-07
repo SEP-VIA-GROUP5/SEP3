@@ -30,6 +30,11 @@
                 <span class="oi oi-list-rich" aria-hidden="true"></span>Game Library
             </NavLink>
         </li>
+        <li class="nav-item px-3">
+            <NavLink class="nav-link" @onclick="PerformWishlist">
+                <span class="oi oi-clipboard" aria-hidden="true"></span>Wishlist
+            </NavLink>
+        </li>
         <AuthorizeView Policy="Administrator">
             <li class="nav-item px-3">
                 <NavLink class="nav-link" href="AddGame" @onclick="PerformAddGame">
@@ -48,7 +53,7 @@
 
 @code {
     private string username;
-    
+
     private bool collapseNavMenu = true;
 
     private string NavMenuCssClass => collapseNavMenu ? "collapse" : null;
@@ -66,7 +71,7 @@
             username = claimsPrincipal.Identity.Name;
         }
     }
-    
+
     public async Task PerformLogout()
     {
         try
@@ -83,7 +88,7 @@
     {
         _navigationManager.NavigateTo($"/Profile/{username}");
     }
-    
+
     public void PerformShoppingCart()
     {
         _navigationManager.NavigateTo($"/ShoppingCart/{username}");
@@ -97,6 +102,11 @@
     public void PerformAddGame()
     {
         _navigationManager.NavigateTo("/AddGame");
+    }
+    
+    public void PerformWishlist()
+    {
+        _navigationManager.NavigateTo($"/Wishlist/{username}");
     }
 
 }
