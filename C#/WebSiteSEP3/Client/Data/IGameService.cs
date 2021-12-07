@@ -18,5 +18,8 @@ namespace Client.Data
         Task<GameCluster> getLibraryAsync(string userName);
         Task<Game> editGameAsync(Game game);
         Task<GameCluster> getNewlyReleased();
+        Task addGameToWishlistAsync(string userName, int gameId);
+        Task<GameCluster> removeGameFromWishlistAsync(string userName, int gameId);
+        Task<GameCluster> getWishlistAsync(string userName);
     }
 }

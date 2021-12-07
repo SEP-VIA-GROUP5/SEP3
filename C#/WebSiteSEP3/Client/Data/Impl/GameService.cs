@@ -209,5 +209,20 @@ namespace Client.Data.Impl
 
             return null;
         }
+
+        public Task addGameToWishlistAsync(string userName, int gameId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<GameCluster> removeGameFromWishlistAsync(string userName, int gameId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<GameCluster> getWishlistAsync(string userName)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
