@@ -105,6 +105,13 @@ public class ServerHandling implements Runnable{
                                 received.getUser().getLastName());
                             break;
                         }
+                        case"changePassword":
+                        {
+                            System.out.println("Changing password");
+                            databaseServer.changePassword(user.Username,
+                                user.Password);
+                            break;
+                        }
                         default:
                             System.out.println("Type not found");
                     }

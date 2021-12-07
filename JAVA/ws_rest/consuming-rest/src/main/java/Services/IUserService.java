@@ -16,4 +16,6 @@ public interface IUserService {
         throws IOException, ClassNotFoundException;
 
     User editUser(int userID, String username, String photo, String firstName, String lastName)throws IOException, ClassNotFoundException;
+
+    User changePassword(String username, String newPassword)throws IOException, ClassNotFoundException;
 }
