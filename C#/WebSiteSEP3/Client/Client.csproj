@@ -32,6 +32,7 @@
     <ItemGroup>
       <Folder Include="wwwroot\Images\Games" />
       <Folder Include="wwwroot\Images\Other" />
+      <Folder Include="wwwroot\Images\Users" />
     </ItemGroup>
 
 </Project>

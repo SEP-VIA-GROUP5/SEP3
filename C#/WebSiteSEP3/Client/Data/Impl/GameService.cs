@@ -182,7 +182,7 @@ namespace Client.Data.Impl
         {
             string game = null;
             HttpResponseMessage responseMessage =
-                await Client.GetAsync($"http://localhost:8080/game/editGame?gameName={gameToSend.GameName}&price={gameToSend.Price}&photo={gameToSend.Photo}" +
+                await Client.GetAsync($"http://localhost:8080/game/editGame?gameId={gameToSend.GameId}&gameName={gameToSend.GameName}&price={gameToSend.Price}&photo={gameToSend.Photo}" +
                                       $"&esrb={gameToSend.ESRB}&ign={gameToSend.IGN}&description={gameToSend.Description}&specifications={gameToSend.Specifications}" +
                                       $"&date={gameToSend.ReleaseDate}");
             if (responseMessage.StatusCode == HttpStatusCode.OK)

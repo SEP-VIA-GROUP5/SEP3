@@ -10,6 +10,6 @@ namespace Client.Data
         Task<User> ValidateLogin(string username, string password);
         
         Task<User> RegisterUserAsync(string Username, string Password, string FirstName, string LastName);
-        Task<User> EditUser(string Username, string Password, string FirstName, string LastName);
+        Task<User> EditUser(int ID, string Username, string Photo, string FirstName, string LastName);
     }
 }

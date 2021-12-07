@@ -30,4 +30,6 @@ public interface DatabaseServer
   ArrayList<Game> getLibrary(String username) throws SQLException;
   void editGame (int ID, String gameName, double price, String description, String specifications, int IGNRating, String ESRBRating, String photoURL, String releaseDate) throws SQLException;
   ArrayList<Game> sortByDate() throws SQLException;
+  void editUserInfo(int ID, String username, String photo, String firstName, String lastName) throws SQLException;
+  void changePassword(int ID, String password) throws SQLException;
 }

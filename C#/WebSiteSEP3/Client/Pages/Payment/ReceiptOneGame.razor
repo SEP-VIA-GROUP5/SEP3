@@ -130,6 +130,7 @@
             {
                 GameKey gameKey = await _gameService.getProductKeyAsync(Game.GameId, Username);
                 _key = gameKey.Key;
+                GameCluster gameCluster = await _gameService.removeGameFromShoppingCartAsync(Username, Game.GameId);
             }
         }
         catch (Exception e)
