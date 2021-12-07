@@ -82,15 +82,19 @@
                             <div class="col-sm-6 float-right">
                                 <button class="btn btn-danger disabled" @onclick="(() => AddToShoppingCart(game))">Add to shopping cart</button>
                             </div>
-                            <div class="col-sm-6 float-right">
-                                <button class="btn btn-danger disabled" @onclick="(() => AddToWishlist(game))">Add to Wishlist</button>
-                            </div>
+                            
                         </div>
-                        <AuthorizeView>
+                        <div class="row">
                             <div class="col-sm-6 float-right">
-                                <button class="btn btn-danger" @onclick="EditGame"></button>
-                            </div>
-                        </AuthorizeView>
+                                                            <button class="btn btn-danger disabled" @onclick="(() => AddToWishlist(game))">Add to Wishlist</button>
+                                                        </div>
+                            <AuthorizeView Policy="Administrator">
+                                <div class="col-sm-6 float-right">
+                                    <button class="btn btn-danger" @onclick="EditGame">Edit</button>
+                                </div>
+                            </AuthorizeView>
+                        </div>
+                        
 
                     </div>
                 </div>
