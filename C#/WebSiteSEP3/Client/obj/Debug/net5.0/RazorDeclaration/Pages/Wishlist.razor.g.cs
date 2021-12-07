@@ -4,7 +4,7 @@
 #pragma warning disable 0649
 #pragma warning disable 0169
 
-namespace Client.Shared
+namespace Client.Pages
 {
     #line hidden
     using System;
@@ -76,13 +76,28 @@ using Client;
 #line hidden
 #nullable disable
 #nullable restore
-#line 1 "C:\Users\ljusk\Documents\GitHub\SEP3\C#\WebSiteSEP3\Client\Shared\NavMenu.razor"
-using Client.Authentication;
+#line 2 "C:\Users\ljusk\Documents\GitHub\SEP3\C#\WebSiteSEP3\Client\Pages\Wishlist.razor"
+using Client.Models;
 
 #line default
 #line hidden
 #nullable disable
-    public partial class NavMenu : Microsoft.AspNetCore.Components.ComponentBase
+#nullable restore
+#line 3 "C:\Users\ljusk\Documents\GitHub\SEP3\C#\WebSiteSEP3\Client\Pages\Wishlist.razor"
+using Client.Data;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 4 "C:\Users\ljusk\Documents\GitHub\SEP3\C#\WebSiteSEP3\Client\Pages\Wishlist.razor"
+using System.Security.Claims;
+
+#line default
+#line hidden
+#nullable disable
+    [Microsoft.AspNetCore.Components.RouteAttribute("/WishList/{Username}")]
+    public partial class Wishlist : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998
         protected override void BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder __builder)
@@ -90,71 +105,55 @@ using Client.Authentication;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 54 "C:\Users\ljusk\Documents\GitHub\SEP3\C#\WebSiteSEP3\Client\Shared\NavMenu.razor"
+#line 53 "C:\Users\ljusk\Documents\GitHub\SEP3\C#\WebSiteSEP3\Client\Pages\Wishlist.razor"
        
-    private string username;
+    GameCluster _gameCluster;
 
-    private bool collapseNavMenu = true;
+    string errorMessage ="";
 
-    private string NavMenuCssClass => collapseNavMenu ? "collapse" : null;
-
-    private void ToggleNavMenu()
+    [Parameter]
+    public string Username { get; set; }
+    
+    protected override async Task OnInitializedAsync()
     {
-        collapseNavMenu = !collapseNavMenu;
-    }
-
-    protected override async void OnParametersSet()
-    {
-        var claimsPrincipal = (await AuthenticationStateProvider.GetAuthenticationStateAsync()).User;
-        if (claimsPrincipal.Identity.IsAuthenticated)
-        {
-            username = claimsPrincipal.Identity.Name;
-        }
-    }
-
-    public async Task PerformLogout()
-    {
+        errorMessage = "";
         try
         {
-            await ((CustomAuthenticationStateProvider) AuthenticationStateProvider).Logout();
-            _navigationManager.NavigateTo("/");
+            
+            _gameCluster = await GameService.getWishlistAsync(Username);
         }
         catch (Exception e)
         {
+            Console.WriteLine(errorMessage = e.Message);
+            Console.WriteLine("Error while getting wishlist");
         }
     }
-
-    public void PerformProfile()
-    {
-        _navigationManager.NavigateTo($"/Profile/{username}");
-    }
-
-    public void PerformShoppingCart()
-    {
-        _navigationManager.NavigateTo($"/ShoppingCart/{username}");
-    }
-
-    public void PerformGameLibrary()
-    {
-        _navigationManager.NavigateTo($"/GameLibrary/{username}");
-    }
-
-    public void PerformAddGame()
-    {
-        _navigationManager.NavigateTo("/AddGame");
-    }
     
-    public void PerformWishlist()
+    
+    public async Task removeFromWishlist(int gameId)
     {
-        _navigationManager.NavigateTo($"/Wishlist/{username}");
+        try
+        {
+            await GameService.removeGameFromWishlistAsync(Username, gameId);
+            _gameCluster = await GameService.getWishlistAsync(Username);
+            if (_gameCluster.GamesStack.Count == 0)
+            {
+                _gameCluster = null;
+            }
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e.Message);
+            Console.WriteLine("Exception when removing from Wishlist");
+        }
     }
 
 
 #line default
 #line hidden
 #nullable disable
-        [global::Microsoft.AspNetCore.Components.InjectAttribute] private AuthenticationStateProvider AuthenticationStateProvider { get; set; }
-        [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager _navigationManager { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager NavigationManager { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IGameService GameService { get; set; }
     }
 }
 #pragma warning restore 1591
