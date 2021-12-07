@@ -112,6 +112,7 @@ using Client.Models;
     public string gameNameToEdit { get; set; }
     private string errorMessage = "";
     private DateTime dateTime;
+    private Game game;
     
     protected override async Task OnInitializedAsync()
     {
@@ -132,7 +133,7 @@ using Client.Models;
         try
         {
             gameToEdit.ReleaseDate = dateTime.Year + "-" + dateTime.Month + "-" + dateTime.Day;
-            _gameService.editGameAsync(gameToEdit);
+            game = await _gameService.editGameAsync(gameToEdit);
             _navigationManager.NavigateTo("/");
         }
         catch (Exception e)

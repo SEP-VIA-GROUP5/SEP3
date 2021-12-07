@@ -10,7 +10,7 @@
     
     @if (gameToEdit != null)
     {
-        <EditForm OnValidSubmit="@editGameAsync">
+        <EditForm Model="gameToEdit">
             <DataAnnotationsValidator/>
             <ValidationSummary/>
             <div class="form-group">
@@ -60,6 +60,7 @@
     public string gameNameToEdit { get; set; }
     private string errorMessage = "";
     private DateTime dateTime;
+    private Game game;
     
     protected override async Task OnInitializedAsync()
     {
@@ -80,7 +81,7 @@
         try
         {
             gameToEdit.ReleaseDate = dateTime.Year + "-" + dateTime.Month + "-" + dateTime.Day;
-            _gameService.editGameAsync(gameToEdit);
+            game = await _gameService.editGameAsync(gameToEdit);
             _navigationManager.NavigateTo("/");
         }
         catch (Exception e)
