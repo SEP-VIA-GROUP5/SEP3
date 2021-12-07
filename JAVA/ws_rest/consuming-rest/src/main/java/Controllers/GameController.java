@@ -246,4 +246,21 @@ public class GameController {
             return ResponseEntity.badRequest().build();
         }
     }
+
+    @GetMapping("/getNewRelease")
+    public ResponseEntity<GameCluster> getGameCluster(){
+        try {
+            GameCluster gameCluster = gameService.sortByDate();
+            if(gameCluster==null){
+                return ResponseEntity.badRequest().build();
+            }
+            return ResponseEntity.ok(gameCluster);
+        }
+        catch (Exception e){
+            System.out.println(e.getMessage());
+            return ResponseEntity.badRequest().build();
+        }
+    }
+
+
 }

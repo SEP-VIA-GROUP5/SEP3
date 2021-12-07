@@ -57,7 +57,7 @@ public class UserController {
         }
     }
 
-    @GetMapping("/changePassword")
+    @GetMapping("/register")
     public ResponseEntity<User> ValidateRegister(@RequestParam String username, @RequestParam String password, @RequestParam(value = "firstname") String firstName, @RequestParam(value = "lastname") String lastName)
     {
         try{
