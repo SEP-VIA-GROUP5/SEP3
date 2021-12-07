@@ -511,6 +511,54 @@ public class DatabaseServerManager implements DatabaseServer
         }
     }
 
+    @Override public void addToWishlist(String username, int gameID)
+        throws SQLException
+    {
+        User user = getUserDB(username);
+        try(Connection connection = getConnection())
+        {
+            PreparedStatement statement = connection.prepareStatement("INSERT INTO wishlist(user_id, game_id) VALUES(?, ?)");
+            statement.setInt(1, user.getId());
+            statement.setInt(2, gameID);
+            statement.executeUpdate();
+        }
+    }
+
+    @Override public ArrayList<Game> removeFromWishlist(String username, int gameID)
+        throws SQLException
+    {
+        int id = getUserDB(username).getId();
+        try(Connection connection = getConnection())
+        {
+
+            PreparedStatement statement = connection.prepareStatement("DELETE FROM wishlist WHERE user_id = ? AND game_id = ?;");
+            statement.setInt(1, id);
+            statement.setInt(2, gameID);
+            statement.executeUpdate();
+        }
+        ArrayList<Game> games = getWishlist(username);
+        return games;
+    }
+
+    @Override public ArrayList<Game> getWishlist(String username)
+        throws SQLException
+    {
+        User user = getUserDB(username);
+       ArrayList<Game> games = new ArrayList<>();
+        try(Connection connection = getConnection())
+        {
+            PreparedStatement statement = connection.prepareStatement("SELECT * FROM wishlist WHERE user_id = ?");
+            statement.setInt(1, user.getId());
+            ResultSet resultSet = statement.executeQuery();
+            while(resultSet.next())
+            {
+                Game game = getGameByID(resultSet.getInt("game_id"));
+                games.add(game);
+            }
+        }
+        return games;
+    }
+
     private Connection getConnection() throws SQLException
     {
         String url = "jdbc:postgresql://ella.db.elephantsql.com:5432/zgckhgwi";
