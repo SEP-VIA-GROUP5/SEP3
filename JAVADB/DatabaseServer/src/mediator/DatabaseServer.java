@@ -32,4 +32,7 @@ public interface DatabaseServer
   ArrayList<Game> sortByDate() throws SQLException;
   void editUserInfo(int ID, String username, String photo, String firstName, String lastName) throws SQLException;
   void changePassword(String username, String password) throws SQLException;
+  void addToWishlist(String username, int gameID) throws SQLException;
+  ArrayList<Game> removeFromWishlist(String username, int gameID) throws SQLException;
+  ArrayList<Game> getWishlist(String username) throws SQLException;
 }
