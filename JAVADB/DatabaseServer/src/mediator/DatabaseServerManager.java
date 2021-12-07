@@ -463,7 +463,9 @@ public class DatabaseServerManager implements DatabaseServer
         ArrayList<Game> games = new ArrayList<>();
         try(Connection connection = getConnection())
         {
-            PreparedStatement statement = connection.prepareStatement("SELECT * FROM games ORDER BY release_date DESC ");
+
+            PreparedStatement statement = connection.prepareStatement("SELECT * FROM games ORDER BY release_date DESC LIMIT 5");
+
             ResultSet resultSet = statement.executeQuery();
             while(resultSet.next())
             {

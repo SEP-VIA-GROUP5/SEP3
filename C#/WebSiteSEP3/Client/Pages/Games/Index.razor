@@ -14,23 +14,31 @@
 @using Microsoft.AspNetCore.Mvc.Diagnostics
 <AuthorizeView>
     <Authorized>
-        <div class="text-info">
-            <h1>Hi, @context.User.Identity.Name!</h1>
-        </div>
-
-        <div class="container row align-top float-right">
-            <div class="col-lg-4">
-                <input type="text" alt="search for game" @bind-value="searchedGameName" style="width: 150px"/>
-                <button class="btn-outline-primary" @onclick="@(() => FilterByGameName(searchedGameName))">
-                    <i class="oi oi-eye"/>
-                </button>
-                <button class="btn-outline-primary" @onclick="ClearSearch">Clear</button>
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div class="text-info">
+                        <h1>Hi, @context.User.Identity.Name!</h1>
+                    </div>
+                </div>
+                <div class="col-md-auto">
+                    <input type="text" alt="search for game" @bind-value="searchedGameName" style="width: 150px"/>
+                    <button class="btn-outline-primary" @onclick="@(() => FilterByGameName(searchedGameName))">
+                        <i class="oi oi-eye"/>
+                    </button>
+                    <button class="btn-outline-primary" @onclick="ClearSearch">Clear</button>
+                </div>
+                <div class="col col-lg-3">
+                    <button class="btn-outline-primary" @onclick="@(() => getNewRelease())">
+                        <i class="oi oi-grid-three-up"/> New Releases
+                    </button>
+                    <button class="btn-outline-primary" @onclick="ClearNewReleases">Clear</button>
+                </div>
             </div>
         </div>
-
         @if (errorMessage.Equals(""))
         {
-            <div class="text-info">
+            <div class="container row text-info">
                 @if (searchedGameName == null)
                 {
                     <h1>Here are some games that might interest you</h1>
@@ -42,29 +50,28 @@
             </div>
             <div class="container-fluid row">
                 @if (games != null)
-                               {
-                                   @foreach (var game in games.GamesStack)
-                                   {
-                                       <div class="col-lg-4">
-                                           <div class="card" style="width: 19rem">
-                                               <img class="card-img-top" src="@GetImage(game)" alt="Image of @game.GameName" title="Order @game.GameName"/>
-                                               <div class="card-body">
-                                                   <h3 class="card-title">@game.GameName</h3>
-                                                   <ul class="list-group list-group-flush">
-                                                       <li class="list-group-item">
-                                                           $@string.Format("{0:f}", Math.Round(game.Price, 2).ToString())
-                                                       </li>
-                                                   </ul>
-                                                   <div class="card-body row">
-                                                       <button class="btn btn-sm btn-dark order-button float-lg-right" @onclick="(() => MoreInformations(game.GameName))">INFO</button>
-                                                   </div>
-                                               </div>
-                                           </div>
-                                       </div>
-                                   }
-                               }
+                {
+                    @foreach (var game in games.GamesStack)
+                    {
+                        <div class="col-lg-4">
+                            <div class="card" style="width: 19rem">
+                                <img class="card-img-top" src="@GetImage(game)" alt="Image of @game.GameName" title="Order @game.GameName"/>
+                                <div class="card-body">
+                                    <h3 class="card-title">@game.GameName</h3>
+                                    <ul class="list-group list-group-flush">
+                                        <li class="list-group-item">
+                                            $@string.Format("{0:f}", Math.Round(game.Price, 2).ToString())
+                                        </li>
+                                    </ul>
+                                    <div class="card-body row">
+                                        <button class="btn btn-sm btn-dark order-button float-lg-right" @onclick="(() => MoreInformations(game.GameName))">INFO</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
             </div>
-            
         }
         else
         {
@@ -78,25 +85,25 @@
 
         <nav class="pagenavigation" aria-label="page navigation">
             <ul class="pagination">
-                @if (pageNr != 0)
+                @if (pageNr != 0 || newReleases.Equals(false))
                 {
                     <li class="page-item">
                         <a class="page-link" @onclick="PreviousPage">Previous</a>
                     </li>
                 }
-                else if (pageNr == 0 || errorMessage.Equals("") || searchedGameName != null)
+                else if (pageNr == 0 || errorMessage.Equals("") || searchedGameName != null || newReleases)
                 {
                     <li class="page-item disabled">
                         <a class="page-link" @onclick="PreviousPage">Previous</a>
                     </li>
                 }
-                @if (errorMessage.Equals(""))
+                @if (errorMessage.Equals("") || newReleases.Equals(false))
                 {
                     <li class="page-item">
                         <a class="page-link" @onclick="NextPage">Next</a>
                     </li>
                 }
-                else if (!errorMessage.Equals("") || searchedGameName != null)
+                else if (!errorMessage.Equals("") || searchedGameName != null || newReleases)
                 {
                     <li class="page-item disabled">
                         <a class="page-link" @onclick="NextPage">Next</a>
@@ -117,6 +124,7 @@
     private GameCluster games;
     private int pageNr = 0;
     private string errorMessage;
+    private bool newReleases;
 
 
     private string? searchedGameName;
@@ -126,6 +134,7 @@
         errorMessage = "";
         try
         {
+            newReleases = false;
             games = await _gameService.getGameClusterAsync(pageNr);
             SaveImageIntoClient(games);
         }
@@ -162,9 +171,16 @@
         errorMessage = "";
         try
         {
-            pageNr++;
-            games = await _gameService.getGameClusterAsync(pageNr);
-            SaveImageIntoClient(games);
+            if (newReleases == false)
+            {
+                pageNr++;
+                games = await _gameService.getGameClusterAsync(pageNr);
+                SaveImageIntoClient(games);
+            }
+            else
+            {
+                errorMessage = "There are no more new released games";
+            }
         }
         catch (Exception e)
         {
@@ -238,4 +254,28 @@
     {
         NavigationManager.NavigateTo($"/GameInformation/{gameName}");
     }
+
+    private async Task getNewRelease()
+    {
+        newReleases = true;
+        errorMessage = "";
+        games = await _gameService.getNewlyReleased();
+    }
+
+    private async Task ClearNewReleases()
+    {
+        newReleases = false;
+        errorMessage = "";
+        try
+        {
+            pageNr = 0;
+            games = await _gameService.getGameClusterAsync(pageNr);
+            SaveImageIntoClient(games);
+        }
+        catch (Exception e)
+        {
+            errorMessage = "There are no games on this page..";
+        }
+    }
+
 }

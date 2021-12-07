@@ -190,53 +190,15 @@ public class GameService implements IGameService{
         return game;
     }
 
-    @Override public GameCluster sortByDate(int page)
+    @Override public GameCluster sortByDate()
         throws IOException, ClassNotFoundException
     {
         GamePackage gamePackage = new GamePackage("sortedByDate");
         clientHandling.sendToServer(gamePackage);
         Object dataReceivedFromServer = clientHandling.receiveFromServer();
         gamePackage = (GamePackage) dataReceivedFromServer;
-        ArrayList<Game> allGames;
-        allGames = gamePackage.getGames();
-        int gamesPerPage = 5;
-        double pagesDouble = (double)allGames.size()/(double)gamesPerPage;
-        int pages;
-
-        if((pagesDouble % 1) > 0)
-        {
-            pages = (int) pagesDouble + 1;
-        }
-        else
-        {
-            pages = (int) pagesDouble;
-        }
-
-        Game [][] gamesPerPageArray = new Game[pages][gamesPerPage];
-        for(int i = 0; i < pages; i++)
-        {
-            for(int j = 0; j < gamesPerPage; j++)
-            {
-                gamesPerPageArray[i][j] = allGames.get(0);
-                allGames.remove(0);
-                if(allGames.size() == 0)
-                {
-                    break;
-                }
-            }
-        }
-
-        ArrayList<Game> gamesToSend = new ArrayList<>();
-        for(int i = 0; i < gamesPerPage; i++)
-        {
-            if(gamesPerPageArray[page][i] == (null))
-            {
-                break;
-            }
-            gamesToSend.add(gamesPerPageArray[page][i]);
-        }
         GameCluster gameCluster = new GameCluster();
-        gameCluster.setGameStack(gamesToSend);
+        gameCluster.setGameStack(gamePackage.getGames());
         return gameCluster;
     }
 }
