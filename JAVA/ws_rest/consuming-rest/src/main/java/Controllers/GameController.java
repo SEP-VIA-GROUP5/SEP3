@@ -203,4 +203,47 @@ public class GameController {
             return ResponseEntity.badRequest().build();
         }
     }
+
+    @GetMapping("/wishlist/add")
+    public ResponseEntity<String> addGameToWishlist(@RequestParam String userName, @RequestParam int gameId){
+        try {
+            String confirmation =gameService.addGameToWishlist(userName,gameId);
+            if(confirmation==null){
+                return ResponseEntity.badRequest().build();
+            }
+            return ResponseEntity.ok(confirmation);
+        }
+        catch (Exception e){
+            System.out.println(e.getMessage());
+            return ResponseEntity.badRequest().build();
+        }
+    }
+
+    @GetMapping("/wishlist/remove")
+    public ResponseEntity<GameCluster> removeGameToWishlist(@RequestParam String userName, @RequestParam int gameId) {
+        try {
+            GameCluster newGameCluster = gameService.removeGameFromWishlist(userName, gameId);
+            if (newGameCluster == null) {
+                return ResponseEntity.badRequest().build();
+            }
+            return ResponseEntity.ok(newGameCluster);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return ResponseEntity.badRequest().build();
+        }
+    }
+
+    @GetMapping("/wishlist/get")
+    public ResponseEntity<GameCluster> getWishlist(@RequestParam String userName) {
+        try {
+            GameCluster newGameCluster = gameService.getWishlist(userName);
+            if (newGameCluster == null) {
+                return ResponseEntity.badRequest().build();
+            }
+            return ResponseEntity.ok(newGameCluster);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return ResponseEntity.badRequest().build();
+        }
+    }
 }

@@ -210,19 +210,48 @@ namespace Client.Data.Impl
             return null;
         }
 
-        public Task addGameToWishlistAsync(string userName, int gameId)
+        public async Task addGameToWishlistAsync(string userName, int gameId)
         {
-            throw new NotImplementedException();
+            HttpResponseMessage responseMessage =
+                await Client.GetAsync($"http://localhost:8080/game/wishlist/add?userName={userName}&gameId={gameId}");
+            if (responseMessage.StatusCode == HttpStatusCode.OK)
+            {
+                Console.WriteLine("game added successfully!");
+            }
+            else
+            {
+                Console.WriteLine("game was NOT added!");
+            }
         }
 
-        public Task<GameCluster> removeGameFromWishlistAsync(string userName, int gameId)
+        public async Task<GameCluster> removeGameFromWishlistAsync(string userName, int gameId)
         {
-            throw new NotImplementedException();
+            String _gameClusterJson;
+            HttpResponseMessage responseMessage =
+                await Client.GetAsync($"http://localhost:8080/game/wishlist/remove?userName={userName}&gameId={gameId}");
+            if (responseMessage.StatusCode == HttpStatusCode.OK)
+            {
+                _gameClusterJson = await responseMessage.Content.ReadAsStringAsync();
+                GameCluster gameCluster = JsonSerializer.Deserialize<GameCluster>(_gameClusterJson);
+                return gameCluster;
+            }
+
+            return null;
         }
 
-        public Task<GameCluster> getWishlistAsync(string userName)
+        public async Task<GameCluster> getWishlistAsync(string userName)
         {
-            throw new NotImplementedException();
+            String _gameClusterJson;
+            HttpResponseMessage responseMessage =
+                await Client.GetAsync($"http://localhost:8080/game/wishlist/get?userName={userName}");
+            if (responseMessage.StatusCode == HttpStatusCode.OK)
+            {
+                _gameClusterJson = await responseMessage.Content.ReadAsStringAsync();
+                GameCluster gameCluster = JsonSerializer.Deserialize<GameCluster>(_gameClusterJson);
+                return gameCluster;
+            }
+
+            return null;
         }
     }
 }
