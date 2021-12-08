@@ -119,7 +119,7 @@ using Client.Authentication;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 194 "D:\FACULTATE SEMESTRUL 3\SEP3\CODE\SEP3\C#\WebSiteSEP3\Client\Pages\Profile.razor"
+#line 209 "D:\FACULTATE SEMESTRUL 3\SEP3\CODE\SEP3\C#\WebSiteSEP3\Client\Pages\Profile.razor"
        
 
     [Parameter]
@@ -163,6 +163,10 @@ using Client.Authentication;
             }
             changePasswordButton = false;
             changeInformationsButton = false;
+            if (!infoSecondMessage.Equals(""))
+            {
+                infoSecondMessage = "";
+            }
             StateHasChanged();
         }
         catch (Exception e)
@@ -171,7 +175,7 @@ using Client.Authentication;
             Console.WriteLine($"Profile Exception > {e.Message}");
         }
     }
-    
+
     private async Task ChangeOtherInformation()
     {
         infoSecondMessage = "";
@@ -181,6 +185,10 @@ using Client.Authentication;
             if (verifyUser != null)
             {
                 infoSecondMessage = "Informations changed!";
+            }
+            if (!infoOneMessage.Equals(""))
+            {
+                infoOneMessage = "";
             }
             changeInformationsButton = false;
             changePasswordButton = false;
@@ -205,7 +213,6 @@ using Client.Authentication;
         StateHasChanged();
     }
 
-    
 
     public void SaveImageIntoClient()
     {
@@ -216,6 +223,16 @@ using Client.Authentication;
                 File.WriteAllBytes($@"wwwroot/Images/Users/userphoto.png", dataArr);
             }
         }
+    }
+
+    public void PerformWishlist()
+    {
+        _navigationManager.NavigateTo($"/Wishlist/{Username}");
+    }
+
+    public void PerformGameLibrary()
+    {
+        _navigationManager.NavigateTo($"/GameLibrary/{Username}");
     }
 
 

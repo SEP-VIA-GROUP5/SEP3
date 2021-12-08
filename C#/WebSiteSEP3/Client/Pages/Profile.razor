@@ -58,7 +58,22 @@
                                     <p class="btn btn-warning btn-sm">@user.Role</p>
                                 </div>
                             </div>
-                            @if(changePasswordButton && changeInformationsButton)
+
+                            <h3 class="mt-3 font-italic text-center">Access</h3>
+                            <hr class="badge-primary mt-0 w-25">
+                            <div class="row text-center">
+                                <div class="col-sm-6">
+                                    <a class="btn btn-lg anim" @onclick="PerformWishlist">
+                                        <span>Wishlist</span>
+                                    </a>
+                                </div>
+                                <div class="col-sm-6">
+                                    <a class="btn btn-lg anim" @onclick="PerformGameLibrary">
+                                        <span>Game library</span>
+                                    </a>
+                                </div>
+                            </div>
+                            @if (changePasswordButton && changeInformationsButton)
                             {
                                 <h3 class="mt-3 text-center">Change information</h3>
                                 <hr class="badge-primary mt-0 w-25">
@@ -84,13 +99,13 @@
                                 <div class="row text-center">
                                     <div class="col-sm-6">
                                         <label>Change password</label>
-                                        <a class="btn btn-lg" @onclick="ChangePassword">
+                                        <a class="btn btn-lg anim" @onclick="ChangePassword">
                                             <span>Change</span>
                                         </a>
                                     </div>
                                     <div class="col-sm-6">
                                         <label>Change other informations</label>
-                                        <a class="btn btn-lg" @onclick="ChangeOtherInformation">
+                                        <a class="btn btn-lg anim" @onclick="ChangeOtherInformation">
                                             <span>Change</span>
                                         </a>
                                     </div>
@@ -102,7 +117,7 @@
                                 <div class="row text-center">
                                     <div class="col-sm-3">
                                         <label>Change other informations</label>
-                                        <a class="btn btn-lg" @onclick="ButtonInformationButton">
+                                        <a class="btn btn-lg anim" @onclick="ButtonInformationButton">
                                             <span>Change</span>
                                         </a>
                                     </div>
@@ -121,7 +136,7 @@
                                 <div class="row text-center">
                                     <div class="col-sm-6">
                                         <label>Change password</label>
-                                        <a class="btn btn-lg" @onclick="ChangePassword">
+                                        <a class="btn btn-lg anim" @onclick="ChangePassword">
                                             <span>Change</span>
                                         </a>
                                     </div>
@@ -134,7 +149,7 @@
                                 <div class="row text-center">
                                     <div class="col-sm-3">
                                         <label>Change password</label>
-                                        <a class="btn btn-lg" @onclick="ButtonPassword">
+                                        <a class="btn btn-lg anim" @onclick="ButtonPassword">
                                             <span>Change</span>
                                         </a>
                                     </div>
@@ -152,7 +167,7 @@
                                 <div class="row text-center">
                                     <div class="col-sm-3">
                                         <label>Change other informations</label>
-                                        <a class="btn btn-lg" @onclick="ChangeOtherInformation">
+                                        <a class="btn btn-lg anim" @onclick="ChangeOtherInformation">
                                             <span>Change</span>
                                         </a>
                                     </div>
@@ -165,13 +180,13 @@
                                 <div class="row text-center">
                                     <div class="col-sm-3">
                                         <label>Change other informations</label>
-                                        <a class="btn btn-lg" @onclick="ButtonInformationButton">
+                                        <a class="btn btn-lg anim" @onclick="ButtonInformationButton">
                                             <span>Change</span>
                                         </a>
                                     </div>
                                     <div class="col-sm-3">
                                         <label>Change password</label>
-                                        <a class="btn btn-lg" @onclick="ButtonPassword">
+                                        <a class="btn btn-lg anim" @onclick="ButtonPassword">
                                             <span>Change</span>
                                         </a>
                                     </div>
@@ -234,6 +249,10 @@ else
             }
             changePasswordButton = false;
             changeInformationsButton = false;
+            if (!infoSecondMessage.Equals(""))
+            {
+                infoSecondMessage = "";
+            }
             StateHasChanged();
         }
         catch (Exception e)
@@ -242,7 +261,7 @@ else
             Console.WriteLine($"Profile Exception > {e.Message}");
         }
     }
-    
+
     private async Task ChangeOtherInformation()
     {
         infoSecondMessage = "";
@@ -252,6 +271,10 @@ else
             if (verifyUser != null)
             {
                 infoSecondMessage = "Informations changed!";
+            }
+            if (!infoOneMessage.Equals(""))
+            {
+                infoOneMessage = "";
             }
             changeInformationsButton = false;
             changePasswordButton = false;
@@ -276,7 +299,6 @@ else
         StateHasChanged();
     }
 
-    
 
     public void SaveImageIntoClient()
     {
@@ -287,6 +309,16 @@ else
                 File.WriteAllBytes($@"wwwroot/Images/Users/userphoto.png", dataArr);
             }
         }
+    }
+
+    public void PerformWishlist()
+    {
+        _navigationManager.NavigateTo($"/Wishlist/{Username}");
+    }
+
+    public void PerformGameLibrary()
+    {
+        _navigationManager.NavigateTo($"/GameLibrary/{Username}");
     }
 
 }
