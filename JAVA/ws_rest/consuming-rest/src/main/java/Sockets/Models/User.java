@@ -1,5 +1,7 @@
 package Sockets.Models;
 
+import org.springframework.boot.autoconfigure.domain.EntityScan;
+
 import java.io.Serializable;
 
 public class User implements Serializable
@@ -10,12 +12,23 @@ public class User implements Serializable
     public String Photo;
     public String LastName;
     public String FirstName;
-    public String SecurityLevel;
+    public int SecurityLevel;
     public String Role;
     private static final long serialVersionUID = 6529685098267757690L;
 
-    public User(int id, String username, String password, String photo, String lastName, String firstName, String securityLevel, String role) {
+    public User(int id, String username, String password, String photo, String lastName, String firstName, int securityLevel, String role) {
         Id = id;
+        Username = username;
+        Password = password;
+        Photo = photo;
+        LastName = lastName;
+        FirstName = firstName;
+        SecurityLevel = securityLevel;
+        Role = role;
+    }
+
+    public User(String username, String password, String photo, String lastName, String firstName, int securityLevel, String role) {
+        Id = -1;
         Username = username;
         Password = password;
         Photo = photo;
@@ -44,13 +57,18 @@ public class User implements Serializable
 
     public User(String username, String password)
     {
-        this(-1,username,password,null,null,null,null,null);
+        this(-1,username,password,null,null,null,0,null);
     }
 
-    //Test for getting receipt for a specific user
+
     public User(String username)
     {
-        this(-1,username,null,null,null,null,null,null);
+        this(-1,username,null,null,null,null,0,null);
+    }
+
+    public User()
+    {
+
     }
 
     public int getId() {
@@ -101,11 +119,11 @@ public class User implements Serializable
         FirstName = firstName;
     }
 
-    public String getSecurityLevel() {
+    public int getSecurityLevel() {
         return SecurityLevel;
     }
 
-    public void setSecurityLevel(String securityLevel) {
+    public void setSecurityLevel(int securityLevel) {
         SecurityLevel = securityLevel;
     }
 

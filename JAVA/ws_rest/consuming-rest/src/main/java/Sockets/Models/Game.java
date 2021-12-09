@@ -66,6 +66,11 @@ public class Game implements Serializable
     this.gameId = gameId;
   }
 
+  public Game()
+  {
+
+  }
+
   public int getGameId()
   {
     return gameId;

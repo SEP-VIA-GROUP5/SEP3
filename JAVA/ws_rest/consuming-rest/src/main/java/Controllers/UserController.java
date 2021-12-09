@@ -57,17 +57,17 @@ public class UserController {
         }
     }
 
-    @GetMapping("/register")
-    public ResponseEntity<User> ValidateRegister(@RequestParam String username, @RequestParam String password, @RequestParam(value = "firstname") String firstName, @RequestParam(value = "lastname") String lastName)
+    @PostMapping("/register")
+    public ResponseEntity<User> ValidateRegister(@RequestBody User user)
     {
         try{
-            System.out.println(username);
-            User user = userService.ValidateRegister(username,password,firstName,lastName);
+            System.out.println(user.toString());
+            User userValidation = userService.ValidateRegister(user);
 
-            if(user == null) {
+            if(userValidation == null) {
                 return ResponseEntity.notFound().build();
             }
-            return ResponseEntity.ok(user);
+            return ResponseEntity.ok(userValidation);
         }
         catch (Exception e)
         {
@@ -75,17 +75,17 @@ public class UserController {
             return ResponseEntity.badRequest().build();
         }
     }
-    @GetMapping("/edit")
-    public ResponseEntity<User> EditUser(@RequestParam int ID,@RequestParam String username, @RequestParam String photo, @RequestParam(value = "firstname") String firstName, @RequestParam(value = "lastname") String lastName)
+    @PutMapping("/edit")
+    public ResponseEntity<User> EditUser(@RequestBody User user)
     {
         try{
-            System.out.println(username);
-            User user = userService.editUser(ID, username, photo, firstName, lastName);
+            System.out.println(user.toString());
+            User userValidation = userService.editUser(user);
 
-            if(user == null) {
+            if(userValidation == null) {
                 return ResponseEntity.notFound().build();
             }
-            return ResponseEntity.ok(user);
+            return ResponseEntity.ok(userValidation);
         }
         catch (Exception e)
         {
@@ -93,16 +93,16 @@ public class UserController {
             return ResponseEntity.badRequest().build();
         }
     }
-    @GetMapping("/changePassword")
-    public ResponseEntity<User> changePassword(@RequestParam String username, @RequestParam String password)
+    @PutMapping("/changePassword")
+    public ResponseEntity<User> changePassword(@RequestBody User user)
     {
         try{
-            User user = userService.changePassword(username, password);
+            User userValidation = userService.changePassword(user);
 
-            if(user == null) {
+            if(userValidation == null) {
                 return ResponseEntity.notFound().build();
             }
-            return ResponseEntity.ok(user);
+            return ResponseEntity.ok(userValidation);
         }
         catch (Exception e)
         {

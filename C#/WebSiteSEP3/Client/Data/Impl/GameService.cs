@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Net;
 using System.Net.Http;
+using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 using Client.Models;
@@ -74,31 +75,16 @@ namespace Client.Data.Impl
 
         public async Task<Game> addGameAsync(Game gameToSend)
         {
-            string game = null;
+            string gameAsJson = JsonSerializer.Serialize(gameToSend);
+            StringContent content = new StringContent(gameAsJson,
+                Encoding.UTF8,
+                "application/json");
+
             HttpResponseMessage responseMessage =
-                await Client.GetAsync($"http://localhost:8080/game/addGame?gameName={gameToSend.GameName}&price={gameToSend.Price}&photo={gameToSend.Photo}" +
-                                      $"&esrb={gameToSend.ESRB}&ign={gameToSend.IGN}&description={gameToSend.Description}&specifications={gameToSend.Specifications}" +
-                                      $"&date={gameToSend.ReleaseDate}");
+                await Client.PostAsync("http://localhost:8080/game/addGame", content);
             if (responseMessage.StatusCode == HttpStatusCode.OK)
             {
-                game = await responseMessage.Content.ReadAsStringAsync();
-                Game gameResult = JsonSerializer.Deserialize<Game>(game);
-                return gameResult;
-            }
-
-            return null;
-        }
-
-        public async Task<GameKey> addGameKeyAsync(int gameId, string productKey)
-        {
-            string productKey1 = null;
-            HttpResponseMessage responseMessage =
-                await Client.GetAsync($"http://localhost:8080/game/getProductKey?gameId={gameId}&productKey={productKey}");
-            if (responseMessage.StatusCode == HttpStatusCode.OK)
-            {
-                productKey1 = await responseMessage.Content.ReadAsStringAsync();
-                GameKey productKeyResult = JsonSerializer.Deserialize<GameKey>(productKey1);
-                return productKeyResult;
+                return gameToSend;
             }
 
             return null;
@@ -119,33 +105,30 @@ namespace Client.Data.Impl
             return null;
         }
 
-        public async Task addGameToShoppingCartAsync(string userName, int gameId)
+        public async Task<bool> addGameToShoppingCartAsync(string userName, Game game)
         {
+            string gameAsJson = JsonSerializer.Serialize(game);
+            StringContent content = new StringContent(gameAsJson,
+                Encoding.UTF8,
+                "application/json");
             HttpResponseMessage responseMessage =
-                await Client.GetAsync($"http://localhost:8080/game/cart/add?userName={userName}&gameId={gameId}");
+                await Client.PostAsync($"http://localhost:8080/game/cart/add?userName={userName}", content);
             if (responseMessage.StatusCode == HttpStatusCode.OK)
             {
-                Console.WriteLine("game added successfully!");
+                return true;
             }
-            else
-            {
-                Console.WriteLine("game was NOT added!");
-            }
+            return false;
         }
 
-        public async Task<GameCluster> removeGameFromShoppingCartAsync(string userName, int gameId)
+        public async Task<bool> removeGameFromShoppingCartAsync(string userName, int gameId)
         {
-            String _gameClusterJson;
             HttpResponseMessage responseMessage =
-                await Client.GetAsync($"http://localhost:8080/game/cart/remove?userName={userName}&gameId={gameId}");
-            if (responseMessage.StatusCode == HttpStatusCode.OK)
+                await Client.DeleteAsync($"http://localhost:8080/game/cart/remove?userName={userName}&gameId={gameId}");
+            if (responseMessage.IsSuccessStatusCode)
             {
-                _gameClusterJson = await responseMessage.Content.ReadAsStringAsync();
-                GameCluster gameCluster = JsonSerializer.Deserialize<GameCluster>(_gameClusterJson);
-                return gameCluster;
+                return true;
             }
-
-            return null;
+            return false;
         }
 
         public async Task<GameCluster> getShoppingCartAsync(string userName)
@@ -180,16 +163,15 @@ namespace Client.Data.Impl
         
         public async Task<Game> editGameAsync(Game gameToSend)
         {
-            string game = null;
+            string gameAsJson = JsonSerializer.Serialize(gameToSend);
+            StringContent content = new StringContent(gameAsJson,
+                Encoding.UTF8,
+                "application/json");
             HttpResponseMessage responseMessage =
-                await Client.GetAsync($"http://localhost:8080/game/editGame?gameId={gameToSend.GameId}&gameName={gameToSend.GameName}&price={gameToSend.Price}&photo={gameToSend.Photo}" +
-                                      $"&esrb={gameToSend.ESRB}&ign={gameToSend.IGN}&description={gameToSend.Description}&specifications={gameToSend.Specifications}" +
-                                      $"&date={gameToSend.ReleaseDate}");
+                await Client.PutAsync($"http://localhost:8080/game/editGame", content);
             if (responseMessage.StatusCode == HttpStatusCode.OK)
             {
-                game = await responseMessage.Content.ReadAsStringAsync();
-                Game gameResult = JsonSerializer.Deserialize<Game>(game);
-                return gameResult;
+                return gameToSend;
             }
 
             return null;
@@ -210,10 +192,14 @@ namespace Client.Data.Impl
             return null;
         }
 
-        public async Task addGameToWishlistAsync(string userName, int gameId)
+        public async Task addGameToWishlistAsync(string userName, Game game)
         {
+            string gameAsJson = JsonSerializer.Serialize(game);
+            StringContent content = new StringContent(gameAsJson,
+                Encoding.UTF8,
+                "application/json");
             HttpResponseMessage responseMessage =
-                await Client.GetAsync($"http://localhost:8080/game/wishlist/add?userName={userName}&gameId={gameId}");
+                await Client.PostAsync($"http://localhost:8080/game/wishlist/add?userName={userName}", content);
             if (responseMessage.StatusCode == HttpStatusCode.OK)
             {
                 Console.WriteLine("game added successfully!");
@@ -224,19 +210,15 @@ namespace Client.Data.Impl
             }
         }
 
-        public async Task<GameCluster> removeGameFromWishlistAsync(string userName, int gameId)
+        public async Task<bool> removeGameFromWishlistAsync(string userName, int gameId)
         {
-            String _gameClusterJson;
             HttpResponseMessage responseMessage =
-                await Client.GetAsync($"http://localhost:8080/game/wishlist/remove?userName={userName}&gameId={gameId}");
-            if (responseMessage.StatusCode == HttpStatusCode.OK)
+                await Client.DeleteAsync($"http://localhost:8080/game/wishlist/remove?userName={userName}&gameId={gameId}");
+            if (responseMessage.IsSuccessStatusCode)
             {
-                _gameClusterJson = await responseMessage.Content.ReadAsStringAsync();
-                GameCluster gameCluster = JsonSerializer.Deserialize<GameCluster>(_gameClusterJson);
-                return gameCluster;
+                return true;
             }
-
-            return null;
+            return false;
         }
 
         public async Task<GameCluster> getWishlistAsync(string userName)

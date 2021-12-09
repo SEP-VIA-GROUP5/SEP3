@@ -4,7 +4,7 @@ namespace Client.Models
 {
     public class User
     {
-        
+         
         public int Id { get; set; }
 
         public string Username { get; set; }
@@ -17,7 +17,7 @@ namespace Client.Models
        
         public string LastName { get; set; }
         
-        public string SecurityLevel { get; set; }
+        public int SecurityLevel { get; set; }
         
         public string Role { get; set; }
     }

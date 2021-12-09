@@ -101,15 +101,14 @@ public class GameController {
         }
     }
 
-    @GetMapping("/addGame")
-    public ResponseEntity<Game> addGame(@RequestParam String gameName, @RequestParam double price, @RequestParam String photo, @RequestParam String esrb,
-                                        @RequestParam int ign, @RequestParam String description, @RequestParam String specifications, @RequestParam String date){
+    @PostMapping("/addGame")
+    public ResponseEntity<Game> addGame(@RequestBody Game game){
         try {
-            Game game = gameService.addGame(gameName,price,photo,esrb,ign,description,specifications,date);
-            if(game==null){
+            Game gameValidation = gameService.addGame(game);
+            if(gameValidation==null){
                 return ResponseEntity.badRequest().build();
             }
-            return ResponseEntity.ok(game);
+            return ResponseEntity.ok(gameValidation);
         }
         catch (Exception e){
             System.out.println(e.getMessage());
@@ -117,25 +116,10 @@ public class GameController {
         }
     }
 
-    @GetMapping("/addProductKey")
-    public ResponseEntity<String> addProductKey(@RequestParam int gameId, @RequestParam String productKey){
+    @PostMapping("/cart/add")
+    public ResponseEntity<String> addGameToShoppingCart(@RequestParam String userName, @RequestBody Game game){
         try {
-            String productKey1 = gameService.addProductKey(gameId,productKey);
-            if(productKey1==null){
-                return ResponseEntity.badRequest().build();
-            }
-            return ResponseEntity.ok(productKey1);
-        }
-        catch (Exception e){
-            System.out.println(e.getMessage());
-            return ResponseEntity.badRequest().build();
-        }
-    }
-
-    @GetMapping("/cart/add")
-    public ResponseEntity<String> addGameToShoppingCart(@RequestParam String userName, @RequestParam int gameId){
-        try {
-            String confirmation =gameService.addGameToShoppingCart(userName,gameId);
+            String confirmation = gameService.addGameToShoppingCart(userName,game.getGameId());
             if(confirmation==null){
                 return ResponseEntity.badRequest().build();
             }
@@ -147,7 +131,7 @@ public class GameController {
         }
     }
 
-    @GetMapping("/cart/remove")
+    @DeleteMapping("/cart/remove")
     public ResponseEntity<GameCluster> removeGameToShoppingCart(@RequestParam String userName, @RequestParam int gameId) {
         try {
             GameCluster newGameCluster = gameService.removeGameFromShoppingCart(userName, gameId);
@@ -178,7 +162,6 @@ public class GameController {
     public ResponseEntity<GameCluster> getLibrary(@RequestParam String userName) {
         try {
             GameCluster newGameCluster = gameService.getLibrary(userName);
-            System.out.println(newGameCluster.getGameStack().get(0).getGameKey().getGameKey());
             if (newGameCluster == null) {
                 return ResponseEntity.badRequest().build();
             }
@@ -188,26 +171,25 @@ public class GameController {
             return ResponseEntity.badRequest().build();
         }
     }
-    @GetMapping("/editGame")
-    public ResponseEntity<Game> editGame(@RequestParam int gameId,  @RequestParam String gameName, @RequestParam double price, @RequestParam String photo, @RequestParam String esrb,
-        @RequestParam int ign, @RequestParam String description, @RequestParam String specifications, @RequestParam String date) {
+    @PutMapping("/editGame")
+    public ResponseEntity<Game> editGame(@RequestBody Game game) {
         try {
-            Game game = gameService.editGame(gameId, gameName, price, photo, esrb, ign, description, specifications, date);
+            Game gameValidation = gameService.editGame(game);
 
-            if (game == null) {
+            if (gameValidation == null) {
                 return ResponseEntity.badRequest().build();
             }
-            return ResponseEntity.ok(game);
+            return ResponseEntity.ok(gameValidation);
         } catch (Exception e) {
             System.out.println(e.getMessage());
             return ResponseEntity.badRequest().build();
         }
     }
 
-    @GetMapping("/wishlist/add")
-    public ResponseEntity<String> addGameToWishlist(@RequestParam String userName, @RequestParam int gameId){
+    @PostMapping("/wishlist/add")
+    public ResponseEntity<String> addGameToWishlist(@RequestParam String userName, @RequestBody Game game){
         try {
-            String confirmation =gameService.addGameToWishlist(userName,gameId);
+            String confirmation =gameService.addGameToWishlist(userName,game.getGameId());
             if(confirmation==null){
                 return ResponseEntity.badRequest().build();
             }
@@ -219,7 +201,7 @@ public class GameController {
         }
     }
 
-    @GetMapping("/wishlist/remove")
+    @DeleteMapping("/wishlist/remove")
     public ResponseEntity<GameCluster> removeGameToWishlist(@RequestParam String userName, @RequestParam int gameId) {
         try {
             GameCluster newGameCluster = gameService.removeGameFromWishlist(userName, gameId);

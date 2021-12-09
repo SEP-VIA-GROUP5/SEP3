@@ -134,12 +134,14 @@ using System.Security.Claims;
     {
         try
         {
-            await GameService.removeGameFromWishlistAsync(Username, gameId);
+            var validation = await GameService.removeGameFromWishlistAsync(Username, gameId);
+            if (!validation) throw new Exception("Ups! API couldn't delete the desired game.");
+            
             _gameCluster = await GameService.getWishlistAsync(Username);
-            if (_gameCluster.GamesStack.Count == 0)
-            {
-                _gameCluster = null;
-            }
+                if (_gameCluster.GamesStack.Count == 0)
+                {
+                    _gameCluster = null;
+                }
         }
         catch (Exception e)
         {

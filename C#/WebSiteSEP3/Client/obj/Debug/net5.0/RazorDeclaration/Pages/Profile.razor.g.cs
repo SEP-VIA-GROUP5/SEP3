@@ -119,7 +119,7 @@ using Client.Authentication;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 209 "D:\FACULTATE SEMESTRUL 3\SEP3\CODE\SEP3\C#\WebSiteSEP3\Client\Pages\Profile.razor"
+#line 206 "D:\FACULTATE SEMESTRUL 3\SEP3\CODE\SEP3\C#\WebSiteSEP3\Client\Pages\Profile.razor"
        
 
     [Parameter]
@@ -156,7 +156,7 @@ using Client.Authentication;
         infoOneMessage = "";
         try
         {
-            User verifyUser = await _userService.ChangePassword(user.Username, user.Password);
+            User verifyUser = await _userService.ChangePassword(user);
             if (verifyUser != null)
             {
                 infoOneMessage = "Password changed!";
@@ -181,7 +181,7 @@ using Client.Authentication;
         infoSecondMessage = "";
         try
         {
-            User verifyUser = await _userService.EditUser(user.Id, user.Username, user.Photo, user.FirstName, user.LastName);
+            User verifyUser = await _userService.EditUser(user);
             if (verifyUser != null)
             {
                 infoSecondMessage = "Informations changed!";
