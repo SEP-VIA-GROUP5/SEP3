@@ -41,7 +41,7 @@ public class DatabaseServerManager implements DatabaseServer
                 user = new User(Integer.parseInt(resultSet.getString("id")), resultSet.getString("username"),
                         resultSet.getString("password"), resultSet.getString("photo"),
                         resultSet.getString("first_name"), resultSet.getString("last_name"),
-                        resultSet.getString("security_level"), resultSet.getString("role"));
+                        resultSet.getInt("security_level"), resultSet.getString("role"));
             }
         }
         return user;
@@ -65,36 +65,34 @@ public class DatabaseServerManager implements DatabaseServer
                 user = new User(Integer.parseInt(resultSet.getString("id")), resultSet.getString("username"),
                         resultSet.getString("password"), resultSet.getString("photo"),
                         resultSet.getString("first_name"), resultSet.getString("last_name"),
-                        resultSet.getString("security_level"), resultSet.getString("role"));
+                        resultSet.getInt("security_level"), resultSet.getString("role"));
             }
         }
         return user;
     }
 
-    @Override public User registerUser(String username, String password,
-                                       String firstName, String lastName) throws SQLException
+    @Override public User registerUser(User user) throws SQLException
     {
-        User user = null;
-        int security_level = 0;
-        String role = "Member";
-        if (checkIfUsernameExists(username))
+        User validateUser = null;
+        if (checkIfUsernameExists(user.getUsername()))
         {
-            return user;
+            return null;
         }
         try(Connection connection = getConnection())
         {
             PreparedStatement statement = connection.prepareStatement( "INSERT INTO Users(username, password, first_name, last_name, security_level, role) VALUES (?, ?, ?, ?, ?, ?);");
-            statement.setString(1, username);
-            statement.setString(2, password);
-            statement.setString(3, firstName);
-            statement.setString(4, lastName);
-            statement.setInt(5, security_level);
-            statement.setString(6, role);
+            statement.setString(1, user.getUsername());
+            statement.setString(2, user.getPassword());
+            statement.setString(3, user.getFirstName());
+            statement.setString(4, user.getLastName());
+            statement.setInt(5, user.getSecurityLevel());
+            statement.setString(6, user.getRole());
             statement.executeUpdate();
 
-            user = getUserDB(username, password);
+            validateUser = getUserDB(user.getUsername());
         }
-        return user;
+
+        return validateUser;
     }
 
     @Override public boolean checkIfUsernameExists(String username)
@@ -148,29 +146,23 @@ public class DatabaseServerManager implements DatabaseServer
         return game;
     }
 
-    @Override public Game registerGame(String gameName, double price,
-                                       String description, String specifications, int IGNRating,
-                                       String ESRBRating, String photoURL, String releaseDate)
-        throws SQLException, ParseException
+    @Override public void registerGame(Game game)
+        throws SQLException
     {
-        Game game = null;
         try(Connection connection = getConnection())
         {
             PreparedStatement statement = connection.prepareStatement( "INSERT INTO games(game_name, price, description, specifications, ign_rating, esrb_rating, photo_url, release_date) VALUES (?, ?, ?, ?, ?, ?, ?, ?);");
-            statement.setString(1, gameName);
-            statement.setDouble(2, price);
-            statement.setString(3, description);
-            statement.setString(4, specifications);
-            statement.setInt(5, IGNRating);
-            statement.setString(6, ESRBRating);
-            statement.setString(7, photoURL);
-            statement.setDate(8, java.sql.Date.valueOf(releaseDate));
+            statement.setString(1, game.getGameName());
+            statement.setDouble(2, game.getPrice());
+            statement.setString(3, game.getDescription());
+            statement.setString(4, game.getDescription());
+            statement.setInt(5, game.getIGNRating());
+            statement.setString(6, game.getESRBRating());
+            statement.setString(7, game.getPhotoURL());
+            statement.setDate(8, java.sql.Date.valueOf(game.getReleaseDate()));
 
             statement.executeUpdate();
-
-            game = getGameDB(gameName);
         }
-        return game;
     }
 
     @Override public Game buyGame(int gameID, String username) throws SQLException
@@ -437,23 +429,21 @@ public class DatabaseServerManager implements DatabaseServer
             statement.executeUpdate();
         }
     }
-    @Override public void editGame(int ID, String gameName, double price,
-        String description, String specifications, int IGNRating,
-        String ESRBRating, String photoURL, String releaseDate)
+    @Override public void editGame(Game game)
         throws SQLException
     {
         try(Connection connection = getConnection())
         {
             PreparedStatement statement = connection.prepareStatement("UPDATE games SET game_name = ?,price = ?, description = ?, specifications = ?, ign_rating = ?, esrb_rating = ?, photo_url = ?, release_date = ? WHERE game_id = ?;");
-            statement.setString(1, gameName);
-            statement.setDouble(2, price);
-            statement.setString(3, description);
-            statement.setString(4, specifications);
-            statement.setInt(5, IGNRating);
-            statement.setString(6, ESRBRating);
-            statement.setString(7, photoURL);
-            statement.setDate(8, java.sql.Date.valueOf(releaseDate));
-            statement.setInt(9, ID);
+            statement.setString(1, game.getGameName());
+            statement.setDouble(2, game.getGameId());
+            statement.setString(3, game.getDescription());
+            statement.setString(4, game.getSpecifications());
+            statement.setInt(5, game.getIGNRating());
+            statement.setString(6, game.getESRBRating());
+            statement.setString(7, game.getPhotoURL());
+            statement.setDate(8, java.sql.Date.valueOf(game.getReleaseDate()));
+            statement.setInt(9, game.getGameId());
             statement.executeUpdate();
         }
     }
@@ -486,27 +476,27 @@ public class DatabaseServerManager implements DatabaseServer
         return games;
     }
 
-    @Override public void editUserInfo(int ID, String username, String photo, String firstName, String lastName) throws SQLException
+    @Override public void editUserInfo(User user) throws SQLException
     {
         try(Connection connection = getConnection())
         {
             PreparedStatement statement = connection.prepareStatement("UPDATE Users SET username = ?, photo = ?, first_name = ?, last_name = ? WHERE id = ?");
-            statement.setString(1, username);
-            statement.setString(2, photo);
-            statement.setString(3, firstName);
-            statement.setString(4, lastName);
-            statement.setInt(5, ID);
+            statement.setString(1, user.getUsername());
+            statement.setString(2, user.getPhoto());
+            statement.setString(3, user.getFirstName());
+            statement.setString(4, user.getLastName());
+            statement.setInt(5, user.getId());
             statement.executeUpdate();
         }
     }
 
-    @Override public void changePassword(String username, String password) throws SQLException
+    @Override public void changePassword(User user) throws SQLException
     {
         try(Connection connection = getConnection())
         {
             PreparedStatement statement = connection.prepareStatement("UPDATE Users SET password = ? WHERE username = ?");
-            statement.setString(1, password);
-            statement.setString(2, username);
+            statement.setString(1, user.getPassword());
+            statement.setString(2, user.getUsername());
             statement.executeUpdate();
         }
     }

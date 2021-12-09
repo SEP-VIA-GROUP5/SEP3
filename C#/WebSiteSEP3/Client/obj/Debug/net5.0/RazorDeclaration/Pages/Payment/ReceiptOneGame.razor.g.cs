@@ -209,7 +209,8 @@ using Microsoft.Extensions.Logging.Abstractions;
             {
                 GameKey gameKey = await _gameService.getProductKeyAsync(Game.GameId, Username);
                 _key = gameKey.Key;
-                GameCluster gameCluster = await _gameService.removeGameFromShoppingCartAsync(Username, Game.GameId);
+                var validationDelete = await _gameService.removeGameFromShoppingCartAsync(Username, Game.GameId);
+                if (!validationDelete) throw new Exception("Couldn't delete the key - Error API");
             }
         }
         catch (Exception e)

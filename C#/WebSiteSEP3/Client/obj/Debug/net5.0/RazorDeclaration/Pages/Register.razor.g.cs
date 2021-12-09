@@ -120,7 +120,10 @@ using Client.Data.Impl;
     {
         try
         {
-            User registeredUser = await UserService.RegisterUserAsync(_user.Username, _user.Password, _user.FirstName, _user.LastName);
+            _user.SecurityLevel = 0;
+            _user.Role = "Member";
+            _user.Photo = "default.png";
+            User registeredUser = await UserService.RegisterUserAsync(_user);
             if (registeredUser != null)
             {
                 NavigationManager.NavigateTo("/login");

@@ -18,7 +18,6 @@
 
 <AuthorizeView>
     <Authorized>
-        
         @if (User != null && GameCluster != null)
         {
             <h3 class="text-center text-info">Payment Successfully, number of games bought: @GameCluster.GamesStack.Count</h3>
@@ -141,7 +140,8 @@
                     GameKey gameKey = await _gameService.getProductKeyAsync(game.GameId, Username);
                     _key = game.GameName + ": " + gameKey.Key;
                     keys.Add(_key);
-                    GameCluster gameCluster = await _gameService.removeGameFromShoppingCartAsync(Username, game.GameId);
+                    var validationDelete = await _gameService.removeGameFromShoppingCartAsync(Username, game.GameId);
+                    if (!validationDelete) throw new Exception("Couldn't delete the key - Error API");
                 }
         }
         catch (Exception e)

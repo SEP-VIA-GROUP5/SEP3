@@ -21,8 +21,7 @@ public class UserService implements IUserService {
     //Test for getting a receipt for a specific User
     @Override
     public User GetUser(String username)
-            throws IOException, ClassNotFoundException
-    {
+            throws IOException, ClassNotFoundException {
         UserPackage userPackage = new UserPackage(new User(username), "gettingUser");
         clientHandling.sendToServer(userPackage);
 
@@ -34,10 +33,9 @@ public class UserService implements IUserService {
 
     @Override
     public User ValidateLogin(String username, String password)
-        throws IOException, ClassNotFoundException
-    {
+            throws IOException, ClassNotFoundException {
         //Sends user requested for validation from Client Blazor
-        UserPackage userPackage = new UserPackage(new User(username,password), "validateLogin");
+        UserPackage userPackage = new UserPackage(new User(username, password), "validateLogin");
         clientHandling.sendToServer(userPackage);
 
         //Received back the confirmation and post it, such that it can be verified
@@ -46,11 +44,11 @@ public class UserService implements IUserService {
         return userPackage.getUser();
     }
 
-    @Override public User ValidateRegister(String username, String password, String firstName, String lastName)
-        throws IOException, ClassNotFoundException
-    {
+    @Override
+    public User ValidateRegister(User user)
+            throws IOException, ClassNotFoundException {
         //sends username and password to database for it to validate new user registration
-        UserPackage userPackage = new UserPackage(new User(username, password, firstName, lastName), "validateRegister");
+        UserPackage userPackage = new UserPackage(user, "validateRegister");
         clientHandling.sendToServer(userPackage);
 
         //received back the validation result
@@ -60,23 +58,28 @@ public class UserService implements IUserService {
         return userPackage.getUser();
     }
 
-    @Override public User editUser(int userID, String username, String photo,
-        String firstName, String lastName)
-        throws IOException, ClassNotFoundException
-    {
-        User user = new User(userID, username, photo, firstName, lastName);
-        UserPackage userPackage = new UserPackage(user, "editUser");
-        clientHandling.sendToServer(userPackage);
-        return user;
+    @Override
+    public User editUser(User user) {
+        try {
+            UserPackage userPackage = new UserPackage(user, "editUser");
+            clientHandling.sendToServer(userPackage);
+            return user;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+
     }
 
-    @Override public User changePassword(String username, String newPassword)
-        throws IOException, ClassNotFoundException
-    {
-        User user = new User(username, newPassword);
-        UserPackage userPackage = new UserPackage(user, "changePassword");
-        clientHandling.sendToServer(userPackage);
-        return user;
+    @Override
+    public User changePassword(User user) {
+        try {
+            UserPackage userPackage = new UserPackage(user, "changePassword");
+            clientHandling.sendToServer(userPackage);
+            return user;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
     }
-
 }

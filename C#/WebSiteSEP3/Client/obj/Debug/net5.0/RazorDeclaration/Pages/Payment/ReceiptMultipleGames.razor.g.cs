@@ -161,7 +161,7 @@ using Microsoft.Extensions.Logging.Abstractions;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 101 "D:\FACULTATE SEMESTRUL 3\SEP3\CODE\SEP3\C#\WebSiteSEP3\Client\Pages\Payment\ReceiptMultipleGames.razor"
+#line 100 "D:\FACULTATE SEMESTRUL 3\SEP3\CODE\SEP3\C#\WebSiteSEP3\Client\Pages\Payment\ReceiptMultipleGames.razor"
        
 
     [Parameter]
@@ -205,7 +205,8 @@ using Microsoft.Extensions.Logging.Abstractions;
                     GameKey gameKey = await _gameService.getProductKeyAsync(game.GameId, Username);
                     _key = game.GameName + ": " + gameKey.Key;
                     keys.Add(_key);
-                    GameCluster gameCluster = await _gameService.removeGameFromShoppingCartAsync(Username, game.GameId);
+                    var validationDelete = await _gameService.removeGameFromShoppingCartAsync(Username, game.GameId);
+                    if (!validationDelete) throw new Exception("Couldn't delete the key - Error API");
                 }
         }
         catch (Exception e)

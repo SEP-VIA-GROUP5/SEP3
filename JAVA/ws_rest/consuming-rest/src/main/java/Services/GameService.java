@@ -100,17 +100,17 @@ public class GameService implements IGameService{
     }
 
     @Override
-    public Game addGame(String name, double price, String photo, String ESRB, int IGN, String shortDescription, String specifications, String date) throws IOException, ClassNotFoundException{
-        Game game = new Game(name, price, shortDescription, specifications, IGN, ESRB, photo, date);
-        GamePackage gamePackage = new GamePackage(game, "registerGame");
-        clientHandling.sendToServer(gamePackage);
-        return game;
-    }
-
-    @Override
-    public String addProductKey(int gameId, String porductKey) throws IOException, ClassNotFoundException {
-        return null;
-        //TODO
+    public Game addGame(Game game) {
+        try{
+            GamePackage gamePackage = new GamePackage(game, "registerGame");
+            clientHandling.sendToServer(gamePackage);
+            return game;
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     @Override
@@ -131,10 +131,17 @@ public class GameService implements IGameService{
     }
 
     @Override
-    public String addGameToShoppingCart(String userName, int gameId) throws IOException {
-        CartPackage cartPackage = new CartPackage("add",userName,gameId);
-        clientHandling.sendToServer(cartPackage);
-        return "sent";
+    public String addGameToShoppingCart(String userName, int gameId) {
+        try{
+            CartPackage cartPackage = new CartPackage("add",userName,gameId);
+            clientHandling.sendToServer(cartPackage);
+            return "sent";
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     @Override
@@ -183,11 +190,17 @@ public class GameService implements IGameService{
     }
 
     @Override
-    public Game editGame(int gameID, String name, double price, String photo, String ESRB, int IGN, String shortDescription, String specifications, String date) throws IOException, ClassNotFoundException {
-        Game game = new Game(gameID, name, price, shortDescription, specifications, IGN, ESRB, photo, date);
-        GamePackage gamePackage = new GamePackage(game, "editGame");
-        clientHandling.sendToServer(gamePackage);
-        return game;
+    public Game editGame(Game game){
+        try {
+            GamePackage gamePackage = new GamePackage(game, "editGame");
+            clientHandling.sendToServer(gamePackage);
+            return game;
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     @Override public GameCluster sortByDate()

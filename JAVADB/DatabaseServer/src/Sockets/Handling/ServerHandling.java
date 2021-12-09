@@ -79,7 +79,7 @@ public class ServerHandling implements Runnable{
                         {
                             System.out.println("Validating register");
                             //Registering user in db with the credentials from client
-                            User userToBeSent1 = databaseServer.registerUser(user.getUsername(), user.getPassword(), user.getFirstName(), user.getLastName());
+                            User userToBeSent1 = databaseServer.registerUser(user);
                             UserPackage toSentPackage1 = new UserPackage(userToBeSent1, "idk");
                             //sending back the user from the database, if not registered the user will be null
                             sendDataToServer(toSentPackage1);
@@ -98,18 +98,13 @@ public class ServerHandling implements Runnable{
                         case "editUser":
                         {
                             System.out.println("Editing user");
-                            databaseServer.editUserInfo(received.getUser().getId(),
-                                received.getUser().getUsername(),
-                                received.getUser().getPhoto(),
-                                received.getUser().getFirstName(),
-                                received.getUser().getLastName());
+                            databaseServer.editUserInfo(user);
                             break;
                         }
                         case"changePassword":
                         {
                             System.out.println("Changing password");
-                            databaseServer.changePassword(user.Username,
-                                user.Password);
+                            databaseServer.changePassword(user);
                             break;
                         }
                         default:
@@ -166,29 +161,14 @@ public class ServerHandling implements Runnable{
                         {
                             System.out.println("Registering game");
                             Game receivedGame = received.getGame();
-                            databaseServer.registerGame(receivedGame.getGameName(),
-                                receivedGame.getPrice(),
-                                receivedGame.getDescription(),
-                                receivedGame.getSpecifications(),
-                                receivedGame.getIGNRating(),
-                                receivedGame.getESRBRating(),
-                                receivedGame.getPhotoURL(),
-                                receivedGame.getReleaseDate());
+                            databaseServer.registerGame(receivedGame);
                             break;
                         }
                         case "editGame":
                             {
                                 System.out.println("Printing out game");
                                 Game receivedGame = received.getGame();
-                                databaseServer.editGame(receivedGame.getGameId(),
-                                    receivedGame.getGameName(),
-                                    receivedGame.getPrice(),
-                                    receivedGame.getDescription(),
-                                    receivedGame.getSpecifications(),
-                                    receivedGame.getIGNRating(),
-                                    receivedGame.getESRBRating(),
-                                    receivedGame.getPhotoURL(),
-                                    receivedGame.getReleaseDate());
+                                databaseServer.editGame(receivedGame);
                                 break;
                         }
                         case "sortedByDate":

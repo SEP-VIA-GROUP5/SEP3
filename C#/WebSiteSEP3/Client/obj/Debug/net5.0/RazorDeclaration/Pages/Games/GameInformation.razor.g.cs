@@ -127,45 +127,45 @@ using System.Diagnostics.Eventing.Reader;
     [CascadingParameter]
     protected Task<AuthenticationState> AuthState { get; set; }
 
-    private string username;
+    private string _username;
 
     [Parameter]
     public string GameName { get; set; }
 
     [Inject]
-    IJSRuntime _jsRuntime { get; set; }
+    IJSRuntime JsRuntime { get; set; }
 
-    private Game game;
-    private string errorMessage;
+    private Game _game;
+    private string _errorMessage;
     private Boolean disableButton = false;
 
     protected override async Task OnInitializedAsync()
     {
-        errorMessage = "";
+        _errorMessage = "";
         try
         {
-            game = await GameService.getGameAsync(GameName);
+            _game = await GameService.getGameAsync(GameName);
         }
         catch (Exception e)
         {
-            errorMessage = e.Message;
+            _errorMessage = e.Message;
         }
     }
 
     protected override async void OnParametersSet()
     {
         _claimsPrincipal = (await AuthState).User;
-        username = _claimsPrincipal.Identity.Name;
+        _username = _claimsPrincipal.Identity.Name;
     }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         if (firstRender)
         {
-            if (game != null)
+            if (_game != null)
             {
-                var value = Math.Round(game.Price, 2);
-                await _jsRuntime.InvokeVoidAsync("LoadButtonPaypal", value, game.GameName);
+                var value = Math.Round(_game.Price, 2);
+                await JsRuntime.InvokeVoidAsync("LoadButtonPaypal", value, _game.GameName);
             }
         }
     }
@@ -177,23 +177,36 @@ using System.Diagnostics.Eventing.Reader;
 
     public void OrderNow()
     {
-        NavigationManager.NavigateTo($"/checkoutnow/{game.GameName}");
+        NavigationManager.NavigateTo($"/checkoutnow/{_game.GameName}");
     }
 
     public async Task AddToShoppingCart(Game game)
     {
-        await GameService.addGameToShoppingCartAsync(username, game.GameId);
-        NavigationManager.NavigateTo($"/ShoppingCart/{username}");
+        try
+        {
+            var validation = await GameService.addGameToShoppingCartAsync(_username, game);
+            if (validation)
+            {
+                NavigationManager.NavigateTo($"/");
+            }
+            else
+                _errorMessage = "Game couldn't be added in shopping cart - Error";
+        }
+        catch (Exception e)
+        {
+            _errorMessage = "Game couldn't be added in shopping cart - Error";
+        }
+
     }
 
     public async Task AddToWishlist(Game game)
     {
-        await GameService.addGameToWishlistAsync(username, game.GameId);
+        await GameService.addGameToWishlistAsync(_username, game);
     }
 
     public void EditGame()
     {
-        NavigationManager.NavigateTo($"/EditGame/{game.GameName}");
+        NavigationManager.NavigateTo($"/EditGame/{_game.GameName}");
     }
 
 

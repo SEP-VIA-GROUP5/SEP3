@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Net;
 using System.Net.Http;
+using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 using Client.Models;
@@ -11,7 +12,7 @@ namespace Client.Data.Impl
     {
         private readonly HttpClient Client = new HttpClient();
         private readonly string Uri = "http://localhost:8080";
-        
+
         //Test for getting a receipt for a specific user
         public async Task<User> GetUser(string username)
         {
@@ -25,12 +26,13 @@ namespace Client.Data.Impl
             if (responseMessage.StatusCode == HttpStatusCode.BadRequest)
             {
                 throw new Exception("Problems with connection with database");
-            } 
+            }
+
             string userAsJson = await responseMessage.Content.ReadAsStringAsync();
-            User resultUser = JsonSerializer.Deserialize<User>(userAsJson); 
+            User resultUser = JsonSerializer.Deserialize<User>(userAsJson);
             return resultUser;
         }
-        
+
         public async Task<User> ValidateLogin(string username, string password)
         {
             HttpResponseMessage responseMessage =
@@ -43,54 +45,65 @@ namespace Client.Data.Impl
             if (responseMessage.StatusCode == HttpStatusCode.BadRequest)
             {
                 throw new Exception("Problems with connection with database");
-            } 
+            }
+
             string userAsJson = await responseMessage.Content.ReadAsStringAsync();
-            User resultUser = JsonSerializer.Deserialize<User>(userAsJson); 
+            User resultUser = JsonSerializer.Deserialize<User>(userAsJson);
             return resultUser;
         }
-        public async Task<User> RegisterUserAsync(string username, string password, string firstName, string lastName)
+
+        public async Task<User> RegisterUserAsync(User user)
         {
-            string userAsJson = null;
             Console.WriteLine("Registering...");
+            string userAsJson = JsonSerializer.Serialize(user);
+            StringContent content = new StringContent(userAsJson,
+                Encoding.UTF8,
+                "application/json");
+
             HttpResponseMessage responseMessage =
-                await Client.GetAsync($"http://localhost:8080/user/register?username={username}&password={password}&firstname={firstName}&lastname={lastName}");
+                await Client.PostAsync("http://localhost:8080/user/register", content);
             if (responseMessage.StatusCode == HttpStatusCode.OK)
             {
-                userAsJson = await responseMessage.Content.ReadAsStringAsync();
-                User resultUser = JsonSerializer.Deserialize<User>(userAsJson);
-                return resultUser; //EXPECTED A USUAL USER TO BE RETURNED
+                return user;
             }
 
             return null;
         }
 
-        public async Task<User> EditUser(int ID, string username, string photo, string firstName, string lastName)
+        
+        public async Task<User> EditUser(User user)
         {
-            string userAsJson = null;
+
             Console.WriteLine("Editing...");
+            string userAsJson = JsonSerializer.Serialize(user);
+            StringContent content = new StringContent(
+                userAsJson,
+                Encoding.UTF8,
+                "application/json");
             HttpResponseMessage responseMessage =
-                await Client.GetAsync($"http://localhost:8080/user/edit?ID={ID}&username={username}&photo={photo}&firstname={firstName}&lastname={lastName}");
+                await Client.PutAsync($"http://localhost:8080/user/edit", content);
             if (responseMessage.StatusCode == HttpStatusCode.OK)
             {
-                userAsJson = await responseMessage.Content.ReadAsStringAsync();
-                User resultUser = JsonSerializer.Deserialize<User>(userAsJson);
-                return resultUser; //EXPECTED A USUAL USER TO BE RETURNED
+                return user;
             }
 
             return null;
         }
-        public async Task<User> ChangePassword(string username, string password)
+
+        public async Task<User> ChangePassword(User user)
         {
-            string userAsJson = null;
-            Console.WriteLine("Changing password...");
+            string userAsJson = JsonSerializer.Serialize(user);
+            StringContent content = new StringContent(
+                userAsJson,
+                Encoding.UTF8,
+                "application/json");
             HttpResponseMessage responseMessage =
-                await Client.GetAsync($"http://localhost:8080/user/changePassword?username={username}&password={password}");
+                await Client.PutAsync($"http://localhost:8080/user/changePassword", content);
             if (responseMessage.StatusCode == HttpStatusCode.OK)
             {
-                userAsJson = await responseMessage.Content.ReadAsStringAsync();
-                User resultUser = JsonSerializer.Deserialize<User>(userAsJson);
-                return resultUser; //EXPECTED A USUAL USER TO BE RETURNED
+                return user;
             }
+
             return null;
         }
     }

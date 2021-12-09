@@ -12,10 +12,10 @@ public interface IUserService {
     User ValidateLogin(String username, String password)
         throws IOException, ClassNotFoundException;
 
-    User ValidateRegister(String username, String password, String firstName, String lastName)
+    User ValidateRegister(User user)
         throws IOException, ClassNotFoundException;
 
-    User editUser(int userID, String username, String photo, String firstName, String lastName)throws IOException, ClassNotFoundException;
+    User editUser(User user);
 
-    User changePassword(String username, String newPassword)throws IOException, ClassNotFoundException;
+    User changePassword(User user);
 }

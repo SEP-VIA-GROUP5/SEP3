@@ -78,7 +78,7 @@ namespace Client.Authentication
             List<Claim> claims = new List<Claim>();
             claims.Add(new Claim(ClaimTypes.Name, user.Username));
             claims.Add(new Claim("Role", user.Role));
-            claims.Add(new Claim("Level", user.SecurityLevel));
+            claims.Add(new Claim("Level", user.SecurityLevel.ToString()));
             ClaimsIdentity identity = new ClaimsIdentity(claims, "apiauth_type");
             return identity;
         }
