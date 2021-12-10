@@ -119,7 +119,7 @@ using System.Diagnostics.Eventing.Reader;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 110 "D:\FACULTATE SEMESTRUL 3\SEP3\CODE\SEP3\C#\WebSiteSEP3\Client\Pages\Games\GameInformation.razor"
+#line 106 "D:\FACULTATE SEMESTRUL 3\SEP3\CODE\SEP3\C#\WebSiteSEP3\Client\Pages\Games\GameInformation.razor"
        
 
     private ClaimsPrincipal _claimsPrincipal;
