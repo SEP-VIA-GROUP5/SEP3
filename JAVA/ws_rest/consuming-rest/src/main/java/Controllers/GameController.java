@@ -86,27 +86,6 @@ public class GameController {
     }
 
     /**
-     * Method is used to generate the receipt after buying a game
-     * @param userId the user id is given to the program to generate a receipt and link a purchase with user
-     * @param gameId the game id is given to the program to generate a receipt and link a purchased game with the user
-     * @return receipt returns the string that confirms the purchase
-     */
-    @GetMapping("/readReceipt")
-    public ResponseEntity<String> getReceipt(@RequestParam int userId, @RequestParam int gameId){
-        try {
-            String receipt = gameService.getReceipt(userId,gameId);
-            if(receipt==null){
-                return ResponseEntity.badRequest().build();
-            }
-            return ResponseEntity.ok(receipt);
-        }
-        catch (Exception e){
-            System.out.println(e.getMessage());
-            return ResponseEntity.badRequest().build();
-        }
-    }
-
-    /**
      * The method is used to return the product key after a successful purchase
      * @param gameId is given to know what game product key to send back
      * @param userName is given to know for which user this product key belongs
