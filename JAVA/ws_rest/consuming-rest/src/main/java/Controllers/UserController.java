@@ -20,7 +20,11 @@ public class UserController {
         userService = new UserService();
     }
 
-    //Test for getting a receipt for a specific user
+    /**
+     * Retrieves user from database
+     * @param username user name
+     * @return returns user object
+     */
     @GetMapping("/getter")
     public ResponseEntity<User> GetUser(@RequestParam String username)
     {
@@ -40,6 +44,12 @@ public class UserController {
         }
     }
 
+    /**
+     * Validates user credentials
+     * @param username user name
+     * @param password password
+     * @return returns user if credentials match
+     */
     @GetMapping("/login")
     public ResponseEntity<User> ValidateLogin(@RequestParam String username, @RequestParam String password)
     {
@@ -57,6 +67,11 @@ public class UserController {
         }
     }
 
+    /**
+     * Registers a new user
+     * @param user User object
+     * @return validation that user is registered
+     */
     @PostMapping("/register")
     public ResponseEntity<User> ValidateRegister(@RequestBody User user)
     {
@@ -75,6 +90,12 @@ public class UserController {
             return ResponseEntity.badRequest().build();
         }
     }
+
+    /**
+     * Registers a new user
+     * @param user User object
+     * @return validation that user is registered
+     */
     @PutMapping("/edit")
     public ResponseEntity<User> EditUser(@RequestBody User user)
     {
@@ -93,6 +114,12 @@ public class UserController {
             return ResponseEntity.badRequest().build();
         }
     }
+
+    /**
+     * Changes users password
+     * @param user User object
+     * @return validation that user password is changed
+     */
     @PutMapping("/changePassword")
     public ResponseEntity<User> changePassword(@RequestBody User user)
     {
