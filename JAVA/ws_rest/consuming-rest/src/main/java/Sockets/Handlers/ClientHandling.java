@@ -8,7 +8,9 @@ import Sockets.Packages.UserPackage;
 
 import java.io.*;
 import java.net.Socket;
-
+/**
+ * Used to establish a connection with tier 3, and send receive object from/to tier 3
+ */
 public class ClientHandling {
 
     private final static String HOST = "localhost";
@@ -33,13 +35,11 @@ public class ClientHandling {
         {
             final UserPackage user = (UserPackage) obj;
             System.out.println(user.getUser().toString());
-            //System.out.println(user.getUser().getPassword());
             return user;
         }
         else if(obj instanceof GamePackage)
         {
             final GamePackage game = (GamePackage) obj;
-            //System.out.println(user.getUser().getPassword());
             return game;
         }
         else if(obj instanceof CartPackage)
@@ -48,9 +48,8 @@ public class ClientHandling {
             return cart;
         }
         else{
-            //TODO
+            return null;
         }
-        return null;
     }
 
     public void connect() throws IOException {
@@ -58,13 +57,7 @@ public class ClientHandling {
         this.socket = new Socket(HOST, PORT);
         outStream = new ObjectOutputStream(socket.getOutputStream());
         inStream = new ObjectInputStream(socket.getInputStream());
-
-//        User user1 = new User("Lukas", "Jusk");
-//        UserPackage userPackage1 = new UserPackage(user1, "lol");
-//        outStream.writeObject(userPackage1);
-
         System.out.println("Connected");
-//        disconnect();
     }
 
     public void disconnect() throws IOException {

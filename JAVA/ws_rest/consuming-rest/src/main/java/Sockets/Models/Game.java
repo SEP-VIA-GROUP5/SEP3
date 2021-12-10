@@ -1,7 +1,9 @@
 package Sockets.Models;
 
 import java.io.Serializable;
-
+/**
+ * Game class contains all the information of a game
+ */
 public class Game implements Serializable
 {
   private static final long serialVersionUID = 3246587559242606068L;

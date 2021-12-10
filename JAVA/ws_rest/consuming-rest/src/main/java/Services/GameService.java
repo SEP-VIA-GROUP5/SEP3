@@ -12,15 +12,15 @@ import com.google.gson.Gson;
 
 import java.io.IOException;
 import java.util.ArrayList;
-
+/**
+ * Sends information to tier 3 using sockets about Games
+ */
 public class GameService implements IGameService{
 
     private ClientHandling clientHandling;
-    private Gson gson;
 
     public GameService() throws IOException{
         clientHandling = new ClientHandling();
-        gson = new Gson();
     }
 
     /**

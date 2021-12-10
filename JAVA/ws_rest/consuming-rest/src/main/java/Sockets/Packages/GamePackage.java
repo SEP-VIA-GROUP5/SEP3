@@ -4,7 +4,9 @@ import Sockets.Models.Game;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-
+/**
+ * Used to send games as a package
+ */
 public class GamePackage implements Serializable
 {
   private static final long serialVersionUID = -1969032664524354115L;

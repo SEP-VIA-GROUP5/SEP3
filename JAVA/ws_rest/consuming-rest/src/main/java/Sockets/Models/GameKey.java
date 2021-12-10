@@ -1,7 +1,9 @@
 package Sockets.Models;
 
 import java.io.Serializable;
-
+/**
+ * Used to store Game product Keys
+ */
 public class GameKey implements Serializable {
     private String GameKey;
     private String username;
