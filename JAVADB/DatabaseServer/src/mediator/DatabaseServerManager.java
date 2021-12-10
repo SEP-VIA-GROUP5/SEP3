@@ -12,6 +12,9 @@ import java.util.ArrayList;
 
 import static java.lang.String.valueOf;
 
+/**
+ * This class handles communication with database.
+ */
 public class DatabaseServerManager implements DatabaseServer
 {
     public DatabaseServerManager() throws SQLException {
@@ -24,6 +27,13 @@ public class DatabaseServerManager implements DatabaseServer
         }
     }
 
+    /**
+     * A method that returns user from database by username and password.
+     * @param username username.
+     * @param password password.
+     * @return user object.
+     * @throws SQLException
+     */
     @Override public User getUserDB (String username, String password) throws SQLException
     {
         User user = null;
@@ -47,8 +57,12 @@ public class DatabaseServerManager implements DatabaseServer
         return user;
     }
 
-
-    //Test for getting receipt for a specific user
+    /**
+     * A method that returns user from database by username.
+     * @param username username.
+     * @return user object.
+     * @throws SQLException
+     */
     @Override public User getUserDB (String username) throws SQLException
     {
         User user = null;
@@ -71,6 +85,12 @@ public class DatabaseServerManager implements DatabaseServer
         return user;
     }
 
+    /**
+     * A method that registers user into the databse.
+     * @param user user object with user details.
+     * @return user object.
+     * @throws SQLException
+     */
     @Override public User registerUser(User user) throws SQLException
     {
         User validateUser = null;
@@ -95,6 +115,12 @@ public class DatabaseServerManager implements DatabaseServer
         return validateUser;
     }
 
+    /**
+     * A method that checks if such username already exist in the database.
+     * @param username username.
+     * @return true if username already exists, false if otherwise.
+     * @throws SQLException
+     */
     @Override public boolean checkIfUsernameExists(String username)
             throws SQLException
     {
@@ -119,7 +145,12 @@ public class DatabaseServerManager implements DatabaseServer
         return exists;
     }
 
-
+    /**
+     * A method that gets a game from database.
+     * @param gameName name of the game.
+     * @return game object with it's details.
+     * @throws SQLException
+     */
     @Override public Game getGameDB(String gameName) throws SQLException
     {
         Game game = null;
@@ -146,6 +177,11 @@ public class DatabaseServerManager implements DatabaseServer
         return game;
     }
 
+    /**
+     * A method that adds a game to the database.
+     * @param game game object.
+     * @throws SQLException
+     */
     @Override public void registerGame(Game game)
         throws SQLException
     {
@@ -165,6 +201,13 @@ public class DatabaseServerManager implements DatabaseServer
         }
     }
 
+    /**
+     * A method that takes and removes game product key from database.
+     * @param gameID gamer ID.
+     * @param username user's username.
+     * @return bought game object with product key.
+     * @throws SQLException
+     */
     @Override public Game buyGame(int gameID, String username) throws SQLException
     {
         Game gameDummy = getGameByID(gameID);
@@ -192,6 +235,12 @@ public class DatabaseServerManager implements DatabaseServer
         return gameToReturn;
     }
 
+    /**
+     * A method that gets a product key of a game from database.
+     * @param gameID game ID.
+     * @return string product key.
+     * @throws SQLException
+     */
     @Override public String getKey(int gameID) throws SQLException
     {
         String productKey = null;
@@ -212,6 +261,12 @@ public class DatabaseServerManager implements DatabaseServer
         return productKey;
     }
 
+    /**
+     * A method tyhat returns a game by ID.
+     * @param id game ID.
+     * @return game object.
+     * @throws SQLException
+     */
     @Override public Game getGameByID(int id) throws SQLException
     {
         Game game = null;
@@ -238,6 +293,11 @@ public class DatabaseServerManager implements DatabaseServer
         return game;
     }
 
+    /**
+     * A method that gets all games from the database.
+     * @return array list of all games.
+     * @throws SQLException
+     */
     @Override public ArrayList<Game> getAllGames() throws SQLException
     {
         ArrayList<Game> games = new ArrayList<>();
@@ -265,6 +325,12 @@ public class DatabaseServerManager implements DatabaseServer
         return games;
     }
 
+    /**
+     * A method that searches games by given string.
+     * @param gameName game that is being searched.
+     * @return array list of found games.
+     * @throws SQLException
+     */
     @Override public ArrayList<Game> searchGamesByName(String gameName)
         throws SQLException
     {
@@ -297,50 +363,13 @@ public class DatabaseServerManager implements DatabaseServer
         return games;
     }
 
-//    @Override public void addToShoppingCart(String username, int gameID)
-//        throws SQLException
-//    {
-//        try(Connection connection = getConnection())
-//        {
-//            PreparedStatement statement = connection.prepareStatement("INSERT INTO shopping_cart(user_id, game_id) VALUES (?, ?)");
-//            statement.setInt(1, getUserDB(username).getId());
-//            statement.setInt(2, gameID);
-//            statement.executeUpdate();
-//        }
-//    }
-
-//    @Override public ArrayList<Game> removeFromShoppingCart(String username,
-//        int gameID) throws SQLException
-//    {
-//        try(Connection connection = getConnection())
-//        {
-//            PreparedStatement statement = connection.prepareStatement("DELETE FROM shopping_cart WHERE user_id = ? AND game_id = ?;");
-//            statement.setInt(1, getUserDB(username).getId());
-//            statement.setInt(2, gameID);
-//            statement.executeUpdate();
-//        }
-//        ArrayList<Game> games = getShoppingCart(username);
-//        return games;
-//    }
-//
-//    @Override public ArrayList<Game> getShoppingCart(String username)
-//        throws SQLException
-//    {
-//        ArrayList<Game> games = new ArrayList<Game>();
-//        try(Connection connection = getConnection())
-//        {
-//            PreparedStatement statement = connection.prepareStatement("SELECT game_id FROM shopping_cart WHERE user_id = ?");
-//            statement.setInt(1, getUserDB(username).getId());
-//            ResultSet resultSet = statement.executeQuery();
-//            while(resultSet.next())
-//            {
-//                Game game = getGameByID(resultSet.getInt("game_id"));
-//                games.add(game);
-//            }
-//        }
-//        return games;
-//    }
-
+    /**
+     *This method removes a game from shopping cart.
+     * @param username username.
+     * @param gameID game ID.
+     * @return array list of games without game that has to be removed.
+     * @throws SQLException
+     */
     @Override public ArrayList<Game> removeFromShoppingCart(String username,
         int gameID) throws SQLException
     {
@@ -356,6 +385,13 @@ public class DatabaseServerManager implements DatabaseServer
         ArrayList<Game> games = getShoppingCart(username);
         return games;
     }
+
+    /**
+     * A method that gets games from shopping cart.
+     * @param username username.
+     * @return arraylist of games from shopping cart.
+     * @throws SQLException
+     */
     @Override public ArrayList<Game> getShoppingCart(String username)
         throws SQLException
     {
@@ -375,6 +411,13 @@ public class DatabaseServerManager implements DatabaseServer
         return games;
     }
 
+    /**
+     * A method that adds a game to users library.
+     * @param username username.
+     * @param gameID game ID.
+     * @param gameKey game product key.
+     * @throws SQLException
+     */
     @Override public void addToLibrary(String username, int gameID, String gameKey)
         throws SQLException
     {
@@ -389,6 +432,12 @@ public class DatabaseServerManager implements DatabaseServer
         }
     }
 
+    /**
+     * A method that gets games from library.
+     * @param username username.
+     * @return array list of games.
+     * @throws SQLException
+     */
     @Override public ArrayList<Game> getLibrary(String username)
         throws SQLException
     {
@@ -416,6 +465,12 @@ public class DatabaseServerManager implements DatabaseServer
         return games;
     }
 
+    /**
+     * A method that adds a game to shopping cart.
+     * @param username username.
+     * @param gameID game ID.
+     * @throws SQLException
+     */
     @Override public void addToShoppingCart(String username, int gameID)
         throws SQLException
     {
@@ -429,6 +484,12 @@ public class DatabaseServerManager implements DatabaseServer
             statement.executeUpdate();
         }
     }
+
+    /**
+     * A method that edits the game in the database.
+     * @param game game, that has to be edited.
+     * @throws SQLException
+     */
     @Override public void editGame(Game game)
         throws SQLException
     {
@@ -448,6 +509,11 @@ public class DatabaseServerManager implements DatabaseServer
         }
     }
 
+    /**
+     * A method, that sorts games by date.
+     * @return array list of games sorted by date.
+     * @throws SQLException
+     */
     @Override public ArrayList<Game> sortByDate() throws SQLException
     {
         ArrayList<Game> games = new ArrayList<>();
@@ -476,6 +542,11 @@ public class DatabaseServerManager implements DatabaseServer
         return games;
     }
 
+    /**
+     * A method, that edits users information.
+     * @param user edited user.
+     * @throws SQLException
+     */
     @Override public void editUserInfo(User user) throws SQLException
     {
         try(Connection connection = getConnection())
@@ -490,6 +561,11 @@ public class DatabaseServerManager implements DatabaseServer
         }
     }
 
+    /**
+     * A method that changes users password.
+     * @param user user.
+     * @throws SQLException
+     */
     @Override public void changePassword(User user) throws SQLException
     {
         try(Connection connection = getConnection())
@@ -501,6 +577,12 @@ public class DatabaseServerManager implements DatabaseServer
         }
     }
 
+    /**
+     * A method, that add a game to the wish list.
+     * @param username username.
+     * @param gameID game ID.
+     * @throws SQLException
+     */
     @Override public void addToWishlist(String username, int gameID)
         throws SQLException
     {
@@ -514,6 +596,13 @@ public class DatabaseServerManager implements DatabaseServer
         }
     }
 
+    /**
+     * A method, that removes a game from users wish list.
+     * @param username username.
+     * @param gameID game ID.
+     * @return array list of games from users wish list.
+     * @throws SQLException
+     */
     @Override public ArrayList<Game> removeFromWishlist(String username, int gameID)
         throws SQLException
     {
@@ -530,6 +619,12 @@ public class DatabaseServerManager implements DatabaseServer
         return games;
     }
 
+    /**
+     * A method, that gets user wishlist from database.
+     * @param username username.
+     * @return array list of games from wish list.
+     * @throws SQLException
+     */
     @Override public ArrayList<Game> getWishlist(String username)
         throws SQLException
     {
@@ -549,6 +644,11 @@ public class DatabaseServerManager implements DatabaseServer
         return games;
     }
 
+    /**
+     * A method, that establishes connection with database.
+     * @return connection as an object.
+     * @throws SQLException
+     */
     private Connection getConnection() throws SQLException
     {
         String url = "jdbc:postgresql://ella.db.elephantsql.com:5432/zgckhgwi";
