@@ -21,10 +21,21 @@ public class ClientHandling {
         connect();
     }
 
+    /**
+     * Sends object to database server
+     * @param obj object to send
+     * @throws IOException throws exception when object is incorrect
+     */
     public void sendToServer(Object obj) throws IOException {
         outStream.writeObject(obj);
     }
 
+    /**
+     * Receives objects from database server
+     * @return returns the extracted object from package or null if package does not exist
+     * @throws IOException throws exception when object is incorrect
+     * @throws ClassNotFoundException throws exception when object is incorrect
+     */
     public Object receiveFromServer() throws IOException, ClassNotFoundException
     {
         System.out.println("Received");
@@ -53,6 +64,10 @@ public class ClientHandling {
         return null;
     }
 
+    /**
+     * Connects to database server
+     * @throws IOException when the connection is interrupted
+     */
     public void connect() throws IOException {
         System.out.println("Connecting...");
         this.socket = new Socket(HOST, PORT);
@@ -67,6 +82,10 @@ public class ClientHandling {
 //        disconnect();
     }
 
+    /**
+     * Disconnects from database server
+     * @throws IOException when the disconnection is interrupted
+     */
     public void disconnect() throws IOException {
         System.out.println("Closed");
         socket.close();
