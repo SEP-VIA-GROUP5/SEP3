@@ -10,7 +10,6 @@ import java.io.IOException;
 public interface IGameService {
     Game getGame(String gameName) throws IOException, ClassNotFoundException;
     GameCluster getGameCluster(int page) throws IOException, ClassNotFoundException;
-    String getReceipt(int userId, int gameId) throws IOException, ClassNotFoundException;
     GameKey getProductKey(int gameId, String username) throws IOException, ClassNotFoundException;
     Game addGame(Game game);
     GameCluster getSearch(String search) throws IOException, ClassNotFoundException;
