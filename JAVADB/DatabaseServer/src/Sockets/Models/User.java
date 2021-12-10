@@ -1,7 +1,9 @@
 package Sockets.Models;
 
 import java.io.Serializable;
-
+/**
+ * This class contains information of a user
+ */
 public class User implements Serializable
 {
     public int Id;
