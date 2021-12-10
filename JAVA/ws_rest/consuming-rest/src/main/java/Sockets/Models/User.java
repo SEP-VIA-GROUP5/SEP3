@@ -3,7 +3,9 @@ package Sockets.Models;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 
 import java.io.Serializable;
-
+/**
+ * This class contains information of a user
+ */
 public class User implements Serializable
 {
     public int Id;

@@ -22,6 +22,11 @@ public class GameController {
         gameService = new GameService();
     }
 
+    /**
+     * This method is used to send the game back to the client when requester through this method
+     * @param gameName  is given to search for the game from the client
+     * @return Game  returns Game object. If the game is not found, returns code 400 (Bad request)
+     */
     @GetMapping("/getGame")
     public ResponseEntity<Game> getGame(@RequestParam String gameName){
         try {
@@ -37,6 +42,11 @@ public class GameController {
         }
     }
 
+    /**
+     *  This method is used to send the GameCluster object to the client
+     * @param page is given to get a set amount of games to display.
+     * @return GameCluster returns GameCluster object. If the page is not filled then returns an empty GameCluster object
+     */
     @GetMapping("/getCluster")
     public ResponseEntity<GameCluster> getGameCluster(@RequestParam int page){
         try {
@@ -52,6 +62,11 @@ public class GameController {
         }
     }
 
+    /**
+     * This method is for searching the games throughout the store
+     * @param search the string is given to match with the game names in the database
+     * @return GameCluster returns GameCluster object with all the matching game names
+     */
     @GetMapping("/getSearch")
     public ResponseEntity<GameCluster> getSearchGame(@RequestParam String search)
     {
@@ -70,21 +85,12 @@ public class GameController {
         }
     }
 
-    @GetMapping("/readReceipt")
-    public ResponseEntity<String> getReceipt(@RequestParam int userId, @RequestParam int gameId){
-        try {
-            String receipt = gameService.getReceipt(userId,gameId);
-            if(receipt==null){
-                return ResponseEntity.badRequest().build();
-            }
-            return ResponseEntity.ok(receipt);
-        }
-        catch (Exception e){
-            System.out.println(e.getMessage());
-            return ResponseEntity.badRequest().build();
-        }
-    }
-
+    /**
+     * The method is used to return the product key after a successful purchase
+     * @param gameId is given to know what game product key to send back
+     * @param userName is given to know for which user this product key belongs
+     * @return productKey returns a string that contains product key for a game
+     */
     @GetMapping("/getProductKey")
     public ResponseEntity<GameKey> getProductKey(@RequestParam int gameId, @RequestParam String userName){
         try {
@@ -101,6 +107,11 @@ public class GameController {
         }
     }
 
+    /**
+     * This method is used for a system administrator to add new game
+     * @param game Game object
+     * @return confirmation that the game is added
+     */
     @PostMapping("/addGame")
     public ResponseEntity<Game> addGame(@RequestBody Game game){
         try {
@@ -116,6 +127,12 @@ public class GameController {
         }
     }
 
+    /**
+     * Adds game to the shopping cart
+     * @param userName user name
+     * @param game Game object
+     * @return confirmation that the game is added
+     */
     @PostMapping("/cart/add")
     public ResponseEntity<String> addGameToShoppingCart(@RequestParam String userName, @RequestBody Game game){
         try {
@@ -131,6 +148,12 @@ public class GameController {
         }
     }
 
+    /**
+     * Removes game to the shopping cart
+     * @param userName user name
+     * @param gameId Game object
+     * @return new GameCluster object without the removed game
+     */
     @DeleteMapping("/cart/remove")
     public ResponseEntity<GameCluster> removeGameToShoppingCart(@RequestParam String userName, @RequestParam int gameId) {
         try {
@@ -145,6 +168,11 @@ public class GameController {
         }
     }
 
+    /**
+     * Gets the shopping cart
+     * @param userName user name
+     * @return returns game cluster object
+     */
     @GetMapping("/cart/get")
     public ResponseEntity<GameCluster> getShoppingCart(@RequestParam String userName) {
         try {
@@ -158,6 +186,12 @@ public class GameController {
             return ResponseEntity.badRequest().build();
         }
     }
+
+    /**
+     * Gets users game library
+     * @param userName user name
+     * @return returns game cluster with purchased games and product keys
+     */
     @GetMapping("/library/get")
     public ResponseEntity<GameCluster> getLibrary(@RequestParam String userName) {
         try {
@@ -171,6 +205,12 @@ public class GameController {
             return ResponseEntity.badRequest().build();
         }
     }
+
+    /**
+     * Administrator can edit game
+     * @param game Game object
+     * @return Game object that confirms that game is edited
+     */
     @PutMapping("/editGame")
     public ResponseEntity<Game> editGame(@RequestBody Game game) {
         try {
@@ -186,6 +226,12 @@ public class GameController {
         }
     }
 
+    /**
+     * Adds game to the wishlist
+     * @param userName user name
+     * @param game Game object
+     * @return confirmation string
+     */
     @PostMapping("/wishlist/add")
     public ResponseEntity<String> addGameToWishlist(@RequestParam String userName, @RequestBody Game game){
         try {
@@ -201,6 +247,12 @@ public class GameController {
         }
     }
 
+    /**
+     * Deletes game from wishlist
+     * @param userName user name
+     * @param gameId game id
+     * @return returns new GameCluster object without removed game
+     */
     @DeleteMapping("/wishlist/remove")
     public ResponseEntity<GameCluster> removeGameToWishlist(@RequestParam String userName, @RequestParam int gameId) {
         try {
@@ -215,6 +267,11 @@ public class GameController {
         }
     }
 
+    /**
+     * Gets a wishlist
+     * @param userName user name
+     * @return returns a GameCluster object
+     */
     @GetMapping("/wishlist/get")
     public ResponseEntity<GameCluster> getWishlist(@RequestParam String userName) {
         try {
@@ -229,6 +286,10 @@ public class GameController {
         }
     }
 
+    /**
+     * Gets newly released games
+     * @return returns by date sorted GameCluster object
+     */
     @GetMapping("/getNewRelease")
     public ResponseEntity<GameCluster> getGameCluster(){
         try {

@@ -7,18 +7,24 @@ import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 
 import java.io.IOException;
-
+/**
+ * Sends information to tier 3 using sockets about Users
+ */
 public class UserService implements IUserService {
 
     private ClientHandling clientHandling;
-    private Gson gson;
 
     public UserService() throws IOException {
         clientHandling = new ClientHandling();
-        gson = new Gson();
     }
 
-    //Test for getting a receipt for a specific User
+    /**
+     * Method used to get a user as an object by a username
+     * <p>
+     * @param  username  username of a user
+     * @return a user object
+     *
+     */
     @Override
     public User GetUser(String username)
             throws IOException, ClassNotFoundException {
@@ -31,6 +37,15 @@ public class UserService implements IUserService {
         return userPackage.getUser();
     }
 
+    /**
+     * Method used to validate login. Takes a username and password and sends it to
+     * the database server to validate it.
+     * <p>
+     * @param  username username of a user
+     * @param password password of a user
+     * @return user if validated, otherwise user as null object
+     *
+     */
     @Override
     public User ValidateLogin(String username, String password)
             throws IOException, ClassNotFoundException {
@@ -44,6 +59,14 @@ public class UserService implements IUserService {
         return userPackage.getUser();
     }
 
+    /**
+     * Method used to register a user in the database. Take a user object with username,
+     * password first name and last name.
+     * <p>
+     * @param  user  User object
+     * @return User object that was registered
+     *
+     */
     @Override
     public User ValidateRegister(User user)
             throws IOException, ClassNotFoundException {
@@ -58,6 +81,14 @@ public class UserService implements IUserService {
         return userPackage.getUser();
     }
 
+    /**
+     * Method used to edit users information. Takes a user object with updated
+     * values for variables and sends it to the database to change the values
+     * <p>
+     * @param  user  User object
+     * @return updated user object if updated, otherwise null
+     *
+     */
     @Override
     public User editUser(User user) {
         try {
@@ -71,6 +102,14 @@ public class UserService implements IUserService {
 
     }
 
+    /**
+     * Method used to change a password of a user. Takes a user object with a
+     * changed value for a variable password.
+     * <p>
+     * @param  user object of User
+     * @return user object with changed password if changed, otherwise null
+     *
+     */
     @Override
     public User changePassword(User user) {
         try {

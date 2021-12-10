@@ -4,7 +4,9 @@ import Sockets.Models.Game;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-
+/**
+ * Used to send shopping cart and wishlist
+ */
 public class CartPackage implements Serializable
 {
     private static final long serialVersionUID = 8045768769829378877L;
