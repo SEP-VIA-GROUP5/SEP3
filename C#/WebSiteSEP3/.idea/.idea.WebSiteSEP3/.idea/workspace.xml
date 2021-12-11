@@ -6,58 +6,28 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6351634a-927e-48e6-b898-ac69d3b896d5" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../../JAVADB/DatabaseServer/.idea/runConfigurations.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.WebSiteSEP3/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.WebSiteSEP3/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/Authentication/CustomAuthenticationStateProvider.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Client/Authentication/CustomAuthenticationStateProvider.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/Data/IGameService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Client/Data/IGameService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/Data/IUserService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Client/Data/IUserService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/Data/Impl/GameService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Client/Data/Impl/GameService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/Data/Impl/UserService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Client/Data/Impl/UserService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/Models/User.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Client/Models/User.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/Pages/Games/GameInformation.razor" beforeDir="false" afterPath="$PROJECT_DIR$/Client/Pages/Games/GameInformation.razor" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/Pages/Payment/ReceiptMultipleGames.razor" beforeDir="false" afterPath="$PROJECT_DIR$/Client/Pages/Payment/ReceiptMultipleGames.razor" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/Pages/Payment/ReceiptOneGame.razor" beforeDir="false" afterPath="$PROJECT_DIR$/Client/Pages/Payment/ReceiptOneGame.razor" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/Pages/Profile.razor" beforeDir="false" afterPath="$PROJECT_DIR$/Client/Pages/Profile.razor" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Client/Pages/Register.razor" beforeDir="false" afterPath="$PROJECT_DIR$/Client/Pages/Register.razor" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/Pages/Wishlist.razor" beforeDir="false" afterPath="$PROJECT_DIR$/Client/Pages/Wishlist.razor" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Client/bin/Debug/net5.0/Client.Views.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Client/bin/Debug/net5.0/Client.Views.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Client/bin/Debug/net5.0/Client.Views.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/Client/bin/Debug/net5.0/Client.Views.pdb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Client/bin/Debug/net5.0/Client.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Client/bin/Debug/net5.0/Client.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Client/bin/Debug/net5.0/Client.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/Client/bin/Debug/net5.0/Client.pdb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Client/bin/Debug/net5.0/ref/Client.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Client/bin/Debug/net5.0/ref/Client.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/obj/Debug/net5.0/Client.RazorComponent.input.cache" beforeDir="false" afterPath="$PROJECT_DIR$/Client/obj/Debug/net5.0/Client.RazorComponent.input.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/obj/Debug/net5.0/Client.RazorCoreGenerate.cache" beforeDir="false" afterPath="$PROJECT_DIR$/Client/obj/Debug/net5.0/Client.RazorCoreGenerate.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/obj/Debug/net5.0/Client.TagHelpers.output.cache" beforeDir="false" afterPath="$PROJECT_DIR$/Client/obj/Debug/net5.0/Client.TagHelpers.output.cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Client/obj/Debug/net5.0/Client.Views.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Client/obj/Debug/net5.0/Client.Views.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Client/obj/Debug/net5.0/Client.Views.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/Client/obj/Debug/net5.0/Client.Views.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/obj/Debug/net5.0/Client.csproj.FileListAbsolute.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Client/obj/Debug/net5.0/Client.csproj.FileListAbsolute.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Client/obj/Debug/net5.0/Client.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Client/obj/Debug/net5.0/Client.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Client/obj/Debug/net5.0/Client.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/Client/obj/Debug/net5.0/Client.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/obj/Debug/net5.0/Razor/Pages/Games/GameInformation.razor.g.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Client/obj/Debug/net5.0/Razor/Pages/Games/GameInformation.razor.g.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/obj/Debug/net5.0/Razor/Pages/Payment/ReceiptMultipleGames.razor.g.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Client/obj/Debug/net5.0/Razor/Pages/Payment/ReceiptMultipleGames.razor.g.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/obj/Debug/net5.0/Razor/Pages/Payment/ReceiptOneGame.razor.g.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Client/obj/Debug/net5.0/Razor/Pages/Payment/ReceiptOneGame.razor.g.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/obj/Debug/net5.0/Razor/Pages/Profile.razor.g.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Client/obj/Debug/net5.0/Razor/Pages/Profile.razor.g.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Client/obj/Debug/net5.0/Razor/Pages/Register.razor.g.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Client/obj/Debug/net5.0/Razor/Pages/Register.razor.g.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/obj/Debug/net5.0/Razor/Pages/Wishlist.razor.g.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Client/obj/Debug/net5.0/Razor/Pages/Wishlist.razor.g.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Client/obj/Debug/net5.0/RazorDeclaration/Client.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Client/obj/Debug/net5.0/RazorDeclaration/Client.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Client/obj/Debug/net5.0/RazorDeclaration/Client.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/Client/obj/Debug/net5.0/RazorDeclaration/Client.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/obj/Debug/net5.0/RazorDeclaration/Pages/Games/GameInformation.razor.g.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Client/obj/Debug/net5.0/RazorDeclaration/Pages/Games/GameInformation.razor.g.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/obj/Debug/net5.0/RazorDeclaration/Pages/Payment/ReceiptMultipleGames.razor.g.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Client/obj/Debug/net5.0/RazorDeclaration/Pages/Payment/ReceiptMultipleGames.razor.g.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/obj/Debug/net5.0/RazorDeclaration/Pages/Payment/ReceiptOneGame.razor.g.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Client/obj/Debug/net5.0/RazorDeclaration/Pages/Payment/ReceiptOneGame.razor.g.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/obj/Debug/net5.0/RazorDeclaration/Pages/Profile.razor.g.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Client/obj/Debug/net5.0/RazorDeclaration/Pages/Profile.razor.g.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/obj/Debug/net5.0/RazorDeclaration/Pages/Register.razor.g.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Client/obj/Debug/net5.0/RazorDeclaration/Pages/Register.razor.g.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/obj/Debug/net5.0/RazorDeclaration/Pages/Wishlist.razor.g.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Client/obj/Debug/net5.0/RazorDeclaration/Pages/Wishlist.razor.g.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Client/obj/Debug/net5.0/ref/Client.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Client/obj/Debug/net5.0/ref/Client.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/obj/rider.project.restore.info" beforeDir="false" afterPath="$PROJECT_DIR$/Client/obj/rider.project.restore.info" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../JAVA/ws_rest/consuming-rest/src/main/java/Controllers/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../JAVA/ws_rest/consuming-rest/src/main/java/Controllers/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../JAVA/ws_rest/consuming-rest/src/main/java/Services/IUserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../JAVA/ws_rest/consuming-rest/src/main/java/Services/IUserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../JAVA/ws_rest/consuming-rest/src/main/java/Services/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../JAVA/ws_rest/consuming-rest/src/main/java/Services/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../JAVA/ws_rest/consuming-rest/src/main/java/Sockets/Models/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../JAVA/ws_rest/consuming-rest/src/main/java/Sockets/Models/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../JAVADB/DatabaseServer/DatabaseServer.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../../JAVADB/DatabaseServer/DatabaseServer.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../JAVADB/DatabaseServer/src/Sockets/Handling/ServerHandling.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../JAVADB/DatabaseServer/src/Sockets/Handling/ServerHandling.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../JAVADB/DatabaseServer/src/Sockets/Models/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../JAVADB/DatabaseServer/src/Sockets/Models/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../JAVADB/DatabaseServer/src/mediator/DatabaseServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../JAVADB/DatabaseServer/src/mediator/DatabaseServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../JAVADB/DatabaseServer/src/mediator/DatabaseServerManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../JAVADB/DatabaseServer/src/mediator/DatabaseServerManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../JAVADB/DatabaseServer/target/classes/Sockets/Handling/ServerHandling.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../JAVADB/DatabaseServer/target/classes/Sockets/Handling/ServerHandling.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../JAVADB/DatabaseServer/target/classes/Sockets/Models/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../JAVADB/DatabaseServer/target/classes/Sockets/Models/User.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../JAVADB/DatabaseServer/target/classes/mediator/DatabaseServer.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../JAVADB/DatabaseServer/target/classes/mediator/DatabaseServer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../JAVADB/DatabaseServer/target/classes/mediator/DatabaseServerManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../JAVADB/DatabaseServer/target/classes/mediator/DatabaseServerManager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/obj/Debug/net5.0/scopedcss/Pages/Register.razor.rz.scp.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/obj/Debug/net5.0/scopedcss/bundle/Client.styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/Client/obj/Debug/net5.0/scopedcss/bundle/Client.styles.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/obj/Debug/net5.0/scopedcss/projectbundle/Client.bundle.scp.css" beforeDir="false" afterPath="$PROJECT_DIR$/Client/obj/Debug/net5.0/scopedcss/projectbundle/Client.bundle.scp.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,7 +44,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$/../.." value="main" />
+        <entry key="$PROJECT_DIR$/../.." value="ChangeAPI" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
@@ -99,6 +69,7 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Client/Program.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Client/obj/Debug/net5.0/RazorDeclaration/Pages/Login.razor.g.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Client/Pages/Profile.razor" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Client/obj/Debug/net5.0/RazorDeclaration/Shared/MainLayout.razor.g.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Client/Data/IUserService.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Client/obj/Debug/net5.0/RazorDeclaration/Shared/SurveyPrompt.razor.g.cs" root0="SKIP_HIGHLIGHTING" />
@@ -194,6 +165,7 @@
       <workItem from="1638876171902" duration="1743000" />
       <workItem from="1639051661714" duration="8411000" />
       <workItem from="1639060824727" duration="3694000" />
+      <workItem from="1639065853615" duration="4032000" />
     </task>
     <task id="LOCAL-00001" summary="Search engine implemented on Tier3">
       <created>1638540874594</created>
@@ -246,7 +218,8 @@
     <MESSAGE value="Getting changes from last merge pull request" />
     <MESSAGE value="Add shopping cart button and paypal checkout page" />
     <MESSAGE value="SEP3-40 - As a customer, I want to be able to see and purchase the games in the shopping cart at once, such that I would not need to buy them separately." />
-    <option name="LAST_COMMIT_MESSAGE" value="SEP3-40 - As a customer, I want to be able to see and purchase the games in the shopping cart at once, such that I would not need to buy them separately." />
+    <MESSAGE value="Last changes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Last changes" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>
