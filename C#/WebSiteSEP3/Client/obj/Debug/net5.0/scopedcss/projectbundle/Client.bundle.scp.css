@@ -127,61 +127,6 @@
 @media only screen and (max-width: 767px){
     .anim[b-ul5ta8clj0]{ margin-bottom: 20px; }
 }
-/* _content/Client/Pages/Register.razor.rz.scp.css */
-.wrapper[b-aqp40rujkq] {
-    height: 202%;
-    width: 100%;
-    left:0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    position: absolute;
-    background-size: 1800% 1800%;
-    background: linear-gradient(to right, #eb3349, #f45c43) no-repeat;
-    padding: 100px;
-}
-
-.form-box[b-aqp40rujkq] {
-    width: 380px;
-    height: 480px;
-    position: relative;
-    margin: 6% auto;
-    padding: 5px;
-    overflow: hidden;
-    background: white;
-    border-radius: 20px;
-}
-.input-group[b-aqp40rujkq]{
-    top: 180px;
-    position: absolute;
-    width: 280px;
-    transform: 5s;
-
-}
-
-.input-field[b-aqp40rujkq]{
-    width: 100%;
-    padding: 10px 0;
-    margin: 5px 0;
-    border-left: 0;
-    border-top: 0;
-    border-right: 0;
-    border-bottom: 1px solid #999;
-    outline: none;
-    background: transparent;
-}
-
-.submit-btn[b-aqp40rujkq] {
-    width: 85%;
-    padding: 10px 3px;
-    cursor: pointer;
-    display: block;
-    margin: auto;
-    outline: none;
-    border: 0;
-    border-radius: 30px;
-    background-color: #f45c43;
-}
 /* _content/Client/Shared/MainLayout.razor.rz.scp.css */
 .page[b-ocnk4r8tjs] {
     position: relative;

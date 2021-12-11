@@ -191,7 +191,7 @@ public class DatabaseServerManager implements DatabaseServer
             statement.setString(1, game.getGameName());
             statement.setDouble(2, game.getPrice());
             statement.setString(3, game.getDescription());
-            statement.setString(4, game.getDescription());
+            statement.setString(4, game.getSpecifications());
             statement.setInt(5, game.getIGNRating());
             statement.setString(6, game.getESRBRating());
             statement.setString(7, game.getPhotoURL());

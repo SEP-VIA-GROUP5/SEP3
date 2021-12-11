@@ -116,7 +116,7 @@ using Client.Data.Impl;
     private User _user = new User();
     private string _errorMessage = "";
 
-    private async void AddNewUserAsync()
+    private async Task AddNewUserAsync()
     {
         try
         {

@@ -179,7 +179,6 @@ C:\Users\titas\Desktop\SEP3\C#\WebSiteSEP3\Client\bin\Debug\net5.0\Client.Views.
 C:\Users\titas\Desktop\SEP3\C#\WebSiteSEP3\Client\obj\Debug\net5.0\Client.Views.pdb
 C:\Users\titas\Desktop\SEP3\C#\WebSiteSEP3\Client\obj\Debug\net5.0\Client.genruntimeconfig.cache
 C:\Users\titas\Desktop\SEP3\C#\WebSiteSEP3\Client\obj\Debug\net5.0\Client.csproj.CopyComplete
-D:\FACULTATE SEMESTRUL 3\SEP3\CODE\SEP3\C#\WebSiteSEP3\Client\obj\Debug\net5.0\scopedcss\Pages\Register.razor.rz.scp.css
 C:\Users\ljusk\Documents\GitHub\SEP3\C#\WebSiteSEP3\Client\obj\Debug\net5.0\Client.csproj.AssemblyReference.cache
 C:\Users\ljusk\Documents\GitHub\SEP3\C#\WebSiteSEP3\Client\obj\Debug\net5.0\Client.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\ljusk\Documents\GitHub\SEP3\C#\WebSiteSEP3\Client\obj\Debug\net5.0\Client.AssemblyInfoInputs.cache

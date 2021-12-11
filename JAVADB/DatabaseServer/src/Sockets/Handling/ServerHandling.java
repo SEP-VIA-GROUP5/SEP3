@@ -1,6 +1,7 @@
 package Sockets.Handling;
 
 import Sockets.Models.Game;
+import Sockets.Models.GameKey;
 import Sockets.Models.User;
 import Sockets.Packages.CartPackage;
 import Sockets.Packages.GamePackage;
@@ -119,6 +120,10 @@ public class ServerHandling implements Runnable{
                         {
                             game = received.getGame();
                             Game gameToBeSent = databaseServer.buyGame(game.getGameId(), received.getUsername());
+                            if(gameToBeSent.getGameKey().getGameKey() == null)
+                            {
+                                gameToBeSent.setGameKey(new GameKey("No product key available"));
+                            }
                             GamePackage toSentPackage = new GamePackage(gameToBeSent, "");
                             sendDataToServer(toSentPackage);
                             break;
