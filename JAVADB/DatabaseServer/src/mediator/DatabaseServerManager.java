@@ -497,7 +497,7 @@ public class DatabaseServerManager implements DatabaseServer
         {
             PreparedStatement statement = connection.prepareStatement("UPDATE games SET game_name = ?,price = ?, description = ?, specifications = ?, ign_rating = ?, esrb_rating = ?, photo_url = ?, release_date = ? WHERE game_id = ?;");
             statement.setString(1, game.getGameName());
-            statement.setDouble(2, game.getGameId());
+            statement.setDouble(2, game.getPrice());
             statement.setString(3, game.getDescription());
             statement.setString(4, game.getSpecifications());
             statement.setInt(5, game.getIGNRating());
