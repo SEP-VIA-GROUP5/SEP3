@@ -1,1 +1,0 @@
-packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"mediator"},{"l":"Sockets.Handling"},{"l":"Sockets.Models"},{"l":"Sockets.Packages"},{"l":"Test"}]
