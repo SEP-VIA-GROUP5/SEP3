@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"com.rest.consumingrest"},{"l":"Controllers"},{"l":"Services"},{"l":"Sockets.Handlers"},{"l":"Sockets.Models"},{"l":"Sockets.Packages"}]
